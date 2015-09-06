@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_rootView"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#55000000"
+    android:padding="5dp" >
+
+    <RelativeLayout
+        android:id="@+id/contentDialog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@drawable/dialog_background"
+        android:padding="24dp" >
+
+        <TextView
+            android:id="@+id/judul"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|top"
+            android:text="Judul"
+            android:textColor="#1e88e5"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+            android:id="@+id/progressBarCircularIndetermininate"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/judul"
+            android:background="#1E88E5"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/progressBarCircularIndetermininate"
+            android:gravity="start"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="15dp"
+            android:text="Title"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
