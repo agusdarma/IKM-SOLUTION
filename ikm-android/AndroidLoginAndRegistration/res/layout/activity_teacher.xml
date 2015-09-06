@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/general_redbackground"
@@ -18,12 +18,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingBottom="10dp"
-            android:text="Agus's Agenda"
+            android:text="Agus&apos;s Agenda"
             android:textColor="@color/grey"
             android:textSize="25sp"
             android:textStyle="bold"
             android:typeface="serif" />
-        
+
         <com.romainpiel.shimmer.ShimmerTextView
             android:id="@+id/tvTitleSchool"
             android:layout_width="wrap_content"
@@ -48,6 +48,17 @@
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp" >
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinner1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:ms_arrowColor="@color/white"
+                app:ms_arrowSize="16dp"
+                app:ms_floatingLabelColor="@color/white"
+                app:ms_floatingLabelText="Kelas"
+                app:ms_hint="Kelas"
+                app:ms_multiline="true" />
 
             <com.romainpiel.shimmer.ShimmerTextView
                 android:id="@+id/tvFooter"
