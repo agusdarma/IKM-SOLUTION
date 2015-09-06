@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/height_list"
+        android:background="@drawable/background_item"
+        android:gravity="center"
+        android:tag="back" >
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/example_row_b_action_1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@color/blue"
+            android:text="@string/btn_booking" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/example_row_b_action_2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/blue"
+            android:text="@string/btn_release" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/front"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_list_front"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_default"
+        android:tag="front" >
+
+        <TextView
+            android:id="@+id/example_row_tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/example_row_iv_image"
+            android:text="Mall Kota Casablanka"
+            android:textColor="@color/blue"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/viewTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/example_row_tv_title"
+            android:background="#1E88E5"
+            android:paddingBottom="@dimen/padding_default" />
+
+        <ImageView
+            android:id="@+id/example_row_iv_image"
+            android:layout_width="@dimen/size_list_image"
+            android:layout_height="@dimen/size_list_image"
+            android:layout_below="@id/viewTitle"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/example_row_tv_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewTitle"
+            android:layout_toRightOf="@id/example_row_iv_image"
+            android:padding="5dp"
+            android:text="jalan tebet raya no 125"
+            android:textColor="@color/grey"
+            android:textSize="13sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/slot_available"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/example_row_tv_description"
+            android:layout_toRightOf="@id/example_row_iv_image"
+            android:padding="5dp"
+            android:text="10 parkir available"
+            android:textColor="@color/blue"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+    </RelativeLayout>
+
+</FrameLayout>

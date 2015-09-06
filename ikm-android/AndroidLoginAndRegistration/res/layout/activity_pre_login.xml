@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/general_redbackground"
+    android:gravity="top|center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="190dp"
+            android:layout_height="142dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ikm_logo" />
+
+        <com.romainpiel.shimmer.ShimmerTextView
+            android:id="@+id/tvFancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:paddingBottom="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/grey"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+
+            <!--
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            android:layout="@layout/custom_float_label"
+            android:textColor="@color/white"
+            android:textStyle="normal"
+            android:typeface="sans" />
+
+        <com.iangclifton.android.floatlabel.FloatLabel
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            android:layout="@layout/custom_float_label"
+            android:textColor="@color/white"
+            android:textStyle="normal"
+            android:typeface="sans" />
+            -->
+            <!-- Login Button -->
+
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnTeacher"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dip"
+                android:background="#b20000"
+                android:text="@string/btn_teacher" />
+
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnParents"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dip"
+                android:background="#b20000"
+                android:text="@string/btn_parents" />
+
+            <com.romainpiel.shimmer.ShimmerTextView
+                android:id="@+id/tvFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Copyright © 2015 Indo Kanaan Mandiri (IKM Solution)"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:typeface="serif" />
+
+            <com.romainpiel.shimmer.ShimmerTextView
+                android:id="@+id/tvVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Version 1.0.0"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:typeface="serif" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

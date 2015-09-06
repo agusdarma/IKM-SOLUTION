@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Progress Dialog -->
+    <string name="progress_dialog">Please wait a moment..</string>
+    <string name="confirmation_dialog">Konfirmasi action</string>
+    <string name="please_wait">Please wait…</string>
+    
+    
+    <!-- Mall -->
+    <string name="settings">Settings</string>
+    <string name="discard">Discard</string>
+    <string name="open">Open</string>
+    <string name="googlePlay">Google Play</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="mode">Swipe Mode</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="both">Both</string>
+    <string name="leftAction">Left Action</string>
+    <string name="reveal">Reveal</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="choice">Choice</string>
+    <string name="rightAction">Right Action</string>
+    <string name="rightOffset">Right Offset (%1$s dp)</string>
+    <string name="leftOffset">Left Offset (%1$s dp)</string>
+    <string name="dp">dp</string>
+    <string name="animationTime">Animation Time (Default: 0)</string>
+    <string name="milliseconds">Milliseconds</string>
+    <string name="openOnLongPress">Open On Long Press</string>
+
+    <string name="about">Cara Booking</string>
+    <string name="aboutMessage">Pilih mal yang dituju kemudian tekan di list mall yang dituju beberapa detik, akan muncul tombol Booking. Happy Parking.</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Batal</string>
+    
+    <string name="visit47">Visit 47deg</string>
+    <string name="goToGitHub">Go to GitHub</string>
+
+    <string name="dontShow">Don\'t show this message again</string>
+    <string name="others">Others</string>
+
+    <string name="loading">Loading</string>
+	<string name="cantOpen">Can\'t open this application</string>
+    <string name="newTag">New!</string>
+    <!-- Mall End -->
+
+    <string name="app_name">My Agenda</string>
+    <string name="app_name_forget">My Agenda - Forget Password</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_no_induk">No Induk</string>
+    <string name="hint_kode_sekolah">Kode Sekolah</string>
+    <string name="hint_booking_code">Booking Code</string>
+    <string name="hint_booking_name">Name</string>
+    <string name="hint_booking_phone_no">Phone No</string>
+    <string name="hint_booking_email">Email</string>
+    <string name="hint_booking_mall">Mall Name</string>
+    <string name="hint_booking_id">Booking Id</string>
+    <string name="hint_booking_date">Booking Date</string>
+    <string name="hint_booking_status">Booking Status</string>
+    
+    <string name="hint_license_no">No Polisi</string>
+    <string name="hint_hp">No HP</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="hint_cc">Credit Card No</string>
+    <string name="hint_expire_month">Expire Month</string>
+    <string name="hint_expire_year">Expire Year</string>
+    <string name="hint_cvv">No Cvv</string>
+    
+    <string name="welcome">Welcome</string>
+    <string name="name">Fullname</string>
+
+    <!-- LABEL -->
+    
+    <string name="label.retrieveData">Retrieve Data</string>
+    
+    
+    <!-- BUTTON -->
+    
+    <string name="btn_teacher">LOGIN TEACHER</string>
+    <string name="btn_parents">LOGIN PARENTS</string>
+    
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_back">BACK</string>
+    <string name="btn_check_in">CHECK IN</string>
+    <string name="btn_check_booking_code">CHECK BOOKING CODE</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_pay">BAYAR</string>
+    <string name="btn_change_password">CHANGE PASSWORD</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="btn_forgot_password">FORGOT PASSWORD</string>    
+    <string name="btn_booking">BOOKING</string>
+    <string name="btn_release">RELEASE</string>
+    <string name="btn_refresh_mall">Refresh List mall</string>   
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_forget"><u>Forgot Password?Click Here</u></string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="btn_link_to_login2">Back to Login</string>
+
+    <!-- TITLE -->
+    <string name="menu_change_password">Change Password</string>
+    <string name="menu_logout">Logout</string>
+    
+    <!-- LOADING -->
+    <string name="process_forgot_password">Requesting new password</string>
+    <string name="process_login">Autentifikasi akun</string>
+    <string name="process_change_password">Ganti password</string>
+    <string name="process_check_in">Cari Kode Booking</string>
+    <string name="process_confirm">Confirm process</string>
+    <string name="process_check_booking_id_allowed_pay">Cari booking id</string>
+    <string name="process_find_slots">Cari slot parkir</string>
+    <string name="process_verification_to_server">Verifikasi pembayaran</string>
+    <string name="process_authenticating_credit_card">Autentifikasi kartu kredit</string>
+    <string name="process_logout">Proses logout</string>
+    <string name="process_register">Kirim data registrasi</string>
+    <string name="process_get_list_mall">Cari data mall</string>
+    <string name="process_get_history_booking">Cari data booking</string>
+    <string name="process_refresh_mall">Perbaharui data malls</string>
+    
+    <!-- MESSAGE -->
+    <string name="message_unexpected_error_server">Server sedang mengalami gangguan, silahkan coba beberapa jam kemudian.</string>
+    <string name="message_unexpected_error_message_server">Server sedang mengalami gangguan, Unmatched Format Data Transfer</string>
+    <string name="message_no_internet_connection">Terjadi gangguan jaringan, pastikan koneksi internet anda normal.</string>
+    <!--  <string name="message_forget_password_success">Password anda berhasil di reset, silahkan cek di email anda untuk mendapatkan password baru.</string> 
+    	  <string name="message_forget_password_failed">Password anda gagal di reset, silahkan coba kembali beberapa saat kemudian.</string>
+    -->
+    
+    <string name="info_payment">INFO PESANAN</string>
+    
+    <string name="info_expired_payment">BATAS WAKTU BAYAR</string>
+    <string name="info_expired_payment_message">Harap segera lakukan pembayaran, pesanan ini hanya berlaku untuk 15 menit</string>
+    
+    
+    <string name="message_register_title">Register berhasil</string>
+    <string name="message_register_success">Account anda telah berhasil dibuat, Silahkan cek email anda untuk aktifasi account anda.</string>
+    
+    <string name="message_forgetPass_title">Reset Password berhasil</string>
+    <string name="message_forgetPass_success">Password baru anda telah dikirim lewat email, segera ganti password anda untuk kepentingan keamanan.</string>
+    
+    <string name="message_confirm_booking">Anda yakin ingin booking parkir di mall ini?</string>
+    <string name="message_confirm_release">Anda yakin ingin release parkir di mall ini?</string>
+    <string name="message_confirm_pay">Anda yakin ingin bayar?</string>
+    <string name="message_confirm_check_kode_booking">Anda yakin check kode booking?</string>
+    <string name="message_confirm_check_in">Anda yakin check in?</string>
+    <string name="message_confirm_refresh_mall">Anda yakin refresh mall?</string>
+    
+    <string name="message_email_required">Email harus diisi!</string>
+    <string name="email_and_pass_required">Email dan password harus diisi!</string>
+    <string name="email_not_valid">Email tidak valid!</string>
+    <string name="message_password_required">Password lama dan password baru harus diisi!</string>
+    <string name="message_booking_code_required">Booking code harus diisi!</string>
+    <string name="message_detail_required">Kolom registrasi masih kosong!</string>
+    
+</resources>
