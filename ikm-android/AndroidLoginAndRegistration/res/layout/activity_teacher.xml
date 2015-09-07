@@ -60,6 +60,11 @@
                 app:ms_hint="Kelas"
                 app:ms_multiline="true" />
 
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <com.romainpiel.shimmer.ShimmerTextView
                 android:id="@+id/tvFooter"
                 android:layout_width="wrap_content"

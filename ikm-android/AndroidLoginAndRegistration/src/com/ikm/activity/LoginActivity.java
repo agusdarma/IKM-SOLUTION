@@ -15,6 +15,7 @@ import com.iangclifton.android.floatlabel.FloatLabel;
 import com.ikm.R;
 import com.ikm.data.Constants;
 import com.ikm.utils.CustomLabelAnimator;
+import com.ikm.utils.MessageUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -92,10 +93,19 @@ public class LoginActivity extends Activity {
 				if(!tipeLogin.isEmpty()){
 					if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
 												
-					}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){
-						Intent i = new Intent(ctx, MenuTeacherActivity.class);
-						i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
-						startActivity(i);
+					}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){						
+						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() && !inputPassword.getEditText().getText().toString().isEmpty()) {
+							
+							Intent i = new Intent(ctx, MenuTeacherActivity.class);
+							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+							startActivity(i);
+							
+							
+						} else {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(LoginActivity.this,ctx.getResources().getString(R.string.message_detail_required));
+						}
+						
 					}
 				}
 			}
@@ -198,13 +208,6 @@ public class LoginActivity extends Activity {
 //         }
 //	}
 	
-	// validating email id
-	private boolean isValidEmail(String email) {
-		if (email == null) {
-	        return false;
-	    } else {
-	    	return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-	    }
-	}
+	
 
 }
