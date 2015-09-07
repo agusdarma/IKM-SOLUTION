@@ -73,9 +73,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 app:mcv_arrowColor="@color/white"
-                app:mcv_selectionColor="@color/white" />
+                app:mcv_selectionColor="@color/black_transparant" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <TextView
+                android:id="@+id/lblIsiAgenda"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Isi Agenda"
+                android:textColor="@color/white" />
+            <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/isiAgenda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
