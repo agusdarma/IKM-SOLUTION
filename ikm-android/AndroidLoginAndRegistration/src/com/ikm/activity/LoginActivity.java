@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.views.Switch;
+import com.gc.materialdesign.views.Switch.OnCheckListener;
 import com.iangclifton.android.floatlabel.FloatLabel;
+import com.ikm.R;
 import com.ikm.data.Constants;
 import com.ikm.utils.CustomLabelAnimator;
-import com.ikm.R;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -19,11 +22,11 @@ import com.romainpiel.shimmer.ShimmerTextView;
 public class LoginActivity extends Activity {
 	// LogCat tag
 	private static final String TAG = RegisterActivity.class.getSimpleName();
-	private ButtonRectangle btnLogin;
-	private ButtonRectangle btnBack;
+	private ButtonRectangle btnLogin;	
 	private FloatLabel inputKodeSekolah;
 	private FloatLabel inputNoInduk;
 	private FloatLabel inputPassword;
+	Switch switchView;
 	private Context ctx;
 //	private ReqLoginTask reqLoginTask = null;
 	SharedPreferences sharedpreferences;
@@ -35,22 +38,38 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		ctx = LoginActivity.this;
-		Intent intent = getIntent();
-		tipeLogin = intent.getStringExtra(Constants.KEY_LOGIN);
+//		Intent intent = getIntent();
+//		tipeLogin = intent.getStringExtra(Constants.KEY_LOGIN);
 		ShimmerTextView tvFancy = (ShimmerTextView) findViewById(R.id.tvFancy);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
-		
+		switchView = (Switch) findViewById(R.id.switchView);
+		final TextView lblSwitchView = (TextView) findViewById(R.id.LblswitchView);	
 		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
 		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
 		inputPassword = (FloatLabel) findViewById(R.id.password);
 		btnLogin = (ButtonRectangle) findViewById(R.id.btnLogin);
-		btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
-		if(!tipeLogin.isEmpty()){
-			if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
-				inputPassword.setVisibility(View.GONE);
+		
+		
+		// default parent
+		tipeLogin = Constants.PARENTS;
+		inputPassword.setVisibility(View.GONE);
+		lblSwitchView.setText("Login "+ Constants.PARENTS);
+		switchView.setOncheckListener(new OnCheckListener() {
+			
+			@Override
+			public void onCheck(Switch view, boolean check) {
+				if(switchView.isCheck()){
+					tipeLogin = Constants.TEACHER;
+					inputPassword.setVisibility(View.VISIBLE);
+					lblSwitchView.setText("Login "+ Constants.TEACHER);
+				}else{
+					tipeLogin = Constants.PARENTS;
+					inputPassword.setVisibility(View.GONE);
+					lblSwitchView.setText("Login "+ Constants.PARENTS);
+				}				
 			}
-		}
+		});
 
 		if (shimmer != null && shimmer.isAnimating()) {
 			shimmer.cancel();
@@ -85,14 +104,6 @@ public class LoginActivity extends Activity {
 
 		});
 		
-		
-		btnBack.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View view) {
-				finish();
-			}
-
-		});
 
 
 	}

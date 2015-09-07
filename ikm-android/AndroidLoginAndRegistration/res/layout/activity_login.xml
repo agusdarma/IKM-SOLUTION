@@ -35,12 +35,12 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:padding="5dp" >
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp" >
@@ -78,6 +78,28 @@
                 android:textStyle="normal"
                 android:typeface="sans" />
 
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/LblswitchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Login Parent"
+                    android:textColor="@color/white" />
+
+                <com.gc.materialdesign.views.Switch
+                    android:id="@+id/switchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/LblswitchView"
+                    android:background="#1E88E5"
+                    materialdesign:check="false" />
+            </RelativeLayout>
+
             <!-- Login Button -->
 
             <com.gc.materialdesign.views.ButtonRectangle
@@ -85,17 +107,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="20dip"
+                android:layout_marginTop="10dip"
                 android:background="#b20000"
                 android:text="@string/btn_login" />
-
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btnBack"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="#b20000"
-                android:text="@string/btn_back" />
 
             <com.romainpiel.shimmer.ShimmerTextView
                 android:id="@+id/tvFooter"
