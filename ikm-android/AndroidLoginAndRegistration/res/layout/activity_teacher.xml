@@ -65,6 +65,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/isiAgenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Isi Agenda"
+                app:met_maxCharacters="512" />
+
             <com.romainpiel.shimmer.ShimmerTextView
                 android:id="@+id/tvFooter"
                 android:layout_width="wrap_content"

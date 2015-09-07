@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.ikm.R;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -41,7 +42,7 @@ public class MenuTeacherActivity extends Activity {
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
-		
+//		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
 		
 //		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
 //		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
