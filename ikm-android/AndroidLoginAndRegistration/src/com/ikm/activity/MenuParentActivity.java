@@ -1,12 +1,18 @@
 package com.ikm.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 
 import com.ikm.R;
+import com.ikm.swipelistview.sample.adapters.AgendaAdapter;
+import com.ikm.swipelistview.sample.adapters.AgendaVO;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -22,65 +28,67 @@ public class MenuParentActivity extends Activity {
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
 	
-	private ArrayAdapter<String> adapter;
-	private static final String[] ITEMS = {"Science 6A", "Science 6B", "BI 6A", "Inggris 3C", "Inggris 3A", "Inggris 3E"};
+	RecyclerView recyclerView;
+    ArrayList<AgendaVO> itemsList = new ArrayList<AgendaVO>();
+    AgendaAdapter adapter;
 	MaterialSpinner spinner1;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_parent);
 		ctx = MenuParentActivity.this;
-		
-		
-		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
-		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
-		ShimmerTextView tvTitleClass = (ShimmerTextView) findViewById(R.id.tvTitleClass);		
-		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
-		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
-		
-		
-
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ITEMS);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-		if (shimmer != null && shimmer.isAnimating()) {
-			shimmer.cancel();
-        } else {
-        	shimmer = new Shimmer();
-        	shimmer.start(tvTitle);
-        	shimmer.start(tvTitleSchool);
-        	shimmer.start(tvVersion);
-        	shimmer.start(tvFooter);
-        	shimmer.start(tvTitleClass);
-        }
-
-		// This is how you add a custom animator
-//		inputPassword.setLabelAnimator(new CustomLabelAnimator());
-//		inputNoInduk.setLabelAnimator(new CustomLabelAnimator());
-//		inputKodeSekolah.setLabelAnimator(new CustomLabelAnimator());
+		recyclerView = (RecyclerView) findViewById(R.id.listAgenda);
+		LinearLayoutManager manager = new LinearLayoutManager(ctx);
+        manager.setOrientation(OrientationHelper.VERTICAL);
+        recyclerView.setLayoutManager(manager);        
+        adapter = new AgendaAdapter(ctx, getData());
+        recyclerView.setAdapter(adapter);
         
+//		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
+//		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
+//		ShimmerTextView tvTitleClass = (ShimmerTextView) findViewById(R.id.tvTitleClass);		
+//		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
+//		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
+//
+//		if (shimmer != null && shimmer.isAnimating()) {
+//			shimmer.cancel();
+//        } else {
+//        	shimmer = new Shimmer();
+//        	shimmer.start(tvTitle);        	
+//        	shimmer.start(tvVersion);
+//        	shimmer.start(tvFooter);        	
+//        }
 		
-		// Teacher button Click Event
-//		btnLogin.setOnClickListener(new View.OnClickListener() {
-//
-//			public void onClick(View view) {
-//
-//			}
-//
-//		});
-//		
-//		
-//				btnBack.setOnClickListener(new View.OnClickListener() {
-//
-//					public void onClick(View view) {
-//						finish();
-//					}
-//
-//				});
-
+		
 
 	}
 	
+	
+	public ArrayList<AgendaVO> getData()
+    {
+        ArrayList<AgendaVO> it = new ArrayList<AgendaVO>();
+        AgendaVO items1 = new AgendaVO();
+        items1.setAgendaType(1);
+        items1.setIsiAgenda("Bahasa Indonesia PR halaman 17");
+        items1.setTglAgenda("07 September 2015");
+        it.add(items1);
+        AgendaVO items2 = new AgendaVO();
+        items2.setAgendaType(1);
+        items2.setIsiAgenda("Science PR halaman 18");
+        items2.setTglAgenda("06 September 2015");
+        it.add(items2);
+        AgendaVO items3 = new AgendaVO();
+        items3.setAgendaType(1);
+        items3.setIsiAgenda("Inggris PR halaman 19");
+        items3.setTglAgenda("05 September 2015");
+        it.add(items3);
+        AgendaVO items4 = new AgendaVO();
+        items4.setAgendaType(1);
+        items4.setIsiAgenda("Sejarah PR halaman 20");
+        items4.setTglAgenda("04 September 2015");
+        it.add(items4);
+        return it;
+    }
 	
 	
 	

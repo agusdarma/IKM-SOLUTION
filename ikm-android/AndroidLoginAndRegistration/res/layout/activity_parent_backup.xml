@@ -49,42 +49,48 @@
             android:typeface="serif" />
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp" >
+        android:padding="5dp" >
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/listAgenda"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" >
-        </android.support.v7.widget.RecyclerView>
-
-        <com.romainpiel.shimmer.ShimmerTextView
-            android:id="@+id/tvFooter"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dip"
-            android:text="Copyright © 2015 Indo Kanaan Mandiri (IKM Solution)"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            android:typeface="serif" />
+            android:layout_gravity="top|center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
 
-        <com.romainpiel.shimmer.ShimmerTextView
-            android:id="@+id/tvVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Version 1.0.0"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            android:typeface="serif" />
-    </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listAgenda"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </android.support.v7.widget.RecyclerView>
+
+            <com.romainpiel.shimmer.ShimmerTextView
+                android:id="@+id/tvFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dip"
+                android:text="Copyright © 2015 Indo Kanaan Mandiri (IKM Solution)"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:typeface="serif" />
+
+            <com.romainpiel.shimmer.ShimmerTextView
+                android:id="@+id/tvVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Version 1.0.0"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:typeface="serif" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
