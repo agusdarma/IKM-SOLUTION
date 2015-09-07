@@ -1,47 +1,102 @@
 package com.ikm.swipelistview.sample.adapters;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.fortysevendeg.swipelistview.SwipeListView;
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.ikm.R;
 
-public class AgendaAdapter extends RecyclerView.Adapter<AgendaViewHolder> {
-    Context context;
-    ArrayList<AgendaVO> itemsList;
-    int noUrut;
+public class AgendaAdapter extends BaseAdapter {
+	private static final String TAG = AgendaAdapter.class.getSimpleName();
+	private List<AgendaVO> data;
+	private Context ctx;
+	private Activity act;
+    
  
-    public AgendaAdapter(Context context, ArrayList<AgendaVO> itemsList) {
-        this.context = context;
-        this.itemsList = itemsList;
-    }
+    public AgendaAdapter(Context context, Activity activity,
+			List<AgendaVO> data) {
+		this.ctx = context;
+		this.data = data;
+		this.act = activity;
+	}
+
+	
+
+	public AgendaAdapter(Context context, List<AgendaVO> data) {
+		this.ctx = context;
+		this.data = data;
+	}
  
-    @Override
-    public int getItemCount() {
-        if (itemsList == null) {
-            return 0;
-        } else {
-            return itemsList.size();
-        }
-    }
- 
-    @Override
-    public AgendaViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
-        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View view = inflater.inflate(R.layout.agenda_row, null);
-        AgendaViewHolder viewHolder = new AgendaViewHolder(view);
-        return viewHolder;
-    }
- 
-    @Override
-    public void onBindViewHolder(AgendaViewHolder rowViewHolder, int position) {
-        AgendaVO items = itemsList.get(position);
-        noUrut++;
-        rowViewHolder.no.setText(Integer.toString(noUrut));
-        rowViewHolder.tgl.setText(String.valueOf(items.getTglAgenda()));
-    }
+	@Override
+	public int getCount() {
+		return data.size();
+	}
+
+	@Override
+	public AgendaVO getItem(int position) {
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		final AgendaVO item = getItem(position);
+		
+		ViewHolder holder;
+		if (convertView == null) {
+			LayoutInflater li = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = li.inflate(R.layout.agenda_row, parent,false);
+			holder = new ViewHolder();
+			holder.txtNo = (TextView) convertView.findViewById(R.id.txtNo);
+			holder.txtTgl = (TextView) convertView.findViewById(R.id.txtTgl);
+			holder.bAction1 = (ButtonRectangle) convertView.findViewById(R.id.button_pay);
+			
+			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
+
+		((SwipeListView) parent).recycle(convertView, position);
+
+		holder.txtNo.setText(Integer.toString(position+1));
+		holder.txtTgl.setText(item.getTglAgenda());
+		holder.bAction1.setEnabled(false);		
+
+		holder.bAction1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+//				goToPayScreen(item.getMallName(), Long.parseLong(item.getHargaParkir()), item.getSlotName(), item.getBookingId());
+			}
+		});
+
+		return convertView;
+	}
+	
+//	private void goToPayScreen(String mallName, long hargaParkir,String slotName,String bookingId) {
+//    	Intent i = new Intent(ctx, InputCreditCardActivity.class);            	
+//    	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  
+//    	i.putExtra("mallName", mallName);
+//    	i.putExtra("hargaParkir", hargaParkir);
+//    	i.putExtra("slotName", slotName);
+//    	i.putExtra("bookingId", bookingId);
+//    	ctx.startActivity(i);
+//    }
+
+	static class ViewHolder {
+		TextView txtNo;
+		TextView txtTgl;		
+		ButtonRectangle bAction1;
+	}
 }
