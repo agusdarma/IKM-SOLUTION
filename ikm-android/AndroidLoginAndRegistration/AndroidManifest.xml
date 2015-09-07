@@ -16,12 +16,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ikm.activity.PreLoginActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan" >
-        </activity>
-        <activity
             android:name="com.ikm.activity.LoginActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
@@ -35,16 +29,6 @@
         <activity
             android:name="com.ikm.activity.MenuTeacherActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.ikm.activity.RegisterActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.ikm.activity.ForgetPasswordActivity"
-            android:label="@string/app_name_forget"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -70,7 +54,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
     </application>

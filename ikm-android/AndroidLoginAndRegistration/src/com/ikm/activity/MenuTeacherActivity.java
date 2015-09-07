@@ -15,7 +15,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class MenuTeacherActivity extends Activity {
 	// LogCat tag
-	private static final String TAG = RegisterActivity.class.getSimpleName();
+	private static final String TAG = MenuTeacherActivity.class.getSimpleName();
 //	private ButtonRectangle btnLogin;
 //	private ButtonRectangle btnBack;
 //	private FloatLabel inputKodeSekolah;

@@ -21,7 +21,7 @@ import com.romainpiel.shimmer.ShimmerTextView;
 
 public class LoginActivity extends Activity {
 	// LogCat tag
-	private static final String TAG = RegisterActivity.class.getSimpleName();
+	private static final String TAG = LoginActivity.class.getSimpleName();
 	private ButtonRectangle btnLogin;	
 	private FloatLabel inputKodeSekolah;
 	private FloatLabel inputNoInduk;
@@ -38,8 +38,6 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		ctx = LoginActivity.this;
-//		Intent intent = getIntent();
-//		tipeLogin = intent.getStringExtra(Constants.KEY_LOGIN);
 		ShimmerTextView tvFancy = (ShimmerTextView) findViewById(R.id.tvFancy);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);

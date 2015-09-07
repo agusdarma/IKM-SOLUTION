@@ -26,7 +26,7 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.widgets.ProgressDialogParking;
 import com.ikm.R;
-import com.ikm.activity.PreLoginActivity;
+import com.ikm.activity.LoginActivity;
 import com.ikm.data.Constants;
 import com.ikm.data.LoginData;
 import com.ikm.data.MessageVO;
@@ -162,7 +162,7 @@ public class LogoutFragment extends Fragment {
 
     	getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     	getActivity().finish();
-        Intent intent = new Intent(ctx, PreLoginActivity.class);
+        Intent intent = new Intent(ctx, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

@@ -17,11 +17,9 @@ import org.bouncycastle.util.encoders.Hex;
 
 import android.util.Log;
 
-import com.ikm.activity.ForgetPasswordActivity;
-
 public class CipherUtil {
 //	private static final Logger LOGGER = LoggerFactory.getLogger(CipherUtil.class);
-	private static final String TAG = ForgetPasswordActivity.class.getSimpleName();
+	private static final String TAG = CipherUtil.class.getSimpleName();
 	private static final int MAX_LENGTH_3DES_KEY	= 24;
 	public static final String PASSWORD = "PARKING_ONLINE124A7BDF5C701B69B4BACD05F1538EA2";
 	private static final int MAX_LENGTH_3DES_KEY_SMARTPHONE = 24;
