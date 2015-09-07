@@ -42,7 +42,7 @@ public class MenuTeacherActivity extends Activity {
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
-//		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
+		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
 		
 //		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
 //		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
