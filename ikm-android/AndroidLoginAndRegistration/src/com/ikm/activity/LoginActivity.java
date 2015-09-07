@@ -92,7 +92,14 @@ public class LoginActivity extends Activity {
 			public void onClick(View view) {
 				if(!tipeLogin.isEmpty()){
 					if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
-												
+						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() ) {							
+							Intent i = new Intent(ctx, MenuParentActivity.class);
+							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+							startActivity(i);														
+						} else {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(LoginActivity.this,ctx.getResources().getString(R.string.message_detail_required));
+						}					
 					}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){						
 						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() && !inputPassword.getEditText().getText().toString().isEmpty()) {
 							

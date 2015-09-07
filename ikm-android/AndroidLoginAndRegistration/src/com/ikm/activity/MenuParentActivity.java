@@ -6,23 +6,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
-import com.gc.materialdesign.views.ButtonRectangle;
 import com.ikm.R;
-import com.rengwuxian.materialedittext.MaterialEditText;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 
-public class MenuTeacherActivity extends Activity {
+public class MenuParentActivity extends Activity {
 	// LogCat tag
-	private static final String TAG = MenuTeacherActivity.class.getSimpleName();
-	private ButtonRectangle btnSave;
-//	private ButtonRectangle btnBack;
-//	private FloatLabel inputKodeSekolah;
-//	private FloatLabel inputNoInduk;
-//	private FloatLabel inputPassword;
+	private static final String TAG = MenuParentActivity.class.getSimpleName();
 	private Context ctx;
 //	private ReqLoginTask reqLoginTask = null;
 	SharedPreferences sharedpreferences;
@@ -35,22 +28,18 @@ public class MenuTeacherActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_teacher);
-		ctx = MenuTeacherActivity.this;
+		setContentView(R.layout.activity_parent);
+		ctx = MenuParentActivity.this;
 		
 		
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
+		ShimmerTextView tvTitleClass = (ShimmerTextView) findViewById(R.id.tvTitleClass);		
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
-		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
 		
-//		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
-//		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
-//		inputPassword = (FloatLabel) findViewById(R.id.password);
 		
-//		btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
-		btnSave = (ButtonRectangle) findViewById(R.id.btnSave);
+
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ITEMS);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -62,8 +51,8 @@ public class MenuTeacherActivity extends Activity {
         	shimmer.start(tvTitleSchool);
         	shimmer.start(tvVersion);
         	shimmer.start(tvFooter);
+        	shimmer.start(tvTitleClass);
         }
-		initSpinnerHintAndFloatingLabel();
 
 		// This is how you add a custom animator
 //		inputPassword.setLabelAnimator(new CustomLabelAnimator());
@@ -92,11 +81,7 @@ public class MenuTeacherActivity extends Activity {
 
 	}
 	
-	private void initSpinnerHintAndFloatingLabel() {
-        spinner1 = (MaterialSpinner) findViewById(R.id.spinner1);
-        spinner1.setAdapter(adapter);
-        spinner1.setPaddingSafe(0,0,0,0);
-    }
+	
 	
 	
 //	public class ReqLoginTask  extends AsyncTask<String, Void, Boolean> {

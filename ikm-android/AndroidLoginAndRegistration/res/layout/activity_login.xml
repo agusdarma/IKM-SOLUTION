@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dip"
-                android:background="#b20000"
+                android:background="@color/blue"
                 android:text="@string/btn_login" />
 
             <com.romainpiel.shimmer.ShimmerTextView

@@ -81,6 +81,7 @@
     <string name="btn_parents">LOGIN PARENTS</string>
     
     <string name="btn_login">LOGIN</string>
+    <string name="btn_save">SAVE</string>
     <string name="btn_back">BACK</string>
     <string name="btn_check_in">CHECK IN</string>
     <string name="btn_check_booking_code">CHECK BOOKING CODE</string>
@@ -149,6 +150,6 @@
     <string name="email_not_valid">Email tidak valid!</string>
     <string name="message_password_required">Password lama dan password baru harus diisi!</string>
     <string name="message_booking_code_required">Booking code harus diisi!</string>
-    <string name="message_detail_required">Kolom login kosong!</string>
+    <string name="message_detail_required">Silahkan isi field yang kosong!</string>
     
 </resources>
