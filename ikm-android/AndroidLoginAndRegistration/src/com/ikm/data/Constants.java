@@ -2,6 +2,7 @@ package com.ikm.data;
 
 public class Constants {
 	
+	public static final String FROM_MENU				= "from_menu";
 	public static final String KEY_LOGIN				= "login";
 	public static final String TEACHER				= "teacher";
 	public static final String PARENTS				= "parents";

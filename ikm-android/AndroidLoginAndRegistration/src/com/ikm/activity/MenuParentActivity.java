@@ -30,6 +30,7 @@ import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.Switch;
 import com.gc.materialdesign.views.Switch.OnCheckListener;
 import com.ikm.R;
+import com.ikm.data.Constants;
 import com.ikm.swipelistview.sample.adapters.AgendaAdapter;
 import com.ikm.swipelistview.sample.adapters.AgendaVO;
 import com.ikm.swipelistview.sample.utils.SettingsManager;
@@ -60,6 +61,7 @@ public class MenuParentActivity extends Activity {
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
+		ButtonRectangle inbox = (ButtonRectangle) findViewById(R.id.btnInbox);
 //		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 //		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		ctx = MenuParentActivity.this;
@@ -85,6 +87,16 @@ public class MenuParentActivity extends Activity {
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 				startActivity(i);	
 				
+			}
+		});
+        
+        inbox.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(ctx, InboxActivity.class);	
+				i.putExtra(Constants.FROM_MENU, Constants.PARENTS);
+				startActivity(i);	
 			}
 		});
         switchView.setOncheckListener(new OnCheckListener() {

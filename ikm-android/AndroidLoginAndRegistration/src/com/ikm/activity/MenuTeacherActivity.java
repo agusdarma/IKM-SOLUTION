@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ikm.R;
+import com.ikm.data.Constants;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
@@ -47,7 +48,7 @@ public class MenuTeacherActivity extends Activity {
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
-		
+		ButtonRectangle inbox = (ButtonRectangle) findViewById(R.id.btnInbox);
 //		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
 //		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
 //		inputPassword = (FloatLabel) findViewById(R.id.password);
@@ -76,6 +77,15 @@ public class MenuTeacherActivity extends Activity {
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 				startActivity(i);	
 				
+			}
+		});
+		inbox.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(ctx, InboxActivity.class);	
+				i.putExtra(Constants.FROM_MENU, Constants.TEACHER);
+				startActivity(i);	
 			}
 		});
 
