@@ -11,8 +11,8 @@
 	
 	<typeAliases>
 	    <!-- Urutin Menurut Nama ya biar gampang -->
-	    <package name="com.myproject.parking.lib.data"/>
-	    <package name="com.myproject.parking.lib.entity"/>
+	    <package name="com.myproject.ikm.lib.data"/>
+	    <package name="com.myproject.ikm.lib.entity"/>
 	</typeAliases>
 
 </configuration>

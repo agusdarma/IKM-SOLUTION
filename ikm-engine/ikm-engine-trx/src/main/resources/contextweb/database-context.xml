@@ -43,7 +43,7 @@
 	<!-- scan for mappers and let them be autowired -->
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-		<property name="basePackage" value="com.myproject.parking.lib.mapper" />
+		<property name="basePackage" value="com.myproject.ikm.lib.mapper" />
 	</bean>
 	
 	<!--

@@ -18,7 +18,7 @@
     limitations under the License.
 -->
 
-<mapper namespace="com.myproject.parking.lib.mapper.UserDataMapper">
+<mapper namespace="com.myproject.ikm.lib.mapper.UserDataMapper">
      <insert id="createUserData" parameterType="UserData" useGeneratedKeys="true" keyProperty="id">
     	insert into userdata(name, password, phone_no, email, license_no, activate_key, session_key, status, 
     			created_on, created_by, updated_on, updated_by,group_user,branch_mall)

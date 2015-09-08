@@ -18,7 +18,7 @@
     limitations under the License.
 -->
 
-<mapper namespace="com.myproject.parking.lib.mapper.LookupMapper">
+<mapper namespace="com.myproject.ikm.lib.mapper.LookupMapper">
     
     <select id="findLookupAll" resultType="Lookup">
         select l.id as id,

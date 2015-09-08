@@ -18,7 +18,7 @@
     limitations under the License.
 -->
 
-<mapper namespace="com.myproject.parking.lib.mapper.MiscMapper">
+<mapper namespace="com.myproject.ikm.lib.mapper.MiscMapper">
     
     <select id="selectCurrentTime" resultType="java.util.Date">
         select current_timestamp as curr_date

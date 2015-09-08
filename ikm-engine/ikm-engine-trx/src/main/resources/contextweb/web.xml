@@ -8,7 +8,7 @@
 
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>project-parking.root</param-value>
+		<param-value>project-ikm.root</param-value>
 	</context-param>
 
 	<context-param>
@@ -28,13 +28,13 @@
 	</listener>
 	
 	<servlet>
-		<servlet-name>ParkingServiceServlet</servlet-name>
-		<servlet-class>com.myproject.parking.trx.servlet.ParkingServiceServlet</servlet-class>
+		<servlet-name>IkmServiceServlet</servlet-name>
+		<servlet-class>com.myproject.ikm.trx.servlet.IkmServiceServlet</servlet-class>
 		<load-on-startup>5</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>ParkingServiceServlet</servlet-name>
+		<servlet-name>IkmServiceServlet</servlet-name>
 		<url-pattern>/trx/*</url-pattern>
 	</servlet-mapping>
 	

@@ -1,5 +1,5 @@
 <configuration debug="false">
-  <property name="WEB_ROOT" value="${project-parking.root}" />
+  <property name="WEB_ROOT" value="${project-ikm.root}" />
   
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- encoders are assigned the type
@@ -86,7 +86,7 @@
     <appender-ref ref="STDOUT" />
   </logger>
   
-  <logger name="com.myproject.parking.lib.mapper" level="DEBUG" additivity="false">
+  <logger name="com.myproject.ikm.lib.mapper" level="DEBUG" additivity="false">
     <appender-ref ref="SQL_FILE" />
     <appender-ref ref="STDOUT" />
   </logger>
