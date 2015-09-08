@@ -56,8 +56,8 @@ public class MenuParentActivity extends Activity {
 		setContentView(R.layout.activity_parent);
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
-		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
-		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
+//		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
+//		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		ctx = MenuParentActivity.this;
 		listAgenda = (SwipeListView) findViewById(R.id.listAgenda);
 		switchView = (Switch) findViewById(R.id.switchView);
@@ -69,8 +69,8 @@ public class MenuParentActivity extends Activity {
         	shimmer = new Shimmer();
         	shimmer.start(tvTitle);
         	shimmer.start(tvTitleSchool);
-        	shimmer.start(tvVersion);
-        	shimmer.start(tvFooter);
+//        	shimmer.start(tvVersion);
+//        	shimmer.start(tvFooter);
         }
         adapter = new AgendaAdapter(ctx,MenuParentActivity.this, data);
         
