@@ -2,77 +2,34 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--
-    Copyright 2010 The myBatis Team
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
--->
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
 
 <mapper namespace="com.myproject.ikm.lib.mapper.UserDataMapper">
-     <insert id="createUserData" parameterType="UserData" useGeneratedKeys="true" keyProperty="id">
-    	insert into userdata(name, password, phone_no, email, license_no, activate_key, session_key, status, 
-    			created_on, created_by, updated_on, updated_by,group_user,branch_mall)
-    		values(#{name}, #{password}, #{phoneNo}, #{email}, #{licenseNo}, #{activateKey}, #{sessionKey}, #{status},
-    			#{createdOn}, #{createdBy}, #{updatedOn}, #{updatedBy},#{groupUser},#{branchMall})  	
-     </insert>
-     
-     <sql id="_sqlUserData">
-    	id, name, phone_no as phoneNo,email,license_no as licenseNo,activate_key as activateKey,session_key as sessionKey,status,time_gen_session_key as timeGenSessionKey,
-    	created_on as createdOn, created_by as createdBy,updated_on as updatedOn, updated_by as updatedBy, group_user as groupUser, branch_mall as branchMall   	
-    </sql>
-     
-     <select id="findUserDataByEmailAndPhoneNo" parameterType="java.util.Map" resultType="UserData">
-         select 
-         	<include refid="_sqlUserData"/>
-         	from userdata 
-         	where email = #{email}
-         	and phone_no = #{phoneNo}
-     </select>
-     
-     <select id="findUserDataByEmail" parameterType="java.util.Map" resultType="UserData">
-         select 
-         	<include refid="_sqlUserData"/>,
-         	password
-         	from userdata 
-         	where email = #{email}      
-     </select>
-     
-     <select id="findUserByEmailAndPhoneNoAndActKey" parameterType="java.util.Map" resultType="UserData">
-         select
-         <include refid="_sqlUserData"/>          
-         	from userdata 
-         	where email = #{email}
-         	and phone_no = #{phoneNo}
-         	and activate_key = #{actKey}
-     </select>
-     
-     <update id="updateStatusUser" parameterType="java.util.Map" >
-    	UPDATE userdata SET status = #{status} ,updated_on = #{updatedOn} WHERE email = #{email} 	
-     </update>
-     
-     <update id="updatePasswordUser" parameterType="java.util.Map" >
-    	UPDATE userdata SET password = #{password} ,updated_on = #{updatedOn} WHERE email = #{email} 	
-     </update>
-     
-      <update id="updateLoginSessionKey" parameterType="java.util.Map" >
-    	UPDATE userdata SET session_key = #{sessionKey}, time_gen_session_key = #{timeGenSessionKey}, updated_on = #{updatedOn} WHERE id = #{id} 	
-     </update>
-     
-      <update id="removeSessionKey" parameterType="java.util.Map" >
-    	UPDATE userdata SET session_key = #{sessionKey}, updated_on = #{updatedOn} WHERE id = #{id} 	
-     </update>
-     
-     <update id="updateSessionKeyUser" parameterType="java.util.Map" >
-    	UPDATE userdata SET time_gen_session_key = #{timeSessionKey} WHERE email = #{email} 	
-     </update>
+
+
+	<sql id="_sqlUser">
+		id, kode_sekolah as kodeSekolah, nomor_induk as
+		noInduk,name,password,
+		user_type as userType,status_user as statusUser,
+		created_on as createdOn, updated_on as updatedOn
+	</sql>
+
+	<select id="findUserByKodeSekolahAndNoIndukAndUserType" parameterType="java.util.Map"
+		resultType="User">
+		select
+		<include refid="_sqlUser" />
+		from user
+		where kode_sekolah = #{kodeSekolah}
+		and nomor_induk =
+		#{noInduk}
+		and user_type = #{userType}
+	</select>
+
+
 </mapper>
