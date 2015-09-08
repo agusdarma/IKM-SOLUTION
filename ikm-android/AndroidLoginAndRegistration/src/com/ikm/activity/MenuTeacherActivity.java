@@ -2,8 +2,11 @@ package com.ikm.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 
 import com.gc.materialdesign.views.ButtonRectangle;
@@ -38,7 +41,7 @@ public class MenuTeacherActivity extends Activity {
 		setContentView(R.layout.activity_teacher);
 		ctx = MenuTeacherActivity.this;
 		
-		
+		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
@@ -65,29 +68,16 @@ public class MenuTeacherActivity extends Activity {
         }
 		initSpinnerHintAndFloatingLabel();
 
-		// This is how you add a custom animator
-//		inputPassword.setLabelAnimator(new CustomLabelAnimator());
-//		inputNoInduk.setLabelAnimator(new CustomLabelAnimator());
-//		inputKodeSekolah.setLabelAnimator(new CustomLabelAnimator());
-        
-		
-		// Teacher button Click Event
-//		btnLogin.setOnClickListener(new View.OnClickListener() {
-//
-//			public void onClick(View view) {
-//
-//			}
-//
-//		});
-//		
-//		
-//				btnBack.setOnClickListener(new View.OnClickListener() {
-//
-//					public void onClick(View view) {
-//						finish();
-//					}
-//
-//				});
+		btnBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(ctx, LoginActivity.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+				startActivity(i);	
+				
+			}
+		});
 
 
 	}

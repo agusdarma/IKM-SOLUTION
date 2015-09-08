@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,12 +26,14 @@ import android.widget.TextView;
 
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.Switch;
 import com.gc.materialdesign.views.Switch.OnCheckListener;
 import com.ikm.R;
 import com.ikm.swipelistview.sample.adapters.AgendaAdapter;
 import com.ikm.swipelistview.sample.adapters.AgendaVO;
 import com.ikm.swipelistview.sample.utils.SettingsManager;
+import com.ikm.utils.MessageUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -56,6 +59,7 @@ public class MenuParentActivity extends Activity {
 		setContentView(R.layout.activity_parent);
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
+		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
 //		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 //		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		ctx = MenuParentActivity.this;
@@ -73,7 +77,16 @@ public class MenuParentActivity extends Activity {
 //        	shimmer.start(tvFooter);
         }
         adapter = new AgendaAdapter(ctx,MenuParentActivity.this, data);
-        
+        btnBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(ctx, LoginActivity.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+				startActivity(i);	
+				
+			}
+		});
         switchView.setOncheckListener(new OnCheckListener() {
 			
 			@Override
@@ -191,6 +204,14 @@ public class MenuParentActivity extends Activity {
 					int position, long id) {
 				TextView tgl = (TextView) view.findViewById(R.id.txtTgl);
                 Log.d("swipe get aaa ", tgl.getText().toString());
+                com.ikm.utils.MessageUtils messageUtils = new MessageUtils(ctx);
+       			messageUtils.showDialogInfoCustomTheme(tgl.getText().toString(), "Sejarah PR halaman 20"+"\r\n "
+       					+"BI PR halaman 20"+"\r\n "
+       					+"BI PR halaman 20"+"\r\n "
+       					+"BI PR halaman 20"+"\r\n "
+       					+"BI PR halaman 20"+"\r\n "
+       					+"BI PR halaman 20"+"\r\n "
+       					+"BI PR halaman 20"+"\r\n ");		             	       		            	            	            
 				
 			}
 		});
