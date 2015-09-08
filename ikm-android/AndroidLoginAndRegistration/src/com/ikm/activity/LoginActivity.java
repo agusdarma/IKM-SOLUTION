@@ -1,5 +1,10 @@
 package com.ikm.activity;
 
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +19,11 @@ import com.gc.materialdesign.views.Switch.OnCheckListener;
 import com.iangclifton.android.floatlabel.FloatLabel;
 import com.ikm.R;
 import com.ikm.data.Constants;
+import com.ikm.data.LoginData;
 import com.ikm.utils.CustomLabelAnimator;
+import com.ikm.utils.HttpClientUtil;
 import com.ikm.utils.MessageUtils;
+import com.ikm.utils.SharedPreferencesUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -48,12 +56,18 @@ public class LoginActivity extends Activity {
 		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
 		inputPassword = (FloatLabel) findViewById(R.id.password);
 		btnLogin = (ButtonRectangle) findViewById(R.id.btnLogin);
+		// get data from cache
+		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+		if(loginData!=null){
+			inputKodeSekolah.setText(loginData.getKodeSekolah());
+			inputNoInduk.setText(loginData.getNoInduk());
+		}
 		
 		
 		// default parent
 		tipeLogin = Constants.PARENTS;
 		inputPassword.setVisibility(View.GONE);
-		lblSwitchView.setText("Login "+ Constants.PARENTS);
+//		lblSwitchView.setText("Login "+ Constants.PARENTS);
 		switchView.setOncheckListener(new OnCheckListener() {
 			
 			@Override
@@ -61,11 +75,11 @@ public class LoginActivity extends Activity {
 				if(switchView.isCheck()){
 					tipeLogin = Constants.TEACHER;
 					inputPassword.setVisibility(View.VISIBLE);
-					lblSwitchView.setText("Login "+ Constants.TEACHER);
+//					lblSwitchView.setText("Login "+ Constants.TEACHER);
 				}else{
 					tipeLogin = Constants.PARENTS;
 					inputPassword.setVisibility(View.GONE);
-					lblSwitchView.setText("Login "+ Constants.PARENTS);
+//					lblSwitchView.setText("Login "+ Constants.PARENTS);
 				}				
 			}
 		});
@@ -92,7 +106,21 @@ public class LoginActivity extends Activity {
 			public void onClick(View view) {
 				if(!tipeLogin.isEmpty()){
 					if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
-						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() ) {							
+						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() ) {
+							LoginData loginData = new LoginData();
+							loginData.setKodeSekolah(inputKodeSekolah.getEditText().getText().toString());
+							loginData.setNoInduk(inputNoInduk.getEditText().getText().toString());
+							String s = "";
+							try {
+								s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(loginData);
+							} catch (JsonGenerationException e) {
+								
+							} catch (JsonMappingException e) {
+								
+							} catch (IOException e) {
+								
+							}
+							SharedPreferencesUtils.saveLoginData(s, ctx);
 							Intent i = new Intent(ctx, MenuParentActivity.class);
 							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 							startActivity(i);														
@@ -102,6 +130,20 @@ public class LoginActivity extends Activity {
 						}					
 					}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){						
 						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() && !inputPassword.getEditText().getText().toString().isEmpty()) {
+							LoginData loginData = new LoginData();
+							loginData.setKodeSekolah(inputKodeSekolah.getEditText().getText().toString());
+							loginData.setNoInduk(inputNoInduk.getEditText().getText().toString());
+							String s = "";
+							try {
+								s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(loginData);
+							} catch (JsonGenerationException e) {
+								
+							} catch (JsonMappingException e) {
+								
+							} catch (IOException e) {
+								
+							}
+							SharedPreferencesUtils.saveLoginData(s, ctx);
 							
 							Intent i = new Intent(ctx, MenuTeacherActivity.class);
 							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			

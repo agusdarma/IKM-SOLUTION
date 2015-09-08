@@ -15,10 +15,10 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="190dp"
-            android:layout_height="142dp"
+            android:layout_width="125dp"
+            android:layout_height="139dp"
             android:layout_gravity="center"
-            android:background="@drawable/ikm_logo" />
+            android:background="@drawable/myagenda" />
 
         <com.romainpiel.shimmer.ShimmerTextView
             android:id="@+id/tvFancy"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingBottom="10dp"
-            android:text="@string/app_name"
+            android:text="SD Dian Harapan"
             android:textColor="@color/grey"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -98,6 +98,15 @@
                     android:layout_toRightOf="@id/LblswitchView"
                     android:background="#1E88E5"
                     materialdesign:check="false" />
+
+                <TextView
+                    android:id="@+id/LblswitchView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@id/switchView"
+                    android:text="Login Teacher"
+                    android:textColor="@color/white" />
             </RelativeLayout>
 
             <!-- Login Button -->
@@ -132,6 +141,13 @@
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:typeface="serif" />
+
+            <ImageView
+                android:id="@+id/logoFooter"
+                android:layout_width="75dp"
+                android:layout_height="56dp"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/ikm_logo" />
         </LinearLayout>
     </ScrollView>
 

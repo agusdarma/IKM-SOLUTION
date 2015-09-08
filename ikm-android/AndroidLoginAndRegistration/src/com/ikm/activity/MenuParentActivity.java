@@ -79,12 +79,12 @@ public class MenuParentActivity extends Activity {
 			@Override
 			public void onCheck(Switch view, boolean check) {
 				if(switchView.isCheck()){					
-					lblSwitchView.setText("List Pengumuman");
+//					lblSwitchView.setText("List Pengumuman");
 					data.clear();
 			        data.addAll(getDataPengumuman());
 			        adapter.notifyDataSetChanged();	
 				}else{
-					lblSwitchView.setText("List Agenda");
+//					lblSwitchView.setText("List Agenda");
 					data.clear();
 			        data.addAll(getData());
 			        adapter.notifyDataSetChanged();	

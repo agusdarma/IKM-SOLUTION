@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Agus&apos;s Agenda"
+        android:text="Agenda kelas 6A"
         android:textColor="@color/grey"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -50,6 +50,16 @@
             android:layout_toRightOf="@id/LblswitchView"
             android:background="#1E88E5"
             materialdesign:check="false" />
+        
+        <TextView
+            android:id="@+id/LblswitchView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="List Pengumuman"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/switchView"
+            android:textSize="14sp" />
 
         <View
             android:id="@+id/viewTitle"
@@ -78,37 +88,5 @@
         android:listSelector="@color/black_transparant"
         swipe:swipeBackView="@+id/back"
         swipe:swipeFrontView="@+id/front" />
-
-    <!--
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/listAgenda" >
-
-        <com.romainpiel.shimmer.ShimmerTextView
-            android:id="@+id/tvFooter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="15dp"
-            android:text="Copyright © 2015 Indo Kanaan Mandiri (IKM Solution)"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            android:typeface="serif" />
-
-        <com.romainpiel.shimmer.ShimmerTextView
-            android:id="@+id/tvVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvFooter"
-            android:layout_gravity="center"
-            android:text="Version 1.0.0"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            android:typeface="serif" />
-    </RelativeLayout>
-    -->
 
 </LinearLayout>

@@ -3,47 +3,23 @@ package com.ikm.data;
 public class LoginData implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String name;
-	private String email;
-	private String password;
-	private String sessionKey;
-	private String phoneNo;
-	private String groupUser;
-	
-	public String getEmail() {
-		return email;
+	private String kodeSekolah;
+	private String noInduk;
+
+	public String getKodeSekolah() {
+		return kodeSekolah;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setKodeSekolah(String kodeSekolah) {
+		this.kodeSekolah = kodeSekolah;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getNoInduk() {
+		return noInduk;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setNoInduk(String noInduk) {
+		this.noInduk = noInduk;
 	}
-	public String getSessionKey() {
-		return sessionKey;
-	}
-	public void setSessionKey(String sessionKey) {
-		this.sessionKey = sessionKey;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-	public String getGroupUser() {
-		return groupUser;
-	}
-	public void setGroupUser(String groupUser) {
-		this.groupUser = groupUser;
-	}
+
 }

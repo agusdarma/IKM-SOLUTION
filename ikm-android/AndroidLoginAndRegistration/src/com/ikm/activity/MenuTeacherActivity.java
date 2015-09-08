@@ -30,7 +30,7 @@ public class MenuTeacherActivity extends Activity {
 	Shimmer shimmer;
 	
 	private ArrayAdapter<String> adapter;
-	private static final String[] ITEMS = {"Science 6A", "Science 6B", "BI 6A", "Inggris 3C", "Inggris 3A", "Inggris 3E"};
+	private static final String[] ITEMS = {"Science 6A", "Science 6B", "BI 6A", "Inggris 3C", "Inggris 3A", "Inggris 3E","PENGUMUMAN LAIN"};
 	MaterialSpinner spinner1;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
