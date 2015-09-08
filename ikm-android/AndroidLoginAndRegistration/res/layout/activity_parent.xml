@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ Copyright (C) 2013 47 Degrees, LLC
-  ~  http://47deg.com
-  ~  hello@47deg.com
-  ~
-  ~  Licensed under the Apache License, Version 2.0 (the "License");
-  ~  you may not use this file except in compliance with the License.
-  ~  You may obtain a copy of the License at
-  ~
-  ~      http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~  Unless required by applicable law or agreed to in writing, software
-  ~  distributed under the License is distributed on an "AS IS" BASIS,
-  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~  See the License for the specific language governing permissions and
-  ~  limitations under the License.
--->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/general_redbackground"
@@ -40,62 +22,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingBottom="10dp"
+        android:paddingBottom="5dp"
         android:text="SD Citra Kasih"
         android:textColor="@color/grey"
         android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="serif" />
 
-    <com.romainpiel.shimmer.ShimmerTextView
-        android:id="@+id/tvJudulList"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:paddingBottom="10dp"
-        android:text="List Agenda"
-        android:textColor="@color/grey"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:typeface="serif" />
+        android:padding="4dp" >
+
+        <TextView
+            android:id="@+id/LblswitchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="List Agenda"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <com.gc.materialdesign.views.Switch
+            android:id="@+id/switchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/LblswitchView"
+            android:background="#1E88E5"
+            materialdesign:check="false" />
+
+        <View
+            android:id="@+id/viewTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/LblswitchView"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/padding_default" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/btnInbox"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/viewTitle"
+            android:layout_marginTop="4dip"
+            android:background="@color/blue"
+            android:text="10 message unread" />
+    </RelativeLayout>
 
     <com.fortysevendeg.swipelistview.SwipeListView
         xmlns:swipe="http://schemas.android.com/apk/res-auto"
         android:id="@+id/listAgenda"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:listSelector="@color/red"
+        android:layout_height="445dp"
+        android:listSelector="@color/black_transparant"
         swipe:swipeBackView="@+id/back"
-        swipe:swipeCloseAllItemsWhenMoveList="true"
-        swipe:swipeDrawableChecked="@drawable/choice_selected"
-        swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
-        swipe:swipeFrontView="@+id/front"
-        swipe:swipeMode="none" />
-
-    <com.romainpiel.shimmer.ShimmerTextView
-        android:id="@+id/tvJudulList2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:paddingBottom="10dp"
-        android:text="List Pengumuman"
-        android:textColor="@color/grey"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:typeface="serif" />
-
-    <com.fortysevendeg.swipelistview.SwipeListView
-        xmlns:swipe="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/listPengumuman"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:listSelector="@color/red"
-        swipe:swipeBackView="@+id/back"
-        swipe:swipeCloseAllItemsWhenMoveList="true"
-        swipe:swipeDrawableChecked="@drawable/choice_selected"
-        swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
-        swipe:swipeFrontView="@+id/front"
-        swipe:swipeMode="none" />
+        swipe:swipeFrontView="@+id/front" />
 
     <com.romainpiel.shimmer.ShimmerTextView
         android:id="@+id/tvFooter"

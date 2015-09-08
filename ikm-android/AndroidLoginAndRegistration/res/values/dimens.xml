@@ -38,6 +38,6 @@
     <dimen name="heading_space_bottom">8dp</dimen>
     <dimen name="heading_space_top">16dp</dimen>
     
-    <dimen name="height_list_history">55dp</dimen>
+    <dimen name="height_list_history">45dp</dimen>
 
 </resources>

@@ -23,38 +23,30 @@
         android:id="@+id/front"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/height_list_history"
-        android:background="@color/background_floating_material_light"
+        android:background="@drawable/border"
         android:orientation="vertical"
-        android:padding="@dimen/padding_default"
+        android:padding="4dp"
         android:tag="front" >
 
         <TextView
             android:id="@+id/txtNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_default"
+            android:padding="4dp"
             android:text="Tanggal Booking"
             android:textColor="@color/blue"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/txtTgl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txtNo"
-            android:padding="@dimen/padding_default"
+            android:padding="4dp"
             android:text="01-09-2015 15:13:23"
             android:textColor="@color/blue"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"            
-            android:layout_toRightOf="@id/txtTgl"
-            android:padding="@dimen/padding_default"
-            android:src="@drawable/arrow_right" />
+            android:textSize="18sp" />
     </RelativeLayout>
 
 </FrameLayout>

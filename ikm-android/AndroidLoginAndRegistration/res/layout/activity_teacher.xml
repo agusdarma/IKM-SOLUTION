@@ -17,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingBottom="10dp"
             android:text="Agus&apos;s Agenda"
             android:textColor="@color/grey"
             android:textSize="25sp"
@@ -29,12 +28,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingBottom="10dp"
+            android:paddingBottom="5dp"
             android:text="SD Citra Kasih"
             android:textColor="@color/grey"
             android:textSize="15sp"
             android:textStyle="bold"
             android:typeface="serif" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/btnInbox"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/viewTitle"
+            android:layout_marginTop="5dip"
+            android:background="@color/blue"
+            android:text="10 message unread" />
     </LinearLayout>
 
     <ScrollView
@@ -85,7 +93,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Isi Agenda"
-                android:textColor="@color/white" />
+                android:textColor="@color/white" />
             -->
 
             <com.rengwuxian.materialedittext.MaterialEditText
