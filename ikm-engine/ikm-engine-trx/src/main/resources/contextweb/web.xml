@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="nusapro-wallet" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Parking Engine</display-name>
+	<description>Core Engine Parking</description>
+
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>project-parking.root</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>		    
+			/WEB-INF/database-context.xml
+			/WEB-INF/mapping-context.xml
+			/WEB-INF/service-context.xml 
+		</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>it.stratosfera.commons.logback.LogbackConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>ParkingServiceServlet</servlet-name>
+		<servlet-class>com.myproject.parking.trx.servlet.ParkingServiceServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ParkingServiceServlet</servlet-name>
+		<url-pattern>/trx/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Welcome file lists -->
+    <welcome-file-list>
+        <!-- <welcome-file>index.jsp</welcome-file> -->
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+	
+	<bean id="userRegistration" class="com.myproject.parking.trx.logic.security.UserRegistration"/>
+	<bean id="userActivate" class="com.myproject.parking.trx.logic.security.ActivateUser"/>
+	<bean id="forgetPassword" class="com.myproject.parking.trx.logic.security.ForgetPassword"/>
+	<bean id="loginUser" class="com.myproject.parking.trx.logic.security.LoginUser"/>
+	<bean id="logoutUser" class="com.myproject.parking.trx.logic.security.LogoutUser"/>	
+	<bean id="changePassword" class="com.myproject.parking.trx.logic.security.ChangePassword"/>
+	<!-- Payment Module -->
+	<bean id="paymentPayPal" class="com.myproject.parking.trx.payment.PaymentWithPayPal"/>
+	<bean id="receiveTrxFromVeriTrans" class="com.myproject.parking.trx.payment.ReceiveTransactionFromVeriTrans"/>
+	<!-- Transaction Module -->
+	<bean id="listMall" class="com.myproject.parking.trx.logic.transaction.ListMall"/>
+	<bean id="refreshCacheMall" class="com.myproject.parking.trx.logic.transaction.RefreshCacheMall"/>
+	<bean id="findSLotsByMall" class="com.myproject.parking.trx.logic.transaction.FindSlotByMall"/>
+	<bean id="checkOrderAllowPay" class="com.myproject.parking.trx.logic.transaction.CheckOrderAllowPay"/>
+	<bean id="checkBookingCode" class="com.myproject.parking.trx.logic.transaction.CheckInAllow"/>
+	<bean id="confirmCodeBooking" class="com.myproject.parking.trx.logic.transaction.CheckInConfirm"/>
+	<bean id="historyBooking" class="com.myproject.parking.trx.logic.transaction.ListHistoryBooking"/>
+	<!-- Release Slot Parking Module -->
+	<bean id="releaseSlotParking" class="com.myproject.parking.trx.logic.transaction.ReleaseSlotParking"/>
+	
+</beans>
