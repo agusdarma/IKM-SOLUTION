@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/general_redbackground"
+    android:background="@drawable/menu_background"
     android:gravity="top|center"
     android:orientation="vertical" >
 
@@ -100,7 +100,7 @@
                 app:mcv_arrowColor="@color/white"
                 app:mcv_firstDayOfWeek="sunday"
                 app:mcv_selectionColor="@color/black_transparant"
-                app:mcv_tileSize="36dp" />
+                app:mcv_tileSize="40dp" />
 
             <!--
                   <TextView
@@ -116,14 +116,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Isi Agenda"
-                app:met_baseColor="@color/white"
+                app:met_baseColor="@color/abc_primary_text_material_light"
                 app:met_clearButton="true"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelTextSize="14sp"
                 app:met_maxCharacters="500"
-                app:met_primaryColor="@color/white"
-                app:met_textColor="@color/white"
-                app:met_underlineColor="@color/white" />
+                app:met_primaryColor="@color/abc_primary_text_material_light"
+                app:met_textColor="@color/abc_primary_text_material_light"
+                app:met_underlineColor="@color/abc_primary_text_material_light" />
 
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSave"
