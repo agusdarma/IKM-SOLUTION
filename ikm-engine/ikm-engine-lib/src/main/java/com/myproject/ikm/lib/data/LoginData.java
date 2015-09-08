@@ -2,37 +2,28 @@ package com.myproject.ikm.lib.data;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 public class LoginData implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String name;
-	private String email;
+	private String kodeSekolah;
+	private String noInduk;
 	private String password;
-	private String sessionKey;
-	private String phoneNo;
-	private String groupUser;
+	private int userType;
 
-	public String getEmail() {
-		return email;
+	public String getKodeSekolah() {
+		return kodeSekolah;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setKodeSekolah(String kodeSekolah) {
+		this.kodeSekolah = kodeSekolah;
 	}
 
-	public String getSessionKey() {
-		return sessionKey;
+	public String getNoInduk() {
+		return noInduk;
 	}
 
-	public void setSessionKey(String sessionKey) {
-		this.sessionKey = sessionKey;
-	}
-	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
+	public void setNoInduk(String noInduk) {
+		this.noInduk = noInduk;
 	}
 
 	public String getPassword() {
@@ -43,28 +34,12 @@ public class LoginData implements Serializable {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public int getUserType() {
+		return userType;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-	public String getGroupUser() {
-		return groupUser;
-	}
-
-	public void setGroupUser(String groupUser) {
-		this.groupUser = groupUser;
+	public void setUserType(int userType) {
+		this.userType = userType;
 	}
 
 }
