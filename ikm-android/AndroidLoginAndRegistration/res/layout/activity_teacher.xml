@@ -12,16 +12,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <com.romainpiel.shimmer.ShimmerTextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Agus&apos;s Agenda"
-            android:textColor="@color/grey"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:typeface="serif" />
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:text="Back" />
+
+            <com.romainpiel.shimmer.ShimmerTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Agus&apos;s Agenda"
+                android:textColor="@color/grey"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:typeface="serif" />
+        </LinearLayout>
 
         <com.romainpiel.shimmer.ShimmerTextView
             android:id="@+id/tvTitleSchool"
@@ -93,7 +108,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Isi Agenda"
-                android:textColor="@color/white" />
+                android:textColor="@color/white" />
             -->
 
             <com.rengwuxian.materialedittext.MaterialEditText
