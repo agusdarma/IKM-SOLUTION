@@ -26,8 +26,8 @@ public class VersionData {
 	private SimpleDateFormat sdf;
 	
 	public VersionData() {
-		appsName = "Parking ";
-		version = "1.0.0";
+		appsName = "IKM ";
+		version = "2.0.0";
 		sdf = new SimpleDateFormat("dd MMMM yyyy, HH:mm");
 		
 		String buildNumber = "";
