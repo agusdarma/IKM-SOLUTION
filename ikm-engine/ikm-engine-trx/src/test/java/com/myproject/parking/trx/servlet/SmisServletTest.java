@@ -39,7 +39,7 @@ public class SmisServletTest {
 	
 	private final String testingActivateService = "http://localhost:8080/ikm-engine-trx/trx/userActivate?actKey=dadadada&email=a@yahoo.com&noHp=085693938630";
 	private final String testingForget = "http://localhost:8080/ikm-engine-trx/trx/forgetPassword";
-	private final String testingLoginUser = "http://192.168.25.41:8080/ikm-engine-trx/trx/loginUser";
+	private final String testingLoginUser = "http://localhost:8080/ikm-engine-trx/trx/loginUser";
 	private final String testingChangePassword = "http://localhost:8080/ikm-engine-trx/trx/changePassword";
 	private final String testingGetTrxFromVeriTrans = "http://localhost:8080/ikm-engine-trx/trx/receiveTrxFromVeriTrans";
 	private final String testingGetListMall = "http://localhost:8080/ikm-engine-trx/trx/listMall";
@@ -47,7 +47,7 @@ public class SmisServletTest {
 	private final String testingGetSlotsByMall = "http://localhost:8080/ikm-engine-trx/trx/findSLotsByMall";
 	private final String testingReleaseSlot = "http://localhost:8080/ikm-engine-trx/trx/releaseSlotParking";
 	
-	@Test
+//	@Test
 	public void tes() {
 		//in milliseconds
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");	
@@ -78,7 +78,7 @@ public class SmisServletTest {
 	
 
 	
-//	@Test
+	@Test
 	public void testLoginUser() {
 		String url = testingLoginUser;
 		long startTime = System.currentTimeMillis();

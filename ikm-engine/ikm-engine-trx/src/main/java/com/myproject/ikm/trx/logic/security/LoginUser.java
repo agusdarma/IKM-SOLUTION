@@ -34,6 +34,8 @@ public class LoginUser implements BaseQueryLogic {
 	public String process(HttpServletRequest request,HttpServletResponse response,String data, ObjectMapper mapper, String pathInfo) {
 		LOG.debug("Start process Query :"+pathInfo);		
 		String result = "";
+//		int processor = Runtime.getRuntime().availableProcessors();
+//		LOG.debug("processor :"+processor);
 		try {						
 			LoginData loginData = mapper.readValue(data, LoginData.class);
 			loginData = loginService.login(loginData);
