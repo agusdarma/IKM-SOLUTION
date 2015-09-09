@@ -22,7 +22,7 @@ public class MessageUtils {
 		String result = "";
 		try {
 			result = mapper.writeValueAsString(messageVO);
-			result = CipherUtil.encryptTripleDES(result, CipherUtil.PASSWORD);
+//			result = CipherUtil.encryptTripleDES(result, CipherUtil.PASSWORD);
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -36,7 +36,7 @@ public class MessageUtils {
 	public static String handleException(Exception e,String otherMessage,ObjectMapper mapper) {
 		MessageVO messageVO = new MessageVO();
 		try {			
-			Resource resource = new ClassPathResource("parking.properties");
+			Resource resource = new ClassPathResource("ikm.properties");
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 			if (e instanceof IkmEngineException) {
 				IkmEngineException jme = (IkmEngineException) e;
@@ -68,7 +68,7 @@ public class MessageUtils {
 	public static String handleExceptionOther(Exception e,String otherMessage,ObjectMapper mapper) {
 		MessageVO messageVO = new MessageVO();
 		try {			
-			Resource resource = new ClassPathResource("parking.properties");
+			Resource resource = new ClassPathResource("ikm.properties");
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 			if (e instanceof IkmEngineException) {
 				IkmEngineException jme = (IkmEngineException) e;
@@ -93,7 +93,7 @@ public class MessageUtils {
 	public static String handleSuccess(String otherMessage,ObjectMapper mapper) {
 		MessageVO messageVO = new MessageVO();
 		try {			
-			Resource resource = new ClassPathResource("parking.properties");
+			Resource resource = new ClassPathResource("ikm.properties");
 			Properties props = PropertiesLoaderUtils.loadProperties(resource);
 				messageVO.setRc(0);
 				messageVO.setMessageRc(props.getProperty("rc.0"));
