@@ -39,7 +39,7 @@ public class SmisServletTest {
 	
 	private final String testingActivateService = "http://localhost:8080/ikm-engine-trx/trx/userActivate?actKey=dadadada&email=a@yahoo.com&noHp=085693938630";
 	private final String testingForget = "http://localhost:8080/ikm-engine-trx/trx/forgetPassword";
-	private final String testingLoginUser = "http://localhost:8080/ikm-engine-trx/trx/loginUser";
+	private final String testingLoginUser = "http://192.168.25.41:8080/ikm-engine-trx/trx/loginUser";
 	private final String testingChangePassword = "http://localhost:8080/ikm-engine-trx/trx/changePassword";
 	private final String testingGetTrxFromVeriTrans = "http://localhost:8080/ikm-engine-trx/trx/receiveTrxFromVeriTrans";
 	private final String testingGetListMall = "http://localhost:8080/ikm-engine-trx/trx/listMall";
@@ -47,35 +47,38 @@ public class SmisServletTest {
 	private final String testingGetSlotsByMall = "http://localhost:8080/ikm-engine-trx/trx/findSLotsByMall";
 	private final String testingReleaseSlot = "http://localhost:8080/ikm-engine-trx/trx/releaseSlotParking";
 	
-//	@Test
+	@Test
 	public void tes() {
 		//in milliseconds
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");	
-		Calendar calendar = new GregorianCalendar(2015,8,03,19,27,00);
-		System.out.println(sdf.format(calendar.getTime()));
-		System.out.println("Current" + sdf.format(new Date().getTime()));
-		Date a =  calendar.getTime(); 
-		long diff = new Date().getTime() - a.getTime();
-
-		long diffSeconds = diff / 1000 % 60;
-		long diffMinutes = diff / (60 * 1000) % 60;
-		long diffHours = diff / (60 * 60 * 1000) % 24;
-		long diffDays = diff / (24 * 60 * 60 * 1000);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");	
+//		Calendar calendar = new GregorianCalendar(2015,8,03,19,27,00);
+//		System.out.println(sdf.format(calendar.getTime()));
+//		System.out.println("Current" + sdf.format(new Date().getTime()));
+//		Date a =  calendar.getTime(); 
+//		long diff = new Date().getTime() - a.getTime();
+//
+//		long diffSeconds = diff / 1000 % 60;
+//		long diffMinutes = diff / (60 * 1000) % 60;
+//		long diffHours = diff / (60 * 60 * 1000) % 24;
+//		long diffDays = diff / (24 * 60 * 60 * 1000);
+//		
+//		long diffMinutesOnly = diff / (60 * 1000);
+//
+//		System.out.print(diffDays + " days, ");
+//		System.out.print(diffHours + " hours, ");
+//		System.out.print(diffMinutes + " minutes, ");
+//		System.out.print(diffSeconds + " seconds.");
+//		
+//		System.out.print(diffMinutesOnly + " minutes.");
 		
-		long diffMinutesOnly = diff / (60 * 1000);
-
-		System.out.print(diffDays + " days, ");
-		System.out.print(diffHours + " hours, ");
-		System.out.print(diffMinutes + " minutes, ");
-		System.out.print(diffSeconds + " seconds.");
-		
-		System.out.print(diffMinutesOnly + " minutes.");
+//		String a = "agus";
+//		System.out.println(Encoder);
 	}
 	
 	
 
 	
-	@Test
+//	@Test
 	public void testLoginUser() {
 		String url = testingLoginUser;
 		long startTime = System.currentTimeMillis();

@@ -2,6 +2,7 @@ package com.myproject.ikm.trx.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -38,7 +39,8 @@ public class IkmServiceServlet extends HttpServlet {
 				config.getServletContext());
 		mapper = new ObjectMapper();
 		// faster this way, not default
-		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);		
+		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.configure(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY, false);
 		LOG.debug("Servlet Initialized");
 	}
 	  
@@ -75,8 +77,10 @@ public class IkmServiceServlet extends HttpServlet {
 		reader.close();
 		String data = sb.toString();
 //		if(!"/receiveTrxFromVeriTrans".equalsIgnoreCase(pathInfo)){
-			data = CipherUtil.decryptTripleDES(data, CipherUtil.PASSWORD);
+//			data = CipherUtil.decryptTripleDES(data, CipherUtil.PASSWORD);
 //		}		
+		data = URLDecoder.decode(data);
+		
 		LOG.debug("RequestData: {}", new String[] { data });	
 	
 		String respData = logic.process(request,response,data, mapper, pathInfo);
