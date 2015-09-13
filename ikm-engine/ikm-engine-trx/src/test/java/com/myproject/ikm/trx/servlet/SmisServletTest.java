@@ -83,7 +83,7 @@ public class SmisServletTest {
 		try {
 			
 			LoginData loginData = new LoginData();
-			loginData.setPassword("administrator1");
+			loginData.setPassword("administrator");
 			loginData.setKodeSekolah("DIAN-001");
 			loginData.setNoInduk("1");
 			loginData.setOriginRequest("Android-Mobile");
