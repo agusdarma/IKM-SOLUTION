@@ -1,6 +1,6 @@
 ﻿/*
 Created: 17-Aug-15
-Modified: 06-Sep-15
+Modified: 08-Sep-15
 Model: IKM
 Database: MySQL 5.1
 */
@@ -24,14 +24,6 @@ CREATE TABLE User
   updated_on Timestamp NOT NULL,
  PRIMARY KEY (id)
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table Sekolah
@@ -45,14 +37,6 @@ CREATE TABLE Sekolah
   updated_on Timestamp NOT NULL,
  PRIMARY KEY (id)
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table Kelas
@@ -62,18 +46,11 @@ CREATE TABLE Kelas
   id Int NOT NULL AUTO_INCREMENT,
   kode_kelas Varchar(64),
   nama_kelas Varchar(64),
+  wali_kelas_id Int,
   created_on Datetime NOT NULL,
   updated_on Timestamp NOT NULL,
  PRIMARY KEY (id)
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table user_sekolah_kelas
@@ -85,14 +62,6 @@ CREATE TABLE user_sekolah_kelas
   kelas_id Int NOT NULL,
   subject_id Int
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table agenda
@@ -111,14 +80,6 @@ CREATE TABLE agenda
   updated_on Timestamp NOT NULL,
   updated_by Varchar(50) NOT NULL
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table kalender_akademis
@@ -129,14 +90,6 @@ CREATE TABLE kalender_akademis
   tanggal_agenda Datetime,
   isi_agenda Varchar(512)
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table message
@@ -150,14 +103,6 @@ CREATE TABLE message
   created_on Datetime,
   updated_on Timestamp
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table nilai
@@ -172,14 +117,6 @@ CREATE TABLE nilai
   updated_on Timestamp,
  PRIMARY KEY (id)
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 -- Table subject
@@ -192,116 +129,158 @@ CREATE TABLE subject
   updated_on Timestamp NOT NULL,
  PRIMARY KEY (id)
 )
-  COMMENT = 'status: 
-0 pending
-1 active
-2 blocked
-
-activate key : digunakan pada saat registration user, key activate di cocokan dengan yg di kirim dari email
-
-session key: digunakan pada saat device req ke server '
 ;
 
 
 
-ALTER TABLE parkingonline.mall
- ADD mall_image VARCHAR(64) AFTER mall_phone;
-
-
-INSERT INTO mall(
-   mall_code
-  ,mall_name
-  ,mall_address
-  ,mall_phone
-  ,mall_image
+INSERT INTO sekolah(
+  kode_sekolah
+  ,nama_sekolah
   ,created_on
-  ,created_by
   ,updated_on
-  ,updated_by
 ) VALUES (
-  'KOKAS-001'
-  ,'Kota Casablanka'  -- mall_name - IN varchar(128)
-  ,'Jalan Raya Tebet No 100'  -- mall_address - IN varchar(128)
-  ,'021-55934854'  -- mall_phone - IN varchar(64)
-  ,'kota_kasablanka'  -- mall_phone - IN varchar(64)
-  ,CURRENT_TIMESTAMP -- created_on - IN timestamp
-  ,'SYS'  -- created_by - IN varchar(128)
+   'DIAN-001'  -- kode_sekolah - IN varchar(64)
+  ,'Dian Harapan'  -- nama_sekolah - IN varchar(64)
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
   ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
-  ,'SYS'  -- updated_by - IN varchar(128)
 );
 
-INSERT INTO mall_slots(
-   mall_id
-  ,slots_name
-  ,slots_price_idr
-  ,slots_status
+INSERT INTO sekolah(
+  kode_sekolah
+  ,nama_sekolah
   ,created_on
-  ,created_by
   ,updated_on
-  ,updated_by
 ) VALUES (
-   1,'B1-A27'  -- slots_name - IN varchar(128)
-  ,10000   -- slots_price_idr - IN bigint(20)
-  ,0   -- slots_status - IN int(11)
-  ,CURRENT_TIMESTAMP -- created_on - IN timestamp
-  ,'SYS'  -- created_by - IN varchar(128)
+   'CITRA-001'  -- kode_sekolah - IN varchar(64)
+  ,'Citra Kasih'  -- nama_sekolah - IN varchar(64)
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
   ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
-  ,'SYS'  -- updated_by - IN varchar(128)
 );
 
-INSERT INTO mall_slots(
-   mall_id
-  ,slots_name
-  ,slots_price_idr
-  ,slots_status
+
+INSERT INTO kelas(
+  kode_kelas
+  ,nama_kelas
+  ,wali_kelas_id
   ,created_on
-  ,created_by
   ,updated_on
-  ,updated_by
 ) VALUES (
-   1,'B1-A28'  -- slots_name - IN varchar(128)
-  ,10000   -- slots_price_idr - IN bigint(20)
-  ,0   -- slots_status - IN int(11)
-  ,CURRENT_TIMESTAMP -- created_on - IN timestamp
-  ,'SYS'  -- created_by - IN varchar(128)
+  '6A'  -- kode_kelas - IN varchar(64)
+  ,'Kelas 6A'  -- nama_kelas - IN varchar(64)  
+  ,1
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
   ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
-  ,'SYS'  -- updated_by - IN varchar(128)
 );
 
-INSERT INTO mall_slots(
-   mall_id
-  ,slots_name
-  ,slots_price_idr
-  ,slots_status
+INSERT INTO kelas(
+  kode_kelas
+  ,nama_kelas 
+  ,wali_kelas_id
   ,created_on
-  ,created_by
   ,updated_on
-  ,updated_by
 ) VALUES (
-   1,'B1-A29'  -- slots_name - IN varchar(128)
-  ,10000   -- slots_price_idr - IN bigint(20)
-  ,0   -- slots_status - IN int(11)
-  ,CURRENT_TIMESTAMP -- created_on - IN timestamp
-  ,'SYS'  -- created_by - IN varchar(128)
+  '6B'  -- kode_kelas - IN varchar(64)
+  ,'Kelas 6B'  -- nama_kelas - IN varchar(64)   
+  ,1
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
   ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
-  ,'SYS'  -- updated_by - IN varchar(128)
 );
 
-INSERT INTO mall_slots(
-   mall_id
-  ,slots_name
-  ,slots_price_idr
-  ,slots_status
+INSERT INTO subject(
+   subject_name
   ,created_on
-  ,created_by
   ,updated_on
-  ,updated_by
 ) VALUES (
-   1,'B1-A30'  -- slots_name - IN varchar(128)
-  ,10000   -- slots_price_idr - IN bigint(20)
-  ,0   -- slots_status - IN int(11)
-  ,CURRENT_TIMESTAMP -- created_on - IN timestamp
-  ,'SYS'  -- created_by - IN varchar(128)
+   'SCIENCE'  -- subject_name - IN varchar(64)
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
   ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
-  ,'SYS'  -- updated_by - IN varchar(128)
 );
+
+INSERT INTO subject(
+   subject_name
+  ,created_on
+  ,updated_on
+) VALUES (
+   'SOCIAL'  -- subject_name - IN varchar(64)
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
+  ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
+);
+
+INSERT INTO user(
+   kode_sekolah
+  ,nomor_induk
+  ,name
+  ,password
+  ,user_type
+  ,status_user
+  ,created_on
+  ,updated_on
+) VALUES (
+   'DIAN-001'  -- kode_sekolah - IN varchar(64)
+  ,'1'  -- nomor_induk - IN varchar(64)
+  ,'Sutejo' -- name - IN varchar(50)
+  ,'admin'  -- password - IN varchar(80)
+  ,'1'  -- user_type - IN varchar(32)
+  ,1 -- status_user - IN int(11)
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
+  ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
+);
+
+INSERT INTO user(
+   kode_sekolah
+  ,nomor_induk
+  ,name
+  ,password
+  ,user_type
+  ,status_user
+  ,created_on
+  ,updated_on
+) VALUES (
+   'DIAN-001'  -- kode_sekolah - IN varchar(64)
+  ,'1'  -- nomor_induk - IN varchar(64)
+  ,'parent' -- name - IN varchar(50)
+  ,''  -- password - IN varchar(80)
+  ,'2'  -- user_type - IN varchar(32)
+  ,1 -- status_user - IN int(11)
+  ,CURRENT_TIMESTAMP -- created_on - IN datetime
+  ,CURRENT_TIMESTAMP -- updated_on - IN timestamp
+);
+
+
+INSERT INTO user_sekolah_kelas(
+   user_id
+  ,sekolah_id
+  ,kelas_id
+  ,subject_id
+) VALUES (
+   1 -- user_id - IN int(11)
+  ,1 -- sekolah_id - IN int(11)
+  ,1 -- kelas_id - IN int(11)
+  ,1   -- subject_id - IN int(11)
+);
+
+INSERT INTO user_sekolah_kelas(
+   user_id
+  ,sekolah_id
+  ,kelas_id
+  ,subject_id
+) VALUES (
+   1 -- user_id - IN int(11)
+  ,1 -- sekolah_id - IN int(11)
+  ,2 -- kelas_id - IN int(11)
+  ,1   -- subject_id - IN int(11)
+);
+
+INSERT INTO user_sekolah_kelas(
+   user_id
+  ,sekolah_id
+  ,kelas_id
+  ,subject_id
+) VALUES (
+   2 -- user_id - IN int(11)
+  ,1 -- sekolah_id - IN int(11)
+  ,1 -- kelas_id - IN int(11)
+  ,1   -- subject_id - IN int(11)
+);
+
+
