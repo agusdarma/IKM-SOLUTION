@@ -1,4 +1,4 @@
-package com.myproject.parking.trx.servlet;
+package com.myproject.ikm.trx.servlet;
 
 import java.net.URLEncoder;
 
