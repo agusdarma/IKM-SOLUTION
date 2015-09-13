@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myproject.ikm.lib.data.LoginData;
+import com.myproject.ikm.lib.data.RespLoginVO;
 import com.myproject.ikm.lib.entity.User;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
 import com.myproject.ikm.lib.utils.CipherUtil;
@@ -23,7 +24,7 @@ public class LoginService {
 	
 	
 	
-	public LoginData login(LoginData loginData) throws IkmEngineException {
+	public RespLoginVO login(LoginData loginData) throws IkmEngineException {
 		LOG.debug("login with param : " + " loginData: " + loginData );	
 		User user = userDataMapper.findUserByKodeSekolahAndNoIndukAndUserType(loginData.getKodeSekolah(), loginData.getNoInduk(),loginData.getUserType());
 		if(user == null){
@@ -45,10 +46,15 @@ public class LoginService {
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}
 		}
-		
-		loginData.setPassword("*******");		
-		return loginData;
-//		LOG.info("login done with param : " + " loginData: " + loginData);
+		RespLoginVO respLoginVO = new RespLoginVO();
+		respLoginVO.setId(user.getId());
+		respLoginVO.setKodeSekolah(user.getKodeSekolah());
+		respLoginVO.setNama(user.getNama());
+		respLoginVO.setNoInduk(user.getNoInduk());
+		respLoginVO.setStatusUser(user.getStatusUser());
+		respLoginVO.setUserType(user.getUserType());	
+		LOG.info("login done with param : " + " respLoginVO: " + respLoginVO);
+		return respLoginVO;		
 	}
 	
 }
