@@ -1,9 +1,6 @@
 package com.myproject.parking.trx.servlet;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.net.URLEncoder;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -70,9 +67,9 @@ public class SmisServletTest {
 //		System.out.print(diffSeconds + " seconds.");
 //		
 //		System.out.print(diffMinutesOnly + " minutes.");
-		
+		String pass = CipherUtil.passwordDigest("DIAN-001","administrator");
 //		String a = "agus";
-//		System.out.println(Encoder);
+		System.out.println(pass);
 	}
 	
 	
@@ -86,13 +83,15 @@ public class SmisServletTest {
 		try {
 			
 			LoginData loginData = new LoginData();
-			loginData.setPassword("Rahasia");
+			loginData.setPassword("administrator1");
 			loginData.setKodeSekolah("DIAN-001");
 			loginData.setNoInduk("1");
-			loginData.setUserType(Constants.PARENT);
+			loginData.setOriginRequest("Android-Mobile");
+			loginData.setUserType(Constants.TEACHER);
 			
 			String s = mapper.writeValueAsString(loginData);
-			s = CipherUtil.encryptTripleDES(s, CipherUtil.PASSWORD);
+//			s = CipherUtil.encryptTripleDES(s, CipherUtil.PASSWORD);
+			s = URLEncoder.encode(s, "UTF-8");
 			LOG.debug("Request: " + s);
             StringEntity entity = new StringEntity(s);
 			

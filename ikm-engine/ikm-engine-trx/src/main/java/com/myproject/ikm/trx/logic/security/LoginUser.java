@@ -1,12 +1,3 @@
-// #CreateCreditCard Sample
-// Using the 'vault' API, you can store a 
-// Credit Card securely on PayPal. You can
-// use a saved Credit Card to process
-// a payment in the future.
-// The following code demonstrates how 
-// can save a Credit Card on PayPal using 
-// the Vault API.
-// API used: POST /v1/vault/credit-card
 package com.myproject.ikm.trx.logic.security;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.myproject.ikm.lib.data.LoginData;
+import com.myproject.ikm.lib.data.RespLoginVO;
 import com.myproject.ikm.lib.service.IkmEngineException;
 import com.myproject.ikm.lib.service.LoginService;
 import com.myproject.ikm.lib.utils.MessageUtils;
@@ -34,12 +26,10 @@ public class LoginUser implements BaseQueryLogic {
 	public String process(HttpServletRequest request,HttpServletResponse response,String data, ObjectMapper mapper, String pathInfo) {
 		LOG.debug("Start process Query :"+pathInfo);		
 		String result = "";
-//		int processor = Runtime.getRuntime().availableProcessors();
-//		LOG.debug("processor :"+processor);
 		try {						
 			LoginData loginData = mapper.readValue(data, LoginData.class);
-			loginData = loginService.login(loginData);
-			String x = mapper.writeValueAsString(loginData);
+			RespLoginVO respLoginVO = loginService.login(loginData);
+			String x = mapper.writeValueAsString(respLoginVO);
 			result = MessageUtils.handleSuccess(x, mapper);
 		} catch (IkmEngineException e) {
 			LOG.error("ParkingEngineException when processing " + pathInfo, e);

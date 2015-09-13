@@ -15,7 +15,7 @@
 
 	<sql id="_sqlUser">
 		id, kode_sekolah as kodeSekolah, nomor_induk as
-		noInduk,name,password,
+		noInduk,name as nama,password,
 		user_type as userType,status_user as statusUser,
 		created_on as createdOn, updated_on as updatedOn
 	</sql>
