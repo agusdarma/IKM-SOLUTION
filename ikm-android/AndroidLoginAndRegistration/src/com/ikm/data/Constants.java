@@ -1,11 +1,14 @@
 package com.ikm.data;
 
 public class Constants {
-	
+	public static final String ORIGIN_SOURCE				= "Mobile-Android";
 	public static final String FROM_MENU				= "from_menu";
 	public static final String KEY_LOGIN				= "login";
 	public static final String TEACHER				= "teacher";
 	public static final String PARENTS				= "parents";
+	
+	public static final int TEACHER_KEY				= 1;
+	public static final int PARENTS_KEY				= 2;
 	
 	public static final String PARKING_PREFERENCE = "PARKING_PREFERENCE";
 	public static final String LOGIN_DATA_PREF 	  = "LoginDataPref";
