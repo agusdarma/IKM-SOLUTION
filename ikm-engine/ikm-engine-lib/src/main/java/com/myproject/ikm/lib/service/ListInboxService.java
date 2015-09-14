@@ -67,6 +67,11 @@ public class ListInboxService {
 		 */
 		List<InboxVO> listInboxVOs = inboxMapper.findListInboxByUser(user.getId());
 		if(listInboxVOs.size()>0){
+			for (InboxVO inboxVO : listInboxVOs) {
+				if(inboxVO.getFromName().equalsIgnoreCase(user.getNama())){
+					inboxVO.setSelf(true);
+				}
+			}
 			respListInboxVO.setListInboxVO(listInboxVOs);
 		}
 		
