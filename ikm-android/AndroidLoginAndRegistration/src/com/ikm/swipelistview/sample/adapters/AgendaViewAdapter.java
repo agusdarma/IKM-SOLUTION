@@ -61,6 +61,7 @@ public class AgendaViewAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.txtNo = (TextView) convertView.findViewById(R.id.txtNo);
 			holder.txtTgl = (TextView) convertView.findViewById(R.id.txtTgl);
+			holder.txtIsiAgenda = (TextView) convertView.findViewById(R.id.txtIsiAgenda);
 			holder.bAction1 = (ButtonRectangle) convertView.findViewById(R.id.button_pay);
 			
 			convertView.setTag(holder);
@@ -72,6 +73,7 @@ public class AgendaViewAdapter extends BaseAdapter {
 
 		holder.txtNo.setText(Integer.toString(position+1));
 		holder.txtTgl.setText(item.getTglAgenda());
+		holder.txtIsiAgenda.setText(item.getIsiAgenda());
 		holder.bAction1.setEnabled(false);		
 
 		holder.bAction1.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +98,8 @@ public class AgendaViewAdapter extends BaseAdapter {
 
 	static class ViewHolder {
 		TextView txtNo;
-		TextView txtTgl;		
+		TextView txtTgl;	
+		TextView txtIsiAgenda;
 		ButtonRectangle bAction1;
 	}
 }

@@ -1,7 +1,19 @@
 package com.ikm.activity;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,19 +21,28 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.widgets.ProgressDialogParking;
 import com.ikm.R;
 import com.ikm.data.Constants;
 import com.ikm.data.InboxVO;
+import com.ikm.data.LoginData;
+import com.ikm.data.MessageVO;
+import com.ikm.data.ReqListInboxData;
+import com.ikm.data.RespListInboxVO;
 import com.ikm.swipelistview.sample.adapters.MessagesListAdapter;
+import com.ikm.utils.HttpClientUtil;
+import com.ikm.utils.MessageUtils;
+import com.ikm.utils.SharedPreferencesUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -39,7 +60,7 @@ public class InboxActivity extends Activity {
 	private MessagesListAdapter adapter;
 	private List<InboxVO> listMessages;
 	private ListView listViewMessages;
-
+	private ReqListInboxTask reqListInboxTask = null;
 	// private Utils utils;
 
 	// Client name
@@ -97,200 +118,151 @@ public class InboxActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// Sending message to web socket server
-				// sendMessageToServer(utils.getSendMessageJSON(inputMsg.getText()
-				// .toString()));
-				InboxVO inboxVO = new InboxVO();
-				inboxVO.setFromName("Sandy");
-				inboxVO.setMessage(inputMsg.getText().toString());
-				inboxVO.setSelf(false);
-				appendMessage(inboxVO);
-				// Clearing the input filed once message was sent
-				inputMsg.setText("");
+				/**
+				 * Insert ke table message
+				 * 
+				 */
 			}
 		});
-
-		listMessages = new ArrayList<InboxVO>();
-
-		adapter = new MessagesListAdapter(this, listMessages);
-		listViewMessages.setAdapter(adapter);
+		/**
+		 *  get data inbox
+		 */
+        reqListInboxTask = new ReqListInboxTask();
+        reqListInboxTask.execute("");
 	}
+	
+	public class ReqListInboxTask  extends AsyncTask<String, Void, Boolean> {
+		private ProgressDialogParking progressDialog = null;
+       	private final HttpClient client = HttpClientUtil.getNewHttpClient();
+       	String respString = null;
+       	protected void onPreExecute() {
+    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_inbox),ctx.getResources().getString(R.string.progress_dialog));
+    			progressDialog.show();
+    		}
+		@Override
+		protected Boolean doInBackground(String... arg0) {
+			boolean result = false;
+           	try {
+           		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+           		ReqListInboxData reqListInboxData = new ReqListInboxData();
+    			reqListInboxData.setPassword("");
+    			reqListInboxData.setKodeSekolah(loginData.getKodeSekolah());
+    			reqListInboxData.setNoInduk(loginData.getNoInduk());
+    			reqListInboxData.setOriginRequest(Constants.ORIGIN_SOURCE);
+    			reqListInboxData.setUserType(loginData.getUserType());
+           		  				    			
+           		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqListInboxData);
+           		s = URLEncoder.encode(s, "UTF-8");
+           		Log.d(TAG,"Request: " + s);
+                StringEntity entity = new StringEntity(s);    			
+    			HttpPost post = new HttpPost(HttpClientUtil.URL_BASE+HttpClientUtil.URL_INBOX);
+    			post.setHeader(HttpClientUtil.CONTENT_TYPE, HttpClientUtil.JSON);
+    			post.setEntity(entity);
+    			// Execute HTTP request
+    			Log.d(TAG,"Executing request: " + post.getURI());
+                HttpResponse response = client.execute(post);
+                HttpEntity respEntity = response.getEntity();
+                respString = EntityUtils.toString(respEntity);
+    			result = true;
+    			} catch (ClientProtocolException e) {
+    				Log.e(TAG, "ClientProtocolException : "+e);
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			} catch (IOException e) {
+    				Log.e(TAG, "IOException : "+e); 
+    				respString = ctx.getResources().getString(R.string.message_no_internet_connection);
+    				cancel(true);    				
+    			} catch (Exception e) {
+    				Log.e(TAG, "Exception : "+e);  
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			}
+           	return result;
+           }
+		
+		 @Override
+	     protected void onCancelled() {
+			 if(progressDialog.isShowing()){
+				progressDialog.dismiss();
+			 }
+			 MessageUtils messageUtils = new MessageUtils(ctx);
+          	 messageUtils.snackBarMessage(InboxActivity.this,respString);
+	     }
+		
+		 @Override
+         protected void onPostExecute(final Boolean success) {
+			 reqListInboxTask = null;          
+             if (success) {
+	               	if(!respString.isEmpty()){
+	               		try {
+	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
+	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
+		               		if(messageVO.getRc()==0){
+		               			List<InboxVO> listInbox = constructDataInbox(messageVO.getOtherMessage());
 
-	// /**
-	// * Creating web socket client. This will have callback methods
-	// * */
-	// client = new WebSocketClient(URI.create(WsConfig.URL_WEBSOCKET
-	// + URLEncoder.encode(name)), new WebSocketClient.Listener() {
-	// @Override
-	// public void onConnect() {
-	//
-	// }
-	//
-	// /**
-	// * On receiving the message from web socket server
-	// * */
-	// @Override
-	// public void onMessage(String message) {
-	// Log.d(TAG, String.format("Got string message! %s", message));
-	//
-	// parseMessage(message);
-	//
-	// }
-	//
-	// @Override
-	// public void onMessage(byte[] data) {
-	// Log.d(TAG, String.format("Got binary message! %s",
-	// bytesToHex(data)));
-	//
-	// // Message will be in JSON format
-	// parseMessage(bytesToHex(data));
-	// }
-	//
-	// /**
-	// * Called when the connection is terminated
-	// * */
-	// @Override
-	// public void onDisconnect(int code, String reason) {
-	//
-	// String message = String.format(Locale.US,
-	// "Disconnected! Code: %d Reason: %s", code, reason);
-	//
-	// showToast(message);
-	//
-	// // clear the session id from shared preferences
-	// utils.storeSessionId(null);
-	// }
-	//
-	// @Override
-	// public void onError(Exception error) {
-	// Log.e(TAG, "Error! : " + error);
-	//
-	// showToast("Error! : " + error);
-	// }
-	//
-	// }, null);
-	//
-	// client.connect();
-	// }
+		               			adapter = new MessagesListAdapter(ctx, listInbox);
+		               			listViewMessages.setAdapter(adapter);
+		               		}
+		               		else{
+		               			MessageUtils messageUtils = new MessageUtils(ctx);
+				             	messageUtils.snackBarMessage(InboxActivity.this,messageVO.getMessageRc());
+		               		}
 
-	// /**
-	// * Method to send message to web socket server
-	// * */
-	// private void sendMessageToServer(String message) {
-	// if (client != null && client.isConnected()) {
-	// client.send(message);
-	// }
-	// }
-
-	// /**
-	// * Parsing the JSON message received from server The intent of message
-	// will
-	// * be identified by JSON node 'flag'. flag = self, message belongs to the
-	// * person. flag = new, a new person joined the conversation. flag =
-	// message,
-	// * a new message received from server. flag = exit, somebody left the
-	// * conversation.
-	// * */
-	// private void parseMessage(final String msg) {
-	//
-	// try {
-	// JSONObject jObj = new JSONObject(msg);
-	//
-	// // JSON node 'flag'
-	// String flag = jObj.getString("flag");
-	//
-	// // if flag is 'self', this JSON contains session id
-	// if (flag.equalsIgnoreCase(TAG_SELF)) {
-	//
-	// String sessionId = jObj.getString("sessionId");
-	//
-	// // Save the session id in shared preferences
-	// utils.storeSessionId(sessionId);
-	//
-	// Log.e(TAG, "Your session id: " + utils.getSessionId());
-	//
-	// } else if (flag.equalsIgnoreCase(TAG_NEW)) {
-	// // If the flag is 'new', new person joined the room
-	// String name = jObj.getString("name");
-	// String message = jObj.getString("message");
-	//
-	// // number of people online
-	// String onlineCount = jObj.getString("onlineCount");
-	//
-	// showToast(name + message + ". Currently " + onlineCount
-	// + " people online!");
-	//
-	// } else if (flag.equalsIgnoreCase(TAG_MESSAGE)) {
-	// // if the flag is 'message', new message received
-	// String fromName = name;
-	// String message = jObj.getString("message");
-	// String sessionId = jObj.getString("sessionId");
-	// boolean isSelf = true;
-	//
-	// // Checking if the message was sent by you
-	// if (!sessionId.equals(utils.getSessionId())) {
-	// fromName = jObj.getString("name");
-	// isSelf = false;
-	// }
-	//
-	// Message m = new Message(fromName, message, isSelf);
-	//
-	// // Appending the message to chat list
-	// appendMessage(m);
-	//
-	// } else if (flag.equalsIgnoreCase(TAG_EXIT)) {
-	// // If the flag is 'exit', somebody left the conversation
-	// String name = jObj.getString("name");
-	// String message = jObj.getString("message");
-	//
-	// showToast(name + message);
-	// }
-	//
-	// } catch (JSONException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// }
-	//
-	// @Override
-	// protected void onDestroy() {
-	// super.onDestroy();
-	//
-	// if(client != null & client.isConnected()){
-	// client.disconnect();
-	// }
-	// }
-
-	/**
-	 * Appending message to list view
-	 * */
-	private void appendMessage(final InboxVO m) {
-		runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				listMessages.add(m);
-
-				adapter.notifyDataSetChanged();
-
-				// Playing device's notification
-				playBeep();
-			}
-		});
+						} catch (Exception e) {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(InboxActivity.this,InboxActivity.this.getResources().getString(R.string.message_unexpected_error_message_server));
+						}	            
+	               	}else{
+	               	   MessageUtils messageUtils = new MessageUtils(ctx);
+	             	   messageUtils.snackBarMessage(InboxActivity.this,InboxActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+	               	}
+             }else{
+          	   MessageUtils messageUtils = new MessageUtils(ctx);
+          	   messageUtils.snackBarMessage(InboxActivity.this,InboxActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+             }        
+             if(progressDialog.isShowing()){
+					progressDialog.dismiss();
+				}
+         }
 	}
+	
+	public List<InboxVO> constructDataInbox(String listJson) throws JsonParseException, JsonMappingException, IOException
+    {
+		
+		RespListInboxVO respListInboxVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListInboxVO.class);		 
+        return respListInboxVO.getListInboxVO();
+    }
 
-	private void showToast(final String message) {
+//	/**
+//	 * Appending message to list view
+//	 * */
+//	private void appendMessage(final InboxVO m) {
+//		runOnUiThread(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				listMessages.add(m);
+//
+//				adapter.notifyDataSetChanged();
+//
+//				// Playing device's notification
+//				playBeep();
+//			}
+//		});
+//	}
 
-		runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				Toast.makeText(getApplicationContext(), message,
-						Toast.LENGTH_LONG).show();
-			}
-		});
-
-	}
+//	private void showToast(final String message) {
+//
+//		runOnUiThread(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				Toast.makeText(getApplicationContext(), message,
+//						Toast.LENGTH_LONG).show();
+//			}
+//		});
+//
+//	}
 
 	/**
 	 * Plays device's default notification sound
@@ -308,16 +280,16 @@ public class InboxActivity extends Activity {
 		}
 	}
 
-	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
-
-	public static String bytesToHex(byte[] bytes) {
-		char[] hexChars = new char[bytes.length * 2];
-		for (int j = 0; j < bytes.length; j++) {
-			int v = bytes[j] & 0xFF;
-			hexChars[j * 2] = hexArray[v >>> 4];
-			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-		}
-		return new String(hexChars);
-	}
+//	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+//
+//	public static String bytesToHex(byte[] bytes) {
+//		char[] hexChars = new char[bytes.length * 2];
+//		for (int j = 0; j < bytes.length; j++) {
+//			int v = bytes[j] & 0xFF;
+//			hexChars[j * 2] = hexArray[v >>> 4];
+//			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+//		}
+//		return new String(hexChars);
+//	}
 
 }

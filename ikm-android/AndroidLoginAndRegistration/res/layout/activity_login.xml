@@ -3,7 +3,7 @@
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/menu_background"
+    android:background="@drawable/tile_bg"
     android:gravity="top|center"
     android:orientation="vertical"
     android:padding="5dp" >
@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="125dp"
-            android:layout_height="139dp"
+            android:layout_width="120dp"
+            android:layout_height="133dp"
             android:layout_gravity="center"
             android:background="@drawable/myagenda" />
 
@@ -27,8 +27,8 @@
             android:layout_gravity="center"
             android:paddingBottom="10dp"
             android:text="SD Dian Harapan"
-            android:textColor="@color/grey"
-            android:textSize="25sp"
+            android:textColor="@color/blue"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:typeface="serif" />
     </LinearLayout>
@@ -52,9 +52,10 @@
                 android:hint="@string/hint_kode_sekolah"
                 android:inputType="text"
                 android:layout="@layout/custom_float_label"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/blue"
                 android:textStyle="normal"
-                android:typeface="sans" />
+                android:typeface="serif" />
 
             <com.iangclifton.android.floatlabel.FloatLabel
                 android:id="@+id/noInduk"
@@ -63,9 +64,10 @@
                 android:hint="@string/hint_no_induk"
                 android:inputType="text"
                 android:layout="@layout/custom_float_label"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/blue"
                 android:textStyle="normal"
-                android:typeface="sans" />
+                android:typeface="serif" />
 
             <com.iangclifton.android.floatlabel.FloatLabel
                 android:id="@+id/password"
@@ -74,9 +76,10 @@
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:layout="@layout/custom_float_label"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/blue"
                 android:textStyle="normal"
-                android:typeface="sans" />
+                android:typeface="serif" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -89,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:text="Login Parent"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/blue" />
 
                 <com.gc.materialdesign.views.Switch
                     android:id="@+id/switchView"
@@ -106,7 +109,7 @@
                     android:layout_marginTop="13dp"
                     android:layout_toRightOf="@id/switchView"
                     android:text="Login Teacher"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/blue" />
             </RelativeLayout>
 
             <!-- Login Button -->
@@ -126,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Copyright © 2015 Indo Kanaan Mandiri (IKM Solution)"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:typeface="serif" />
@@ -137,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Version 1.0.0"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:typeface="serif" />

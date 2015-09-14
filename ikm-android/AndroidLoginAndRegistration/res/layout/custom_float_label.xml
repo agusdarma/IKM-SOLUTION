@@ -5,15 +5,17 @@
         android:id="@id/float_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/blue"
         android:textStyle="normal"
-        android:typeface="sans"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:typeface="serif" />
 
     <EditText
         android:id="@id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textAutoCorrect" />
+        android:inputType="textAutoCorrect"
+        android:textColor="@color/blue"
+        android:typeface="serif" />
 
 </merge>

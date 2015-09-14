@@ -35,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,10 +48,13 @@ import com.gc.materialdesign.widgets.ProgressDialogParking;
 import com.ikm.R;
 import com.ikm.data.AgendaVO;
 import com.ikm.data.Constants;
+import com.ikm.data.InboxVO;
 import com.ikm.data.LoginData;
 import com.ikm.data.MessageVO;
 import com.ikm.data.ReqListAgendaData;
+import com.ikm.data.ReqListInboxData;
 import com.ikm.data.RespListAgendaVO;
+import com.ikm.data.RespListInboxVO;
 import com.ikm.swipelistview.sample.adapters.AgendaViewAdapter;
 import com.ikm.swipelistview.sample.adapters.AgendaViewVO;
 import com.ikm.swipelistview.sample.utils.SettingsManager;
@@ -68,6 +72,8 @@ public class MenuParentActivity extends Activity {
 	private static final String TAG = MenuParentActivity.class.getSimpleName();
 	private Context ctx;
 	private ReqListAgendaTask reqListAgendaTask = null;
+	
+	
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
@@ -76,7 +82,7 @@ public class MenuParentActivity extends Activity {
     private AgendaViewAdapter adapter;
     private List<AgendaViewVO> data;
 	MaterialSpinner spinner1;
-	private ButtonRectangle btnInbox;
+	private Button btnInbox;
 	boolean typeAgenda; // false agenda true pengumuman lain
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,14 +91,14 @@ public class MenuParentActivity extends Activity {
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
-		btnInbox = (ButtonRectangle) findViewById(R.id.btnInbox);
+		btnInbox = (Button) findViewById(R.id.btnInbox);
 		ctx = MenuParentActivity.this;
 		listAgenda = (SwipeListView) findViewById(R.id.listAgenda);
 		switchView = (Switch) findViewById(R.id.switchView);
 		final TextView lblSwitchView = (TextView) findViewById(R.id.LblswitchView);
 		data = new ArrayList<AgendaViewVO>();
-//		String a = btnInbox.getText();
-//		btnInbox.setText(ctx.getResources().getString(R.string.inbox)); 
+		
+		btnInbox.setText(ctx.getResources().getString(R.string.inbox)); 
 		if (shimmer != null && shimmer.isAnimating()) {
 			shimmer.cancel();
         } else {
@@ -115,7 +121,7 @@ public class MenuParentActivity extends Activity {
         btnInbox.setOnClickListener(new OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {				
 				Intent i = new Intent(ctx, InboxActivity.class);	
 				i.putExtra(Constants.FROM_MENU, Constants.PARENTS);
 				startActivity(i);	
@@ -237,15 +243,10 @@ public class MenuParentActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				TextView tgl = (TextView) view.findViewById(R.id.txtTgl);
+				TextView isi = (TextView) view.findViewById(R.id.txtIsiAgenda);
                 Log.d("swipe get aaa ", tgl.getText().toString());
                 com.ikm.utils.MessageUtils messageUtils = new MessageUtils(ctx);
-       			messageUtils.showDialogInfoCustomTheme(tgl.getText().toString(), "Sejarah PR halaman 20"+"\r\n "
-       					+"BI PR halaman 20"+"\r\n "
-       					+"BI PR halaman 20"+"\r\n "
-       					+"BI PR halaman 20"+"\r\n "
-       					+"BI PR halaman 20"+"\r\n "
-       					+"BI PR halaman 20"+"\r\n "
-       					+"BI PR halaman 20"+"\r\n ");		             	       		            	            	            
+       			messageUtils.showDialogInfoCustomTheme(tgl.getText().toString(), isi.getText().toString());		             	       		            	            	            
 				
 			}
 		});
@@ -305,9 +306,9 @@ public class MenuParentActivity extends Activity {
 			}
 		}
 		if(respListAgendaVO.getJumlahMessageUnread()>0){
-//			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
+			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
 		}else{
-//			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
+			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
 		}
 		 
         return it;
@@ -414,5 +415,7 @@ public class MenuParentActivity extends Activity {
 				}
          }
 	}
+	
+	
 
 }

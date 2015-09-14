@@ -3,7 +3,7 @@
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/menu_background"
+    android:background="@drawable/tile_bg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:text="List Agenda"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="14sp" />
 
         <com.gc.materialdesign.views.Switch
@@ -74,7 +74,7 @@
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@id/switchView"
             android:text="List Pengumuman"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="14sp" />
 
         <View
@@ -83,16 +83,17 @@
             android:layout_height="1dp"
             android:layout_below="@id/LblswitchView"
             android:layout_marginTop="10dp"
-            android:background="@color/white"
+            android:background="@color/blue"
             android:paddingBottom="@dimen/padding_default" />
 
-        <com.gc.materialdesign.views.ButtonRectangle
+        <Button
             android:id="@+id/btnInbox"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_below="@id/viewTitle"
             android:layout_marginTop="4dip"
             android:background="@color/blue"
+            android:textColor="@color/white"
             android:text="Inbox" />
     </RelativeLayout>
 
@@ -101,7 +102,7 @@
         android:id="@+id/listAgenda"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:listSelector="@color/black_transparant"
+        android:listSelector="@color/blue"
         swipe:swipeBackView="@+id/back"
         swipe:swipeFrontView="@+id/front" />
 

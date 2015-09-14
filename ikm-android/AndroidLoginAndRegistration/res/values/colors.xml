@@ -3,6 +3,8 @@
     
     <color name="color_label">#2E2E1F</color>
     <color name="grey">#999999</color>
+    <color name="grey_soft">#e5e5e5</color>
+    
     <color name="blue">#1e88e5</color>
     <color name="red">#FF0000</color>
     <color name="black_transparant">#D8000000</color>
