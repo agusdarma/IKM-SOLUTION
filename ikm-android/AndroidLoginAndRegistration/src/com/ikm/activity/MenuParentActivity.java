@@ -76,7 +76,7 @@ public class MenuParentActivity extends Activity {
     private AgendaViewAdapter adapter;
     private List<AgendaViewVO> data;
 	MaterialSpinner spinner1;
-	ButtonRectangle inbox;
+	private ButtonRectangle btnInbox;
 	boolean typeAgenda; // false agenda true pengumuman lain
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,12 +85,14 @@ public class MenuParentActivity extends Activity {
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
-		inbox = (ButtonRectangle) findViewById(R.id.btnInbox);
+		btnInbox = (ButtonRectangle) findViewById(R.id.btnInbox);
 		ctx = MenuParentActivity.this;
 		listAgenda = (SwipeListView) findViewById(R.id.listAgenda);
 		switchView = (Switch) findViewById(R.id.switchView);
 		final TextView lblSwitchView = (TextView) findViewById(R.id.LblswitchView);
 		data = new ArrayList<AgendaViewVO>();
+//		String a = btnInbox.getText();
+//		btnInbox.setText(ctx.getResources().getString(R.string.inbox)); 
 		if (shimmer != null && shimmer.isAnimating()) {
 			shimmer.cancel();
         } else {
@@ -110,7 +112,7 @@ public class MenuParentActivity extends Activity {
 			}
 		});
         
-        inbox.setOnClickListener(new OnClickListener() {
+        btnInbox.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -248,8 +250,7 @@ public class MenuParentActivity extends Activity {
 			}
 		});
 
-        listAgenda.setAdapter(adapter);
-        inbox.setText(ctx.getResources().getString(R.string.inbox));       
+        listAgenda.setAdapter(adapter);              
         reload();
         typeAgenda = false;
      // get data agenda
@@ -304,9 +305,9 @@ public class MenuParentActivity extends Activity {
 			}
 		}
 		if(respListAgendaVO.getJumlahMessageUnread()>0){
-			inbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
+//			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
 		}else{
-			inbox.setText(ctx.getResources().getString(R.string.inbox));
+//			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
 		}
 		 
         return it;

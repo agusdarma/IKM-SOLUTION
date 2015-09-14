@@ -93,7 +93,7 @@
             android:layout_below="@id/viewTitle"
             android:layout_marginTop="4dip"
             android:background="@color/blue"
-            android:text="10 message unread" />
+            android:text="Inbox" />
     </RelativeLayout>
 
     <com.fortysevendeg.swipelistview.SwipeListView
