@@ -5,6 +5,9 @@ public class Constants {
 	public static final int TEACHER						= 1	;
 	public static final int PARENT						= 2	;
 	
+	public static final int GENERAL_AGENDA						= 1	;
+	public static final int OTHER_AGENDA						= 2	;
+	
 	
 	public static final String APP_NAME				= "Premium Parking Solution";
 	public static final String ENVIRONMENT_DEV				= "http://localhost:8080/parking-trx/trx";
