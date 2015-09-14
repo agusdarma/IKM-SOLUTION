@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class CommonUtil {
 	
-	private static SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static SimpleDateFormat sdfDateTime = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
 	private static NumberFormat nfNoDecimal = new DecimalFormat("#,##0");
 	private static NumberFormat nfPlain = new DecimalFormat("###0");
 	private static SimpleDateFormat dfYear = new SimpleDateFormat("yyyy");

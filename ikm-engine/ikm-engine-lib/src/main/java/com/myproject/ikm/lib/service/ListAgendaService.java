@@ -15,6 +15,7 @@ import com.myproject.ikm.lib.mapper.AgendaMapper;
 import com.myproject.ikm.lib.mapper.InboxMapper;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
 import com.myproject.ikm.lib.utils.CipherUtil;
+import com.myproject.ikm.lib.utils.CommonUtil;
 import com.myproject.ikm.lib.utils.Constants;
 
 @Service
@@ -70,6 +71,10 @@ public class ListAgendaService {
 		 * Get data agenda
 		 */
 		List<AgendaVO> listAgendaVo = agendaMapper.findAgendaByUser(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType());
+		for (AgendaVO agendaVO : listAgendaVo) {
+			agendaVO.setTanggalAgendaVal(CommonUtil.displayDateTime(agendaVO.getTanggalAgenda()));
+			agendaVO.setCreatedOnVal(CommonUtil.displayDateTime(agendaVO.getCreatedOn()));
+		}
 		if(listAgendaVo.size()>0){
 			respListAgendaVO.setListAgendaVo(listAgendaVo);
 		}

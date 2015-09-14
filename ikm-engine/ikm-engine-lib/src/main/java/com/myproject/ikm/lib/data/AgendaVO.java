@@ -12,9 +12,11 @@ public class AgendaVO implements java.io.Serializable {
 	private String kodeSekolah;
 	private String namaSekolah;
 	private Date tanggalAgenda;
+	private String tanggalAgendaVal;
 	private String isiAgenda;
 	private int agendaType;
 	private Date createdOn;
+	private String createdOnVal;
 	
 	@Override
 	public String toString() {
@@ -83,5 +85,21 @@ public class AgendaVO implements java.io.Serializable {
 
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
+	}
+
+	public String getTanggalAgendaVal() {
+		return tanggalAgendaVal;
+	}
+
+	public void setTanggalAgendaVal(String tanggalAgendaVal) {
+		this.tanggalAgendaVal = tanggalAgendaVal;
+	}
+
+	public String getCreatedOnVal() {
+		return createdOnVal;
+	}
+
+	public void setCreatedOnVal(String createdOnVal) {
+		this.createdOnVal = createdOnVal;
 	}
 }
