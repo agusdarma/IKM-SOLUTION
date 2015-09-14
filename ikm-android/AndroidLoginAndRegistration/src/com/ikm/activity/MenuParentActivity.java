@@ -1,13 +1,27 @@
 package com.ikm.activity;
 
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -29,12 +43,20 @@ import com.fortysevendeg.swipelistview.SwipeListView;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.views.Switch;
 import com.gc.materialdesign.views.Switch.OnCheckListener;
+import com.gc.materialdesign.widgets.ProgressDialogParking;
 import com.ikm.R;
+import com.ikm.data.AgendaVO;
 import com.ikm.data.Constants;
-import com.ikm.swipelistview.sample.adapters.AgendaAdapter;
-import com.ikm.swipelistview.sample.adapters.AgendaVO;
+import com.ikm.data.LoginData;
+import com.ikm.data.MessageVO;
+import com.ikm.data.ReqListAgendaData;
+import com.ikm.data.RespListAgendaVO;
+import com.ikm.swipelistview.sample.adapters.AgendaViewAdapter;
+import com.ikm.swipelistview.sample.adapters.AgendaViewVO;
 import com.ikm.swipelistview.sample.utils.SettingsManager;
+import com.ikm.utils.HttpClientUtil;
 import com.ikm.utils.MessageUtils;
+import com.ikm.utils.SharedPreferencesUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
@@ -45,15 +67,17 @@ public class MenuParentActivity extends Activity {
 	private static final int REQUEST_CODE_SETTINGS = 0;
 	private static final String TAG = MenuParentActivity.class.getSimpleName();
 	private Context ctx;
-//	private ReqLoginTask reqLoginTask = null;
+	private ReqListAgendaTask reqListAgendaTask = null;
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
 	Switch switchView;
 	SwipeListView listAgenda;
-    private AgendaAdapter adapter;
-    private List<AgendaVO> data;
+    private AgendaViewAdapter adapter;
+    private List<AgendaViewVO> data;
 	MaterialSpinner spinner1;
+	ButtonRectangle inbox;
+	boolean typeAgenda; // false agenda true pengumuman lain
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,24 +85,20 @@ public class MenuParentActivity extends Activity {
 		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
-		ButtonRectangle inbox = (ButtonRectangle) findViewById(R.id.btnInbox);
-//		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
-//		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
+		inbox = (ButtonRectangle) findViewById(R.id.btnInbox);
 		ctx = MenuParentActivity.this;
 		listAgenda = (SwipeListView) findViewById(R.id.listAgenda);
 		switchView = (Switch) findViewById(R.id.switchView);
 		final TextView lblSwitchView = (TextView) findViewById(R.id.LblswitchView);
-		data = new ArrayList<AgendaVO>();
+		data = new ArrayList<AgendaViewVO>();
 		if (shimmer != null && shimmer.isAnimating()) {
 			shimmer.cancel();
         } else {
         	shimmer = new Shimmer();
         	shimmer.start(tvTitle);
         	shimmer.start(tvTitleSchool);
-//        	shimmer.start(tvVersion);
-//        	shimmer.start(tvFooter);
         }
-        adapter = new AgendaAdapter(ctx,MenuParentActivity.this, data);
+        adapter = new AgendaViewAdapter(ctx,MenuParentActivity.this, data);
         btnBack.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -104,15 +124,15 @@ public class MenuParentActivity extends Activity {
 			@Override
 			public void onCheck(Switch view, boolean check) {
 				if(switchView.isCheck()){					
-//					lblSwitchView.setText("List Pengumuman");
-					data.clear();
-			        data.addAll(getDataPengumuman());
-			        adapter.notifyDataSetChanged();	
+			        typeAgenda = true;
+			     // get data agenda
+			        reqListAgendaTask = new ReqListAgendaTask();
+			        reqListAgendaTask.execute("");	
 				}else{
-//					lblSwitchView.setText("List Agenda");
-					data.clear();
-			        data.addAll(getData());
-			        adapter.notifyDataSetChanged();	
+			        typeAgenda = false;
+			     // get data agenda
+			        reqListAgendaTask = new ReqListAgendaTask();
+			        reqListAgendaTask.execute("");	
 				}				
 			}
 		});
@@ -229,12 +249,12 @@ public class MenuParentActivity extends Activity {
 		});
 
         listAgenda.setAdapter(adapter);
-                               
+        inbox.setText(ctx.getResources().getString(R.string.inbox));       
         reload();
-		
-        data.clear();
-        data.addAll(getData());
-        adapter.notifyDataSetChanged();	
+        typeAgenda = false;
+     // get data agenda
+        reqListAgendaTask = new ReqListAgendaTask();
+        reqListAgendaTask.execute("");
 
 	}
 	
@@ -269,198 +289,129 @@ public class MenuParentActivity extends Activity {
 	    }
 	
 	
-	public List<AgendaVO> getData()
+	public List<AgendaViewVO> constructDataAgenda(String listJson) throws JsonParseException, JsonMappingException, IOException
     {
-		List<AgendaVO> it = new ArrayList<AgendaVO>();
-        AgendaVO items1 = new AgendaVO();
-        items1.setAgendaType(1);
-        items1.setIsiAgenda("Bahasa Indonesia PR halaman 17");
-        items1.setTglAgenda("07 September 2015");
-        it.add(items1);
-        AgendaVO items2 = new AgendaVO();
-        items2.setAgendaType(1);
-        items2.setIsiAgenda("Science PR halaman 18");
-        items2.setTglAgenda("06 September 2015");
-        it.add(items2);
-        AgendaVO items3 = new AgendaVO();
-        items3.setAgendaType(1);
-        items3.setIsiAgenda("Inggris PR halaman 19");
-        items3.setTglAgenda("05 September 2015");
-        it.add(items3);
-        AgendaVO items4 = new AgendaVO();
-        items4.setAgendaType(1);
-        items4.setIsiAgenda("Sejarah PR halaman 20");
-        items4.setTglAgenda("04 September 2015");
-        it.add(items4);
-        AgendaVO items5 = new AgendaVO();
-        items5.setAgendaType(1);
-        items5.setIsiAgenda("Sejarah PR halaman 20");
-        items5.setTglAgenda("03 September 2015");
-        it.add(items5);
-        return it;
-    }
-	
-	public List<AgendaVO> getDataPengumuman()
-    {
-		List<AgendaVO> it = new ArrayList<AgendaVO>();
-        AgendaVO items1 = new AgendaVO();
-        items1.setAgendaType(1);
-        items1.setIsiAgenda("Bahasa Indonesia PR halaman 17");
-        items1.setTglAgenda("Pengumuman 07 September 2015");
-        it.add(items1);
-        AgendaVO items2 = new AgendaVO();
-        items2.setAgendaType(1);
-        items2.setIsiAgenda("Science PR halaman 18");
-        items2.setTglAgenda("Pengumuman 06 September 2015");
-        it.add(items2);
-        AgendaVO items3 = new AgendaVO();
-        items3.setAgendaType(1);
-        items3.setIsiAgenda("Inggris PR halaman 19");
-        items3.setTglAgenda("Pengumuman 05 September 2015");
-        it.add(items3);
-        AgendaVO items4 = new AgendaVO();
-        items4.setAgendaType(1);
-        items4.setIsiAgenda("Sejarah PR halaman 20");
-        items4.setTglAgenda("Pengumuman 04 September 2015");
-        it.add(items4);
-        AgendaVO items5 = new AgendaVO();
-        items5.setAgendaType(1);
-        items5.setIsiAgenda("Sejarah PR halaman 20");
-        items5.setTglAgenda("Pengumuman 03 September 2015");
-        it.add(items5);
-        AgendaVO items6 = new AgendaVO();
-        items6.setAgendaType(1);
-        items6.setIsiAgenda("Sejarah PR halaman 20");
-        items6.setTglAgenda("Pengumuman 02 September 2015");
-        it.add(items6);
-        AgendaVO items7 = new AgendaVO();
-        items7.setAgendaType(1);
-        items7.setIsiAgenda("Sejarah PR halaman 20");
-        items7.setTglAgenda("Pengumuman 01 September 2015");
-        it.add(items7);
-        AgendaVO items8 = new AgendaVO();
-        items8.setAgendaType(1);
-        items8.setIsiAgenda("Sejarah PR halaman 20");
-        items8.setTglAgenda("Pengumuman 31 Agustus 2015");
-        it.add(items8);
-        AgendaVO items9 = new AgendaVO();
-        items9.setAgendaType(1);
-        items9.setIsiAgenda("Sejarah PR halaman 20");
-        items9.setTglAgenda("Pengumuman 03 September 2015");
-        it.add(items9);
-        AgendaVO items10 = new AgendaVO();
-        items10.setAgendaType(1);
-        items10.setIsiAgenda("Sejarah PR halaman 20");
-        items10.setTglAgenda("Pengumuman 03 September 2015");
-        it.add(items10);
-        AgendaVO items11 = new AgendaVO();
-        items11.setAgendaType(1);
-        items11.setIsiAgenda("Sejarah PR halaman 20");
-        items11.setTglAgenda("Pengumuman 03 September 2015");
-        it.add(items11);
+		
+		RespListAgendaVO respListAgendaVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListAgendaVO.class);
+		List<AgendaViewVO> it = new ArrayList<AgendaViewVO>();
+		if(respListAgendaVO.getListAgendaVo()!=null){
+			for (AgendaVO temp : respListAgendaVO.getListAgendaVo()) {
+				AgendaViewVO item = new AgendaViewVO();
+				item.setAgendaType(temp.getAgendaType());
+				item.setIsiAgenda(temp.getIsiAgenda());
+				item.setTglAgenda(temp.getTanggalAgendaVal());
+		        it.add(item);
+			}
+		}
+		if(respListAgendaVO.getJumlahMessageUnread()>0){
+			inbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
+		}else{
+			inbox.setText(ctx.getResources().getString(R.string.inbox));
+		}
+		 
         return it;
     }
 	
 	
 	
-//	public class ReqLoginTask  extends AsyncTask<String, Void, Boolean> {
-//		private ProgressDialogParking progressDialog = null;
-//       	private final HttpClient client = HttpClientUtil.getNewHttpClient();
-//       	String respString = null;
-//       	protected void onPreExecute() {
-//    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_login),ctx.getResources().getString(R.string.progress_dialog));
-//    			progressDialog.show();
-//    		}
-//		@Override
-//		protected Boolean doInBackground(String... arg0) {
-//			boolean result = false;
-//           	try {
-//           		InqLoginRequest inqLoginRequest = new InqLoginRequest();
-//           		inqLoginRequest.setEmail(inputEmail.getEditText().getText().toString());
-//           		inqLoginRequest.setPassword(inputPassword.getEditText().getText().toString());
-//           		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(inqLoginRequest);
-//				s = CipherUtil.encryptTripleDES(s, CipherUtil.PASSWORD);
-//           		Log.d(TAG,"Request: " + s);
-//                StringEntity entity = new StringEntity(s);    			
-//    			HttpPost post = new HttpPost(HttpClientUtil.URL_BASE+HttpClientUtil.URL_LOGIN);
-//    			post.setHeader(HttpClientUtil.CONTENT_TYPE, HttpClientUtil.JSON);
-//    			post.setEntity(entity);
-//    			// Execute HTTP request
-//    			Log.d(TAG,"Executing request: " + post.getURI());
-//                HttpResponse response = client.execute(post);
-//                HttpEntity respEntity = response.getEntity();
-//                respString = EntityUtils.toString(respEntity);
-//    			result = true;
-//    			} catch (ClientProtocolException e) {
-//    				Log.e(TAG, "ClientProtocolException : "+e);
-//    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
-//    				cancel(true);    				
-//    			} catch (IOException e) {
-//    				Log.e(TAG, "IOException : "+e); 
-//    				respString = ctx.getResources().getString(R.string.message_no_internet_connection);
-//    				cancel(true);    				
-//    			} catch (Exception e) {
-//    				Log.e(TAG, "Exception : "+e);  
-//    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
-//    				cancel(true);    				
-//    			}
-//           	return result;
-//           }
-//		
-//		 @Override
-//	     protected void onCancelled() {
-//			 if(progressDialog.isShowing()){
-//				progressDialog.dismiss();
-//			 }
-//			 MessageUtils messageUtils = new MessageUtils(ctx);
-//          	 messageUtils.snackBarMessage(LoginActivity.this,respString);
-//	     }
-//		
-//		 @Override
-//         protected void onPostExecute(final Boolean success) {
-//			 reqLoginTask = null;          
-//             if (success) {
-//	               	if(!respString.isEmpty()){
-//	               		try {
-//	               			String respons = CipherUtil.decryptTripleDES(respString, CipherUtil.PASSWORD);
-//	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
-//		               		if(messageVO.getRc()==0){
-//		               			SharedPreferencesUtils.saveLoginData(messageVO.getOtherMessage(), ctx);
-//		               			LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);		               					           
-//		               			Intent i = new Intent(ctx, MenuActivity.class);
-//								startActivity(i);
-//								finish();
-//		               		}
-//		               		else{
-//		               			MessageUtils messageUtils = new MessageUtils(ctx);
-//				             	messageUtils.snackBarMessage(LoginActivity.this,messageVO.getMessageRc());
-//		               		}
-//
-//						} catch (Exception e) {
-//							MessageUtils messageUtils = new MessageUtils(ctx);
-//			             	messageUtils.snackBarMessage(LoginActivity.this,LoginActivity.this.getResources().getString(R.string.message_unexpected_error_message_server));
-//						}	            
-//	               	}else{
-//	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-//	             	   messageUtils.snackBarMessage(LoginActivity.this,LoginActivity.this.getResources().getString(R.string.message_unexpected_error_server));
-//	               	}
-//             }else{
-//          	   MessageUtils messageUtils = new MessageUtils(ctx);
-//          	   messageUtils.snackBarMessage(LoginActivity.this,LoginActivity.this.getResources().getString(R.string.message_unexpected_error_server));
-//             }        
-//             if(progressDialog.isShowing()){
-//					progressDialog.dismiss();
-//				}
-//         }
-//	}
 	
-	// validating email id
-	private boolean isValidEmail(String email) {
-		if (email == null) {
-	        return false;
-	    } else {
-	    	return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-	    }
+	
+	public class ReqListAgendaTask  extends AsyncTask<String, Void, Boolean> {
+		private ProgressDialogParking progressDialog = null;
+       	private final HttpClient client = HttpClientUtil.getNewHttpClient();
+       	String respString = null;
+       	protected void onPreExecute() {
+    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_agenda),ctx.getResources().getString(R.string.progress_dialog));
+    			progressDialog.show();
+    		}
+		@Override
+		protected Boolean doInBackground(String... arg0) {
+			boolean result = false;
+           	try {
+           		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+           		ReqListAgendaData reqListAgendaData = new ReqListAgendaData();
+    			reqListAgendaData.setPassword("");
+    			reqListAgendaData.setKodeSekolah(loginData.getKodeSekolah());
+    			reqListAgendaData.setNoInduk(loginData.getNoInduk());
+    			reqListAgendaData.setOriginRequest(Constants.ORIGIN_SOURCE);
+    			reqListAgendaData.setUserType(loginData.getUserType());
+    			if(typeAgenda){
+    				reqListAgendaData.setAgendaType(Constants.OTHER_AGENDA);
+    			}else{
+    				reqListAgendaData.setAgendaType(Constants.GENERAL_AGENDA);
+    			}    				    			
+           		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqListAgendaData);
+           		s = URLEncoder.encode(s, "UTF-8");
+           		Log.d(TAG,"Request: " + s);
+                StringEntity entity = new StringEntity(s);    			
+    			HttpPost post = new HttpPost(HttpClientUtil.URL_BASE+HttpClientUtil.URL_AGENDA);
+    			post.setHeader(HttpClientUtil.CONTENT_TYPE, HttpClientUtil.JSON);
+    			post.setEntity(entity);
+    			// Execute HTTP request
+    			Log.d(TAG,"Executing request: " + post.getURI());
+                HttpResponse response = client.execute(post);
+                HttpEntity respEntity = response.getEntity();
+                respString = EntityUtils.toString(respEntity);
+    			result = true;
+    			} catch (ClientProtocolException e) {
+    				Log.e(TAG, "ClientProtocolException : "+e);
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			} catch (IOException e) {
+    				Log.e(TAG, "IOException : "+e); 
+    				respString = ctx.getResources().getString(R.string.message_no_internet_connection);
+    				cancel(true);    				
+    			} catch (Exception e) {
+    				Log.e(TAG, "Exception : "+e);  
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			}
+           	return result;
+           }
+		
+		 @Override
+	     protected void onCancelled() {
+			 if(progressDialog.isShowing()){
+				progressDialog.dismiss();
+			 }
+			 MessageUtils messageUtils = new MessageUtils(ctx);
+          	 messageUtils.snackBarMessage(MenuParentActivity.this,respString);
+	     }
+		
+		 @Override
+         protected void onPostExecute(final Boolean success) {
+			 reqListAgendaTask = null;          
+             if (success) {
+	               	if(!respString.isEmpty()){
+	               		try {
+	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
+	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
+		               		if(messageVO.getRc()==0){
+		               			data.clear();
+		               	        data.addAll(constructDataAgenda(messageVO.getOtherMessage()));
+		               	        adapter.notifyDataSetChanged();	
+		               		}
+		               		else{
+		               			MessageUtils messageUtils = new MessageUtils(ctx);
+				             	messageUtils.snackBarMessage(MenuParentActivity.this,messageVO.getMessageRc());
+		               		}
+
+						} catch (Exception e) {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(MenuParentActivity.this,MenuParentActivity.this.getResources().getString(R.string.message_unexpected_error_message_server));
+						}	            
+	               	}else{
+	               	   MessageUtils messageUtils = new MessageUtils(ctx);
+	             	   messageUtils.snackBarMessage(MenuParentActivity.this,MenuParentActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+	               	}
+             }else{
+          	   MessageUtils messageUtils = new MessageUtils(ctx);
+          	   messageUtils.snackBarMessage(MenuParentActivity.this,MenuParentActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+             }        
+             if(progressDialog.isShowing()){
+					progressDialog.dismiss();
+				}
+         }
 	}
 
 }

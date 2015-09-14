@@ -80,7 +80,6 @@ public class LoginActivity extends Activity {
 		// default parent
 		tipeLogin = Constants.PARENTS;
 		inputPassword.setVisibility(View.GONE);
-//		lblSwitchView.setText("Login "+ Constants.PARENTS);
 		switchView.setOncheckListener(new OnCheckListener() {
 			
 			@Override
@@ -88,11 +87,9 @@ public class LoginActivity extends Activity {
 				if(switchView.isCheck()){
 					tipeLogin = Constants.TEACHER;
 					inputPassword.setVisibility(View.VISIBLE);
-//					lblSwitchView.setText("Login "+ Constants.TEACHER);
 				}else{
 					tipeLogin = Constants.PARENTS;
 					inputPassword.setVisibility(View.GONE);
-//					lblSwitchView.setText("Login "+ Constants.PARENTS);
 				}				
 			}
 		});

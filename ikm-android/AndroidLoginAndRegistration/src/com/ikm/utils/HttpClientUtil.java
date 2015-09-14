@@ -47,20 +47,22 @@ public class HttpClientUtil {
 	/**
 	 * URL TRX
 	 */
-	public static final String URL_FORGOT_PASSWORD = "/trx/forgetPassword";
+	
 	public static final String URL_LOGIN = "/trx/loginUser";
-	public static final String URL_CHANGE_PASSWORD = "/trx/changePassword";
-	public static final String URL_LOGOUT = "/trx/logoutUser";
-	public static final String URL_GET_ALL_MALL = "/trx/listMall";
-	public static final String URL_USER_REG= "/trx/userRegistration"; // Registration
-	public static final String URL_RECEIVE_TRX_VERITRANS= "/trx/receiveTrxFromVeriTrans"; // payment Confirm
-	public static final String URL_FIND_SLOT_BY_MALL= "/trx/findSLotsByMall";
-	public static final String URL_CHECK_ORDER_ALLOW_PAY= "/trx/checkOrderAllowPay";
-	public static final String URL_CHECK_BOOKING_CODE= "/trx/checkBookingCode";
-	public static final String URL_CONFIRM_BOOKING_CODE= "/trx/confirmCodeBooking";
-	public static final String URL_RELEASE_SLOT_PARKING= "/trx/releaseSlotParking";
-	public static final String URL_REFRESHING_LIST_MALL= "/trx/refreshCacheMall";
-	public static final String URL_GET_HISTORY = "/trx/historyBooking";
+	public static final String URL_AGENDA = "/trx/listAgenda";
+	
+//	public static final String URL_CHANGE_PASSWORD = "/trx/changePassword";
+//	public static final String URL_LOGOUT = "/trx/logoutUser";
+//	public static final String URL_GET_ALL_MALL = "/trx/listMall";
+//	public static final String URL_USER_REG= "/trx/userRegistration"; // Registration
+//	public static final String URL_RECEIVE_TRX_VERITRANS= "/trx/receiveTrxFromVeriTrans"; // payment Confirm
+//	public static final String URL_FIND_SLOT_BY_MALL= "/trx/findSLotsByMall";
+//	public static final String URL_CHECK_ORDER_ALLOW_PAY= "/trx/checkOrderAllowPay";
+//	public static final String URL_CHECK_BOOKING_CODE= "/trx/checkBookingCode";
+//	public static final String URL_CONFIRM_BOOKING_CODE= "/trx/confirmCodeBooking";
+//	public static final String URL_RELEASE_SLOT_PARKING= "/trx/releaseSlotParking";
+//	public static final String URL_REFRESHING_LIST_MALL= "/trx/refreshCacheMall";
+//	public static final String URL_GET_HISTORY = "/trx/historyBooking";
 	
 	
 	// list trx code engine

@@ -10,6 +10,9 @@ public class Constants {
 	public static final int TEACHER_KEY				= 1;
 	public static final int PARENTS_KEY				= 2;
 	
+	public static final int GENERAL_AGENDA						= 1	;
+	public static final int OTHER_AGENDA						= 2	;
+	
 	public static final String PARKING_PREFERENCE = "PARKING_PREFERENCE";
 	public static final String LOGIN_DATA_PREF 	  = "LoginDataPref";
 	public static final String SETTING_DATA_PREF 	  = "SettingDataPref";

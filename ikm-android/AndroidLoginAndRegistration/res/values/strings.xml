@@ -5,6 +5,8 @@
     <string name="confirmation_dialog">Konfirmasi action</string>
     <string name="please_wait">Please wait…</string>
     
+    <string name="inbox">Inbox</string>
+    <string name="msg_unread">message unread</string>
     
     <!-- Mall -->
     <string name="settings">Settings</string>
@@ -105,6 +107,7 @@
     <!-- LOADING -->
     <string name="process_forgot_password">Requesting new password</string>
     <string name="process_login">Autentifikasi akun</string>
+    <string name="process_agenda">Loading agenda</string>
     <string name="process_change_password">Ganti password</string>
     <string name="process_check_in">Cari Kode Booking</string>
     <string name="process_confirm">Confirm process</string>

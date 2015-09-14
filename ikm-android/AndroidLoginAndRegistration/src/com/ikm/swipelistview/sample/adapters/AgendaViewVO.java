@@ -18,7 +18,7 @@
 
 package com.ikm.swipelistview.sample.adapters;
 
-public class AgendaVO {
+public class AgendaViewVO {
 
 	private String tglAgenda;
 

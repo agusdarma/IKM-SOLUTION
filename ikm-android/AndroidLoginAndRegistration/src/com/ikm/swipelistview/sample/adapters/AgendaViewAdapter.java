@@ -14,15 +14,15 @@ import com.fortysevendeg.swipelistview.SwipeListView;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ikm.R;
 
-public class AgendaAdapter extends BaseAdapter {
-	private static final String TAG = AgendaAdapter.class.getSimpleName();
-	private List<AgendaVO> data;
+public class AgendaViewAdapter extends BaseAdapter {
+	private static final String TAG = AgendaViewAdapter.class.getSimpleName();
+	private List<AgendaViewVO> data;
 	private Context ctx;
 	private Activity act;
     
  
-    public AgendaAdapter(Context context, Activity activity,
-			List<AgendaVO> data) {
+    public AgendaViewAdapter(Context context, Activity activity,
+			List<AgendaViewVO> data) {
 		this.ctx = context;
 		this.data = data;
 		this.act = activity;
@@ -30,7 +30,7 @@ public class AgendaAdapter extends BaseAdapter {
 
 	
 
-	public AgendaAdapter(Context context, List<AgendaVO> data) {
+	public AgendaViewAdapter(Context context, List<AgendaViewVO> data) {
 		this.ctx = context;
 		this.data = data;
 	}
@@ -41,7 +41,7 @@ public class AgendaAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public AgendaVO getItem(int position) {
+	public AgendaViewVO getItem(int position) {
 		return data.get(position);
 	}
 
@@ -52,7 +52,7 @@ public class AgendaAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		final AgendaVO item = getItem(position);
+		final AgendaViewVO item = getItem(position);
 		
 		ViewHolder holder;
 		if (convertView == null) {

@@ -18,7 +18,7 @@ import com.ikm.R;
 public class MessageUtils {
 	private static final String TAG = "MessageUtils";
 	private Context ctx;
-	private static SimpleDateFormat sdfDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private static SimpleDateFormat sdfDateTime = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss");
 	/* STANDART MESSAGE */
 
 	public MessageUtils(Context context) {
