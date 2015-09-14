@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.myproject.ikm.lib.mapper.InboxMapper">
+
+
+	<sql id="_sqlInbox">
+		u.name as fromUser,u1.name as toUser,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn
+	</sql>
+
+	<select id="findResponInboxUnReadByUser" parameterType="java.util.Map"
+		resultType="RespInboxVO">
+		select
+		<include refid="_sqlInbox" />
+		from message m
+		inner join user u on m.from_user_id = u.id
+		inner join user u1 on m.to_user_id = u1.id
+		where m.to_user_id = #{userId}
+		order by m.created_on desc
+	</select>
+	
+	<select id="findRequestInboxUnReadByUser" parameterType="java.util.Map"
+		resultType="RespInboxVO">
+		select
+		<include refid="_sqlInbox" />
+		from message m
+		inner join user u on m.from_user_id = u.id
+		inner join user u1 on m.to_user_id = u1.id
+		where m.from_user_id = #{userId}
+		order by m.created_on desc
+	</select>
+	
+	<select id="countResponInboxUnReadByUser" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*)
+		from message m
+		inner join user u on m.from_user_id = u.id
+		inner join user u1 on m.to_user_id = u1.id
+		where m.to_user_id = #{userId}
+    </select>
+
+
+</mapper>

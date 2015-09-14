@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.myproject.ikm.lib.mapper.AgendaMapper">
+
+
+	<sql id="_sqlAgenda">
+	k.kode_kelas as kodeKelas, k.nama_kelas as
+	namaKelas,s.kode_sekolah as kodeSekolah,s.nama_sekolah as namaSekolah,
+	a.tanggal_agenda as tanggalAgenda,a.isi_agenda as isiAgenda,
+	a.created_on as createdOn
+		
+	</sql>
+
+	<select id="findAgendaByUser" parameterType="java.util.Map"
+		resultType="AgendaVO">		
+		select <include refid="_sqlAgenda" /> 
+		from user u 
+		inner join user_sekolah_kelas usk on u.id = usk.user_id 
+		inner join sekolah s on s.id = usk.sekolah_id
+		inner join kelas k on k.id = usk.kelas_id
+		left join agenda a on a.kode_kelas = k.kode_kelas and a.kode_sekolah = s.kode_sekolah
+		where u.user_type = #{userType}
+		and u.nomor_induk = #{noInduk} 
+		and u.kode_sekolah = #{kodeSekolah}
+		and a.agenda_type = #{agendaType}
+		order by a.created_on desc limit 0,10
+	</select>
+
+
+</mapper>

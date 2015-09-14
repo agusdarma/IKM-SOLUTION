@@ -39,7 +39,9 @@
 		<property name="logic" >
 		    <map>
 		        <!-- Security Module  -->		        
-		        <entry key="/loginUser" value-ref="loginUser"></entry>		       
+		        <entry key="/loginUser" value-ref="loginUser"></entry>		
+		        <!-- Transaction Module  -->       
+		        <entry key="/listAgenda" value-ref="listAgenda"></entry>
 		    </map>
 		</property>
 	</bean>

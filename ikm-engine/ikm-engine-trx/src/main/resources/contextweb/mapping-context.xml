@@ -10,4 +10,5 @@
 
 	<bean id="loginUser" class="com.myproject.ikm.trx.logic.security.LoginUser" />
 
+	<bean id="listAgenda" class="com.myproject.ikm.trx.logic.transaction.ListAgenda" />
 </beans>
