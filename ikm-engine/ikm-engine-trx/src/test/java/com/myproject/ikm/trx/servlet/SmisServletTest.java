@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import com.myproject.ikm.lib.data.LoginData;
 import com.myproject.ikm.lib.data.ReqListAgendaData;
+import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.CommonUtil;
 import com.myproject.ikm.lib.utils.Constants;
@@ -35,16 +36,10 @@ public class SmisServletTest {
 	//private final String baseHostUrl = "http://192.168.0.76:8089/nusapro-wallet/wallet";
 	private ObjectMapper mapper = new ObjectMapper();
 	
-	private final String testingActivateService = "http://localhost:8080/ikm-engine-trx/trx/userActivate?actKey=dadadada&email=a@yahoo.com&noHp=085693938630";
-	private final String testingForget = "http://localhost:8080/ikm-engine-trx/trx/forgetPassword";
+	
 	private final String testingLoginUser = "http://localhost:8080/ikm-engine-trx/trx/loginUser";
 	private final String testingGetAgenda = "http://localhost:8080/ikm-engine-trx/trx/listAgenda";
-	private final String testingChangePassword = "http://localhost:8080/ikm-engine-trx/trx/changePassword";
-	private final String testingGetTrxFromVeriTrans = "http://localhost:8080/ikm-engine-trx/trx/receiveTrxFromVeriTrans";
-	private final String testingGetListMall = "http://localhost:8080/ikm-engine-trx/trx/listMall";
-	private final String testingRefreshCacheMall = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8080/ikm-engine-trx/trx/refreshCacheMall";
-	private final String testingGetSlotsByMall = "http://localhost:8080/ikm-engine-trx/trx/findSLotsByMall";
-	private final String testingReleaseSlot = "http://localhost:8080/ikm-engine-trx/trx/releaseSlotParking";
+	private final String testingGetInbox = "http://localhost:8080/ikm-engine-trx/trx/listInbox";
 	
 //	@Test
 	public void tes() {
@@ -75,6 +70,60 @@ public class SmisServletTest {
 	}
 	
 	@Test
+	public void testGetInbox() {
+		String url = testingGetInbox;
+		long startTime = System.currentTimeMillis();
+		HttpClient client = new DefaultHttpClient();
+		try {
+			
+			ReqListInboxData reqListInboxData = new ReqListInboxData();
+			reqListInboxData.setPassword("");
+			reqListInboxData.setKodeSekolah("DIAN-001");
+			reqListInboxData.setNoInduk("1");
+			reqListInboxData.setOriginRequest("Android-Mobile");
+			reqListInboxData.setUserType(Constants.PARENT);
+			
+			String s = mapper.writeValueAsString(reqListInboxData);
+			s = URLEncoder.encode(s, "UTF-8");
+			LOG.debug("Request: " + s);
+            StringEntity entity = new StringEntity(s);
+			
+			HttpPost post = new HttpPost(url);
+			post.setHeader("Content-Type", "application/json");
+			post.setEntity(entity);
+			
+			// Execute HTTP request
+			LOG.debug("Executing request: " + post.getURI());
+            HttpResponse response = client.execute(post);
+            
+            // Get hold of the response entity
+            StatusLine sl = response.getStatusLine();
+            LOG.debug("StatusCode: " + sl.getStatusCode());
+            Assert.assertEquals(200, sl.getStatusCode());
+
+            HttpEntity respEntity = response.getEntity();
+            String respString = EntityUtils.toString(respEntity);
+            LOG.debug("Response: " + respString);
+            
+//            WalletTrxResponse trxResp = mapper.
+//            		readValue(respString, WalletTrxResponse.class);
+//            Assert.assertEquals(trxReq.getRequestId(), trxResp.getRequestId());
+            Assert.assertEquals(true, true);
+            int delta = (int) (System.currentTimeMillis() - startTime);
+            LOG.info("Finish running one thread in {}ms", 
+            		new String[] { CommonUtil.displayNumberNoDecimal(delta) } );
+		}catch (Exception e) {
+		
+			LOG.warn("Unexpected Exception", e);
+		} finally {
+            // When HttpClient instance is no longer needed,
+            // shut down the connection manager to ensure
+            // immediate deallocation of all system resources
+            client.getConnectionManager().shutdown();
+        }  // end try finally
+	}
+	
+//	@Test
 	public void testGetAgenda() {
 		String url = testingGetAgenda;
 		long startTime = System.currentTimeMillis();
@@ -87,7 +136,7 @@ public class SmisServletTest {
 			reqListAgendaData.setNoInduk("1");
 			reqListAgendaData.setOriginRequest("Android-Mobile");
 			reqListAgendaData.setUserType(Constants.PARENT);
-			reqListAgendaData.setAgendaType(Constants.GENERAL_AGENDA);
+			reqListAgendaData.setAgendaType(Constants.OTHER_AGENDA);
 			
 			String s = mapper.writeValueAsString(reqListAgendaData);
 			s = URLEncoder.encode(s, "UTF-8");

@@ -16,28 +16,6 @@
 	<sql id="_sqlInbox">
 		u.name as fromUser,u1.name as toUser,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn
 	</sql>
-
-	<select id="findResponInboxUnReadByUser" parameterType="java.util.Map"
-		resultType="RespInboxVO">
-		select
-		<include refid="_sqlInbox" />
-		from message m
-		inner join user u on m.from_user_id = u.id
-		inner join user u1 on m.to_user_id = u1.id
-		where m.to_user_id = #{userId}
-		order by m.created_on desc
-	</select>
-	
-	<select id="findRequestInboxUnReadByUser" parameterType="java.util.Map"
-		resultType="RespInboxVO">
-		select
-		<include refid="_sqlInbox" />
-		from message m
-		inner join user u on m.from_user_id = u.id
-		inner join user u1 on m.to_user_id = u1.id
-		where m.from_user_id = #{userId}
-		order by m.created_on desc
-	</select>
 	
 	<select id="countResponInboxUnReadByUser" resultType="java.lang.Integer" parameterType="java.util.Map">
 		select count(*)
@@ -45,7 +23,25 @@
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
 		where m.to_user_id = #{userId}
+		and m.is_read = 0
     </select>
+    
+	<select id="findListInboxByUser" parameterType="java.util.Map"
+		resultType="InboxVO">
+		select * from(select u.name as fromName,u1.name as toName ,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
+		from message m 
+		inner join user u on m.from_user_id = u.id
+		inner join user u1 on m.to_user_id = u1.id
+		where m.to_user_id = #{userId}
+		Union
+		select u.name as fromName,u1.name as toName ,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
+		from message m 
+		inner join user u on m.from_user_id = u.id
+		inner join user u1 on m.to_user_id = u1.id
+		where m.from_user_id = #{userId}) as id
+		order by createdOn asc
+		
+	</select>
 
 
 </mapper>

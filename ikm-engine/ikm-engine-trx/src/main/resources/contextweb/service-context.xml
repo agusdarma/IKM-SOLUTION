@@ -42,6 +42,7 @@
 		        <entry key="/loginUser" value-ref="loginUser"></entry>		
 		        <!-- Transaction Module  -->       
 		        <entry key="/listAgenda" value-ref="listAgenda"></entry>
+		        <entry key="/listInbox" value-ref="listInbox"></entry>
 		    </map>
 		</property>
 	</bean>
