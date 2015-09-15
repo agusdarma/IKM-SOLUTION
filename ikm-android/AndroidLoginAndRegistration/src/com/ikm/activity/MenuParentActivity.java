@@ -114,7 +114,7 @@ public class MenuParentActivity extends Activity {
 				Intent i = new Intent(ctx, LoginActivity.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 				startActivity(i);	
-				
+				finish();
 			}
 		});
         
@@ -258,6 +258,14 @@ public class MenuParentActivity extends Activity {
         reqListAgendaTask = new ReqListAgendaTask();
         reqListAgendaTask.execute("");
 
+	}
+	
+	@Override
+    public void onBackPressed() { 
+		Intent i = new Intent(ctx, LoginActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+		startActivity(i);	
+		finish();
 	}
 	
 	 private void reload() {

@@ -234,7 +234,7 @@ public class LoginActivity extends Activity {
 		               			}else if(Constants.TEACHER_KEY==loginData.getUserType()){
 		               				i = new Intent(ctx, MenuTeacherActivity.class);
 		               			}
-								i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+//								i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 								startActivity(i);
 								finish();
 		               		}
@@ -261,6 +261,9 @@ public class LoginActivity extends Activity {
          }
 	}
 	
-	
+	@Override
+    public void onBackPressed() { 
+		this.finish();
+	}
 
 }
