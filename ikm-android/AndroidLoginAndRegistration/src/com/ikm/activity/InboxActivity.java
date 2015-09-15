@@ -106,11 +106,13 @@ public class InboxActivity extends Activity {
 					Intent i = new Intent(ctx, MenuParentActivity.class);
 					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 					startActivity(i);
+					finish();
 				}else if(Constants.TEACHER.equalsIgnoreCase(menuName)){
 					// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
 					Intent i = new Intent(ctx, MenuTeacherActivity.class);
 					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 					startActivity(i);
+					finish();
 				}
 					
 				
@@ -142,13 +144,30 @@ public class InboxActivity extends Activity {
         reqListInboxTask.execute("");
 	}
 	
+	@Override
+    public void onBackPressed() { 
+		if(Constants.PARENTS.equalsIgnoreCase(menuName)){
+			// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
+			Intent i = new Intent(ctx, MenuParentActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+			startActivity(i);
+			finish();
+		}else if(Constants.TEACHER.equalsIgnoreCase(menuName)){
+			// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
+			Intent i = new Intent(ctx, MenuTeacherActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+			startActivity(i);
+			finish();
+		}
+	}
+	
 	public class ReqSendMessageTask  extends AsyncTask<String, Void, Boolean> {
 		private ProgressDialogParking progressDialog = null;
        	private final HttpClient client = HttpClientUtil.getNewHttpClient();
        	String respString = null;
        	protected void onPreExecute() {
     			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_send_message),ctx.getResources().getString(R.string.progress_dialog));
-    			progressDialog.show();
+//    			progressDialog.show();
     		}
 		@Override
 		protected Boolean doInBackground(String... arg0) {
@@ -217,6 +236,7 @@ public class InboxActivity extends Activity {
 		               	        reqListInboxTask = new ReqListInboxTask();
 		               	        reqListInboxTask.execute("");
 		               	        inputMsg.setText("");
+		               	        playBeep();
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);

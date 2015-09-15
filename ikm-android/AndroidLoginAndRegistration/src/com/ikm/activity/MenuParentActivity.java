@@ -48,13 +48,10 @@ import com.gc.materialdesign.widgets.ProgressDialogParking;
 import com.ikm.R;
 import com.ikm.data.AgendaVO;
 import com.ikm.data.Constants;
-import com.ikm.data.InboxVO;
 import com.ikm.data.LoginData;
 import com.ikm.data.MessageVO;
 import com.ikm.data.ReqListAgendaData;
-import com.ikm.data.ReqListInboxData;
 import com.ikm.data.RespListAgendaVO;
-import com.ikm.data.RespListInboxVO;
 import com.ikm.swipelistview.sample.adapters.AgendaViewAdapter;
 import com.ikm.swipelistview.sample.adapters.AgendaViewVO;
 import com.ikm.swipelistview.sample.utils.SettingsManager;
@@ -72,8 +69,6 @@ public class MenuParentActivity extends Activity {
 	private static final String TAG = MenuParentActivity.class.getSimpleName();
 	private Context ctx;
 	private ReqListAgendaTask reqListAgendaTask = null;
-	
-	
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.ikm.R;
@@ -23,16 +24,12 @@ public class MenuTeacherActivity extends Activity {
 	// LogCat tag
 	private static final String TAG = MenuTeacherActivity.class.getSimpleName();
 	private ButtonRectangle btnSave;
-//	private ButtonRectangle btnBack;
-//	private FloatLabel inputKodeSekolah;
-//	private FloatLabel inputNoInduk;
-//	private FloatLabel inputPassword;
 	private Context ctx;
 //	private ReqLoginTask reqLoginTask = null;
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
-	
+	private Button btnInbox;
 	private ArrayAdapter<String> adapter;
 	private static final String[] ITEMS = {"Science 6A", "Science 6B", "BI 6A", "Inggris 3C", "Inggris 3A", "Inggris 3E","PENGUMUMAN LAIN"};
 	MaterialSpinner spinner1;
@@ -48,12 +45,7 @@ public class MenuTeacherActivity extends Activity {
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
-		ButtonRectangle inbox = (ButtonRectangle) findViewById(R.id.btnInbox);
-//		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
-//		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
-//		inputPassword = (FloatLabel) findViewById(R.id.password);
-		
-//		btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
+		btnInbox = (Button) findViewById(R.id.btnInbox);
 		btnSave = (ButtonRectangle) findViewById(R.id.btnSave);
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ITEMS);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -79,7 +71,7 @@ public class MenuTeacherActivity extends Activity {
 				
 			}
 		});
-		inbox.setOnClickListener(new OnClickListener() {
+		btnInbox.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -189,14 +181,5 @@ public class MenuTeacherActivity extends Activity {
 //				}
 //         }
 //	}
-	
-	// validating email id
-	private boolean isValidEmail(String email) {
-		if (email == null) {
-	        return false;
-	    } else {
-	    	return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-	    }
-	}
 
 }

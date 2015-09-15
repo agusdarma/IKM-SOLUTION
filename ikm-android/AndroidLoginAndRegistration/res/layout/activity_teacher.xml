@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/menu_background"
+    android:background="@drawable/tile_bg"
     android:gravity="top|center"
     android:orientation="vertical" >
 
@@ -49,15 +49,16 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:typeface="serif" />
-
-        <com.gc.materialdesign.views.ButtonRectangle
+        
+        <Button
             android:id="@+id/btnInbox"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:layout_below="@id/viewTitle"
-            android:layout_marginTop="5dip"
+            android:layout_marginTop="4dip"
             android:background="@color/blue"
-            android:text="10 message unread" />
+            android:textColor="@color/white"
+            android:text="Inbox" />
     </LinearLayout>
 
     <ScrollView
