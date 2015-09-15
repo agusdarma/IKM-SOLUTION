@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Agus&apos;s Agenda"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:typeface="serif" />
@@ -45,11 +45,11 @@
             android:layout_gravity="center"
             android:paddingBottom="5dp"
             android:text="SD Citra Kasih"
-            android:textColor="@color/grey"
+            android:textColor="@color/blue"
             android:textSize="15sp"
             android:textStyle="bold"
             android:typeface="serif" />
-        
+
         <Button
             android:id="@+id/btnInbox"
             android:layout_width="fill_parent"
@@ -57,8 +57,8 @@
             android:layout_below="@id/viewTitle"
             android:layout_marginTop="4dip"
             android:background="@color/blue"
-            android:textColor="@color/white"
-            android:text="Inbox" />
+            android:text="Inbox"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <ScrollView
@@ -78,10 +78,10 @@
                 android:id="@+id/spinner1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                app:ms_arrowColor="@color/white"
+                app:ms_arrowColor="@color/blue"
                 app:ms_arrowSize="16dp"
-                app:ms_baseColor="@color/white"
-                app:ms_floatingLabelColor="@color/white"
+                app:ms_baseColor="@color/blue"
+                app:ms_floatingLabelColor="@color/blue"
                 app:ms_floatingLabelText="Kelas"
                 app:ms_highlightColor="@color/blue"
                 app:ms_hint="Kelas"
@@ -92,39 +92,32 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Tanggal Agenda"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue"
+                android:typeface="serif" />
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                app:mcv_arrowColor="@color/white"
+                app:mcv_arrowColor="@color/blue"
                 app:mcv_firstDayOfWeek="sunday"
-                app:mcv_selectionColor="@color/black_transparant"
+                app:mcv_selectionColor="@color/blue"
                 app:mcv_tileSize="40dp" />
-
-            <!--
-                  <TextView
-                android:id="@+id/lblIsiAgenda"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Isi Agenda"
-                android:textColor="@color/white" />
-            -->
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/isiAgenda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Isi Agenda"
-                app:met_baseColor="@color/abc_primary_text_material_light"
+                android:typeface="serif"
+                app:met_baseColor="@color/blue"
                 app:met_clearButton="true"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelTextSize="14sp"
                 app:met_maxCharacters="500"
-                app:met_primaryColor="@color/abc_primary_text_material_light"
-                app:met_textColor="@color/abc_primary_text_material_light"
-                app:met_underlineColor="@color/abc_primary_text_material_light" />
+                app:met_primaryColor="@color/blue"
+                app:met_textColor="@color/blue"
+                app:met_underlineColor="@color/blue" />
 
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSave"
@@ -142,7 +135,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dip"
                 android:text="Copyright © 2015 Indo Kanaan Mandiri (IKM Solution)"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:typeface="serif" />
@@ -153,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Version 1.0.0"
-                android:textColor="@color/grey"
+                android:textColor="@color/blue"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 android:typeface="serif" />

@@ -41,8 +41,8 @@ public class HttpClientUtil {
 //	public static final String URL_BASE = "http://54.191.189.219:8080/parking-trx";
     
 //    public static final String URL_BASE = "http://192.168.1.102:8080/parking-trx";
-    public static final String URL_BASE = "http://192.168.0.111:8080/ikm-engine-trx";
-//    public static final String URL_BASE = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx";
+//    public static final String URL_BASE = "http://192.168.0.111:8080/ikm-engine-trx";
+    public static final String URL_BASE = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx";
 //    public static final String URL_BASE = "http://192.168.0.203:8080/parking-trx";
 	/**
 	 * URL TRX
@@ -52,19 +52,6 @@ public class HttpClientUtil {
 	public static final String URL_AGENDA = "/trx/listAgenda";
 	public static final String URL_INBOX = "/trx/listInbox";
 	public static final String URL_SEND_MESSAGE = "/trx/sendMessage";
-	
-//	public static final String URL_CHANGE_PASSWORD = "/trx/changePassword";
-//	public static final String URL_LOGOUT = "/trx/logoutUser";
-//	public static final String URL_GET_ALL_MALL = "/trx/listMall";
-//	public static final String URL_USER_REG= "/trx/userRegistration"; // Registration
-//	public static final String URL_RECEIVE_TRX_VERITRANS= "/trx/receiveTrxFromVeriTrans"; // payment Confirm
-//	public static final String URL_FIND_SLOT_BY_MALL= "/trx/findSLotsByMall";
-//	public static final String URL_CHECK_ORDER_ALLOW_PAY= "/trx/checkOrderAllowPay";
-//	public static final String URL_CHECK_BOOKING_CODE= "/trx/checkBookingCode";
-//	public static final String URL_CONFIRM_BOOKING_CODE= "/trx/confirmCodeBooking";
-//	public static final String URL_RELEASE_SLOT_PARKING= "/trx/releaseSlotParking";
-//	public static final String URL_REFRESHING_LIST_MALL= "/trx/refreshCacheMall";
-//	public static final String URL_GET_HISTORY = "/trx/historyBooking";
 	
 	
 	// list trx code engine
