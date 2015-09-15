@@ -11,6 +11,8 @@ public interface InboxMapper {
 	
 	public void insertMessage(Message message);
 	
+	public void updateMessageToRead(@Param("userId") int userId);
+	
 	public List<InboxVO> findListInboxByUser(@Param("userId") int userId);
 	
 	public int countResponInboxUnReadByUser(@Param("userId") int userId);

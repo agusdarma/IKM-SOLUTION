@@ -121,6 +121,12 @@ public class ListInboxService {
 			}
 			respListInboxVO.setListInboxVO(listInboxVOs);
 		}
+		/**
+		 * update status unread menjadi read
+		 */
+		inboxMapper.updateMessageToRead(user.getId());
+		
+		
 		
 		LOG.info("findInboxByUser done with param : " + " respListInboxVO: " + respListInboxVO);
 		return respListInboxVO;		
