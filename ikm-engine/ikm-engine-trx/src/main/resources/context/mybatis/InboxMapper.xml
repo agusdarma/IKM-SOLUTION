@@ -17,6 +17,10 @@
     		values(#{fromUserId}, #{toUserId}, #{isiMessage}, #{isRead},#{createdOn}, #{updatedOn})  	
      </insert>
      
+    <update id="updateMessageToRead" parameterType="java.util.Map">
+    	UPDATE message SET is_read = 1 where to_user_id = #{userId}	
+     </update>
+     
 	<sql id="_sqlInbox">
 		u.name as fromUser,u1.name as toUser,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn
 	</sql>
