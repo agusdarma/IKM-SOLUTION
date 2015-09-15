@@ -5,8 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.myproject.ikm.lib.data.InboxVO;
+import com.myproject.ikm.lib.entity.Message;
 
 public interface InboxMapper {
+	
+	public void insertMessage(Message message);
 	
 	public List<InboxVO> findListInboxByUser(@Param("userId") int userId);
 	

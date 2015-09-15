@@ -109,6 +109,7 @@
     <string name="process_login">Autentifikasi akun</string>
     <string name="process_agenda">Loading agenda</string>
     <string name="process_inbox">Loading inbox</string>
+    <string name="process_send_message">Sending message</string>
     <string name="process_change_password">Ganti password</string>
     <string name="process_check_in">Cari Kode Booking</string>
     <string name="process_confirm">Confirm process</string>
@@ -155,5 +156,6 @@
     <string name="message_password_required">Password lama dan password baru harus diisi!</string>
     <string name="message_booking_code_required">Booking code harus diisi!</string>
     <string name="message_detail_required">Silahkan isi field yang kosong!</string>
+    <string name="message_empty">Pesan kosong!</string>
     
 </resources>

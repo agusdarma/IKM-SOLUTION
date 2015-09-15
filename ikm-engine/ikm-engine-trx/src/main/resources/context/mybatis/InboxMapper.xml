@@ -12,7 +12,11 @@
 
 <mapper namespace="com.myproject.ikm.lib.mapper.InboxMapper">
 
-
+    <insert id="insertMessage" parameterType="Message">
+    	insert into message(from_user_id, to_user_id, isi_message, is_read,	created_on, updated_on)
+    		values(#{fromUserId}, #{toUserId}, #{isiMessage}, #{isRead},#{createdOn}, #{updatedOn})  	
+     </insert>
+     
 	<sql id="_sqlInbox">
 		u.name as fromUser,u1.name as toUser,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn
 	</sql>

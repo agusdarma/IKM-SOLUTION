@@ -25,6 +25,8 @@ public class IkmEngineException extends Exception {
 	public static final int ALL_SLOT_AVAILABLE				= 25;
 	public static final int FAILED_SENDING_EMAIL			= 26;
 	public static final int PARAMETER_NOT_COMPLETE			= 27;
+	public static final int ENGINE_USER_NOT_HAVE_KELAS		= 28;
+	public static final int ENGINE_SEND_MESSAGE_FAILED		= 29;
 	
 	private int errorCode;
 	private String[] info;

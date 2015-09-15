@@ -51,6 +51,7 @@ public class HttpClientUtil {
 	public static final String URL_LOGIN = "/trx/loginUser";
 	public static final String URL_AGENDA = "/trx/listAgenda";
 	public static final String URL_INBOX = "/trx/listInbox";
+	public static final String URL_SEND_MESSAGE = "/trx/sendMessage";
 	
 //	public static final String URL_CHANGE_PASSWORD = "/trx/changePassword";
 //	public static final String URL_LOGOUT = "/trx/logoutUser";

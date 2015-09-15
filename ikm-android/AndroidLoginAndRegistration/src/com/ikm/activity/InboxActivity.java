@@ -38,6 +38,7 @@ import com.ikm.data.InboxVO;
 import com.ikm.data.LoginData;
 import com.ikm.data.MessageVO;
 import com.ikm.data.ReqListInboxData;
+import com.ikm.data.ReqSendMessageData;
 import com.ikm.data.RespListInboxVO;
 import com.ikm.swipelistview.sample.adapters.MessagesListAdapter;
 import com.ikm.utils.HttpClientUtil;
@@ -61,6 +62,8 @@ public class InboxActivity extends Activity {
 	private List<InboxVO> listMessages;
 	private ListView listViewMessages;
 	private ReqListInboxTask reqListInboxTask = null;
+	private ReqSendMessageTask reqSendMessageTask = null;
+	
 	// private Utils utils;
 
 	// Client name
@@ -122,6 +125,14 @@ public class InboxActivity extends Activity {
 				 * Insert ke table message
 				 * 
 				 */
+				if (!inputMsg.getText().toString().isEmpty() ) {
+					// send message
+					reqSendMessageTask = new ReqSendMessageTask();
+					reqSendMessageTask.execute("");												
+				} else {
+					MessageUtils messageUtils = new MessageUtils(ctx);
+	             	messageUtils.snackBarMessage(InboxActivity.this,ctx.getResources().getString(R.string.message_empty));
+				}
 			}
 		});
 		/**
@@ -131,13 +142,112 @@ public class InboxActivity extends Activity {
         reqListInboxTask.execute("");
 	}
 	
+	public class ReqSendMessageTask  extends AsyncTask<String, Void, Boolean> {
+		private ProgressDialogParking progressDialog = null;
+       	private final HttpClient client = HttpClientUtil.getNewHttpClient();
+       	String respString = null;
+       	protected void onPreExecute() {
+    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_send_message),ctx.getResources().getString(R.string.progress_dialog));
+    			progressDialog.show();
+    		}
+		@Override
+		protected Boolean doInBackground(String... arg0) {
+			boolean result = false;
+           	try {
+           		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);         
+    			
+    			ReqSendMessageData reqSendMessageData = new ReqSendMessageData();
+    			reqSendMessageData.setPassword(loginData.getPassword());
+    			reqSendMessageData.setKodeSekolah(loginData.getKodeSekolah());
+    			reqSendMessageData.setNoInduk(loginData.getNoInduk());
+    			reqSendMessageData.setOriginRequest(Constants.ORIGIN_SOURCE);
+    			reqSendMessageData.setUserType(loginData.getUserType());
+    			reqSendMessageData.setIsiMessage(inputMsg.getText().toString());
+           		  				    			
+           		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqSendMessageData);
+           		s = URLEncoder.encode(s, "UTF-8");
+           		Log.d(TAG,"Request: " + s);
+                StringEntity entity = new StringEntity(s);    			
+    			HttpPost post = new HttpPost(HttpClientUtil.URL_BASE+HttpClientUtil.URL_SEND_MESSAGE);
+    			post.setHeader(HttpClientUtil.CONTENT_TYPE, HttpClientUtil.JSON);
+    			post.setEntity(entity);
+    			// Execute HTTP request
+    			Log.d(TAG,"Executing request: " + post.getURI());
+                HttpResponse response = client.execute(post);
+                HttpEntity respEntity = response.getEntity();
+                respString = EntityUtils.toString(respEntity);
+    			result = true;
+    			} catch (ClientProtocolException e) {
+    				Log.e(TAG, "ClientProtocolException : "+e);
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			} catch (IOException e) {
+    				Log.e(TAG, "IOException : "+e); 
+    				respString = ctx.getResources().getString(R.string.message_no_internet_connection);
+    				cancel(true);    				
+    			} catch (Exception e) {
+    				Log.e(TAG, "Exception : "+e);  
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			}
+           	return result;
+           }
+		
+		 @Override
+	     protected void onCancelled() {
+			 if(progressDialog.isShowing()){
+				progressDialog.dismiss();
+			 }
+			 MessageUtils messageUtils = new MessageUtils(ctx);
+          	 messageUtils.snackBarMessage(InboxActivity.this,respString);
+	     }
+		
+		 @Override
+         protected void onPostExecute(final Boolean success) {
+			 reqSendMessageTask = null;          
+             if (success) {
+	               	if(!respString.isEmpty()){
+	               		try {
+	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
+	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
+		               		if(messageVO.getRc()==0){
+		               			/**
+		               			 *  get data inbox
+		               			 */
+		               	        reqListInboxTask = new ReqListInboxTask();
+		               	        reqListInboxTask.execute("");
+		               	        inputMsg.setText("");
+		               		}
+		               		else{
+		               			MessageUtils messageUtils = new MessageUtils(ctx);
+				             	messageUtils.snackBarMessage(InboxActivity.this,messageVO.getMessageRc());
+		               		}
+
+						} catch (Exception e) {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(InboxActivity.this,InboxActivity.this.getResources().getString(R.string.message_unexpected_error_message_server));
+						}	            
+	               	}else{
+	               	   MessageUtils messageUtils = new MessageUtils(ctx);
+	             	   messageUtils.snackBarMessage(InboxActivity.this,InboxActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+	               	}
+             }else{
+          	   MessageUtils messageUtils = new MessageUtils(ctx);
+          	   messageUtils.snackBarMessage(InboxActivity.this,InboxActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+             }        
+             if(progressDialog.isShowing()){
+					progressDialog.dismiss();
+				}
+         }
+	}
+	
 	public class ReqListInboxTask  extends AsyncTask<String, Void, Boolean> {
 		private ProgressDialogParking progressDialog = null;
        	private final HttpClient client = HttpClientUtil.getNewHttpClient();
        	String respString = null;
        	protected void onPreExecute() {
     			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_inbox),ctx.getResources().getString(R.string.progress_dialog));
-    			progressDialog.show();
+//    			progressDialog.show();
     		}
 		@Override
 		protected Boolean doInBackground(String... arg0) {

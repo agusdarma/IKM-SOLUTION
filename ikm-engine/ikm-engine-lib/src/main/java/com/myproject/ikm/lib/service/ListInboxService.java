@@ -1,5 +1,6 @@
 package com.myproject.ikm.lib.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import com.myproject.ikm.lib.data.InboxVO;
 import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.data.ReqSendMessageData;
 import com.myproject.ikm.lib.data.RespListInboxVO;
+import com.myproject.ikm.lib.entity.Kelas;
+import com.myproject.ikm.lib.entity.Message;
 import com.myproject.ikm.lib.entity.User;
 import com.myproject.ikm.lib.mapper.InboxMapper;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
@@ -53,20 +56,25 @@ public class ListInboxService {
 			}
 		}
 		
+		List<Kelas> listKelasUser = userDataMapper.findKelasByUser(reqSendMessageData.getKodeSekolah(), user.getId());
+		if(listKelasUser.size() == 0){
+			throw new IkmEngineException(IkmEngineException.ENGINE_USER_NOT_HAVE_KELAS);
+		}
 		
-		/**
-		 * Get data inbox
-		 */
-//		List<InboxVO> listInboxVOs = inboxMapper.findListInboxByUser(user.getId());
-//		if(listInboxVOs.size()>0){
-//			for (InboxVO inboxVO : listInboxVOs) {
-//				if(inboxVO.getFromName().equalsIgnoreCase(user.getNama())){
-//					inboxVO.setSelf(true);
-//				}
-//			}
-//			respListInboxVO.setListInboxVO(listInboxVOs);
-//		}
-		
+		Date now = timeService.getCurrentTime();
+		Message message = new Message();
+		message.setCreatedOn(now);
+		message.setUpdatedOn(now);
+		message.setIsiMessage(reqSendMessageData.getIsiMessage());
+		message.setFromUserId(user.getId());
+		message.setToUserId(listKelasUser.get(0).getWaliKelasId());
+		message.setIsRead(Constants.UNREAD);
+		LOG.info("insert message : " + message);
+		try {
+			inboxMapper.insertMessage(message);
+		} catch (Exception e) {
+			throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
+		}
 		LOG.info("sendMessage done with param : " + " reqSendMessageData: " + reqSendMessageData);	
 	}
 	

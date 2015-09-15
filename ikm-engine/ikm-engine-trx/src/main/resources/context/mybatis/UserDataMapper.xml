@@ -30,6 +30,17 @@
 		#{noInduk}
 		and user_type = #{userType}
 	</select>
+	
+	<select id="findKelasByUser" parameterType="java.util.Map"
+		resultType="Kelas">
+		select k.id,k.kode_kelas as kodeKelas,k.nama_kelas as namaKelas, 
+		k.wali_kelas_id as waliKelasId, k.created_on as createdOn, k.updated_on as updatedOn 
+		from user u
+		inner join user_sekolah_kelas usk on u.id = usk.user_id
+		inner join kelas k on k.id = usk.kelas_id
+		where u.kode_sekolah = #{kodeSekolah}
+		and u.id = #{userIdLogin}
+	</select>
 
 
 </mapper>
