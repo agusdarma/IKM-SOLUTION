@@ -52,6 +52,8 @@ public class LoginService {
 		respLoginVO.setNama(user.getNama());
 		respLoginVO.setNoInduk(user.getNoInduk());
 		respLoginVO.setStatusUser(user.getStatusUser());
+		respLoginVO.setPassword(loginData.getPassword());
+		respLoginVO.setOriginRequest(loginData.getOriginRequest());
 		respLoginVO.setUserType(user.getUserType());	
 		LOG.info("login done with param : " + " respLoginVO: " + respLoginVO);
 		return respLoginVO;		

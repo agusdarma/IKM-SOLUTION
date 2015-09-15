@@ -27,14 +27,6 @@
 			<version>2.0.0</version>
 		</dependency> -->
 		
-		
-		<!-- Veritrans RestFull API -->	
-		<dependency>
-	        <groupId>id.co.veritrans</groupId>
-	        <artifactId>vt-java-client</artifactId>
-	        <version>1.0.6</version>
-	    </dependency>
-		
 		<!-- For Convert to / from JSON -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

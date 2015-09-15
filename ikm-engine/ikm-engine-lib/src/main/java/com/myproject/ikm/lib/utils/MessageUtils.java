@@ -1,6 +1,7 @@
 package com.myproject.ikm.lib.utils;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -23,6 +24,7 @@ public class MessageUtils {
 		try {
 			result = mapper.writeValueAsString(messageVO);
 //			result = CipherUtil.encryptTripleDES(result, CipherUtil.PASSWORD);
+			result = URLEncoder.encode(result);
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

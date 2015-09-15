@@ -126,24 +126,9 @@ public class LoginActivity extends Activity {
 						}					
 					}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){						
 						if (!inputKodeSekolah.getEditText().getText().toString().isEmpty() && !inputNoInduk.getEditText().getText().toString().isEmpty() && !inputPassword.getEditText().getText().toString().isEmpty()) {
-							LoginData loginData = new LoginData();
-							loginData.setKodeSekolah(inputKodeSekolah.getEditText().getText().toString());
-							loginData.setNoInduk(inputNoInduk.getEditText().getText().toString());
-							String s = "";
-							try {
-								s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(loginData);
-							} catch (JsonGenerationException e) {
-								
-							} catch (JsonMappingException e) {
-								
-							} catch (IOException e) {
-								
-							}
-							SharedPreferencesUtils.saveLoginData(s, ctx);
-							
-							Intent i = new Intent(ctx, MenuTeacherActivity.class);
-							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
-							startActivity(i);
+							// login user
+							reqLoginTask = new ReqLoginTask();
+							reqLoginTask.execute("");
 							
 							
 						} else {
@@ -178,7 +163,13 @@ public class LoginActivity extends Activity {
 				loginData.setKodeSekolah(inputKodeSekolah.getEditText().getText().toString());
 				loginData.setNoInduk(inputNoInduk.getEditText().getText().toString());
 				loginData.setOriginRequest(Constants.ORIGIN_SOURCE);
+				loginData.setPassword("");
 				loginData.setUserType(Constants.PARENTS_KEY);
+				if (!inputPassword.getEditText().getText().toString().isEmpty()) {
+					loginData.setPassword(inputPassword.getEditText().getText().toString());
+					loginData.setUserType(Constants.TEACHER_KEY);
+				}
+				
            		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(loginData);
            		s = URLEncoder.encode(s, "UTF-8");
            		Log.d(TAG,"Request: " + s);

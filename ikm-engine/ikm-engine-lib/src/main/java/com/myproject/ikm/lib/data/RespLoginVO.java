@@ -11,6 +11,8 @@ public class RespLoginVO implements java.io.Serializable {
 	private String nama;
 	private int userType;
 	private int statusUser;
+	private String password;
+	private String originRequest;
 
 	@Override
 	public String toString() {
@@ -63,5 +65,21 @@ public class RespLoginVO implements java.io.Serializable {
 
 	public void setStatusUser(int statusUser) {
 		this.statusUser = statusUser;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getOriginRequest() {
+		return originRequest;
+	}
+
+	public void setOriginRequest(String originRequest) {
+		this.originRequest = originRequest;
 	}
 }

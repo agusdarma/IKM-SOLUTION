@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.myproject.ikm.lib.data.InboxVO;
 import com.myproject.ikm.lib.data.ReqListInboxData;
+import com.myproject.ikm.lib.data.ReqSendMessageData;
 import com.myproject.ikm.lib.data.RespListInboxVO;
 import com.myproject.ikm.lib.entity.User;
 import com.myproject.ikm.lib.mapper.InboxMapper;
@@ -29,7 +30,45 @@ public class ListInboxService {
 	@Autowired
 	private AppsTimeService timeService;
 	
-	
+	public void sendMessage(ReqSendMessageData reqSendMessageData) throws IkmEngineException {
+		LOG.debug("sendMessage with param : " + " reqSendMessageData: " + reqSendMessageData);	
+		User user = userDataMapper.findUserByKodeSekolahAndNoIndukAndUserType(reqSendMessageData.getKodeSekolah(), reqSendMessageData.getNoInduk(),reqSendMessageData.getUserType());
+		if(user == null){
+			LOG.error("Can't find User with parameter: " + reqSendMessageData);
+			throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
+		}
+		if(Constants.BLOCKED == user.getStatusUser()){
+			LOG.error("User already blocked");
+			throw new IkmEngineException(IkmEngineException.ENGINE_USER_BLOCKED);
+		}
+		if(Constants.PENDING == user.getStatusUser()){
+			LOG.error("User not active");
+			throw new IkmEngineException(IkmEngineException.ENGINE_USER_NOT_ACTIVE);
+		}	
+		if(Constants.TEACHER == reqSendMessageData.getUserType()){
+			String passwordDB = user.getPassword();
+			String passwordInput = CipherUtil.passwordDigest(reqSendMessageData.getKodeSekolah(), reqSendMessageData.getPassword());
+			if(!passwordDB.equals(passwordInput)){
+				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
+			}
+		}
+		
+		
+		/**
+		 * Get data inbox
+		 */
+//		List<InboxVO> listInboxVOs = inboxMapper.findListInboxByUser(user.getId());
+//		if(listInboxVOs.size()>0){
+//			for (InboxVO inboxVO : listInboxVOs) {
+//				if(inboxVO.getFromName().equalsIgnoreCase(user.getNama())){
+//					inboxVO.setSelf(true);
+//				}
+//			}
+//			respListInboxVO.setListInboxVO(listInboxVOs);
+//		}
+		
+		LOG.info("sendMessage done with param : " + " reqSendMessageData: " + reqSendMessageData);	
+	}
 	
 	public RespListInboxVO findInboxByUser(ReqListInboxData reqListInboxData) throws IkmEngineException {
 		LOG.debug("findInboxByUser with param : " + " reqListInboxData: " + reqListInboxData);	
