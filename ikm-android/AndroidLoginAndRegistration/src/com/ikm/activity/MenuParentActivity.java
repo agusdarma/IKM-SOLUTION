@@ -392,9 +392,12 @@ public class MenuParentActivity extends Activity {
 	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
 	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
 		               		if(messageVO.getRc()==0){
-		               			data.clear();
-		               	        data.addAll(constructDataAgenda(messageVO.getOtherMessage()));
-		               	        adapter.notifyDataSetChanged();	
+		               			
+		               				data.clear();
+			               	        data.addAll(constructDataAgenda(messageVO.getOtherMessage()));
+			               	        adapter.notifyDataSetChanged();	
+		               			
+		               			
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);

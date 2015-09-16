@@ -191,10 +191,12 @@ public class MenuTeacherActivity extends Activity {
 	               		try {	               			
 	               			String respons = URLDecoder.decode(respString, "UTF-8");
 	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
-		               		if(messageVO.getRc()==0){		               		
-		               			adapter = new ArrayAdapter<String>(MenuTeacherActivity.this, android.R.layout.simple_spinner_item, constructDataKelas(messageVO.getOtherMessage()));
-		               	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		               	        initSpinnerHintAndFloatingLabel();
+		               		if(messageVO.getRc()==0){	
+		               			
+		               				adapter = new ArrayAdapter<String>(MenuTeacherActivity.this, android.R.layout.simple_spinner_item, constructDataKelas(messageVO.getOtherMessage()));
+			               	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			               	        initSpinnerHintAndFloatingLabel();
+		               				               			
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);

@@ -3,6 +3,7 @@ package com.ikm.activity;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -328,10 +329,12 @@ public class InboxActivity extends Activity {
 	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
 	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
 		               		if(messageVO.getRc()==0){
-		               			List<InboxVO> listInbox = constructDataInbox(messageVO.getOtherMessage());
-
-		               			adapter = new MessagesListAdapter(ctx, listInbox);
-		               			listViewMessages.setAdapter(adapter);
+		               			
+		               				List<InboxVO> listInbox = constructDataInbox(messageVO.getOtherMessage());
+			               			adapter = new MessagesListAdapter(ctx, listInbox);
+			               			listViewMessages.setAdapter(adapter);
+		               			
+		               			
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
@@ -359,8 +362,12 @@ public class InboxActivity extends Activity {
 	public List<InboxVO> constructDataInbox(String listJson) throws JsonParseException, JsonMappingException, IOException
     {
 		
-		RespListInboxVO respListInboxVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListInboxVO.class);		 
-        return respListInboxVO.getListInboxVO();
+		RespListInboxVO respListInboxVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListInboxVO.class);	
+		if(respListInboxVO.getListInboxVO()!=null){
+			return respListInboxVO.getListInboxVO();
+		}else{
+			return new ArrayList<InboxVO>();
+		}    
     }
 
 //	/**
