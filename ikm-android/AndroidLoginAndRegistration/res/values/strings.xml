@@ -109,6 +109,7 @@
     <string name="process_login">Autentifikasi akun</string>
     <string name="process_agenda">Loading agenda</string>
     <string name="process_inbox">Loading inbox</string>
+    <string name="process_kelas">Loading kelas</string>
     <string name="process_send_message">Sending message</string>
     <string name="process_change_password">Ganti password</string>
     <string name="process_check_in">Cari Kode Booking</string>

@@ -41,8 +41,8 @@ public class HttpClientUtil {
 //	public static final String URL_BASE = "http://54.191.189.219:8080/parking-trx";
     
 //    public static final String URL_BASE = "http://192.168.1.102:8080/parking-trx";
-//    public static final String URL_BASE = "http://192.168.0.111:8080/ikm-engine-trx";
-    public static final String URL_BASE = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx";
+    public static final String URL_BASE = "http://192.168.0.111:8080/ikm-engine-trx";
+//    public static final String URL_BASE = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx";
 //    public static final String URL_BASE = "http://192.168.0.203:8080/parking-trx";
 	/**
 	 * URL TRX
@@ -52,7 +52,7 @@ public class HttpClientUtil {
 	public static final String URL_AGENDA = "/trx/listAgenda";
 	public static final String URL_INBOX = "/trx/listInbox";
 	public static final String URL_SEND_MESSAGE = "/trx/sendMessage";
-	
+	public static final String URL_KELAS = "/trx/listKelas";
 	
 	// list trx code engine
 	//LOGIN
