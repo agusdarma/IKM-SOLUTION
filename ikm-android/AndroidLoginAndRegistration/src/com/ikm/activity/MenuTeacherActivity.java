@@ -93,7 +93,7 @@ public class MenuTeacherActivity extends Activity {
 				Intent i = new Intent(ctx, LoginActivity.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 				startActivity(i);	
-				
+				finish();
 			}
 		});
 		btnInbox.setOnClickListener(new OnClickListener() {
@@ -109,6 +109,14 @@ public class MenuTeacherActivity extends Activity {
         reqListKelasTask = new ReqListKelasTask();
         reqListKelasTask.execute("");
 
+	}
+	
+	@Override
+    public void onBackPressed() { 
+		Intent i = new Intent(ctx, LoginActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+		startActivity(i);	
+		finish();
 	}
 	
 	private void initSpinnerHintAndFloatingLabel() {

@@ -275,7 +275,7 @@ public class InboxActivity extends Activity {
            	try {
            		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
            		ReqListInboxData reqListInboxData = new ReqListInboxData();
-    			reqListInboxData.setPassword("");
+    			reqListInboxData.setPassword(loginData.getPassword());
     			reqListInboxData.setKodeSekolah(loginData.getKodeSekolah());
     			reqListInboxData.setNoInduk(loginData.getNoInduk());
     			reqListInboxData.setOriginRequest(Constants.ORIGIN_SOURCE);
