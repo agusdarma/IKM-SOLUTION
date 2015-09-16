@@ -27,6 +27,7 @@ public class IkmEngineException extends Exception {
 	public static final int PARAMETER_NOT_COMPLETE			= 27;
 	public static final int ENGINE_USER_NOT_HAVE_KELAS		= 28;
 	public static final int ENGINE_SEND_MESSAGE_FAILED		= 29;
+	public static final int ENGINE_RECEPIENT_EMPTY			= 30;
 	
 	private int errorCode;
 	private String[] info;

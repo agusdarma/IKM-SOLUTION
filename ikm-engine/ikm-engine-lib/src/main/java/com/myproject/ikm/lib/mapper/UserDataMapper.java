@@ -15,6 +15,9 @@ public interface UserDataMapper {
 	public List<Kelas> findKelasByUser(@Param("kodeSekolah") String kodeSekolah,
 			@Param("userIdLogin") int userIdLogin);
 	
+	public List<User> findAllRecepientMessageFromTeacher(@Param("kodeSekolah") String kodeSekolah,
+			@Param("userIdLogin") int userIdLogin);
+	
 	public List<Kelas> findAllKelasTeacher(@Param("kodeSekolah") String kodeSekolah,
 			@Param("noInduk") String noInduk,@Param("userType") int userType);
 }

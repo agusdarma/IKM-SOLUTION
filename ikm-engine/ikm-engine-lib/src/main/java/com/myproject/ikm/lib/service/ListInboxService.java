@@ -56,25 +56,49 @@ public class ListInboxService {
 			}
 		}
 		
-		List<Kelas> listKelasUser = userDataMapper.findKelasByUser(reqSendMessageData.getKodeSekolah(), user.getId());
-		if(listKelasUser.size() == 0){
-			throw new IkmEngineException(IkmEngineException.ENGINE_USER_NOT_HAVE_KELAS);
+		
+		if(Constants.PARENT == reqSendMessageData.getUserType()){
+			List<Kelas> listKelasUser = userDataMapper.findKelasByUser(reqSendMessageData.getKodeSekolah(), user.getId());
+			if(listKelasUser.size() == 0){
+				throw new IkmEngineException(IkmEngineException.ENGINE_USER_NOT_HAVE_KELAS);
+			}
+			Date now = timeService.getCurrentTime();
+			Message message = new Message();
+			message.setCreatedOn(now);
+			message.setUpdatedOn(now);
+			message.setIsiMessage(reqSendMessageData.getIsiMessage());
+			message.setFromUserId(user.getId());
+			message.setToUserId(listKelasUser.get(0).getWaliKelasId());
+			message.setIsRead(Constants.UNREAD);
+			LOG.info("parent send message : " + message);
+			try {
+				inboxMapper.insertMessage(message);
+			} catch (Exception e) {
+				throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
+			}
+		}else if(Constants.TEACHER == reqSendMessageData.getUserType()){
+			List<User> listRecepient = userDataMapper.findAllRecepientMessageFromTeacher(reqSendMessageData.getKodeSekolah(), user.getId());
+			if(listRecepient.size() == 0){
+				throw new IkmEngineException(IkmEngineException.ENGINE_RECEPIENT_EMPTY);
+			}
+			for (User recepient : listRecepient) {
+				Date now = timeService.getCurrentTime();
+				Message message = new Message();
+				message.setCreatedOn(now);
+				message.setUpdatedOn(now);
+				message.setIsiMessage(reqSendMessageData.getIsiMessage());
+				message.setFromUserId(user.getId());
+				message.setToUserId(recepient.getId());
+				message.setIsRead(Constants.UNREAD);
+				LOG.info("teacher send message : " + message);
+				try {
+					inboxMapper.insertMessage(message);
+				} catch (Exception e) {
+					throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
+				}
+			}
 		}
 		
-		Date now = timeService.getCurrentTime();
-		Message message = new Message();
-		message.setCreatedOn(now);
-		message.setUpdatedOn(now);
-		message.setIsiMessage(reqSendMessageData.getIsiMessage());
-		message.setFromUserId(user.getId());
-		message.setToUserId(listKelasUser.get(0).getWaliKelasId());
-		message.setIsRead(Constants.UNREAD);
-		LOG.info("insert message : " + message);
-		try {
-			inboxMapper.insertMessage(message);
-		} catch (Exception e) {
-			throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
-		}
 		LOG.info("sendMessage done with param : " + " reqSendMessageData: " + reqSendMessageData);	
 	}
 	
