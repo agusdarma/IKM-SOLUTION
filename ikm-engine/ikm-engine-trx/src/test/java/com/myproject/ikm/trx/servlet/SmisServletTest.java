@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.myproject.ikm.lib.data.LoginData;
 import com.myproject.ikm.lib.data.ReqListAgendaData;
 import com.myproject.ikm.lib.data.ReqListInboxData;
+import com.myproject.ikm.lib.data.ReqListKelasData;
 import com.myproject.ikm.lib.data.ReqSendMessageData;
 import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.CommonUtil;
@@ -42,6 +43,7 @@ public class SmisServletTest {
 	private final String testingGetAgenda = "http://localhost:8080/ikm-engine-trx/trx/listAgenda";
 	private final String testingGetInbox = "http://localhost:8080/ikm-engine-trx/trx/listInbox";
 	private final String testingSendMsgMurid = "http://localhost:8080/ikm-engine-trx/trx/sendMessage";
+	private final String testingGetKelas = "http://localhost:8080/ikm-engine-trx/trx/listKelas";
 	
 //	@Test
 	public void tes() {
@@ -72,6 +74,60 @@ public class SmisServletTest {
 	}
 	
 	@Test
+	public void testGetKelasTeacher() {
+		String url = testingGetKelas;
+		long startTime = System.currentTimeMillis();
+		HttpClient client = new DefaultHttpClient();
+		try {
+			
+			ReqListKelasData reqListKelasData = new ReqListKelasData();
+			reqListKelasData.setPassword("administrator");
+			reqListKelasData.setKodeSekolah("DIAN-001");
+			reqListKelasData.setNoInduk("1");
+			reqListKelasData.setOriginRequest("Android-Mobile");
+			reqListKelasData.setUserType(Constants.TEACHER);
+			
+			String s = mapper.writeValueAsString(reqListKelasData);
+			s = URLEncoder.encode(s, "UTF-8");
+			LOG.debug("Request: " + s);
+            StringEntity entity = new StringEntity(s);
+			
+			HttpPost post = new HttpPost(url);
+			post.setHeader("Content-Type", "application/json");
+			post.setEntity(entity);
+			
+			// Execute HTTP request
+			LOG.debug("Executing request: " + post.getURI());
+            HttpResponse response = client.execute(post);
+            
+            // Get hold of the response entity
+            StatusLine sl = response.getStatusLine();
+            LOG.debug("StatusCode: " + sl.getStatusCode());
+            Assert.assertEquals(200, sl.getStatusCode());
+
+            HttpEntity respEntity = response.getEntity();
+            String respString = EntityUtils.toString(respEntity);
+            LOG.debug("Response: " + respString);
+            
+//            WalletTrxResponse trxResp = mapper.
+//            		readValue(respString, WalletTrxResponse.class);
+//            Assert.assertEquals(trxReq.getRequestId(), trxResp.getRequestId());
+            Assert.assertEquals(true, true);
+            int delta = (int) (System.currentTimeMillis() - startTime);
+            LOG.info("Finish running one thread in {}ms", 
+            		new String[] { CommonUtil.displayNumberNoDecimal(delta) } );
+		}catch (Exception e) {
+		
+			LOG.warn("Unexpected Exception", e);
+		} finally {
+            // When HttpClient instance is no longer needed,
+            // shut down the connection manager to ensure
+            // immediate deallocation of all system resources
+            client.getConnectionManager().shutdown();
+        }  // end try finally
+	}
+	
+//	@Test
 	public void testSendMessageMurid() {
 		String url = testingSendMsgMurid;
 		long startTime = System.currentTimeMillis();

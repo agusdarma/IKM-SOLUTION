@@ -13,4 +13,5 @@
 	<bean id="listAgenda" class="com.myproject.ikm.trx.logic.transaction.ListAgenda" />
 	<bean id="listInbox" class="com.myproject.ikm.trx.logic.transaction.ListInbox" />
 	<bean id="sendMessage" class="com.myproject.ikm.trx.logic.transaction.SendMessage" />
+	<bean id="listKelas" class="com.myproject.ikm.trx.logic.transaction.ListKelas" />
 </beans>
