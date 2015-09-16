@@ -52,6 +52,23 @@
 		and u.nomor_induk = #{noInduk}
 		and u.user_type = #{userType}
 	</select>
+	
+	<select id="findAllRecepientMessageFromTeacher" parameterType="java.util.Map"
+		resultType="User">
+		select u.id, u.kode_sekolah as kodeSekolah, u.nomor_induk as
+		noInduk,u.name as nama,u.password,
+		u.user_type as userType,u.status_user as statusUser,
+		u.created_on as createdOn, u.updated_on as updatedOn
+		from user u
+		inner join user_sekolah_kelas usk on u.id = usk.user_id
+    	where u.user_type = 2 
+      and usk.kelas_id in (select k.id
+		from user u
+		inner join user_sekolah_kelas usk on u.id = usk.user_id
+		inner join kelas k on k.id = usk.kelas_id
+		where u.kode_sekolah = #{kodeSekolah}
+		and u.id = #{userIdLogin})
+	</select>
 
 
 </mapper>

@@ -36,19 +36,18 @@
     
 	<select id="findListInboxByUser" parameterType="java.util.Map"
 		resultType="InboxVO">
-		select * from(select u.name as fromName,u1.name as toName ,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
+		select * from(select distinct u.name as fromName ,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
 		from message m 
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
 		where m.to_user_id = #{userId}
 		Union
-		select u.name as fromName,u1.name as toName ,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
+		select distinct u.name as fromName,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
 		from message m 
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
 		where m.from_user_id = #{userId}) as id
 		order by createdOn asc
-		
 	</select>
 
 
