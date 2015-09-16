@@ -78,12 +78,13 @@ public class MenuParentActivity extends Activity {
     private List<AgendaViewVO> data;
 	MaterialSpinner spinner1;
 	private Button btnInbox;
+	ShimmerTextView tvTitle;
 	boolean typeAgenda; // false agenda true pengumuman lain
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_parent);
-		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
+		tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
 		btnInbox = (Button) findViewById(R.id.btnInbox);
@@ -119,6 +120,7 @@ public class MenuParentActivity extends Activity {
 			public void onClick(View v) {				
 				Intent i = new Intent(ctx, InboxActivity.class);	
 				i.putExtra(Constants.FROM_MENU, Constants.PARENTS);
+				i.putExtra(Constants.AGENDA_NAME, tvTitle.getText().toString());
 				startActivity(i);	
 			}
 		});
@@ -305,6 +307,7 @@ public class MenuParentActivity extends Activity {
 				item.setAgendaType(temp.getAgendaType());
 				item.setIsiAgenda(temp.getIsiAgenda());
 				item.setTglAgenda(temp.getTanggalAgendaVal());
+				tvTitle.setText(Constants.AGENDA+temp.getNamaKelas());
 		        it.add(item);
 			}
 		}
@@ -313,6 +316,7 @@ public class MenuParentActivity extends Activity {
 		}else{
 			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
 		}
+				
 		 
         return it;
     }

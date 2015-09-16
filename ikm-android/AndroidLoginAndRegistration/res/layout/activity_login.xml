@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingBottom="10dp"
-            android:text="SD Dian Harapan"
+            android:text="@string/nama_sekolah"
             android:textColor="@color/blue"
             android:textSize="24sp"
             android:textStyle="bold"

@@ -2,10 +2,12 @@ package com.ikm.data;
 
 public class Constants {
 	public static final String ORIGIN_SOURCE				= "Mobile-Android";
+	public static final String AGENDA_NAME				= "agenda_name";
 	public static final String FROM_MENU				= "from_menu";
 	public static final String KEY_LOGIN				= "login";
 	public static final String TEACHER				= "teacher";
 	public static final String PARENTS				= "parents";
+	public static final String AGENDA				= "Agenda ";
 	
 	public static final int TEACHER_KEY				= 1;
 	public static final int PARENTS_KEY				= 2;

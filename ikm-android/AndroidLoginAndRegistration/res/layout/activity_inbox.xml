@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_weight="2"
             android:text="Agenda kelas 6A"
-            android:textColor="@color/grey"
+            android:textColor="@color/blue"
             android:textSize="25sp"
             android:textStyle="bold"
             android:typeface="serif" />
@@ -38,8 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingBottom="5dp"
-        android:text="SD Citra Kasih"
-        android:textColor="@color/grey"
+        android:text="@string/nama_sekolah"
+        android:textColor="@color/blue"
         android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="serif" />

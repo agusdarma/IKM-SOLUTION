@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingBottom="5dp"
-        android:text="SD Citra Kasih"
+        android:text="@string/nama_sekolah"
         android:textColor="@color/grey"
         android:textSize="15sp"
         android:textStyle="bold"

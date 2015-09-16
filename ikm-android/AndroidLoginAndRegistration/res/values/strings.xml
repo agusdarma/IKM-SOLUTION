@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- NAMA SEKOLAH -->
+    <string name="nama_sekolah">Dian Harapan</string>
     <!-- Progress Dialog -->
     <string name="progress_dialog">Please wait a moment..</string>
     <string name="confirmation_dialog">Konfirmasi action</string>

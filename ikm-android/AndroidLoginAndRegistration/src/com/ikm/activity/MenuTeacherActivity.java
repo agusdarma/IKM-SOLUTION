@@ -60,13 +60,14 @@ public class MenuTeacherActivity extends Activity {
 	private ArrayAdapter<String> adapter;
 	private static final String[] ITEMS = {"Science 6A", "Science 6B", "BI 6A", "Inggris 3C", "Inggris 3A", "Inggris 3E","PENGUMUMAN LAIN"};
 	MaterialSpinner spinner1;
+	ShimmerTextView tvTitle;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_teacher);
 		ctx = MenuTeacherActivity.this;		
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
-		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
+		tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
@@ -102,6 +103,7 @@ public class MenuTeacherActivity extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(ctx, InboxActivity.class);	
 				i.putExtra(Constants.FROM_MENU, Constants.TEACHER);
+				i.putExtra(Constants.AGENDA_NAME, tvTitle.getText().toString());
 				startActivity(i);	
 			}
 		});
@@ -225,9 +227,15 @@ public class MenuTeacherActivity extends Activity {
 		
 		RespListKelasVO respListKelasVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListKelasVO.class);
 		List<String> allKelas = new ArrayList<String>();
+		String agendaName = "";
 		if(respListKelasVO.getListKelas()!=null){
 			for (Kelas temp : respListKelasVO.getListKelas()) {
+				if(agendaName.isEmpty()){
+					agendaName = Constants.AGENDA+temp.getNamaKelas();
+					tvTitle.setText(agendaName);
+				}
 				allKelas.add(temp.getNamaKelas());
+				
 			}
 		}
 		if(respListKelasVO.getJumlahMessageUnread()>0){

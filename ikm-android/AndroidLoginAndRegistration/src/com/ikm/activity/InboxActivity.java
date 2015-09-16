@@ -64,7 +64,7 @@ public class InboxActivity extends Activity {
 	private ListView listViewMessages;
 	private ReqListInboxTask reqListInboxTask = null;
 	private ReqSendMessageTask reqSendMessageTask = null;
-	
+	ShimmerTextView tvTitle;
 	// private Utils utils;
 
 	// Client name
@@ -78,7 +78,7 @@ public class InboxActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inbox);
-		ShimmerTextView tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
+		tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		btnSend = (Button) findViewById(R.id.btnSend);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
@@ -97,7 +97,7 @@ public class InboxActivity extends Activity {
 		// Getting the person name from previous screen
 		Intent i = getIntent();
 		menuName = i.getStringExtra(Constants.FROM_MENU);
-		
+		tvTitle.setText(i.getStringExtra(Constants.AGENDA_NAME));
 		btnBack.setOnClickListener(new OnClickListener() {
 			
 			@Override
