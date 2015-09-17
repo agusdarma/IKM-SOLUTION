@@ -3,11 +3,14 @@ package com.ikm.data;
 public class LoginData implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private int id;
 	private String kodeSekolah;
 	private String noInduk;
+	private String nama;
+	private int userType;
+	private int statusUser;
 	private String password;
 	private String originRequest;
-	private int userType;
 
 	public String getKodeSekolah() {
 		return kodeSekolah;
@@ -47,6 +50,30 @@ public class LoginData implements java.io.Serializable {
 
 	public void setUserType(int userType) {
 		this.userType = userType;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNama() {
+		return nama;
+	}
+
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+
+	public int getStatusUser() {
+		return statusUser;
+	}
+
+	public void setStatusUser(int statusUser) {
+		this.statusUser = statusUser;
 	}
 
 }

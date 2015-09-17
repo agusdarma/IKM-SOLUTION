@@ -87,6 +87,8 @@ public class MenuParentActivity extends Activity {
 		tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
+		ButtonRectangle btnRefresh = (ButtonRectangle) findViewById(R.id.btnRefresh);
+		TextView lblWelcome = (TextView) findViewById(R.id.lblWelcome);
 		btnInbox = (Button) findViewById(R.id.btnInbox);
 		ctx = MenuParentActivity.this;
 		listAgenda = (SwipeListView) findViewById(R.id.listAgenda);
@@ -111,6 +113,21 @@ public class MenuParentActivity extends Activity {
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
 				startActivity(i);	
 				finish();
+			}
+		});
+        
+        btnRefresh.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent intent = getIntent();
+				overridePendingTransition(0, 0);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				finish();
+				overridePendingTransition(0, 0);
+				startActivity(intent);	
+				
 			}
 		});
         
@@ -251,9 +268,17 @@ public class MenuParentActivity extends Activity {
         listAgenda.setAdapter(adapter);              
         reload();
         typeAgenda = false;
-     // get data agenda
+	     /**
+	      * get data agenda 
+	      */
         reqListAgendaTask = new ReqListAgendaTask();
         reqListAgendaTask.execute("");
+        
+        /**
+         * set welome label
+         */
+        LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+        lblWelcome.setText("Welcome, " + loginData.getNama());
 
 	}
 	
@@ -307,6 +332,7 @@ public class MenuParentActivity extends Activity {
 				item.setAgendaType(temp.getAgendaType());
 				item.setIsiAgenda(temp.getIsiAgenda());
 				item.setTglAgenda(temp.getTanggalAgendaVal());
+				item.setSubject(temp.getSubject());
 				tvTitle.setText(Constants.AGENDA+temp.getNamaKelas());
 		        it.add(item);
 			}

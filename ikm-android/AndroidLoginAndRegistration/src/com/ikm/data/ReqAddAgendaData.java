@@ -7,6 +7,7 @@ public class ReqAddAgendaData extends LoginData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String isiAgenda;
 	private String kodeKelas;
+	private String subject;
 	private String namaKelas;
 	private String namaSekolah;
 	private Date tanggalAgenda;
@@ -60,6 +61,14 @@ public class ReqAddAgendaData extends LoginData implements Serializable {
 
 	public void setKodeKelas(String kodeKelas) {
 		this.kodeKelas = kodeKelas;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 }

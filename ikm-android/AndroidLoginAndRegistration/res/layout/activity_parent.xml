@@ -31,6 +31,14 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:typeface="serif" />
+        
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/btnRefresh"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:text="Refresh" />
     </LinearLayout>
 
     <com.romainpiel.shimmer.ShimmerTextView
@@ -95,6 +103,15 @@
             android:background="@color/blue"
             android:textColor="@color/white"
             android:text="Inbox" />
+        <TextView
+            android:id="@+id/lblWelcome"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="Welcome, ...."
+            android:layout_below="@id/btnInbox"
+            android:textColor="@color/blue"
+            android:typeface="serif" />
     </RelativeLayout>
 
     <com.fortysevendeg.swipelistview.SwipeListView

@@ -82,6 +82,7 @@ public class InboxActivity extends Activity {
 		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		btnSend = (Button) findViewById(R.id.btnSend);
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
+		ButtonRectangle btnRefresh = (ButtonRectangle) findViewById(R.id.btnRefresh);
 		inputMsg = (EditText) findViewById(R.id.inputMsg);
 		ctx = InboxActivity.this;
 		listViewMessages = (ListView) findViewById(R.id.list_view_messages);
@@ -104,14 +105,12 @@ public class InboxActivity extends Activity {
 			public void onClick(View v) {
 				if(Constants.PARENTS.equalsIgnoreCase(menuName)){
 					// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
-					Intent i = new Intent(ctx, MenuParentActivity.class);
-					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+					Intent i = new Intent(ctx, MenuParentActivity.class);	       			
 					startActivity(i);
 					finish();
 				}else if(Constants.TEACHER.equalsIgnoreCase(menuName)){
 					// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
-					Intent i = new Intent(ctx, MenuTeacherActivity.class);
-					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  		       			
+					Intent i = new Intent(ctx, MenuTeacherActivity.class);       			
 					startActivity(i);
 					finish();
 				}
@@ -119,7 +118,22 @@ public class InboxActivity extends Activity {
 				
 			}
 		});
-
+		
+		btnRefresh.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent intent = getIntent();
+				overridePendingTransition(0, 0);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				finish();
+				overridePendingTransition(0, 0);
+				startActivity(intent);	
+				
+			}
+		});
+		btnSend.setEnabled(true);
 		btnSend.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -130,6 +144,7 @@ public class InboxActivity extends Activity {
 				 */
 				if (!inputMsg.getText().toString().isEmpty() ) {
 					// send message
+					btnSend.setEnabled(false);
 					reqSendMessageTask = new ReqSendMessageTask();
 					reqSendMessageTask.execute("");												
 				} else {
@@ -220,6 +235,7 @@ public class InboxActivity extends Activity {
 			 }
 			 MessageUtils messageUtils = new MessageUtils(ctx);
           	 messageUtils.snackBarMessage(InboxActivity.this,respString);
+          	btnSend.setEnabled(true);
 	     }
 		
 		 @Override
@@ -259,6 +275,7 @@ public class InboxActivity extends Activity {
              if(progressDialog.isShowing()){
 					progressDialog.dismiss();
 				}
+             btnSend.setEnabled(true);
          }
 	}
 	

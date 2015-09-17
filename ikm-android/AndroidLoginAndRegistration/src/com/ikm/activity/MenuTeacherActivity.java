@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.widgets.ProgressDialogParking;
@@ -38,6 +39,7 @@ import com.ikm.data.MessageVO;
 import com.ikm.data.ReqAddAgendaData;
 import com.ikm.data.ReqListKelasData;
 import com.ikm.data.RespListKelasVO;
+import com.ikm.data.Subject;
 import com.ikm.utils.HttpClientUtil;
 import com.ikm.utils.MessageUtils;
 import com.ikm.utils.SharedPreferencesUtils;
@@ -61,10 +63,12 @@ public class MenuTeacherActivity extends Activity {
 	Shimmer shimmer;
 	private Button btnInbox;
 	private ArrayAdapter<String> adapter;
+	private ArrayAdapter<String> adapterSubject;
 	private ArrayAdapter<String> adapterJenisAgenda;
 	private static final String[] ITEMS = {"Agenda", "Pengumuman Lain"};
 	MaterialSpinner spinner1;
 	MaterialSpinner spinJenisAgenda;
+	MaterialSpinner spinSubject;
 	ShimmerTextView tvTitle;
 	MaterialCalendarView calendarView;
 	MaterialEditText isiAgenda;
@@ -79,6 +83,7 @@ public class MenuTeacherActivity extends Activity {
 		tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
+		TextView lblWelcome = (TextView) findViewById(R.id.lblWelcome);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
 		btnInbox = (Button) findViewById(R.id.btnInbox);
@@ -122,10 +127,19 @@ public class MenuTeacherActivity extends Activity {
 			public void onClick(View v) {
 				if (!isiAgenda.getText().toString().isEmpty()
 						&& spinner1.getAdapter()!=null && spinner1.getSelectedItem()!=null && calendarView.getSelectedDate()!=null
-						&& spinJenisAgenda.getAdapter()!=null && spinJenisAgenda.getSelectedItem()!=null) {
-					// add agenda
-					reqAddAgendaTask = new ReqAddAgendaTask();
-					reqAddAgendaTask.execute("");									
+						&& spinJenisAgenda.getAdapter()!=null && spinJenisAgenda.getSelectedItem()!=null
+						&& spinSubject.getAdapter()!=null && spinSubject.getSelectedItem()!=null) {
+					if(spinner1.getSelectedItem().toString().equalsIgnoreCase("Kelas")||
+							spinJenisAgenda.getSelectedItem().toString().equalsIgnoreCase("Jenis Agenda")||
+							spinSubject.getSelectedItem().toString().equalsIgnoreCase("Subject")){
+						MessageUtils messageUtils = new MessageUtils(ctx);
+		             	messageUtils.snackBarMessage(MenuTeacherActivity.this,ctx.getResources().getString(R.string.message_detail_required));
+					}else{
+						// add agenda
+						reqAddAgendaTask = new ReqAddAgendaTask();
+						reqAddAgendaTask.execute("");
+					}
+														
 				} else {
 					MessageUtils messageUtils = new MessageUtils(ctx);
 	             	messageUtils.snackBarMessage(MenuTeacherActivity.this,ctx.getResources().getString(R.string.message_detail_required));
@@ -139,6 +153,12 @@ public class MenuTeacherActivity extends Activity {
         adapterJenisAgenda = new ArrayAdapter<String>(MenuTeacherActivity.this, android.R.layout.simple_spinner_item, ITEMS);
         adapterJenisAgenda.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         initSpinnerAgenda();
+        
+        /**
+         * set welome label
+         */
+        LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+        lblWelcome.setText("Welcome, " + loginData.getNama());
 	}
 	
 	@Override
@@ -160,8 +180,13 @@ public class MenuTeacherActivity extends Activity {
         spinner1.setAdapter(adapter);
         spinner1.setPaddingSafe(0,0,0,0);
         
-       
     }
+	
+	private void initSpinnerSubject() {
+		 spinSubject = (MaterialSpinner) findViewById(R.id.spinSubject);
+		 spinSubject.setAdapter(adapterSubject);
+		 spinSubject.setPaddingSafe(0,0,0,0);
+	}
 	
 	public class ReqAddAgendaTask  extends AsyncTask<String, Void, Boolean> {
 		private ProgressDialogParking progressDialog = null;
@@ -192,6 +217,7 @@ public class MenuTeacherActivity extends Activity {
     			reqAddAgendaData.setIsiAgenda(isiAgenda.getText().toString());
     			reqAddAgendaData.setKodeKelas(spinner1.getSelectedItem().toString());
     			reqAddAgendaData.setNamaKelas(spinner1.getSelectedItem().toString());
+    			reqAddAgendaData.setSubject(spinSubject.getSelectedItem().toString());
     			reqAddAgendaData.setNamaSekolah(tvTitleSchool.getText().toString());
     			reqAddAgendaData.setKodeSekolah(loginData.getKodeSekolah());
     			reqAddAgendaData.setTanggalAgenda(calendarView.getSelectedDate().getDate());
@@ -248,6 +274,7 @@ public class MenuTeacherActivity extends Activity {
 				             	isiAgenda.setText("");
 				             	spinner1.setSelection(0);
 				             	spinJenisAgenda.setSelection(0);
+				             	spinSubject.setSelection(0);
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
@@ -343,6 +370,10 @@ public class MenuTeacherActivity extends Activity {
 		               				adapter = new ArrayAdapter<String>(MenuTeacherActivity.this, android.R.layout.simple_spinner_item, constructDataKelas(messageVO.getOtherMessage()));
 			               	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			               	        initSpinnerHintAndFloatingLabel();
+			               	        
+			               	        adapterSubject = new ArrayAdapter<String>(MenuTeacherActivity.this, android.R.layout.simple_spinner_item, constructDataSubject(messageVO.getOtherMessage()));
+			               	        adapterSubject.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			               	        initSpinnerSubject();
 		               				               			
 		               		}
 		               		else{
@@ -387,10 +418,34 @@ public class MenuTeacherActivity extends Activity {
 			btnInbox.setText(respListKelasVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
 		}else{
 			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
-		}		 
+		}	
+		
+		if(respListKelasVO.isWaliKelas()){
+			btnInbox.setEnabled(true);
+			btnInbox.setBackgroundColor(ctx.getResources().getColor(R.color.blue));
+		}else{
+			btnInbox.setEnabled(false);
+			btnInbox.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
+		}
+		
 		String[] arrayKelas = new String[allKelas.size()];
 		allKelas.toArray(arrayKelas );
         return  arrayKelas;
+    }
+	
+	public String[] constructDataSubject(String listJson) throws JsonParseException, JsonMappingException, IOException{
+		
+		RespListKelasVO respListKelasVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListKelasVO.class);
+		List<String> allSubject = new ArrayList<String>();
+		if(respListKelasVO.getListSubjects()!=null){
+			for (Subject temp : respListKelasVO.getListSubjects()) {
+				allSubject.add(temp.getSubjectName());
+				
+			}
+		}	 
+		String[] arraySubject = new String[allSubject.size()];
+		allSubject.toArray(arraySubject );
+        return  arraySubject;
     }
 
 }

@@ -59,6 +59,15 @@
             android:background="@color/blue"
             android:text="Inbox"
             android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/lblWelcome"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="Welcome, ...."
+            android:textColor="@color/blue"
+            android:typeface="serif" />
     </LinearLayout>
 
     <ScrollView
@@ -86,7 +95,20 @@
                 app:ms_highlightColor="@color/blue"
                 app:ms_hint="Kelas"
                 app:ms_multiline="true" />
-            
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinSubject"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:ms_arrowColor="@color/blue"
+                app:ms_arrowSize="16dp"
+                app:ms_baseColor="@color/blue"
+                app:ms_floatingLabelColor="@color/blue"
+                app:ms_floatingLabelText="Subject"
+                app:ms_highlightColor="@color/blue"
+                app:ms_hint="Subject"
+                app:ms_multiline="true" />
+
             <fr.ganfra.materialspinner.MaterialSpinner
                 android:id="@+id/spinJenisAgenda"
                 android:layout_width="fill_parent"

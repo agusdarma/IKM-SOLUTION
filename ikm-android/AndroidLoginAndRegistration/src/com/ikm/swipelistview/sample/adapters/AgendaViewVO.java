@@ -20,6 +20,8 @@ package com.ikm.swipelistview.sample.adapters;
 
 public class AgendaViewVO {
 
+	private String subject;
+	
 	private String tglAgenda;
 
 	private String isiAgenda;
@@ -48,6 +50,14 @@ public class AgendaViewVO {
 
 	public void setAgendaType(int agendaType) {
 		this.agendaType = agendaType;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 }

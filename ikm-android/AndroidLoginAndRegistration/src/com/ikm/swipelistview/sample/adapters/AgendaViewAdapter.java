@@ -60,6 +60,7 @@ public class AgendaViewAdapter extends BaseAdapter {
 			convertView = li.inflate(R.layout.agenda_row, parent,false);
 			holder = new ViewHolder();
 			holder.txtNo = (TextView) convertView.findViewById(R.id.txtNo);
+			holder.txtSubject = (TextView) convertView.findViewById(R.id.txtSubject);			
 			holder.txtTgl = (TextView) convertView.findViewById(R.id.txtTgl);
 			holder.txtIsiAgenda = (TextView) convertView.findViewById(R.id.txtIsiAgenda);
 			holder.bAction1 = (ButtonRectangle) convertView.findViewById(R.id.button_pay);
@@ -73,30 +74,22 @@ public class AgendaViewAdapter extends BaseAdapter {
 
 		holder.txtNo.setText(Integer.toString(position+1));
 		holder.txtTgl.setText(item.getTglAgenda());
+		holder.txtSubject.setText(item.getSubject());
 		holder.txtIsiAgenda.setText(item.getIsiAgenda());
 		holder.bAction1.setEnabled(false);		
 
 		holder.bAction1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				goToPayScreen(item.getMallName(), Long.parseLong(item.getHargaParkir()), item.getSlotName(), item.getBookingId());
+				
 			}
 		});
 
 		return convertView;
 	}
-	
-//	private void goToPayScreen(String mallName, long hargaParkir,String slotName,String bookingId) {
-//    	Intent i = new Intent(ctx, InputCreditCardActivity.class);            	
-//    	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  
-//    	i.putExtra("mallName", mallName);
-//    	i.putExtra("hargaParkir", hargaParkir);
-//    	i.putExtra("slotName", slotName);
-//    	i.putExtra("bookingId", bookingId);
-//    	ctx.startActivity(i);
-//    }
 
 	static class ViewHolder {
+		TextView txtSubject;
 		TextView txtNo;
 		TextView txtTgl;	
 		TextView txtIsiAgenda;
