@@ -28,7 +28,7 @@
 
 	<select id="findAgendaByUser" parameterType="java.util.Map"
 		resultType="AgendaVO">		
-		select <include refid="_sqlAgenda" /> 
+		select distinct <include refid="_sqlAgenda" /> 
 		from user u 
 		inner join user_sekolah_kelas usk on u.id = usk.user_id 
 		inner join sekolah s on s.id = usk.sekolah_id
