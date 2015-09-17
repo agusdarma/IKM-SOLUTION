@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.myproject.ikm.lib.data.ReqListKelasData;
 import com.myproject.ikm.lib.data.RespListKelasVO;
 import com.myproject.ikm.lib.entity.Kelas;
+import com.myproject.ikm.lib.entity.Subject;
 import com.myproject.ikm.lib.entity.User;
 import com.myproject.ikm.lib.mapper.InboxMapper;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
@@ -64,6 +65,9 @@ public class KelasService {
 		 * Get data kelas
 		 */
 		List<Kelas> listKelas = userDataMapper.findAllKelasTeacher(reqListKelasData.getKodeSekolah(), reqListKelasData.getNoInduk(),reqListKelasData.getUserType());
+		if(listKelas.size()>0){
+			respListKelasVO.setListKelas(listKelas);
+		}
 //		/**
 //		 * add pengumuman lain
 //		 */
@@ -74,8 +78,21 @@ public class KelasService {
 //		pengumumanLain.setWaliKelasId(0);
 //		listKelas.add(pengumumanLain);
 		
-		if(listKelas.size()>0){
-			respListKelasVO.setListKelas(listKelas);
+		/**
+		 * Get data subject
+		 */
+		List<Subject> listSubjects = userDataMapper.findAllSubjectTeacher(reqListKelasData.getKodeSekolah(), reqListKelasData.getNoInduk(),reqListKelasData.getUserType());
+		if(listSubjects.size()>0){
+			respListKelasVO.setListSubjects(listSubjects);
+		}
+		
+		/**
+		 * check apakah guru ini wali kelas apa bukan
+		 */
+		respListKelasVO.setWaliKelas(false);
+		List<Kelas> waliKelas = userDataMapper.checkIsWaliKelas(user.getId());
+		if(waliKelas.size()>0){
+			respListKelasVO.setWaliKelas(true);
 		}
 		
 		/**

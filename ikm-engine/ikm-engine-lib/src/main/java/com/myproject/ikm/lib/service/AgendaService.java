@@ -128,9 +128,10 @@ public class AgendaService {
 		agenda.setKodeSekolah(user.getKodeSekolah());
 		agenda.setNamaSekolah(reqAddAgendaData.getNamaSekolah());
 		agenda.setAgendaType(reqAddAgendaData.getAgendaType());
+		agenda.setSubject(reqAddAgendaData.getSubject());
 		Calendar calendarTanggalAgenda = GregorianCalendar.getInstance(); // creates a new calendar instance
 		calendarTanggalAgenda.setTime(reqAddAgendaData.getTanggalAgenda());   // assigns calendar to given date 
-		calendarTanggalAgenda.set(Calendar.HOUR, calendarNow.get(Calendar.HOUR));
+		calendarTanggalAgenda.set(Calendar.HOUR_OF_DAY, calendarNow.get(Calendar.HOUR_OF_DAY));
 		calendarTanggalAgenda.set(Calendar.MINUTE, calendarNow.get(Calendar.MINUTE));
 		calendarTanggalAgenda.set(Calendar.SECOND, calendarNow.get(Calendar.SECOND));
 		agenda.setTanggalAgenda(calendarTanggalAgenda.getTime());

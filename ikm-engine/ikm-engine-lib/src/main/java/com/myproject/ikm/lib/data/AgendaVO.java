@@ -9,6 +9,7 @@ public class AgendaVO implements java.io.Serializable {
 	
 	private String kodeKelas;
 	private String namaKelas;
+	private String subject;
 	private String kodeSekolah;
 	private String namaSekolah;
 	private Date tanggalAgenda;
@@ -101,5 +102,13 @@ public class AgendaVO implements java.io.Serializable {
 
 	public void setCreatedOnVal(String createdOnVal) {
 		this.createdOnVal = createdOnVal;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 }
