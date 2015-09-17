@@ -1,6 +1,7 @@
 package com.myproject.ikm.lib.service;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -113,12 +114,13 @@ public class AgendaService {
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}
 		}
+			
+		Calendar calendarNow = GregorianCalendar.getInstance(); // creates a new calendar instance
+		calendarNow.setTime(timeService.getCurrentTime());   // assigns calendar to given date 
 		
-		
-		Date now = timeService.getCurrentTime();
 		Agenda agenda = new Agenda();
-		agenda.setCreatedOn(now);
-		agenda.setUpdatedOn(now);
+		agenda.setCreatedOn(calendarNow.getTime());
+		agenda.setUpdatedOn(calendarNow.getTime());
 		agenda.setCreatedBy("SYS");
 		agenda.setUpdatedBy("SYS");
 		agenda.setKodeKelas(reqAddAgendaData.getKodeKelas());
@@ -126,7 +128,12 @@ public class AgendaService {
 		agenda.setKodeSekolah(user.getKodeSekolah());
 		agenda.setNamaSekolah(reqAddAgendaData.getNamaSekolah());
 		agenda.setAgendaType(reqAddAgendaData.getAgendaType());
-		agenda.setTanggalAgenda(reqAddAgendaData.getTanggalAgenda());
+		Calendar calendarTanggalAgenda = GregorianCalendar.getInstance(); // creates a new calendar instance
+		calendarTanggalAgenda.setTime(reqAddAgendaData.getTanggalAgenda());   // assigns calendar to given date 
+		calendarTanggalAgenda.set(Calendar.HOUR, calendarNow.get(Calendar.HOUR));
+		calendarTanggalAgenda.set(Calendar.MINUTE, calendarNow.get(Calendar.MINUTE));
+		calendarTanggalAgenda.set(Calendar.SECOND, calendarNow.get(Calendar.SECOND));
+		agenda.setTanggalAgenda(calendarTanggalAgenda.getTime());
 		agenda.setIsiAgenda(reqAddAgendaData.getIsiAgenda());
 		LOG.info("add agenda with param : " + agenda);	
 		
