@@ -31,7 +31,7 @@
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
 		where m.to_user_id = #{userId}
-		and m.is_read = 0
+		and m.is_read = 0 limit 0,100
     </select>
     
 	<select id="findListInboxByUser" parameterType="java.util.Map"
@@ -40,13 +40,13 @@
 		from message m 
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
-		where m.to_user_id = #{userId}
+		where m.to_user_id = #{userId} limit 0,100
 		Union
 		select distinct u.name as fromName,m.isi_message as isiMessage,m.is_read as isRead,m.created_on as createdOn 
 		from message m 
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
-		where m.from_user_id = #{userId}) as id
+		where m.from_user_id = #{userId} limit 0,100) as id
 		order by createdOn asc
 	</select>
 
