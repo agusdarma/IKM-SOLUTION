@@ -11,7 +11,12 @@
 	the specific language governing permissions and limitations under the License. -->
 
 <mapper namespace="com.myproject.ikm.lib.mapper.AgendaMapper">
-
+    <insert id="addAgenda" parameterType="Agenda">
+    	INSERT INTO agenda(kode_kelas,nama_kelas,kode_sekolah,nama_sekolah,tanggal_agenda,isi_agenda,agenda_type,
+   		created_on,created_by,updated_on,updated_by) 
+   		VALUES (#{kodeKelas}, #{namaKelas}, #{kodeSekolah}, #{namaSekolah},#{tanggalAgenda},#{isiAgenda},#{agendaType},
+   		#{createdOn}, #{createdBy},#{updatedOn},#{updatedBy})  	
+     </insert>
 
 	<sql id="_sqlAgenda">
 	k.kode_kelas as kodeKelas, k.nama_kelas as
@@ -28,7 +33,7 @@
 		inner join user_sekolah_kelas usk on u.id = usk.user_id 
 		inner join sekolah s on s.id = usk.sekolah_id
 		inner join kelas k on k.id = usk.kelas_id
-		left join agenda a on a.kode_kelas = k.kode_kelas and a.kode_sekolah = s.kode_sekolah
+		left join agenda a on a.nama_kelas = k.nama_kelas and a.kode_sekolah = s.kode_sekolah
 		where u.user_type = #{userType}
 		and u.nomor_induk = #{noInduk} 
 		and u.kode_sekolah = #{kodeSekolah}

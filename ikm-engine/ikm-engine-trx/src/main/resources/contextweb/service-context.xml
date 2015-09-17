@@ -45,6 +45,7 @@
 		        <entry key="/listInbox" value-ref="listInbox"></entry>
 		        <entry key="/sendMessage" value-ref="sendMessage"></entry>
 		        <entry key="/listKelas" value-ref="listKelas"></entry>
+		        <entry key="/addAgenda" value-ref="addAgenda"></entry>
 		    </map>
 		</property>
 	</bean>

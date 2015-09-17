@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.myproject.ikm.lib.data.ReqListKelasData;
 import com.myproject.ikm.lib.data.RespListKelasVO;
 import com.myproject.ikm.lib.service.IkmEngineException;
-import com.myproject.ikm.lib.service.ListKelasService;
+import com.myproject.ikm.lib.service.KelasService;
 import com.myproject.ikm.lib.utils.MessageUtils;
 import com.myproject.ikm.trx.logic.BaseQueryLogic;
 
@@ -20,7 +20,7 @@ public class ListKelas implements BaseQueryLogic {
 	private static final Logger LOG = LoggerFactory.getLogger(ListKelas.class);
 	
 	@Autowired
-	private ListKelasService listKelasService;
+	private KelasService kelasService;
 
 	@Override
 	public String process(HttpServletRequest request,HttpServletResponse response,String data, ObjectMapper mapper, String pathInfo) {
@@ -28,7 +28,7 @@ public class ListKelas implements BaseQueryLogic {
 		String result = "";
 		try {						
 			ReqListKelasData reqListKelasData = mapper.readValue(data, ReqListKelasData.class);
-			RespListKelasVO respListKelasVO = listKelasService.findAllKelasTeacher(reqListKelasData);
+			RespListKelasVO respListKelasVO = kelasService.findAllKelasTeacher(reqListKelasData);
 			String x = mapper.writeValueAsString(respListKelasVO);
 			result = MessageUtils.handleSuccess(x, mapper);
 		} catch (IkmEngineException e) {

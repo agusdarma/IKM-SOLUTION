@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.myproject.ikm.lib.data.ReqSendMessageData;
 import com.myproject.ikm.lib.service.IkmEngineException;
-import com.myproject.ikm.lib.service.ListInboxService;
+import com.myproject.ikm.lib.service.InboxService;
 import com.myproject.ikm.lib.utils.MessageUtils;
 import com.myproject.ikm.trx.logic.BaseQueryLogic;
 
@@ -19,7 +19,7 @@ public class SendMessage implements BaseQueryLogic {
 	private static final Logger LOG = LoggerFactory.getLogger(SendMessage.class);
 	
 	@Autowired
-	private ListInboxService listInboxService;
+	private InboxService listInboxService;
 
 	@Override
 	public String process(HttpServletRequest request,HttpServletResponse response,String data, ObjectMapper mapper, String pathInfo) {

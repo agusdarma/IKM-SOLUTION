@@ -8,16 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.myproject.ikm.lib.data.ReqListAgendaData;
-import com.myproject.ikm.lib.data.RespListAgendaVO;
-import com.myproject.ikm.lib.service.IkmEngineException;
+import com.myproject.ikm.lib.data.ReqAddAgendaData;
 import com.myproject.ikm.lib.service.AgendaService;
+import com.myproject.ikm.lib.service.IkmEngineException;
 import com.myproject.ikm.lib.utils.MessageUtils;
 import com.myproject.ikm.trx.logic.BaseQueryLogic;
 
-public class ListAgenda implements BaseQueryLogic {
+public class AddAgenda implements BaseQueryLogic {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ListAgenda.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AddAgenda.class);
 	
 	@Autowired
 	private AgendaService agendaService;
@@ -27,10 +26,9 @@ public class ListAgenda implements BaseQueryLogic {
 		LOG.debug("Start process Query :"+pathInfo);		
 		String result = "";
 		try {						
-			ReqListAgendaData reqListAgendaData = mapper.readValue(data, ReqListAgendaData.class);
-			RespListAgendaVO respListAgendaVO = agendaService.findAgendaByUser(reqListAgendaData);
-			String x = mapper.writeValueAsString(respListAgendaVO);
-			result = MessageUtils.handleSuccess(x, mapper);
+			ReqAddAgendaData reqAddAgendaData = mapper.readValue(data, ReqAddAgendaData.class);
+			agendaService.addAgenda(reqAddAgendaData);
+			result = MessageUtils.handleSuccess("", mapper);
 		} catch (IkmEngineException e) {
 			LOG.error("ParkingEngineException when processing " + pathInfo, e);
 			result = MessageUtils.handleException(e, "", mapper);

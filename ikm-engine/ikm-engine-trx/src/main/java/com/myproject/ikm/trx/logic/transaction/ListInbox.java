@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.data.RespListInboxVO;
 import com.myproject.ikm.lib.service.IkmEngineException;
-import com.myproject.ikm.lib.service.ListInboxService;
+import com.myproject.ikm.lib.service.InboxService;
 import com.myproject.ikm.lib.utils.MessageUtils;
 import com.myproject.ikm.trx.logic.BaseQueryLogic;
 
@@ -20,7 +20,7 @@ public class ListInbox implements BaseQueryLogic {
 	private static final Logger LOG = LoggerFactory.getLogger(ListInbox.class);
 	
 	@Autowired
-	private ListInboxService listInboxService;
+	private InboxService inboxService;
 
 	@Override
 	public String process(HttpServletRequest request,HttpServletResponse response,String data, ObjectMapper mapper, String pathInfo) {
@@ -28,7 +28,7 @@ public class ListInbox implements BaseQueryLogic {
 		String result = "";
 		try {						
 			ReqListInboxData reqListInboxData = mapper.readValue(data, ReqListInboxData.class);
-			RespListInboxVO respListInboxVO = listInboxService.findInboxByUser(reqListInboxData);
+			RespListInboxVO respListInboxVO = inboxService.findInboxByUser(reqListInboxData);
 			String x = mapper.writeValueAsString(respListInboxVO);
 			result = MessageUtils.handleSuccess(x, mapper);
 		} catch (IkmEngineException e) {

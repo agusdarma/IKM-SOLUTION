@@ -1,6 +1,7 @@
 package com.myproject.ikm.trx.servlet;
 
 import java.net.URLEncoder;
+import java.util.Date;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -19,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.myproject.ikm.lib.data.LoginData;
+import com.myproject.ikm.lib.data.ReqAddAgendaData;
 import com.myproject.ikm.lib.data.ReqListAgendaData;
 import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.data.ReqListKelasData;
@@ -44,6 +46,7 @@ public class SmisServletTest {
 	private final String testingGetInbox = "http://localhost:8080/ikm-engine-trx/trx/listInbox";
 	private final String testingSendMsgMurid = "http://localhost:8080/ikm-engine-trx/trx/sendMessage";
 	private final String testingGetKelas = "http://localhost:8080/ikm-engine-trx/trx/listKelas";
+	private final String testingAddAgenda = "http://localhost:8080/ikm-engine-trx/trx/addAgenda";
 	
 //	@Test
 	public void tes() {
@@ -74,6 +77,68 @@ public class SmisServletTest {
 	}
 	
 	@Test
+	public void testAddAgenda() {
+		String url = testingAddAgenda;
+		long startTime = System.currentTimeMillis();
+		HttpClient client = new DefaultHttpClient();
+		try {
+			
+			ReqAddAgendaData reqAddAgendaData = new ReqAddAgendaData();
+			reqAddAgendaData.setPassword("administrator");
+			reqAddAgendaData.setKodeSekolah("DIAN-001");
+			reqAddAgendaData.setNoInduk("1");
+			reqAddAgendaData.setOriginRequest("Android-Mobile");
+			reqAddAgendaData.setUserType(Constants.TEACHER);
+			
+			reqAddAgendaData.setAgendaType(1);
+			reqAddAgendaData.setIsiAgenda("Kerjakan PR halaman 10");
+			reqAddAgendaData.setKodeKelas("6A");
+			reqAddAgendaData.setNamaKelas("Kelas 6A");
+			reqAddAgendaData.setNamaSekolah("Dian Harapan");
+			reqAddAgendaData.setKodeSekolah("DIAN-001");
+			reqAddAgendaData.setTanggalAgenda(new Date());
+			
+			String s = mapper.writeValueAsString(reqAddAgendaData);
+			s = URLEncoder.encode(s, "UTF-8");
+			LOG.debug("Request: " + s);
+            StringEntity entity = new StringEntity(s);
+			
+			HttpPost post = new HttpPost(url);
+			post.setHeader("Content-Type", "application/json");
+			post.setEntity(entity);
+			
+			// Execute HTTP request
+			LOG.debug("Executing request: " + post.getURI());
+            HttpResponse response = client.execute(post);
+            
+            // Get hold of the response entity
+            StatusLine sl = response.getStatusLine();
+            LOG.debug("StatusCode: " + sl.getStatusCode());
+            Assert.assertEquals(200, sl.getStatusCode());
+
+            HttpEntity respEntity = response.getEntity();
+            String respString = EntityUtils.toString(respEntity);
+            LOG.debug("Response: " + respString);
+            
+//            WalletTrxResponse trxResp = mapper.
+//            		readValue(respString, WalletTrxResponse.class);
+//            Assert.assertEquals(trxReq.getRequestId(), trxResp.getRequestId());
+            Assert.assertEquals(true, true);
+            int delta = (int) (System.currentTimeMillis() - startTime);
+            LOG.info("Finish running one thread in {}ms", 
+            		new String[] { CommonUtil.displayNumberNoDecimal(delta) } );
+		}catch (Exception e) {
+		
+			LOG.warn("Unexpected Exception", e);
+		} finally {
+            // When HttpClient instance is no longer needed,
+            // shut down the connection manager to ensure
+            // immediate deallocation of all system resources
+            client.getConnectionManager().shutdown();
+        }  // end try finally
+	}
+	
+//	@Test
 	public void testGetKelasTeacher() {
 		String url = testingGetKelas;
 		long startTime = System.currentTimeMillis();
