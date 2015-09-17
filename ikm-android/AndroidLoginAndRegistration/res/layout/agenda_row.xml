@@ -28,36 +28,90 @@
         android:padding="4dp"
         android:tag="front" >
 
-        <TextView
-            android:id="@+id/txtNo"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rowOne"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="Tanggal Booking"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            android:textStyle="normal" />
+            android:layout_below="@id/front"
+            android:gravity="left" >
 
-        <TextView
-            android:id="@+id/txtTgl"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/txtSubjectLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Mata Pelajaran: "
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/txtSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtSubjectLabel"
+                android:padding="4dp"
+                android:text="Science"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                android:textStyle="italic"
+                android:typeface="serif" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rowTwo"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/txtNo"
-            android:padding="4dp"
-            android:text="01-09-2015 15:13:23"
-            android:textColor="@color/blue"
-            android:textSize="18sp" />
-        
-        <TextView
-            android:id="@+id/txtIsiAgenda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/txtNo"
-            android:padding="4dp"
-            android:text="01-09-2015 15:13:23"
-            android:textColor="@color/blue"
-            android:textSize="10sp"
-            android:visibility="gone" />
+            android:layout_below="@id/rowOne" >
+
+            <TextView
+                android:id="@+id/txtNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="No 1"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                android:textStyle="normal"
+                android:typeface="serif"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtTglLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtNo"
+                android:padding="4dp"
+                android:text="Tanggal Agenda: "
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/txtTgl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtTglLabel"
+                android:padding="4dp"
+                android:text="01-09-2015 15:13:23"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                android:textStyle="italic"
+                android:typeface="serif" />
+
+            <TextView
+                android:id="@+id/txtIsiAgenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtNo"
+                android:padding="4dp"
+                android:text="01-09-2015 15:13:23"
+                android:textColor="@color/blue"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </FrameLayout>
