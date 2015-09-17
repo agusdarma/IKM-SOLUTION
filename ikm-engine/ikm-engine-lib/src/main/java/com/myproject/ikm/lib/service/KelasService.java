@@ -17,8 +17,8 @@ import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.Constants;
 
 @Service
-public class ListKelasService {
-	private static final Logger LOG = LoggerFactory.getLogger(ListKelasService.class);
+public class KelasService {
+	private static final Logger LOG = LoggerFactory.getLogger(KelasService.class);
 	
 	@Autowired
 	private UserDataMapper userDataMapper;
@@ -64,15 +64,15 @@ public class ListKelasService {
 		 * Get data kelas
 		 */
 		List<Kelas> listKelas = userDataMapper.findAllKelasTeacher(reqListKelasData.getKodeSekolah(), reqListKelasData.getNoInduk(),reqListKelasData.getUserType());
-		/**
-		 * add pengumuman lain
-		 */
-		Kelas pengumumanLain = new Kelas();
-		pengumumanLain.setId(0);
-		pengumumanLain.setKodeKelas("Pengumuman Lain");
-		pengumumanLain.setNamaKelas("Pengumuman Lain");
-		pengumumanLain.setWaliKelasId(0);
-		listKelas.add(pengumumanLain);
+//		/**
+//		 * add pengumuman lain
+//		 */
+//		Kelas pengumumanLain = new Kelas();
+//		pengumumanLain.setId(0);
+//		pengumumanLain.setKodeKelas("Pengumuman Lain");
+//		pengumumanLain.setNamaKelas("Pengumuman Lain");
+//		pengumumanLain.setWaliKelasId(0);
+//		listKelas.add(pengumumanLain);
 		
 		if(listKelas.size()>0){
 			respListKelasVO.setListKelas(listKelas);

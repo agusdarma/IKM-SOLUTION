@@ -90,6 +90,7 @@ public class LoginActivity extends Activity {
 				}else{
 					tipeLogin = Constants.PARENTS;
 					inputPassword.setVisibility(View.GONE);
+					inputPassword.setText("");
 				}				
 			}
 		});

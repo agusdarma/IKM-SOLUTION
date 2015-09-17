@@ -86,6 +86,19 @@
                 app:ms_highlightColor="@color/blue"
                 app:ms_hint="Kelas"
                 app:ms_multiline="true" />
+            
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/spinJenisAgenda"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:ms_arrowColor="@color/blue"
+                app:ms_arrowSize="16dp"
+                app:ms_baseColor="@color/blue"
+                app:ms_floatingLabelColor="@color/blue"
+                app:ms_floatingLabelText="Jenis Agenda"
+                app:ms_highlightColor="@color/blue"
+                app:ms_hint="Jenis Agenda"
+                app:ms_multiline="false" />
 
             <TextView
                 android:id="@+id/lblCalender"

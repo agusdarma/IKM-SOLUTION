@@ -21,8 +21,8 @@ import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.Constants;
 
 @Service
-public class ListInboxService {
-	private static final Logger LOG = LoggerFactory.getLogger(ListInboxService.class);
+public class InboxService {
+	private static final Logger LOG = LoggerFactory.getLogger(InboxService.class);
 	
 	@Autowired
 	private UserDataMapper userDataMapper;

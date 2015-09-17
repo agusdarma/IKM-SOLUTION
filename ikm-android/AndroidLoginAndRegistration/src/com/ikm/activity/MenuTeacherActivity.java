@@ -35,11 +35,13 @@ import com.ikm.data.Constants;
 import com.ikm.data.Kelas;
 import com.ikm.data.LoginData;
 import com.ikm.data.MessageVO;
+import com.ikm.data.ReqAddAgendaData;
 import com.ikm.data.ReqListKelasData;
 import com.ikm.data.RespListKelasVO;
 import com.ikm.utils.HttpClientUtil;
 import com.ikm.utils.MessageUtils;
 import com.ikm.utils.SharedPreferencesUtils;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
@@ -53,14 +55,20 @@ public class MenuTeacherActivity extends Activity {
 	private ButtonRectangle btnSave;
 	private Context ctx;
 	private ReqListKelasTask reqListKelasTask = null;
+	private ReqAddAgendaTask reqAddAgendaTask = null;
 	SharedPreferences sharedpreferences;
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
 	private Button btnInbox;
 	private ArrayAdapter<String> adapter;
-	private static final String[] ITEMS = {"Science 6A", "Science 6B", "BI 6A", "Inggris 3C", "Inggris 3A", "Inggris 3E","PENGUMUMAN LAIN"};
+	private ArrayAdapter<String> adapterJenisAgenda;
+	private static final String[] ITEMS = {"Agenda", "Pengumuman Lain"};
 	MaterialSpinner spinner1;
+	MaterialSpinner spinJenisAgenda;
 	ShimmerTextView tvTitle;
+	MaterialCalendarView calendarView;
+	MaterialEditText isiAgenda;
+	ShimmerTextView tvTitleSchool;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,10 +76,11 @@ public class MenuTeacherActivity extends Activity {
 		ctx = MenuTeacherActivity.this;		
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
 		tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
-		ShimmerTextView tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
+		tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
+		calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
 		ShimmerTextView tvVersion = (ShimmerTextView) findViewById(R.id.tvVersion);
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
-		MaterialEditText isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
+		isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
 		btnInbox = (Button) findViewById(R.id.btnInbox);
 		btnSave = (ButtonRectangle) findViewById(R.id.btnSave);
 		
@@ -107,10 +116,29 @@ public class MenuTeacherActivity extends Activity {
 				startActivity(i);	
 			}
 		});
+		btnSave.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (!isiAgenda.getText().toString().isEmpty()
+						&& spinner1.getAdapter()!=null && spinner1.getSelectedItem()!=null && calendarView.getSelectedDate()!=null
+						&& spinJenisAgenda.getAdapter()!=null && spinJenisAgenda.getSelectedItem()!=null) {
+					// add agenda
+					reqAddAgendaTask = new ReqAddAgendaTask();
+					reqAddAgendaTask.execute("");									
+				} else {
+					MessageUtils messageUtils = new MessageUtils(ctx);
+	             	messageUtils.snackBarMessage(MenuTeacherActivity.this,ctx.getResources().getString(R.string.message_detail_required));
+				}					
+			}
+		});
 		// get data kelas
         reqListKelasTask = new ReqListKelasTask();
         reqListKelasTask.execute("");
-
+        
+        adapterJenisAgenda = new ArrayAdapter<String>(MenuTeacherActivity.this, android.R.layout.simple_spinner_item, ITEMS);
+        adapterJenisAgenda.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        initSpinnerAgenda();
 	}
 	
 	@Override
@@ -121,11 +149,128 @@ public class MenuTeacherActivity extends Activity {
 		finish();
 	}
 	
+	private void initSpinnerAgenda() {
+		 spinJenisAgenda = (MaterialSpinner) findViewById(R.id.spinJenisAgenda);
+	     spinJenisAgenda.setAdapter(adapterJenisAgenda);
+	     spinJenisAgenda.setPaddingSafe(0,0,0,0);
+	}
+	
 	private void initSpinnerHintAndFloatingLabel() {
         spinner1 = (MaterialSpinner) findViewById(R.id.spinner1);
         spinner1.setAdapter(adapter);
         spinner1.setPaddingSafe(0,0,0,0);
+        
+       
     }
+	
+	public class ReqAddAgendaTask  extends AsyncTask<String, Void, Boolean> {
+		private ProgressDialogParking progressDialog = null;
+       	private final HttpClient client = HttpClientUtil.getNewHttpClient();
+       	String respString = null;
+       	protected void onPreExecute() {
+    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_add_agenda),ctx.getResources().getString(R.string.progress_dialog));
+    			progressDialog.show();
+    		}
+		@Override
+		protected Boolean doInBackground(String... arg0) {
+			boolean result = false;
+           	try {
+           		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+           		ReqAddAgendaData reqAddAgendaData = new ReqAddAgendaData();
+           		reqAddAgendaData.setPassword(loginData.getPassword());
+           		reqAddAgendaData.setKodeSekolah(loginData.getKodeSekolah());
+           		reqAddAgendaData.setNoInduk(loginData.getNoInduk());
+           		reqAddAgendaData.setOriginRequest(Constants.ORIGIN_SOURCE);
+           		reqAddAgendaData.setUserType(loginData.getUserType());
+           		
+           		if("Pengumuman Lain".equalsIgnoreCase(spinJenisAgenda.getSelectedItem().toString())){
+           			reqAddAgendaData.setAgendaType(Constants.OTHER_AGENDA);
+           		}else{
+           			reqAddAgendaData.setAgendaType(Constants.GENERAL_AGENDA);
+           		}
+           		
+    			reqAddAgendaData.setIsiAgenda(isiAgenda.getText().toString());
+    			reqAddAgendaData.setKodeKelas(spinner1.getSelectedItem().toString());
+    			reqAddAgendaData.setNamaKelas(spinner1.getSelectedItem().toString());
+    			reqAddAgendaData.setNamaSekolah(tvTitleSchool.getText().toString());
+    			reqAddAgendaData.setKodeSekolah(loginData.getKodeSekolah());
+    			reqAddAgendaData.setTanggalAgenda(calendarView.getSelectedDate().getDate());
+           		
+           		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqAddAgendaData);
+           		s = URLEncoder.encode(s, "UTF-8");
+           		Log.d(TAG,"Request: " + s);
+                StringEntity entity = new StringEntity(s);    			
+    			HttpPost post = new HttpPost(HttpClientUtil.URL_BASE+HttpClientUtil.URL_ADD_AGENDA);
+    			post.setHeader(HttpClientUtil.CONTENT_TYPE, HttpClientUtil.JSON);
+    			post.setEntity(entity);
+    			// Execute HTTP request
+    			Log.d(TAG,"Executing request: " + post.getURI());
+                HttpResponse response = client.execute(post);
+                HttpEntity respEntity = response.getEntity();
+                respString = EntityUtils.toString(respEntity);
+    			result = true;
+    			} catch (ClientProtocolException e) {
+    				Log.e(TAG, "ClientProtocolException : "+e);
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			} catch (IOException e) {
+    				Log.e(TAG, "IOException : "+e); 
+    				respString = ctx.getResources().getString(R.string.message_no_internet_connection);
+    				cancel(true);    				
+    			} catch (Exception e) {
+    				Log.e(TAG, "Exception : "+e);  
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			}
+           	return result;
+           }
+		
+		 @Override
+	     protected void onCancelled() {
+			 if(progressDialog.isShowing()){
+				progressDialog.dismiss();
+			 }
+			 MessageUtils messageUtils = new MessageUtils(ctx);
+          	 messageUtils.snackBarMessage(MenuTeacherActivity.this,respString);
+	     }
+		
+		 @Override
+         protected void onPostExecute(final Boolean success) {
+			 reqAddAgendaTask = null;          
+             if (success) {
+	               	if(!respString.isEmpty()){
+	               		try {	               			
+	               			String respons = URLDecoder.decode(respString, "UTF-8");
+	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
+		               		if(messageVO.getRc()==0){			               			
+		               			MessageUtils messageUtils = new MessageUtils(ctx);
+				             	messageUtils.snackBarMessage(MenuTeacherActivity.this,messageVO.getMessageRc());
+				             	isiAgenda.setText("");
+				             	spinner1.setSelection(0);
+				             	spinJenisAgenda.setSelection(0);
+		               		}
+		               		else{
+		               			MessageUtils messageUtils = new MessageUtils(ctx);
+				             	messageUtils.snackBarMessage(MenuTeacherActivity.this,messageVO.getMessageRc());
+		               		}
+
+						} catch (Exception e) {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(MenuTeacherActivity.this,MenuTeacherActivity.this.getResources().getString(R.string.message_unexpected_error_message_server));
+						}	            
+	               	}else{
+	               	   MessageUtils messageUtils = new MessageUtils(ctx);
+	             	   messageUtils.snackBarMessage(MenuTeacherActivity.this,MenuTeacherActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+	               	}
+             }else{
+          	   MessageUtils messageUtils = new MessageUtils(ctx);
+          	   messageUtils.snackBarMessage(MenuTeacherActivity.this,MenuTeacherActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+             }        
+             if(progressDialog.isShowing()){
+					progressDialog.dismiss();
+				}
+         }
+	}
 	
 	
 	public class ReqListKelasTask  extends AsyncTask<String, Void, Boolean> {
