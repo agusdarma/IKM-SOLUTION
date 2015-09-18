@@ -66,9 +66,9 @@ public class MessagesListAdapter extends BaseAdapter {
 
 		TextView lblFrom = (TextView) convertView.findViewById(R.id.lblMsgFrom);
 		TextView txtMsg = (TextView) convertView.findViewById(R.id.txtMsg);
-
+		
 		txtMsg.setText(m.getIsiMessage());
-		lblFrom.setText(m.getFromName());
+		lblFrom.setText(m.getFromName()+" "+m.getCreatedOnVal());
 
 		return convertView;
 	}
