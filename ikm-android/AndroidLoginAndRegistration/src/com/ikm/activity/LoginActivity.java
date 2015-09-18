@@ -11,13 +11,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,17 +39,13 @@ import com.romainpiel.shimmer.ShimmerTextView;
 
 
 public class LoginActivity extends Activity {
-	// LogCat tag
 	private static final String TAG = LoginActivity.class.getSimpleName();
-	private ButtonRectangle btnLogin;	
 	private FloatLabel inputKodeSekolah;
 	private FloatLabel inputNoInduk;
 	private FloatLabel inputPassword;
 	Switch switchView;
 	private Context ctx;
 	private ReqLoginTask reqLoginTask = null;
-	SharedPreferences sharedpreferences;
-	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
 	String tipeLogin;
 	@Override
@@ -68,7 +61,7 @@ public class LoginActivity extends Activity {
 		inputKodeSekolah = (FloatLabel) findViewById(R.id.kodeSekolah);
 		inputNoInduk = (FloatLabel) findViewById(R.id.noInduk);
 		inputPassword = (FloatLabel) findViewById(R.id.password);
-		btnLogin = (ButtonRectangle) findViewById(R.id.btnLogin);
+		ButtonRectangle btnLogin = (ButtonRectangle) findViewById(R.id.btnLogin);
 		// get data from cache
 		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
 		if(loginData!=null){

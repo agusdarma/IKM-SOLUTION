@@ -19,7 +19,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,12 +53,9 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 public class MenuTeacherActivity extends Activity {
 	// LogCat tag
 	private static final String TAG = MenuTeacherActivity.class.getSimpleName();
-	private ButtonRectangle btnSave;
 	private Context ctx;
 	private ReqListKelasTask reqListKelasTask = null;
 	private ReqAddAgendaTask reqAddAgendaTask = null;
-	SharedPreferences sharedpreferences;
-	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
 	private Button btnInbox;
 	private ArrayAdapter<String> adapter;
@@ -79,6 +75,7 @@ public class MenuTeacherActivity extends Activity {
 		setContentView(R.layout.activity_teacher);
 		ctx = MenuTeacherActivity.this;		
 		ButtonRectangle btnBack = (ButtonRectangle) findViewById(R.id.btnBack);
+		ButtonRectangle btnRefresh = (ButtonRectangle) findViewById(R.id.btnRefresh);
 		tvTitle = (ShimmerTextView) findViewById(R.id.tvTitle);
 		tvTitleSchool = (ShimmerTextView) findViewById(R.id.tvTitleSchool);
 		calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
@@ -87,7 +84,7 @@ public class MenuTeacherActivity extends Activity {
 		ShimmerTextView tvFooter = (ShimmerTextView) findViewById(R.id.tvFooter);
 		isiAgenda = (MaterialEditText) findViewById(R.id.isiAgenda);
 		btnInbox = (Button) findViewById(R.id.btnInbox);
-		btnSave = (ButtonRectangle) findViewById(R.id.btnSave);
+		ButtonRectangle btnSave = (ButtonRectangle) findViewById(R.id.btnSave);
 		
         
 		if (shimmer != null && shimmer.isAnimating()) {
@@ -99,6 +96,21 @@ public class MenuTeacherActivity extends Activity {
         	shimmer.start(tvVersion);
         	shimmer.start(tvFooter);
         }
+		
+		btnRefresh.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent intent = getIntent();
+				overridePendingTransition(0, 0);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				finish();
+				overridePendingTransition(0, 0);
+				startActivity(intent);	
+				
+			}
+		});
 		
 
 		btnBack.setOnClickListener(new OnClickListener() {

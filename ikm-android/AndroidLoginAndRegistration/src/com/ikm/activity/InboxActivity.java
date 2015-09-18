@@ -50,29 +50,18 @@ import com.romainpiel.shimmer.ShimmerTextView;
 
 public class InboxActivity extends Activity {
 
-	// LogCat tag
 	private static final String TAG = InboxActivity.class.getSimpleName();
 	private Context ctx;
 	private Button btnSend;
 	private EditText inputMsg;
 	Shimmer shimmer;
-	// private WebSocketClient client;
-
-	// Chat messages list adapter
 	private MessagesListAdapter adapter;
-	private List<InboxVO> listMessages;
 	private ListView listViewMessages;
 	private ReqListInboxTask reqListInboxTask = null;
 	private ReqSendMessageTask reqSendMessageTask = null;
 	ShimmerTextView tvTitle;
-	// private Utils utils;
-
 	// Client name
 	private String menuName = null;
-
-	// JSON flags to identify the kind of JSON response
-	private static final String TAG_SELF = "self", TAG_NEW = "new",
-			TAG_MESSAGE = "message", TAG_EXIT = "exit";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -105,12 +94,14 @@ public class InboxActivity extends Activity {
 			public void onClick(View v) {
 				if(Constants.PARENTS.equalsIgnoreCase(menuName)){
 					// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
-					Intent i = new Intent(ctx, MenuParentActivity.class);	       			
+					Intent i = new Intent(ctx, MenuParentActivity.class);	
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
 					startActivity(i);
 					finish();
 				}else if(Constants.TEACHER.equalsIgnoreCase(menuName)){
 					// harus tau dari mana inbox ini berasal apakah dari parent apa dari teacher
-					Intent i = new Intent(ctx, MenuTeacherActivity.class);       			
+					Intent i = new Intent(ctx, MenuTeacherActivity.class);   
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
 					startActivity(i);
 					finish();
 				}

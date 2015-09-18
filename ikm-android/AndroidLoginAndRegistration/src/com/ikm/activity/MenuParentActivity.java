@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,22 +60,17 @@ import com.ikm.utils.SharedPreferencesUtils;
 import com.romainpiel.shimmer.Shimmer;
 import com.romainpiel.shimmer.ShimmerTextView;
 
-import fr.ganfra.materialspinner.MaterialSpinner;
-
 
 public class MenuParentActivity extends Activity {
 	private static final int REQUEST_CODE_SETTINGS = 0;
 	private static final String TAG = MenuParentActivity.class.getSimpleName();
 	private Context ctx;
 	private ReqListAgendaTask reqListAgendaTask = null;
-	SharedPreferences sharedpreferences;
-	public static final String MyPREFERENCES = "MyPrefs" ;
 	Shimmer shimmer;
 	Switch switchView;
 	SwipeListView listAgenda;
     private AgendaViewAdapter adapter;
     private List<AgendaViewVO> data;
-	MaterialSpinner spinner1;
 	private Button btnInbox;
 	ShimmerTextView tvTitle;
 	boolean typeAgenda; // false agenda true pengumuman lain
@@ -93,7 +87,6 @@ public class MenuParentActivity extends Activity {
 		ctx = MenuParentActivity.this;
 		listAgenda = (SwipeListView) findViewById(R.id.listAgenda);
 		switchView = (Switch) findViewById(R.id.switchView);
-		final TextView lblSwitchView = (TextView) findViewById(R.id.LblswitchView);
 		data = new ArrayList<AgendaViewVO>();
 		
 		btnInbox.setText(ctx.getResources().getString(R.string.inbox)); 
@@ -281,6 +274,7 @@ public class MenuParentActivity extends Activity {
         lblWelcome.setText("Welcome, " + loginData.getNama());
 
 	}
+	
 	
 	@Override
     public void onBackPressed() { 

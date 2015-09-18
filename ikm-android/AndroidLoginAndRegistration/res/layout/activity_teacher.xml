@@ -36,6 +36,14 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:typeface="serif" />
+
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnRefresh"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:text="Refresh" />
         </LinearLayout>
 
         <com.romainpiel.shimmer.ShimmerTextView
