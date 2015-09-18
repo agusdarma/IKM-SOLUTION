@@ -22,16 +22,15 @@
 
         <com.romainpiel.shimmer.ShimmerTextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:text="Agenda kelas 6A"
-            android:textColor="@color/grey"
-            android:textSize="25sp"
+            android:layout_weight="3"
+            android:text="Agus&apos;s Agenda"
+            android:textColor="@color/blue"
+            android:textSize="23sp"
             android:textStyle="bold"
             android:typeface="serif" />
-        
+
         <com.gc.materialdesign.views.ButtonRectangle
             android:id="@+id/btnRefresh"
             android:layout_width="40dp"
@@ -101,15 +100,16 @@
             android:layout_below="@id/viewTitle"
             android:layout_marginTop="4dip"
             android:background="@color/blue"
-            android:textColor="@color/white"
-            android:text="Inbox" />
+            android:text="Inbox"
+            android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/lblWelcome"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/btnInbox"
             android:padding="4dp"
             android:text="Welcome, ...."
-            android:layout_below="@id/btnInbox"
             android:textColor="@color/blue"
             android:typeface="serif" />
     </RelativeLayout>
