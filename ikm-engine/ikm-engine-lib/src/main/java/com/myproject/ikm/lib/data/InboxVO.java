@@ -12,6 +12,7 @@ public class InboxVO implements java.io.Serializable {
 	private String isiMessage;
 	private int isRead;
 	private Date createdOn;
+	private String createdOnVal;	
 	private boolean self;
 	
 	@Override
@@ -67,5 +68,14 @@ public class InboxVO implements java.io.Serializable {
 		this.self = self;
 	}
 
+	public String getCreatedOnVal() {
+		return createdOnVal;
+	}
+
+	public void setCreatedOnVal(String createdOnVal) {
+		this.createdOnVal = createdOnVal;
+	}
+
+	
 	
 }

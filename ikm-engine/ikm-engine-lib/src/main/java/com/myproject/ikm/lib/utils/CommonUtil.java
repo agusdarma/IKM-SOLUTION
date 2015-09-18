@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 public class CommonUtil {
 	
 	private static SimpleDateFormat sdfDateTime = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+	private static SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 	private static NumberFormat nfNoDecimal = new DecimalFormat("#,##0");
 	private static NumberFormat nfPlain = new DecimalFormat("###0");
 	private static SimpleDateFormat dfYear = new SimpleDateFormat("yyyy");
@@ -106,6 +107,9 @@ public class CommonUtil {
 		return phoneNo;
 	}
 	
+	public static String displayTime(Date dateTime) {
+		return sdfTime.format(dateTime);
+	}
 	public static String displayDateTime(Date dateTime) {
 		return sdfDateTime.format(dateTime);
 	}

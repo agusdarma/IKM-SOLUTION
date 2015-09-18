@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myproject.ikm.lib.data.AgendaVO;
 import com.myproject.ikm.lib.data.InboxVO;
 import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.data.ReqSendMessageData;
@@ -18,6 +19,7 @@ import com.myproject.ikm.lib.entity.User;
 import com.myproject.ikm.lib.mapper.InboxMapper;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
 import com.myproject.ikm.lib.utils.CipherUtil;
+import com.myproject.ikm.lib.utils.CommonUtil;
 import com.myproject.ikm.lib.utils.Constants;
 
 @Service
@@ -142,6 +144,7 @@ public class InboxService {
 				if(inboxVO.getFromName().equalsIgnoreCase(user.getNama())){
 					inboxVO.setSelf(true);
 				}
+				inboxVO.setCreatedOnVal(CommonUtil.displayTime(inboxVO.getCreatedOn()));
 			}
 			respListInboxVO.setListInboxVO(listInboxVOs);
 		}
