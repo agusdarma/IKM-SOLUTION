@@ -2,6 +2,8 @@
 <resources>
     
     <color name="black_transparant">#D8000000</color>
+    <color name="green">#00FF00</color>
+    <color name="thumbColor">#66aaaaaa</color>
     
     <color name="white">#ffffff</color>
     <color name="white_15_percent">#26ffffff</color>
