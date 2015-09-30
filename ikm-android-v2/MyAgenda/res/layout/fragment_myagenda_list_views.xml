@@ -30,7 +30,6 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="24dp"
-                android:visibility="invisible"
                 android:layout_marginTop="16dp" />
 
             <LinearLayout
@@ -46,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
-                    android:text="Agenda Michael Kelas 6A"
+                    android:text="Johnatan Douhou"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     app:typeface="robotoLight" />
@@ -55,7 +54,7 @@
                     android:id="@+id/expandable_lv_social_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sekolah Dian Harapan"
+                    android:text="from Oklahoma, USA"
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     app:typeface="robotoLight" />

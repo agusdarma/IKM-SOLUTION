@@ -24,6 +24,7 @@ import com.ikm.myagenda.adapter.DrawerMenuAdapter;
 import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.fragment.HomeFragment;
 import com.ikm.myagenda.fragment.ListViewsFragment;
+import com.ikm.myagenda.fragment.MyAgendaFragment;
 import com.ikm.myagenda.fragment.ParallaxEffectsFragment;
 import com.ikm.myagenda.model.DummyModel;
 import com.ikm.myagenda.util.ImageUtil;
@@ -175,14 +176,12 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 	
 	private Fragment getFragmentByDrawerTag(int drawerTag) {
 		Fragment fragment = null;
-		if (drawerTag == Constants.DRAWER_ITEM_ID_HOME) {
-			fragment = HomeFragment.newInstance();
-		} else if (drawerTag == Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD) {
-			fragment = ParallaxEffectsFragment.newInstance();
-		} else if (drawerTag == Constants.DRAWER_ITEM_ID_BROWSE) {
-			fragment = ListViewsFragment.newInstance();
-		} else if (drawerTag == Constants.DRAWER_ITEM_ID_UPLOAD) {
-			fragment = ParallaxEffectsFragment.newInstance();
+		if (drawerTag == Constants.DRAWER_ITEM_ID_MYAGENDA) {
+			fragment = MyAgendaFragment.newInstance();
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_ADD_AGENDA) {
+			
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_INBOX) {
+			
 		} else {
 			fragment = new Fragment();
 		}

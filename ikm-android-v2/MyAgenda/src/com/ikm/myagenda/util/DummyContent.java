@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.ikm.myagenda.R;
+import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.data.SubtitleVO;
 import com.ikm.myagenda.model.DummyModel;
 import com.ikm.myagenda.model.ImageGalleryCategoryModel;
@@ -943,7 +944,6 @@ public class DummyContent {
 		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_MYAGENDA, "", "Home", R.string.material_icon_home));
 		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_INBOX, "", "Change Password", R.string.material_icon_key));
 		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_ADD_AGENDA, "", "Browse", R.string.material_icon_view_list));
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_UPLOAD, "", "Upload", R.string.material_icon_clound_upload));
 //		list.add(new DummyModel(3, "", "Family", R.string.material_icon_account));
 //		list.add(new DummyModel(4, "", "Guests", R.string.material_icon_account));
 //		list.add(new DummyModel(5, "", "Students", R.string.material_icon_account));
@@ -952,16 +952,16 @@ public class DummyContent {
 	
 	public static ArrayList<DummyModel> getParentMenuList() {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_home));
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_key));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_agenda));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_inbox));
 		return list;
 	}
 	
 	public static ArrayList<DummyModel> getTeacherMenuList() {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_home));
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_ADD_AGENDA, "", "Tambah Agenda", R.string.material_icon_home));
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_key));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_agenda));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_ADD_AGENDA, "", "Tambah Agenda", R.string.material_icon_agenda_plus));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_inbox));
 		return list;
 	}
 	

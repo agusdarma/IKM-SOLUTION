@@ -13,9 +13,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="38dp"
         android:gravity="center_vertical"
-        android:padding="0dp"
+        android:padding="10dp"
         android:textColor="@color/main_color_500"
-        android:textSize="24dp" />
+        android:textSize="24sp"
+        android:text="@string/material_icon_calendar" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,20 +30,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="Friends"
+            android:text="30 September 2015"
             android:textColor="@color/main_color_grey_800"
             android:textSize="14dp"
             app:typeface="robotoRegular" />
 
-        <com.ikm.myagenda.font.RobotoTextView
+        <!--  <com.ikm.myagenda.font.RobotoTextView
             android:id="@+id/expandable_item_social_number_of_people"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical"            
             android:text="254 people"
             android:textColor="@color/main_color_grey_300"
             android:textSize="14dp"
-            app:typeface="robotoRegular" />
+            app:typeface="robotoRegular" />-->
     </LinearLayout>
 
 </LinearLayout>
