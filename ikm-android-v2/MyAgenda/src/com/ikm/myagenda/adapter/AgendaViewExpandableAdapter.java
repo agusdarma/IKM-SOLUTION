@@ -59,7 +59,7 @@ public class AgendaViewExpandableAdapter extends AnimatedExpandableListAdapter {
 		if (convertView == null) {
 			holder = new ChildHolder();
 			convertView = inflater.inflate(
-					R.layout.list_item_expandable_social_child, parent,
+					R.layout.list_item_expandable_agenda_child, parent,
 					false);
 			holder.title = (TextView) convertView
 					.findViewById(R.id.expandable_item_social_child_name);
@@ -105,7 +105,7 @@ public class AgendaViewExpandableAdapter extends AnimatedExpandableListAdapter {
 		if (convertView == null) {
 			holder = new GroupHolder();
 			convertView = inflater.inflate(
-					R.layout.list_item_expandable_social, parent, false);
+					R.layout.list_item_expandable_agenda, parent, false);
 			holder.title = (TextView) convertView
 					.findViewById(R.id.expandable_item_social_name);
 			holder.icon = (TextView) convertView

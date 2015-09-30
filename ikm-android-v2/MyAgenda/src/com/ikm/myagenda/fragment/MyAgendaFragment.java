@@ -19,9 +19,7 @@ import com.ikm.myagenda.adapter.AgendaViewExpandableAdapter;
 import com.ikm.myagenda.adapter.AgendaViewVO;
 import com.ikm.myagenda.data.AgendaHeader;
 import com.ikm.myagenda.data.AgendaItems;
-import com.ikm.myagenda.util.ImageUtil;
 import com.ikm.myagenda.view.AnimatedExpandableListView;
-import com.ikm.myagenda.view.AnimatedExpandableListView.AnimatedExpandableListAdapter;
 
 public class MyAgendaFragment extends Fragment {
 	private static final String TAG = MyAgendaFragment.class.getSimpleName();
@@ -92,60 +90,61 @@ public class MyAgendaFragment extends Fragment {
 	
 	private List<AgendaHeader> fillData(List<AgendaHeader> items) {
 		AgendaHeader item = new AgendaHeader();
-		item.setTitle("Friends");
+		item.setTitle("30 September 2015");
 		AgendaItems child;
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Science: kumpulkan PR dari halaman 30-35");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("Jane Doe");
+		child.setTitle("- Science: Hari ini terakhir mengumpulkan Project Alam Semesta");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Bahasa Inggris: Ulangan tentang Past Tense");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("Jane Doe");
+		child.setTitle("- Bahasa Indonesia: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		items.add(item);
 
 		item = new AgendaHeader();
-		item.setTitle("Enemies");
+		item.setTitle("27 September 2015");
 		
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Agama: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Olahraga: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Bahasa Indonesia: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Bahasa Indonesia: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Bahasa Indonesia: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Bahasa Indonesia: Ulangan ");
 		item.getItemsDetail().add(child);
 
 		items.add(item);
 		
 		item = new AgendaHeader();
-		item.setTitle("Neutral");
+		item.setTitle("25 September 2015");
 		
 		child = new AgendaItems();
-		child.setTitle("John Doe");
+		child.setTitle("- Bahasa Indonesia: Ulangan ssssssssssssssssssssssssssssssssss"
+				+ "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 		item.getItemsDetail().add(child);
 
 		child = new AgendaItems();
@@ -169,127 +168,127 @@ public class MyAgendaFragment extends Fragment {
 		return items;
 	}
 	
-	private static class GroupItem {
-		String title;
-		int icon = R.string.material_icon_friends;
-		List<ChildItem> items = new ArrayList<ChildItem>();
-	}
-
-	private static class ChildItem {
-		String title;
-	}
-
-	private static class ChildHolder {
-		TextView title;
-		ImageView image;
-	}
-
-	private static class GroupHolder {
-		TextView title;
-		TextView icon;
-	}
-	
-	private class ExampleAdapter extends AnimatedExpandableListAdapter {
-		private LayoutInflater inflater;
-
-		private List<GroupItem> items;
-
-		public ExampleAdapter(Context context) {
-			inflater = LayoutInflater.from(context);
-		}
-
-		public void setData(List<GroupItem> items) {
-			this.items = items;
-		}
-
-		@Override
-		public ChildItem getChild(int groupPosition, int childPosition) {
-			return items.get(groupPosition).items.get(childPosition);
-		}
-
-		@Override
-		public long getChildId(int groupPosition, int childPosition) {
-			return childPosition;
-		}
-
-		@Override
-		public View getRealChildView(int groupPosition, int childPosition,
-				boolean isLastChild, View convertView, ViewGroup parent) {
-			ChildHolder holder;
-			ChildItem item = getChild(groupPosition, childPosition);
-			if (convertView == null) {
-				holder = new ChildHolder();
-				convertView = inflater.inflate(
-						R.layout.list_item_expandable_social_child, parent,
-						false);
-				holder.title = (TextView) convertView
-						.findViewById(R.id.expandable_item_social_child_name);
-				holder.image = (ImageView) convertView
-						.findViewById(R.id.expandable_item_social_child_image);
-				convertView.setTag(holder);
-			} else {
-				holder = (ChildHolder) convertView.getTag();
-			}
-
-			holder.title.setText(item.title);
-			ImageUtil.displayRoundImage(holder.image,
-					"http://pengaja.com/uiapptemplate/newphotos/profileimages/0.jpg", null);
-
-			return convertView;
-		}
-
-		@Override
-		public int getRealChildrenCount(int groupPosition) {
-			return items.get(groupPosition).items.size();
-		}
-
-		@Override
-		public GroupItem getGroup(int groupPosition) {
-			return items.get(groupPosition);
-		}
-
-		@Override
-		public int getGroupCount() {
-			return items.size();
-		}
-
-		@Override
-		public long getGroupId(int groupPosition) {
-			return groupPosition;
-		}
-
-		@Override
-		public View getGroupView(int groupPosition, boolean isExpanded,
-				View convertView, ViewGroup parent) {
-			GroupHolder holder;
-			GroupItem item = getGroup(groupPosition);
-			if (convertView == null) {
-				holder = new GroupHolder();
-				convertView = inflater.inflate(
-						R.layout.list_item_expandable_social, parent, false);
-				holder.title = (TextView) convertView
-						.findViewById(R.id.expandable_item_social_name);
-				holder.icon = (TextView) convertView
-						.findViewById(R.id.expandable_item_social_icon);
-				convertView.setTag(holder);
-			} else {
-				holder = (GroupHolder) convertView.getTag();
-			}
-
-			holder.title.setText(item.title);
-			holder.icon.setText(item.icon);
-
-			return convertView;
-		}
-
-		@Override
-		public boolean hasStableIds() {
-			return true;
-		}
-
-		@Override
-		public boolean isChildSelectable(int arg0, int arg1) {
-			return true;
-		}
-	}
+//	private static class GroupItem {
+//		String title;
+//		int icon = R.string.material_icon_friends;
+//		List<ChildItem> items = new ArrayList<ChildItem>();
+//	}
+//
+//	private static class ChildItem {
+//		String title;
+//	}
+//
+//	private static class ChildHolder {
+//		TextView title;
+//		ImageView image;
+//	}
+//
+//	private static class GroupHolder {
+//		TextView title;
+//		TextView icon;
+//	}
+//	
+//	private class ExampleAdapter extends AnimatedExpandableListAdapter {
+//		private LayoutInflater inflater;
+//
+//		private List<GroupItem> items;
+//
+//		public ExampleAdapter(Context context) {
+//			inflater = LayoutInflater.from(context);
+//		}
+//
+//		public void setData(List<GroupItem> items) {
+//			this.items = items;
+//		}
+//
+//		@Override
+//		public ChildItem getChild(int groupPosition, int childPosition) {
+//			return items.get(groupPosition).items.get(childPosition);
+//		}
+//
+//		@Override
+//		public long getChildId(int groupPosition, int childPosition) {
+//			return childPosition;
+//		}
+//
+//		@Override
+//		public View getRealChildView(int groupPosition, int childPosition,
+//				boolean isLastChild, View convertView, ViewGroup parent) {
+//			ChildHolder holder;
+//			ChildItem item = getChild(groupPosition, childPosition);
+//			if (convertView == null) {
+//				holder = new ChildHolder();
+//				convertView = inflater.inflate(
+//						R.layout.list_item_expandable_social_child, parent,
+//						false);
+//				holder.title = (TextView) convertView
+//						.findViewById(R.id.expandable_item_social_child_name);
+//				holder.image = (ImageView) convertView
+//						.findViewById(R.id.expandable_item_social_child_image);
+//				convertView.setTag(holder);
+//			} else {
+//				holder = (ChildHolder) convertView.getTag();
+//			}
+//
+//			holder.title.setText(item.title);
+//			ImageUtil.displayRoundImage(holder.image,
+//					"http://pengaja.com/uiapptemplate/newphotos/profileimages/0.jpg", null);
+//
+//			return convertView;
+//		}
+//
+//		@Override
+//		public int getRealChildrenCount(int groupPosition) {
+//			return items.get(groupPosition).items.size();
+//		}
+//
+//		@Override
+//		public GroupItem getGroup(int groupPosition) {
+//			return items.get(groupPosition);
+//		}
+//
+//		@Override
+//		public int getGroupCount() {
+//			return items.size();
+//		}
+//
+//		@Override
+//		public long getGroupId(int groupPosition) {
+//			return groupPosition;
+//		}
+//
+//		@Override
+//		public View getGroupView(int groupPosition, boolean isExpanded,
+//				View convertView, ViewGroup parent) {
+//			GroupHolder holder;
+//			GroupItem item = getGroup(groupPosition);
+//			if (convertView == null) {
+//				holder = new GroupHolder();
+//				convertView = inflater.inflate(
+//						R.layout.list_item_expandable_social, parent, false);
+//				holder.title = (TextView) convertView
+//						.findViewById(R.id.expandable_item_social_name);
+//				holder.icon = (TextView) convertView
+//						.findViewById(R.id.expandable_item_social_icon);
+//				convertView.setTag(holder);
+//			} else {
+//				holder = (GroupHolder) convertView.getTag();
+//			}
+//
+//			holder.title.setText(item.title);
+//			holder.icon.setText(item.icon);
+//
+//			return convertView;
+//		}
+//
+//		@Override
+//		public boolean hasStableIds() {
+//			return true;
+//		}
+//
+//		@Override
+//		public boolean isChildSelectable(int arg0, int arg1) {
+//			return true;
+//		}
+//	}
 }

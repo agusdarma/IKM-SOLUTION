@@ -13,6 +13,7 @@
         android:layout_marginBottom="12dp"
         android:layout_marginLeft="44dp"
         android:layout_marginRight="24dp"
+        android:visibility="gone"
         android:layout_marginTop="12dp"
         android:layout_weight="0" />
 
@@ -26,7 +27,7 @@
         android:layout_weight="0"
         android:gravity="center_vertical"
         android:text="John Doe"
-        android:textColor="@color/main_color_grey_600"
+        android:textColor="@color/main_color_grey_800"
         android:textSize="14dp"
         app:typeface="robotoRegular" />
 
@@ -37,6 +38,7 @@
         android:layout_marginRight="16dp"
         android:layout_weight="1"
         android:gravity="right"
+        android:visibility="gone"
         android:padding="0dp"
         android:text="@string/material_icon_plus_box"
         android:textColor="@color/material_yellow_500"

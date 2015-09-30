@@ -179,9 +179,9 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		if (drawerTag == Constants.DRAWER_ITEM_ID_MYAGENDA) {
 			fragment = MyAgendaFragment.newInstance();
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_ADD_AGENDA) {
-			
+			fragment = MyAgendaFragment.newInstance();
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_INBOX) {
-			
+			fragment = MyAgendaFragment.newInstance();
 		} else {
 			fragment = new Fragment();
 		}
