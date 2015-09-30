@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="left|top"
             android:text="Judul"
-            android:textColor="#1e88e5"
+            android:textColor="@color/main_color_500"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -29,7 +29,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_below="@+id/judul"
-            android:background="#1E88E5"
+            android:background="@color/main_color_500"
             android:paddingTop="20dp" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:paddingStart="16dp"
             android:paddingTop="15dp"
             android:text="Title"
-            android:textColor="#999999"
+            android:textColor="@color/main_color_grey_900"
             android:textSize="16sp" />
     </RelativeLayout>
 
