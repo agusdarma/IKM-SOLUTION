@@ -10,18 +10,24 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.ikm.myagenda.R;
+import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.model.DummyModel;
 import com.ikm.myagenda.util.DummyContent;
 
-public class DrawerSocialAdapter extends BaseAdapter {
+public class DrawerMenuAdapter extends BaseAdapter {
 
 	private List<DummyModel> mDrawerItems;
 	private LayoutInflater mInflater;
 
-	public DrawerSocialAdapter(Context context) {
+	public DrawerMenuAdapter(Context context,String tipeLogin) {
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mDrawerItems = DummyContent.getSocialDummyList();
+		if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
+			mDrawerItems = DummyContent.getParentMenuList();
+		}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){
+			mDrawerItems = DummyContent.getTeacherMenuList();
+		}
+		
 	}
 
 	@Override

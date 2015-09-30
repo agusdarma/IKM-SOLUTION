@@ -2,9 +2,9 @@ package com.ikm.myagenda.model;
 
 public class DummyModel {
 	
-	public static final int DRAWER_ITEM_ID_HOME = 10;
-	public static final int DRAWER_ITEM_ID_CHANGE_PASSWORD = 11;
-	public static final int DRAWER_ITEM_ID_BROWSE = 12;
+	public static final int DRAWER_ITEM_ID_MYAGENDA = 10;
+	public static final int DRAWER_ITEM_ID_INBOX = 11;
+	public static final int DRAWER_ITEM_ID_ADD_AGENDA = 12;
 	public static final int DRAWER_ITEM_ID_UPLOAD = 13;
 	
 	private int mId;

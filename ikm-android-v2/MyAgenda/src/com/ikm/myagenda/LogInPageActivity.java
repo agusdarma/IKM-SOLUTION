@@ -201,9 +201,9 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 		               			Intent i = null;
 		               			i = new Intent(ctx, LeftMenusSocialActivity.class);
 		               			if(Constants.PARENTS_KEY==loginData.getUserType()){
-		               				i.putExtra(Constants.KEY_LOGIN, Constants.PARENTS_KEY);
+		               				i.putExtra(Constants.KEY_LOGIN, Constants.PARENTS);
 		               			}else if(Constants.TEACHER_KEY==loginData.getUserType()){
-		               				i.putExtra(Constants.KEY_LOGIN, Constants.TEACHER_KEY);
+		               				i.putExtra(Constants.KEY_LOGIN, Constants.TEACHER);
 		               			} 		       			
 								startActivity(i);
 								finish();

@@ -940,13 +940,28 @@ public class DummyContent {
 	//TODO Change to social
 	public static ArrayList<DummyModel> getSocialDummyList() {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_HOME, "", "Home", R.string.material_icon_home));
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_CHANGE_PASSWORD, "", "Change Password", R.string.material_icon_key));
-		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_BROWSE, "", "Browse", R.string.material_icon_view_list));
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_MYAGENDA, "", "Home", R.string.material_icon_home));
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_INBOX, "", "Change Password", R.string.material_icon_key));
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_ADD_AGENDA, "", "Browse", R.string.material_icon_view_list));
 		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_UPLOAD, "", "Upload", R.string.material_icon_clound_upload));
 //		list.add(new DummyModel(3, "", "Family", R.string.material_icon_account));
 //		list.add(new DummyModel(4, "", "Guests", R.string.material_icon_account));
 //		list.add(new DummyModel(5, "", "Students", R.string.material_icon_account));
+		return list;
+	}
+	
+	public static ArrayList<DummyModel> getParentMenuList() {
+		ArrayList<DummyModel> list = new ArrayList<>();
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_home));
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_key));
+		return list;
+	}
+	
+	public static ArrayList<DummyModel> getTeacherMenuList() {
+		ArrayList<DummyModel> list = new ArrayList<>();
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_home));
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_ADD_AGENDA, "", "Tambah Agenda", R.string.material_icon_home));
+		list.add(new DummyModel(DummyModel.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_key));
 		return list;
 	}
 	
