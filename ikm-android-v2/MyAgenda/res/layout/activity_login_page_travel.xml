@@ -7,17 +7,17 @@
     android:background="@drawable/login_travel"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="60dp" >
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp" >
 
-    <com.ikm.myagenda.font.FontelloTextView
+    <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="36dp"
-        android:text="@string/fontello_logo"
-        android:textColor="@color/main_color_500"
-        android:textSize="96dp"
-        tools:ignore="SpUsage" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:paddingBottom="30dp"
+        android:src="@drawable/myagenda" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,21 +34,22 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical" >
 
-            <com.ikm.myagenda.font.FontelloTextView
+            <com.ikm.myagenda.font.MaterialDesignIconsTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/fontello_user"
+                android:text="@string/material_icon_school"
                 android:textColor="@color/main_color_500"
                 android:textSize="16dp"
                 tools:ignore="SpUsage" />
 
             <com.ikm.myagenda.view.FloatLabeledEditText
+                android:id="@+id/kodeSekolah"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
-                app:fletFloatingHint="@string/email"
+                app:fletFloatingHint="@string/kode_sekolah"
                 app:fletHintTextColor="@color/main_color_500"
                 app:fletSingleLine="true"
                 app:fletTextBackground="@drawable/edit_text_background_accent"
@@ -66,12 +67,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:text="@string/fontello_user"
+                android:textColor="@color/main_color_500"
+                android:textSize="16dp"
+                tools:ignore="SpUsage" />
+
+            <com.ikm.myagenda.view.FloatLabeledEditText
+                android:id="@+id/noInduk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                app:fletFloatingHint="@string/no_induk"
+                app:fletHintTextColor="@color/main_color_500"
+                app:fletPassword="true"
+                app:fletSingleLine="true"
+                app:fletTextBackground="@drawable/edit_text_background_accent"
+                app:fletTextColor="@color/main_color_grey_700" >
+            </com.ikm.myagenda.view.FloatLabeledEditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical" >
+
+            <com.ikm.myagenda.font.FontelloTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="@string/fontello_password"
                 android:textColor="@color/main_color_500"
                 android:textSize="16dp"
                 tools:ignore="SpUsage" />
 
             <com.ikm.myagenda.view.FloatLabeledEditText
+                android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -84,14 +117,55 @@
                 app:fletTextColor="@color/main_color_grey_700" >
             </com.ikm.myagenda.view.FloatLabeledEditText>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical" >
+
+            <com.ikm.myagenda.font.MaterialDesignIconsTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/material_icon_type_login"
+                android:textColor="@color/main_color_500"
+                android:textSize="16dp"
+                tools:ignore="SpUsage" />
+
+            <RadioGroup
+                android:id="@+id/radioTypeLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"                
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radioParent"
+                    android:shadowColor="@color/main_color_500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"                    
+                    android:text="@string/login_parent"                                     
+                    android:textColor="@color/main_color_grey_700" />
+
+                <RadioButton
+                    android:id="@+id/radioTeacher"
+                    android:layout_width="wrap_content"
+                    android:shadowColor="@color/main_color_500"
+                    android:layout_height="wrap_content"                    
+                    android:text="@string/login_teacher"                    
+                    android:textColor="@color/main_color_grey_700" />
+            </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="54dp"
+        android:layout_marginBottom="14dp"
         android:layout_marginTop="12dp"
-        android:gravity="right" >
+        android:gravity="center" >
 
         <com.ikm.myagenda.font.RobotoTextView
             android:id="@+id/login"
@@ -105,6 +179,7 @@
             android:textColor="@android:color/white"
             app:typeface="robotoMedium" />
 
+        <!--
         <View
             android:layout_width="3dp"
             android:layout_height="match_parent" />
@@ -120,17 +195,35 @@
             android:text="@string/register"
             android:textColor="@android:color/white"
             app:typeface="robotoMedium" />
+        -->
     </LinearLayout>
 
-    <com.ikm.myagenda.font.RobotoTextView
-        android:id="@+id/forgot_password"
-        style="@style/ButtonStyle.RaisedEmpty"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|end"
-        android:background="@drawable/transparent_button_selector"
-        android:minWidth="96dp"
-        android:text="@string/forgot_password"
-        android:textColor="@android:color/white" />
+        android:background="@drawable/login_travel_transparent_background"
+        android:paddingBottom="1dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
+
+        <com.ikm.myagenda.font.RobotoTextView
+            android:id="@+id/footer_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"            
+            android:text="@string/app_footer_name"
+            android:textColor="@color/main_color_grey_700"
+            android:textSize="12sp"
+            app:typeface="robotoBold" />
+
+        <ImageView
+            android:id="@+id/logo_footer"
+            android:layout_width="150dp"
+            android:layout_height="64dp"
+            android:layout_below="@id/footer_txt"
+            android:layout_centerHorizontal="true"            
+            android:src="@drawable/ikm_logo" />
+    </RelativeLayout>
 
 </LinearLayout>

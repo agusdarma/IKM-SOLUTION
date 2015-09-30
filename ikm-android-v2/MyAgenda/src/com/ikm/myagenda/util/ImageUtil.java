@@ -12,7 +12,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class ImageUtil {
-	
+
 	public static void displayImage(ImageView view, String path, ImageLoadingListener listener) {
 		ImageLoader loader = ImageLoader.getInstance();
 		try {

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <color name="black_transparant">#D8000000</color>
+    
     <color name="white">#ffffff</color>
     <color name="white_15_percent">#26ffffff</color>
     <color name="white_30_percent">#4Dffffff</color>

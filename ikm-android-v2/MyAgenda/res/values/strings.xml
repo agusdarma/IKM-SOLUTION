@@ -2,6 +2,28 @@
 <resources>
 
     <string name="app_name">My Agenda</string>
+    <string name="app_footer_name">Copyright © 2015 Indo Kanaan Mandiri</string>  
+    <string name="kode_sekolah">Kode Sekolah</string>
+    <string name="no_induk">No Induk</string>
+    <string name="login_parent">Parent</string>
+    <string name="login_teacher">Teacher</string>
+    
+    <!-- Progress Dialog -->
+    <string name="progress_dialog">Please wait a moment..</string>
+    <!-- LOADING -->
+    <string name="process_login">Autentifikasi akun</string>
+    <string name="process_agenda">Loading agenda</string>
+    <string name="process_inbox">Loading inbox</string>
+    <string name="process_kelas">Loading kelas</string>
+    <string name="process_add_agenda">Adding agenda</string>
+    
+    <!-- MESSAGE -->
+    <string name="message_unexpected_error_server">Server sedang mengalami gangguan, silahkan coba beberapa jam kemudian.</string>
+    <string name="message_unexpected_error_message_server">Server sedang mengalami gangguan, Unmatched Format Data Transfer</string>
+    <string name="message_no_internet_connection">Terjadi gangguan jaringan, pastikan koneksi internet anda normal.</string>
+    <string name="message_detail_required">Silahkan isi field yang kosong!</string>
+    
+    
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
@@ -66,6 +88,8 @@
     <string name="fontello_drag_and_drop">&#xe821;</string>
 
     <!-- Material Design Icons -->
+    <string name="material_icon_type_login">&#xe9fb;</string>
+    <string name="material_icon_school">&#xeab0;</string>
     <string name="material_icon_bike">&#xe915;</string>
     <string name="material_icon_go">&#xea04;</string>
     <string name="material_icon_sleep">&#xe9c2;</string>
@@ -140,6 +164,8 @@
     <string name="forgot_password">FORGOT PASSWORD</string>
     <string name="raised">RAISED</string>
     <string name="flat">FLAT</string>
+    <string name="ok">OK</string>
+    <string name="cancel">BATAL</string>
     
     <!-- For Update -->
     <string name="confirm_exit">Press Back button again to exit</string>

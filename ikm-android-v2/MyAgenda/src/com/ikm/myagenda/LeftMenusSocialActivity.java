@@ -22,20 +22,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ikm.myagenda.adapter.DrawerSocialAdapter;
-import com.ikm.myagenda.data.Constant;
-import com.ikm.myagenda.fragment.CheckAndRadioBoxesFragment;
+import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.fragment.HomeFragment;
-import com.ikm.myagenda.fragment.ImageGalleryFragment;
-import com.ikm.myagenda.fragment.LeftMenusFragment;
 import com.ikm.myagenda.fragment.ListViewsFragment;
-import com.ikm.myagenda.fragment.LogInPageFragment;
 import com.ikm.myagenda.fragment.ParallaxEffectsFragment;
-import com.ikm.myagenda.fragment.ProgressBarsFragment;
-import com.ikm.myagenda.fragment.SearchBarsFragment;
-import com.ikm.myagenda.fragment.ShapeImageViewsFragment;
-import com.ikm.myagenda.fragment.SplashScreensFragment;
-import com.ikm.myagenda.fragment.TextViewsFragment;
-import com.ikm.myagenda.model.DrawerItem;
 import com.ikm.myagenda.model.DummyModel;
 import com.ikm.myagenda.util.ImageUtil;
 
@@ -175,13 +165,13 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 	
 	private Fragment getFragmentByDrawerTag(int drawerTag) {
 		Fragment fragment = null;
-		if (drawerTag == Constant.DRAWER_ITEM_ID_HOME) {
+		if (drawerTag == Constants.DRAWER_ITEM_ID_HOME) {
 			fragment = HomeFragment.newInstance();
-		} else if (drawerTag == Constant.DRAWER_ITEM_ID_CHANGE_PASSWORD) {
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD) {
 			fragment = ParallaxEffectsFragment.newInstance();
-		} else if (drawerTag == Constant.DRAWER_ITEM_ID_BROWSE) {
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_BROWSE) {
 			fragment = ListViewsFragment.newInstance();
-		} else if (drawerTag == Constant.DRAWER_ITEM_ID_UPLOAD) {
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_UPLOAD) {
 			fragment = ParallaxEffectsFragment.newInstance();
 		} else {
 			fragment = new Fragment();
