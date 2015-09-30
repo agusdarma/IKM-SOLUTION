@@ -130,7 +130,8 @@ public class LogInPageActivity extends Activity implements OnClickListener {
        	private final HttpClient client = HttpClientUtil.getNewHttpClient();
        	String respString = null;
        	protected void onPreExecute() {
-    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_login),ctx.getResources().getString(R.string.progress_dialog));
+    			progressDialog = new ProgressDialogParking(ctx, ctx.getResources().getString(R.string.process_login),
+    					ctx.getResources().getString(R.string.progress_dialog),ctx.getResources().getColor(R.color.main_color_500));
     			progressDialog.show();
     		}
 		@Override
@@ -198,13 +199,14 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 		               			SharedPreferencesUtils.saveLoginData(messageVO.getOtherMessage(), ctx);
 		               			LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
 		               			Intent i = null;
+		               			i = new Intent(ctx, LeftMenusSocialActivity.class);
 		               			if(Constants.PARENTS_KEY==loginData.getUserType()){
-//		               				i = new Intent(ctx, MenuParentActivity.class);
+		               				i.putExtra(Constants.KEY_LOGIN, Constants.PARENTS_KEY);
 		               			}else if(Constants.TEACHER_KEY==loginData.getUserType()){
-//		               				i = new Intent(ctx, MenuTeacherActivity.class);
+		               				i.putExtra(Constants.KEY_LOGIN, Constants.TEACHER_KEY);
 		               			} 		       			
-//								startActivity(i);
-//								finish();
+								startActivity(i);
+								finish();
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);

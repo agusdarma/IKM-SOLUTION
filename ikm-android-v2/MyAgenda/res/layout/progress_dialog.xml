@@ -24,7 +24,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+        <com.ikm.myagenda.gc.materialdesign.views.ProgressBarCircularIndeterminate
             android:id="@+id/progressBarCircularIndetermininate"
             android:layout_width="32dp"
             android:layout_height="32dp"
