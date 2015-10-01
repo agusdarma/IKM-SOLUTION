@@ -1,11 +1,26 @@
 package com.ikm.myagenda.fragment;
 
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +34,16 @@ import com.ikm.myagenda.adapter.AgendaViewExpandableAdapter;
 import com.ikm.myagenda.adapter.AgendaViewVO;
 import com.ikm.myagenda.data.AgendaHeader;
 import com.ikm.myagenda.data.AgendaItems;
+import com.ikm.myagenda.data.AgendaVO;
+import com.ikm.myagenda.data.Constants;
+import com.ikm.myagenda.data.LoginData;
+import com.ikm.myagenda.data.MessageVO;
+import com.ikm.myagenda.data.ReqListAgendaData;
+import com.ikm.myagenda.data.RespListAgendaVO;
+import com.ikm.myagenda.gc.materialdesign.widgets.ProgressDialogParking;
+import com.ikm.myagenda.util.HttpClientUtil;
+import com.ikm.myagenda.util.MessageUtils;
+import com.ikm.myagenda.util.SharedPreferencesUtils;
 import com.ikm.myagenda.view.AnimatedExpandableListView;
 
 public class MyAgendaFragment extends Fragment {
@@ -31,6 +56,8 @@ public class MyAgendaFragment extends Fragment {
 	private TextView mName;
 	private TextView mPlace;
 	private Context ctx;
+	boolean typeAgenda; // false agenda true pengumuman lain
+	private ReqListAgendaTask reqListAgendaTask = null;
 
 	public static MyAgendaFragment newInstance() {
 		return new MyAgendaFragment();
@@ -50,21 +77,27 @@ public class MyAgendaFragment extends Fragment {
 		mImage = (ImageView) rootView.findViewById(R.id.expandable_lv_social_image);
 		mName = (TextView) rootView.findViewById(R.id.expandable_lv_social_name);
 		mPlace = (TextView) rootView.findViewById(R.id.expandable_lv_social_place);
-		
+		typeAgenda = false;
+		data = new ArrayList<AgendaViewVO>();
 //		ImageUtil.displayRoundImage(mImage,
 //				"http://pengaja.com/uiapptemplate/newphotos/profileimages/2.jpg", null);
 		mName.setText("Agenda Michael");
 		mPlace.setText("Sekolah Dian Harapan");
 		
 
-		List<AgendaHeader> items = new ArrayList<AgendaHeader>();
-		items = fillData(items);
-
-		adapter = new AgendaViewExpandableAdapter(ctx,items);
-		adapter.setData(items);
+//		List<AgendaHeader> items = new ArrayList<AgendaHeader>();
+//		items = fillData(items);
+//
+//		adapter = new AgendaViewExpandableAdapter(ctx,items);
+//		adapter.setData(items);
+		
+		/**
+	      * get data agenda 
+	      */
+		reqListAgendaTask = new ReqListAgendaTask();
+		reqListAgendaTask.execute("");
 
 		listView = (AnimatedExpandableListView) rootView.findViewById(R.id.expandable_lv_social_list_view);
-		listView.setAdapter(adapter);
 
 		// In order to show animations, we need to use a custom click handler
 		// for our ExpandableListView.
@@ -88,207 +121,231 @@ public class MyAgendaFragment extends Fragment {
 		return rootView;
 	}
 	
-	private List<AgendaHeader> fillData(List<AgendaHeader> items) {
-		AgendaHeader item = new AgendaHeader();
-		item.setTitle("30 September 2015");
-		AgendaItems child;
-		child = new AgendaItems();
-		child.setTitle("- Science: kumpulkan PR dari halaman 30-35");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Science: Hari ini terakhir mengumpulkan Project Alam Semesta");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Inggris: Ulangan tentang Past Tense");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Indonesia: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		items.add(item);
-
-		item = new AgendaHeader();
-		item.setTitle("27 September 2015");
-		
-		child = new AgendaItems();
-		child.setTitle("- Agama: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Olahraga: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Indonesia: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Indonesia: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Indonesia: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Indonesia: Ulangan ");
-		item.getItemsDetail().add(child);
-
-		items.add(item);
-		
-		item = new AgendaHeader();
-		item.setTitle("25 September 2015");
-		
-		child = new AgendaItems();
-		child.setTitle("- Bahasa Indonesia: Ulangan ssssssssssssssssssssssssssssssssss"
-				+ "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("John Doe");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("John Doe");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("John Doe");
-		item.getItemsDetail().add(child);
-
-		child = new AgendaItems();
-		child.setTitle("John Doe");
-		item.getItemsDetail().add(child);
-
-		items.add(item);
+	private List<AgendaHeader> fillData(List<AgendaHeader> items,List<AgendaViewVO> data) {
+		for (AgendaViewVO agendaViewVO : data) {
+			AgendaHeader item = new AgendaHeader();
+			item.setTitle(agendaViewVO.getTglAgenda());
+			AgendaItems child;
+			child = new AgendaItems();
+			child.setTitle(agendaViewVO.getSubject()+" : "+agendaViewVO.getIsiAgenda());
+			item.getItemsDetail().add(child);
+			items.add(item);
+		}
 
 		return items;
 	}
 	
-//	private static class GroupItem {
-//		String title;
-//		int icon = R.string.material_icon_friends;
-//		List<ChildItem> items = new ArrayList<ChildItem>();
+//	private List<AgendaHeader> fillData(List<AgendaHeader> items) {
+//		AgendaHeader item = new AgendaHeader();
+//		item.setTitle("30 September 2015");
+//		AgendaItems child;
+//		child = new AgendaItems();
+//		child.setTitle("- Science: kumpulkan PR dari halaman 30-35");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Science: Hari ini terakhir mengumpulkan Project Alam Semesta");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Inggris: Ulangan tentang Past Tense");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Indonesia: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		items.add(item);
+//
+//		item = new AgendaHeader();
+//		item.setTitle("27 September 2015");
+//		
+//		child = new AgendaItems();
+//		child.setTitle("- Agama: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Olahraga: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Indonesia: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Indonesia: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Indonesia: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Indonesia: Ulangan ");
+//		item.getItemsDetail().add(child);
+//
+//		items.add(item);
+//		
+//		item = new AgendaHeader();
+//		item.setTitle("25 September 2015");
+//		
+//		child = new AgendaItems();
+//		child.setTitle("- Bahasa Indonesia: Ulangan ssssssssssssssssssssssssssssssssss"
+//				+ "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("John Doe");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("John Doe");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("John Doe");
+//		item.getItemsDetail().add(child);
+//
+//		child = new AgendaItems();
+//		child.setTitle("John Doe");
+//		item.getItemsDetail().add(child);
+//
+//		items.add(item);
+//
+//		return items;
 //	}
-//
-//	private static class ChildItem {
-//		String title;
-//	}
-//
-//	private static class ChildHolder {
-//		TextView title;
-//		ImageView image;
-//	}
-//
-//	private static class GroupHolder {
-//		TextView title;
-//		TextView icon;
-//	}
-//	
-//	private class ExampleAdapter extends AnimatedExpandableListAdapter {
-//		private LayoutInflater inflater;
-//
-//		private List<GroupItem> items;
-//
-//		public ExampleAdapter(Context context) {
-//			inflater = LayoutInflater.from(context);
-//		}
-//
-//		public void setData(List<GroupItem> items) {
-//			this.items = items;
-//		}
-//
-//		@Override
-//		public ChildItem getChild(int groupPosition, int childPosition) {
-//			return items.get(groupPosition).items.get(childPosition);
-//		}
-//
-//		@Override
-//		public long getChildId(int groupPosition, int childPosition) {
-//			return childPosition;
-//		}
-//
-//		@Override
-//		public View getRealChildView(int groupPosition, int childPosition,
-//				boolean isLastChild, View convertView, ViewGroup parent) {
-//			ChildHolder holder;
-//			ChildItem item = getChild(groupPosition, childPosition);
-//			if (convertView == null) {
-//				holder = new ChildHolder();
-//				convertView = inflater.inflate(
-//						R.layout.list_item_expandable_social_child, parent,
-//						false);
-//				holder.title = (TextView) convertView
-//						.findViewById(R.id.expandable_item_social_child_name);
-//				holder.image = (ImageView) convertView
-//						.findViewById(R.id.expandable_item_social_child_image);
-//				convertView.setTag(holder);
-//			} else {
-//				holder = (ChildHolder) convertView.getTag();
-//			}
-//
-//			holder.title.setText(item.title);
-//			ImageUtil.displayRoundImage(holder.image,
-//					"http://pengaja.com/uiapptemplate/newphotos/profileimages/0.jpg", null);
-//
-//			return convertView;
-//		}
-//
-//		@Override
-//		public int getRealChildrenCount(int groupPosition) {
-//			return items.get(groupPosition).items.size();
-//		}
-//
-//		@Override
-//		public GroupItem getGroup(int groupPosition) {
-//			return items.get(groupPosition);
-//		}
-//
-//		@Override
-//		public int getGroupCount() {
-//			return items.size();
-//		}
-//
-//		@Override
-//		public long getGroupId(int groupPosition) {
-//			return groupPosition;
-//		}
-//
-//		@Override
-//		public View getGroupView(int groupPosition, boolean isExpanded,
-//				View convertView, ViewGroup parent) {
-//			GroupHolder holder;
-//			GroupItem item = getGroup(groupPosition);
-//			if (convertView == null) {
-//				holder = new GroupHolder();
-//				convertView = inflater.inflate(
-//						R.layout.list_item_expandable_social, parent, false);
-//				holder.title = (TextView) convertView
-//						.findViewById(R.id.expandable_item_social_name);
-//				holder.icon = (TextView) convertView
-//						.findViewById(R.id.expandable_item_social_icon);
-//				convertView.setTag(holder);
-//			} else {
-//				holder = (GroupHolder) convertView.getTag();
-//			}
-//
-//			holder.title.setText(item.title);
-//			holder.icon.setText(item.icon);
-//
-//			return convertView;
-//		}
-//
-//		@Override
-//		public boolean hasStableIds() {
-//			return true;
-//		}
-//
-//		@Override
-//		public boolean isChildSelectable(int arg0, int arg1) {
-//			return true;
-//		}
-//	}
+	
+	public List<AgendaViewVO> constructDataAgenda(String listJson) throws JsonParseException, JsonMappingException, IOException
+    {
+		
+		RespListAgendaVO respListAgendaVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListAgendaVO.class);
+		List<AgendaViewVO> it = new ArrayList<AgendaViewVO>();
+		if(respListAgendaVO.getListAgendaVo()!=null){
+			for (AgendaVO temp : respListAgendaVO.getListAgendaVo()) {
+				AgendaViewVO item = new AgendaViewVO();
+				item.setAgendaType(temp.getAgendaType());
+				item.setIsiAgenda(temp.getIsiAgenda());
+				item.setTglAgenda(temp.getTanggalAgendaVal());
+				item.setSubject(temp.getSubject());
+//				tvTitle.setText(Constants.AGENDA+temp.getNamaKelas());
+		        it.add(item);
+			}
+		}
+		if(respListAgendaVO.getJumlahMessageUnread()>0){
+//			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
+		}else{
+//			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
+		}
+				
+		 
+        return it;
+    }
+	
+	public class ReqListAgendaTask  extends AsyncTask<String, Void, Boolean> {
+		private ProgressDialogParking progressDialog = null;
+       	private final HttpClient client = HttpClientUtil.getNewHttpClient();
+       	String respString = null;
+       	protected void onPreExecute() {
+       		progressDialog = new ProgressDialogParking(getActivity(), ctx.getResources().getString(R.string.process_agenda),
+					ctx.getResources().getString(R.string.progress_dialog),ctx.getResources().getColor(R.color.main_color_500));
+    			progressDialog.show();
+    		}
+		@Override
+		protected Boolean doInBackground(String... arg0) {
+			boolean result = false;
+           	try {
+           		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+           		ReqListAgendaData reqListAgendaData = new ReqListAgendaData();
+    			reqListAgendaData.setPassword("");
+    			reqListAgendaData.setKodeSekolah(loginData.getKodeSekolah());
+    			reqListAgendaData.setNoInduk(loginData.getNoInduk());
+    			reqListAgendaData.setOriginRequest(Constants.ORIGIN_SOURCE);
+    			reqListAgendaData.setUserType(loginData.getUserType());
+    			if(typeAgenda){
+    				reqListAgendaData.setAgendaType(Constants.OTHER_AGENDA);
+    			}else{
+    				reqListAgendaData.setAgendaType(Constants.GENERAL_AGENDA);
+    			}    				    			
+           		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqListAgendaData);
+           		s = URLEncoder.encode(s, "UTF-8");
+           		Log.d(TAG,"Request: " + s);
+                StringEntity entity = new StringEntity(s);    			
+    			HttpPost post = new HttpPost(HttpClientUtil.URL_BASE+HttpClientUtil.URL_AGENDA);
+    			post.setHeader(HttpClientUtil.CONTENT_TYPE, HttpClientUtil.JSON);
+    			post.setEntity(entity);
+    			// Execute HTTP request
+    			Log.d(TAG,"Executing request: " + post.getURI());
+                HttpResponse response = client.execute(post);
+                HttpEntity respEntity = response.getEntity();
+                respString = EntityUtils.toString(respEntity);
+    			result = true;
+    			} catch (ClientProtocolException e) {
+    				Log.e(TAG, "ClientProtocolException : "+e);
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			} catch (IOException e) {
+    				Log.e(TAG, "IOException : "+e); 
+    				respString = ctx.getResources().getString(R.string.message_no_internet_connection);
+    				cancel(true);    				
+    			} catch (Exception e) {
+    				Log.e(TAG, "Exception : "+e);  
+    				respString = ctx.getResources().getString(R.string.message_unexpected_error_message_server);
+    				cancel(true);    				
+    			}
+           	return result;
+           }
+		
+		 @Override
+	     protected void onCancelled() {
+			 if(progressDialog.isShowing()){
+				progressDialog.dismiss();
+			 }
+			 MessageUtils messageUtils = new MessageUtils(ctx);
+          	 messageUtils.snackBarMessage(getActivity(),respString);
+	     }
+		
+		 @Override
+         protected void onPostExecute(final Boolean success) {
+			 reqListAgendaTask = null;          
+             if (success) {
+	               	if(!respString.isEmpty()){
+	               		try {
+	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
+	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
+		               		if(messageVO.getRc()==0){
+		               				
+		               				data.clear();
+			               	        data.addAll(constructDataAgenda(messageVO.getOtherMessage()));
+			               	        // new interface fill data
+			               	        List<AgendaHeader> items = new ArrayList<AgendaHeader>();
+			               	        items = fillData(items,data);
+			               	        adapter = new AgendaViewExpandableAdapter(ctx,items);
+			               	        adapter.setData(items);			               	        
+			               	        listView.setAdapter(adapter);
+			               	        adapter.notifyDataSetChanged();	
+		               			
+		               			
+		               		}
+		               		else{
+		               			MessageUtils messageUtils = new MessageUtils(ctx);
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+		               		}
+
+						} catch (Exception e) {
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+						}	            
+	               	}else{
+	               	   MessageUtils messageUtils = new MessageUtils(ctx);
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	               	}
+             }else{
+          	   MessageUtils messageUtils = new MessageUtils(ctx);
+          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+             }        
+             if(progressDialog.isShowing()){
+					progressDialog.dismiss();
+				}
+         }
+	}
 }
