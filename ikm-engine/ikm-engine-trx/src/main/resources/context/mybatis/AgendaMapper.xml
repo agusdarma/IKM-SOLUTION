@@ -11,35 +11,52 @@
 	the specific language governing permissions and limitations under the License. -->
 
 <mapper namespace="com.myproject.ikm.lib.mapper.AgendaMapper">
-    <insert id="addAgenda" parameterType="Agenda">
-    	INSERT INTO agenda(subject,kode_kelas,nama_kelas,kode_sekolah,nama_sekolah,tanggal_agenda,isi_agenda,agenda_type,
-   		created_on,created_by,updated_on,updated_by) 
-   		VALUES (#{subject},#{kodeKelas}, #{namaKelas}, #{kodeSekolah}, #{namaSekolah},#{tanggalAgenda},#{isiAgenda},#{agendaType},
-   		#{createdOn}, #{createdBy},#{updatedOn},#{updatedBy})  	
-     </insert>
+	<insert id="addAgenda" parameterType="Agenda">
+		INSERT INTO
+		agenda(subject,kode_kelas,nama_kelas,kode_sekolah,nama_sekolah,tanggal_agenda,isi_agenda,agenda_type,
+		created_on,created_by,updated_on,updated_by)
+		VALUES (#{subject},#{kodeKelas}, #{namaKelas}, #{kodeSekolah},
+		#{namaSekolah},#{tanggalAgenda},#{isiAgenda},#{agendaType},
+		#{createdOn}, #{createdBy},#{updatedOn},#{updatedBy})
+	</insert>
 
 	<sql id="_sqlAgenda">
-	k.kode_kelas as kodeKelas, k.nama_kelas as
-	namaKelas,s.kode_sekolah as kodeSekolah,s.nama_sekolah as namaSekolah,
-	a.tanggal_agenda as tanggalAgenda,a.isi_agenda as isiAgenda,
-	a.created_on as createdOn,a.subject
-		
+		k.kode_kelas as kodeKelas, k.nama_kelas as namaKelas,s.kode_sekolah as kodeSekolah,
+		s.nama_sekolah as namaSekolah, DATE_FORMAT(a.tanggal_agenda, '%e %M %Y')as tanggalAgendaVal,a.isi_agenda as isiAgenda,a.subject
 	</sql>
 
-	<select id="findAgendaByUser" parameterType="java.util.Map"
-		resultType="AgendaVO">		
-		select distinct <include refid="_sqlAgenda" /> 
-		from user u 
-		inner join user_sekolah_kelas usk on u.id = usk.user_id 
+	<select id="findAgendaByUserNew" parameterType="java.util.Map"
+		resultMap="detailedAgendaResultMap">
+		select
+		<include refid="_sqlAgenda" />
+		from user u
+		inner join user_sekolah_kelas usk on u.id = usk.user_id
 		inner join sekolah s on s.id = usk.sekolah_id
-		inner join kelas k on k.id = usk.kelas_id		
-		left join agenda a on a.nama_kelas = k.nama_kelas and a.kode_sekolah = s.kode_sekolah
+		inner join kelas k on k.id =
+		usk.kelas_id
+		left join agenda a on a.nama_kelas = k.nama_kelas and a.kode_sekolah =
+		s.kode_sekolah
 		where u.user_type = #{userType}
-		and u.nomor_induk = #{noInduk} 
+		and u.nomor_induk =
+		#{noInduk}
 		and u.kode_sekolah = #{kodeSekolah}
 		and a.agenda_type = #{agendaType}
 		order by a.created_on desc limit 0,10
 	</select>
+
+	<resultMap id="detailedAgendaResultMap" type="AgendaHeaderVO">
+		<result property="tanggalAgendaVal" column="tanggalAgendaVal" />
+		<result property="kodeKelas" column="kodeKelas" />
+		<result property="namaKelas" column="namaKelas" />
+		<result property="kodeSekolah" column="kodeSekolah" />
+		<result property="namaSekolah" column="namaSekolah" />
+		<result property="agendaType" column="agendaType" />
+		<collection property="agendaDetail" ofType="AgendaDetailVO">
+			<result property="subject" column="subject" />
+			<result property="isiAgenda" column="isiAgenda" />
+		</collection>
+		
+	</resultMap>
 
 
 </mapper>

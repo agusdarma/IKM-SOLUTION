@@ -76,7 +76,7 @@ public class SmisServletTest {
 		System.out.println(pass);
 	}
 	
-	@Test
+//	@Test
 	public void testAddAgenda() {
 		String url = testingAddAgenda;
 		long startTime = System.currentTimeMillis();
@@ -301,7 +301,7 @@ public class SmisServletTest {
         }  // end try finally
 	}
 	
-//	@Test
+	@Test
 	public void testGetAgenda() {
 		String url = testingGetAgenda;
 		long startTime = System.currentTimeMillis();
@@ -314,7 +314,7 @@ public class SmisServletTest {
 			reqListAgendaData.setNoInduk("1");
 			reqListAgendaData.setOriginRequest("Android-Mobile");
 			reqListAgendaData.setUserType(Constants.PARENT);
-			reqListAgendaData.setAgendaType(Constants.OTHER_AGENDA);
+			reqListAgendaData.setAgendaType(Constants.GENERAL_AGENDA);
 			
 			String s = mapper.writeValueAsString(reqListAgendaData);
 			s = URLEncoder.encode(s, "UTF-8");
