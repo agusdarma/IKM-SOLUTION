@@ -27,14 +27,16 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.ikm.myagenda.R;
 import com.ikm.myagenda.adapter.AgendaViewExpandableAdapter;
-import com.ikm.myagenda.adapter.AgendaViewVO;
+import com.ikm.myagenda.data.AgendaDetailVO;
 import com.ikm.myagenda.data.AgendaHeader;
+import com.ikm.myagenda.data.AgendaHeaderVO;
 import com.ikm.myagenda.data.AgendaItems;
-import com.ikm.myagenda.data.AgendaVO;
 import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.data.LoginData;
 import com.ikm.myagenda.data.MessageVO;
@@ -50,13 +52,12 @@ public class MyAgendaFragment extends Fragment {
 	private static final String TAG = MyAgendaFragment.class.getSimpleName();
 	private AnimatedExpandableListView listView;
 	private AgendaViewExpandableAdapter adapter;
-//	private ReqListAgendaTask reqListAgendaTask = null;
-    private List<AgendaViewVO> data;
 	private ImageView mImage;
 	private TextView mName;
 	private TextView mPlace;
 	private Context ctx;
 	boolean typeAgenda; // false agenda true pengumuman lain
+	View rootView;
 	private ReqListAgendaTask reqListAgendaTask = null;
 
 	public static MyAgendaFragment newInstance() {
@@ -71,18 +72,19 @@ public class MyAgendaFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_myagenda_list_views,
+		rootView = inflater.inflate(R.layout.fragment_myagenda_list_views,
 				container, false);
 		ctx = this.getActivity().getBaseContext();
 		mImage = (ImageView) rootView.findViewById(R.id.expandable_lv_social_image);
 		mName = (TextView) rootView.findViewById(R.id.expandable_lv_social_name);
 		mPlace = (TextView) rootView.findViewById(R.id.expandable_lv_social_place);
 		typeAgenda = false;
-		data = new ArrayList<AgendaViewVO>();
+		final RadioGroup radioTypeAgenda = (RadioGroup) rootView.findViewById(R.id.radioTypeAgenda);
 //		ImageUtil.displayRoundImage(mImage,
 //				"http://pengaja.com/uiapptemplate/newphotos/profileimages/2.jpg", null);
-		mName.setText("Agenda Michael");
-		mPlace.setText("Sekolah Dian Harapan");
+		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+		mName.setText("Agenda "+ loginData.getNama());
+		mPlace.setText(ctx.getResources().getString(R.string.school_name));
 		
 
 //		List<AgendaHeader> items = new ArrayList<AgendaHeader>();
@@ -118,20 +120,42 @@ public class MyAgendaFragment extends Fragment {
 			}
 		});
 		
+		radioTypeAgenda.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+		{
+		    public void onCheckedChanged(RadioGroup rGroup, int checkedId)
+		    {
+		    	// get selected radio button from radioGroup
+				int selectedId = radioTypeAgenda.getCheckedRadioButtonId();
+				// find the radiobutton by returned id
+				RadioButton radioSelected = (RadioButton) rootView.findViewById(selectedId);
+				if(String.valueOf(radioSelected.getText()).equalsIgnoreCase(ctx.getResources().getString(R.string.type_pengumuman))){
+					typeAgenda = true;
+				}else{
+					typeAgenda = false;
+				}
+				/**
+			      * get data agenda 
+			      */
+				reqListAgendaTask = new ReqListAgendaTask();
+				reqListAgendaTask.execute("");
+		    }
+		});
+		
 		return rootView;
 	}
 	
-	private List<AgendaHeader> fillData(List<AgendaHeader> items,List<AgendaViewVO> data) {
-		for (AgendaViewVO agendaViewVO : data) {
+	private List<AgendaHeader> fillDataInterface(List<AgendaHeader> items,RespListAgendaVO respListAgendaVO) {
+		
+		for (AgendaHeaderVO headerVO : respListAgendaVO.getListAgendaHeaderVO()) {
 			AgendaHeader item = new AgendaHeader();
-			item.setTitle(agendaViewVO.getTglAgenda());
-			AgendaItems child;
-			child = new AgendaItems();
-			child.setTitle(agendaViewVO.getSubject()+" : "+agendaViewVO.getIsiAgenda());
-			item.getItemsDetail().add(child);
+			item.setTitle(headerVO.getTanggalAgendaVal());
+				for (AgendaDetailVO agendaDetailVO : headerVO.getAgendaDetail()) {
+					AgendaItems child = new AgendaItems();					
+					child.setTitle(agendaDetailVO.getSubject()+" : "+agendaDetailVO.getIsiAgenda());
+					item.getItemsDetail().add(child);					
+				}
 			items.add(item);
-		}
-
+		}		
 		return items;
 	}
 	
@@ -215,30 +239,30 @@ public class MyAgendaFragment extends Fragment {
 //		return items;
 //	}
 	
-	public List<AgendaViewVO> constructDataAgenda(String listJson) throws JsonParseException, JsonMappingException, IOException
+	public RespListAgendaVO constructDataAgendaFromEngine(String listJson) throws JsonParseException, JsonMappingException, IOException
     {
 		
 		RespListAgendaVO respListAgendaVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListAgendaVO.class);
-		List<AgendaViewVO> it = new ArrayList<AgendaViewVO>();
-		if(respListAgendaVO.getListAgendaVo()!=null){
-			for (AgendaVO temp : respListAgendaVO.getListAgendaVo()) {
-				AgendaViewVO item = new AgendaViewVO();
-				item.setAgendaType(temp.getAgendaType());
-				item.setIsiAgenda(temp.getIsiAgenda());
-				item.setTglAgenda(temp.getTanggalAgendaVal());
-				item.setSubject(temp.getSubject());
-//				tvTitle.setText(Constants.AGENDA+temp.getNamaKelas());
-		        it.add(item);
-			}
-		}
-		if(respListAgendaVO.getJumlahMessageUnread()>0){
-//			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
-		}else{
-//			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
-		}
+//		List<AgendaViewVO> it = new ArrayList<AgendaViewVO>();
+//		if(respListAgendaVO.getListAgendaVo()!=null){
+//			for (AgendaVO temp : respListAgendaVO.getListAgendaVo()) {
+//				AgendaViewVO item = new AgendaViewVO();
+//				item.setAgendaType(temp.getAgendaType());
+//				item.setIsiAgenda(temp.getIsiAgenda());
+//				item.setTglAgenda(temp.getTanggalAgendaVal());
+//				item.setSubject(temp.getSubject());
+////				tvTitle.setText(Constants.AGENDA+temp.getNamaKelas());
+//		        it.add(item);
+//			}
+//		}
+//		if(respListAgendaVO.getJumlahMessageUnread()>0){
+////			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
+//		}else{
+////			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
+//		}
 				
 		 
-        return it;
+        return respListAgendaVO;
     }
 	
 	public class ReqListAgendaTask  extends AsyncTask<String, Void, Boolean> {
@@ -256,7 +280,7 @@ public class MyAgendaFragment extends Fragment {
            	try {
            		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
            		ReqListAgendaData reqListAgendaData = new ReqListAgendaData();
-    			reqListAgendaData.setPassword("");
+    			reqListAgendaData.setPassword(loginData.getPassword());
     			reqListAgendaData.setKodeSekolah(loginData.getKodeSekolah());
     			reqListAgendaData.setNoInduk(loginData.getNoInduk());
     			reqListAgendaData.setOriginRequest(Constants.ORIGIN_SOURCE);
@@ -313,18 +337,16 @@ public class MyAgendaFragment extends Fragment {
 	               			String respons = URLDecoder.decode(respString, "UTF-8");	               	
 	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
 		               		if(messageVO.getRc()==0){
-		               				
-		               				data.clear();
-			               	        data.addAll(constructDataAgenda(messageVO.getOtherMessage()));
+		               				RespListAgendaVO respListAgendaVO = constructDataAgendaFromEngine(messageVO.getOtherMessage());			               	        
 			               	        // new interface fill data
 			               	        List<AgendaHeader> items = new ArrayList<AgendaHeader>();
-			               	        items = fillData(items,data);
+			               	        if(respListAgendaVO.getListAgendaHeaderVO()!=null){
+			               	        	items = fillDataInterface(items,respListAgendaVO);
+			               	        }			               	        
 			               	        adapter = new AgendaViewExpandableAdapter(ctx,items);
 			               	        adapter.setData(items);			               	        
 			               	        listView.setAdapter(adapter);
-			               	        adapter.notifyDataSetChanged();	
-		               			
-		               			
+			               	        adapter.notifyDataSetChanged();			               					               			
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);

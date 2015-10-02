@@ -5,7 +5,7 @@ import java.util.List;
 public class RespListAgendaVO extends LoginData implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private List<AgendaVO> listAgendaVo;
+	private List<AgendaHeaderVO> listAgendaHeaderVO;
 	private int jumlahMessageUnread;
 
 	
@@ -18,12 +18,12 @@ public class RespListAgendaVO extends LoginData implements java.io.Serializable 
 		this.jumlahMessageUnread = jumlahMessageUnread;
 	}
 
-	public List<AgendaVO> getListAgendaVo() {
-		return listAgendaVo;
+	public List<AgendaHeaderVO> getListAgendaHeaderVO() {
+		return listAgendaHeaderVO;
 	}
 
-	public void setListAgendaVo(List<AgendaVO> listAgendaVo) {
-		this.listAgendaVo = listAgendaVo;
+	public void setListAgendaHeaderVO(List<AgendaHeaderVO> listAgendaHeaderVO) {
+		this.listAgendaHeaderVO = listAgendaHeaderVO;
 	}
 
 }

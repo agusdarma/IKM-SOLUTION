@@ -7,6 +7,10 @@
     <string name="no_induk">No Induk</string>
     <string name="login_parent">Parent</string>
     <string name="login_teacher">Teacher</string>
+    <string name="type_agenda">Agenda</string>
+    <string name="type_pengumuman">Pengumuman Lain</string>
+    <string name="school_name">Sekolah Dian Harapan</string>
+    
     
     <!-- Progress Dialog -->
     <string name="progress_dialog">Please wait a moment..</string>
