@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.ikm.lib.data.AgendaVO;
 import com.myproject.ikm.lib.data.InboxVO;
 import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.data.ReqSendMessageData;

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.ikm.lib.data.AgendaVO;
+import com.myproject.ikm.lib.data.AgendaHeaderVO;
 import com.myproject.ikm.lib.data.ReqAddAgendaData;
 import com.myproject.ikm.lib.data.ReqListAgendaData;
 import com.myproject.ikm.lib.data.RespListAgendaVO;
@@ -74,13 +74,11 @@ public class AgendaService {
 		/**
 		 * Get data agenda
 		 */
-		List<AgendaVO> listAgendaVo = agendaMapper.findAgendaByUser(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType());
-		for (AgendaVO agendaVO : listAgendaVo) {
-			agendaVO.setTanggalAgendaVal(CommonUtil.displayDateTime(agendaVO.getTanggalAgenda()));
-			agendaVO.setCreatedOnVal(CommonUtil.displayDateTime(agendaVO.getCreatedOn()));
-		}
-		if(listAgendaVo.size()>0){
-			respListAgendaVO.setListAgendaVo(listAgendaVo);
+//		List<AgendaVO> listAgendaVo = agendaMapper.findAgendaByUser(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType());
+		List<AgendaHeaderVO> agendaHeaderVO = agendaMapper.findAgendaByUserNew(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType());
+
+		if(agendaHeaderVO.size()>0){
+			respListAgendaVO.setListAgendaHeaderVO(agendaHeaderVO);
 		}
 		
 		/**

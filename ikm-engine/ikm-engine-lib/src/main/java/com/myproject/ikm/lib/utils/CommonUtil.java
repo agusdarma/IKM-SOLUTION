@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 public class CommonUtil {
 	
 	private static SimpleDateFormat sdfDateTime = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+	private static SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MMM-yyyy");
 	private static SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
 	private static NumberFormat nfNoDecimal = new DecimalFormat("#,##0");
 	private static NumberFormat nfPlain = new DecimalFormat("###0");
@@ -112,6 +113,9 @@ public class CommonUtil {
 	}
 	public static String displayDateTime(Date dateTime) {
 		return sdfDateTime.format(dateTime);
+	}
+	public static String displayDate(Date dateTime) {
+		return sdfDate.format(dateTime);
 	}
 	public static String displayNumberNoDecimal(double number) {
 		return nfNoDecimal.format(number);
