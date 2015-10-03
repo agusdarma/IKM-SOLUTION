@@ -162,7 +162,7 @@
                     android:id="@+id/btnSave"
                     style="@style/ButtonStyle.RaisedEmpty"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="0dp"
                     android:background="@drawable/login_travel_selector_button"
                     android:minWidth="96dp"
