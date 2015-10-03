@@ -41,6 +41,9 @@
 		#{noInduk}
 		and u.kode_sekolah = #{kodeSekolah}
 		and a.agenda_type = #{agendaType}
+		<if test="userType != null and userType == 1">
+    		AND a.created_by = #{userId}
+ 	 	</if>
 		order by a.created_on desc limit 0,10
 	</select>
 
