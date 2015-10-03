@@ -11,7 +11,7 @@ public interface AgendaMapper {
 
 	
 	public List<AgendaHeaderVO> findAgendaByUserNew(@Param("kodeSekolah") String kodeSekolah,
-			@Param("noInduk") String noInduk,@Param("userType") int userType,@Param("agendaType") int agendaType);
+			@Param("noInduk") String noInduk,@Param("userType") int userType,@Param("agendaType") int agendaType,@Param("userId") int userId);
 
 
 	public void addAgenda(Agenda agenda);

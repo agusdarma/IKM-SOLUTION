@@ -87,15 +87,6 @@ public class KelasService {
 		}
 		
 		/**
-		 * check apakah guru ini wali kelas apa bukan
-		 */
-		respListKelasVO.setWaliKelas(false);
-		List<Kelas> waliKelas = userDataMapper.checkIsWaliKelas(user.getId());
-		if(waliKelas.size()>0){
-			respListKelasVO.setWaliKelas(true);
-		}
-		
-		/**
 		 * Get data message yang belum dibaca, count saja
 		 */
 		respListKelasVO.setJumlahMessageUnread(inboxMapper.countResponInboxUnReadByUser(user.getId()));

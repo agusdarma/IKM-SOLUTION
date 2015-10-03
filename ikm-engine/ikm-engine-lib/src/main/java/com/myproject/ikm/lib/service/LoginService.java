@@ -1,5 +1,7 @@
 package com.myproject.ikm.lib.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.myproject.ikm.lib.data.LoginData;
 import com.myproject.ikm.lib.data.RespLoginVO;
+import com.myproject.ikm.lib.entity.Kelas;
 import com.myproject.ikm.lib.entity.User;
+import com.myproject.ikm.lib.mapper.InboxMapper;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
 import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.Constants;
@@ -22,7 +26,8 @@ public class LoginService {
 	@Autowired
 	private AppsTimeService timeService;
 	
-	
+	@Autowired
+	private InboxMapper inboxMapper;
 	
 	public RespLoginVO login(LoginData loginData) throws IkmEngineException {
 		LOG.debug("login with param : " + " loginData: " + loginData );	
@@ -55,6 +60,21 @@ public class LoginService {
 		respLoginVO.setPassword(loginData.getPassword());
 		respLoginVO.setOriginRequest(loginData.getOriginRequest());
 		respLoginVO.setUserType(user.getUserType());	
+		
+		/**
+		 * Get data message yang belum dibaca, count saja
+		 */
+		respLoginVO.setJumlahMessageUnread(inboxMapper.countResponInboxUnReadByUser(user.getId()));
+		
+		/**
+		 * check apakah guru ini wali kelas apa bukan
+		 */
+		respLoginVO.setWaliKelas(false);
+		List<Kelas> waliKelas = userDataMapper.checkIsWaliKelas(user.getId());
+		if(waliKelas.size()>0){
+			respLoginVO.setWaliKelas(true);
+		}
+		
 		LOG.info("login done with param : " + " respLoginVO: " + respLoginVO);
 		return respLoginVO;		
 	}

@@ -75,7 +75,8 @@ public class AgendaService {
 		 * Get data agenda
 		 */
 //		List<AgendaVO> listAgendaVo = agendaMapper.findAgendaByUser(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType());
-		List<AgendaHeaderVO> agendaHeaderVO = agendaMapper.findAgendaByUserNew(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType());
+		List<AgendaHeaderVO> agendaHeaderVO = agendaMapper.findAgendaByUserNew(reqListAgendaData.getKodeSekolah()
+				, reqListAgendaData.getNoInduk(), reqListAgendaData.getUserType(), reqListAgendaData.getAgendaType(),user.getId());
 
 		if(agendaHeaderVO.size()>0){
 			respListAgendaVO.setListAgendaHeaderVO(agendaHeaderVO);
@@ -119,8 +120,8 @@ public class AgendaService {
 		Agenda agenda = new Agenda();
 		agenda.setCreatedOn(calendarNow.getTime());
 		agenda.setUpdatedOn(calendarNow.getTime());
-		agenda.setCreatedBy("SYS");
-		agenda.setUpdatedBy("SYS");
+		agenda.setCreatedBy(Integer.toString(user.getId()));
+		agenda.setUpdatedBy(Integer.toString(user.getId()));
 		agenda.setKodeKelas(reqAddAgendaData.getKodeKelas());
 		agenda.setNamaKelas(reqAddAgendaData.getNamaKelas());
 		agenda.setKodeSekolah(user.getKodeSekolah());
