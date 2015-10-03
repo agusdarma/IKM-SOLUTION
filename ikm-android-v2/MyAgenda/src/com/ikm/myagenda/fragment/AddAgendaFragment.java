@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -67,6 +68,7 @@ public class AddAgendaFragment extends Fragment {
 	private MaterialCalendarView calendarView;
 	private FloatLabeledEditText isiAgenda;
 	private TextView btnSave;	
+	private String type;
 
 	public static AddAgendaFragment newInstance() {
 		return new AddAgendaFragment();
@@ -92,6 +94,7 @@ public class AddAgendaFragment extends Fragment {
 		mName.setText("Agenda "+ loginData.getNama());
 		mPlace.setText(ctx.getResources().getString(R.string.school_name));
 		calendarView = (MaterialCalendarView) rootView.findViewById(R.id.calendarView);
+		calendarView.setMinimumDate(new Date());
 		isiAgenda = (FloatLabeledEditText) rootView.findViewById(R.id.isiAgenda);
 		btnSave = (TextView) rootView.findViewById(R.id.btnSave);
 		
@@ -99,25 +102,46 @@ public class AddAgendaFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				if (!isiAgenda.getText().toString().isEmpty()
-						&& spinner1.getAdapter()!=null && spinner1.getSelectedItem()!=null && calendarView.getSelectedDate()!=null
-						&& spinJenisAgenda.getAdapter()!=null && spinJenisAgenda.getSelectedItem()!=null
-						&& spinSubject.getAdapter()!=null && spinSubject.getSelectedItem()!=null) {
-					if(spinner1.getSelectedItem().toString().equalsIgnoreCase("Kelas")||
-							spinJenisAgenda.getSelectedItem().toString().equalsIgnoreCase("Jenis Agenda")||
-							spinSubject.getSelectedItem().toString().equalsIgnoreCase("Subject")){
+				if("Agenda".equals(type)){
+					if (!isiAgenda.getText().toString().isEmpty()
+							&& spinner1.getAdapter()!=null && spinner1.getSelectedItem()!=null && calendarView.getSelectedDate()!=null
+							&& spinJenisAgenda.getAdapter()!=null && spinJenisAgenda.getSelectedItem()!=null
+							&& spinSubject.getAdapter()!=null && spinSubject.getSelectedItem()!=null) {
+						if(spinner1.getSelectedItem().toString().equalsIgnoreCase("Kelas")||
+								spinJenisAgenda.getSelectedItem().toString().equalsIgnoreCase("Jenis Agenda")||
+								spinSubject.getSelectedItem().toString().equalsIgnoreCase("Subject")){
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+						}else{
+							// add agenda
+							reqAddAgendaTask = new ReqAddAgendaTask();
+							reqAddAgendaTask.execute("");
+						}
+															
+					} else {
 						MessageUtils messageUtils = new MessageUtils(ctx);
 		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
-					}else{
-						// add agenda
-						reqAddAgendaTask = new ReqAddAgendaTask();
-						reqAddAgendaTask.execute("");
 					}
-														
-				} else {
-					MessageUtils messageUtils = new MessageUtils(ctx);
-	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
-				}					
+				}else{
+					if (!isiAgenda.getText().toString().isEmpty()
+							&& spinner1.getAdapter()!=null && spinner1.getSelectedItem()!=null && calendarView.getSelectedDate()!=null
+							&& spinJenisAgenda.getAdapter()!=null && spinJenisAgenda.getSelectedItem()!=null) {
+						if(spinner1.getSelectedItem().toString().equalsIgnoreCase("Kelas")||
+								spinJenisAgenda.getSelectedItem().toString().equalsIgnoreCase("Jenis Agenda")){
+							MessageUtils messageUtils = new MessageUtils(ctx);
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+						}else{
+							// add agenda
+							reqAddAgendaTask = new ReqAddAgendaTask();
+							reqAddAgendaTask.execute("");
+						}
+															
+					} else {
+						MessageUtils messageUtils = new MessageUtils(ctx);
+		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+					}
+				}
+									
 			}
 		});
 		// get data kelas
@@ -140,13 +164,18 @@ public class AddAgendaFragment extends Fragment {
 
 			@Override
 			public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-				String selected = parentView.getItemAtPosition(position).toString();
+				if(parentView.getItemAtPosition(parentView.getSelectedItemPosition())!=null){
+					String selected = parentView.getItemAtPosition(parentView.getSelectedItemPosition()).toString();
 
-		        if("Pengumuman Lain".equals(selected)){
-		        	spinSubject.setVisibility(View.GONE);
-		        }else {
-		        	spinSubject.setVisibility(View.VISIBLE);
-		        }				
+			        if("Pengumuman Lain".equals(selected)){
+			        	spinSubject.setVisibility(View.GONE);
+			        	spinSubject.setSelection(0);
+			        	type = "Pengumuman Lain";
+			        }else {
+			        	spinSubject.setVisibility(View.VISIBLE);
+			        	type = "Agenda";
+			        }
+				}								
 			}
 
 			@Override
@@ -191,7 +220,7 @@ public class AddAgendaFragment extends Fragment {
            		reqAddAgendaData.setNoInduk(loginData.getNoInduk());
            		reqAddAgendaData.setOriginRequest(Constants.ORIGIN_SOURCE);
            		reqAddAgendaData.setUserType(loginData.getUserType());
-           		
+           		reqAddAgendaData.setId(loginData.getId());
            		if("Pengumuman Lain".equalsIgnoreCase(spinJenisAgenda.getSelectedItem().toString())){
            			reqAddAgendaData.setAgendaType(Constants.OTHER_AGENDA);
            		}else{
@@ -201,7 +230,12 @@ public class AddAgendaFragment extends Fragment {
     			reqAddAgendaData.setIsiAgenda(isiAgenda.getText().toString());
     			reqAddAgendaData.setKodeKelas(spinner1.getSelectedItem().toString());
     			reqAddAgendaData.setNamaKelas(spinner1.getSelectedItem().toString());
-    			reqAddAgendaData.setSubject(spinSubject.getSelectedItem().toString());
+    			if("Agenda".equals(type)){
+    				reqAddAgendaData.setSubject(spinSubject.getSelectedItem().toString());
+    			}else{
+    				reqAddAgendaData.setSubject("");
+    			}
+    			
     			reqAddAgendaData.setNamaSekolah(mPlace.getText().toString());
     			reqAddAgendaData.setKodeSekolah(loginData.getKodeSekolah());
     			reqAddAgendaData.setTanggalAgenda(calendarView.getSelectedDate().getDate());
@@ -304,6 +338,7 @@ public class AddAgendaFragment extends Fragment {
     			reqListKelasData.setNoInduk(loginData.getNoInduk());
     			reqListKelasData.setOriginRequest(Constants.ORIGIN_SOURCE);
     			reqListKelasData.setUserType(loginData.getUserType());
+    			reqListKelasData.setId(loginData.getId());
            		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqListKelasData);
            		s = URLEncoder.encode(s, "UTF-8");
            		Log.d(TAG,"Request: " + s);

@@ -151,7 +151,12 @@ public class MyAgendaFragment extends Fragment {
 			item.setTitle(headerVO.getTanggalAgendaVal());
 				for (AgendaDetailVO agendaDetailVO : headerVO.getAgendaDetail()) {
 					AgendaItems child = new AgendaItems();					
-					child.setTitle(agendaDetailVO.getSubject()+" : "+agendaDetailVO.getIsiAgenda());
+					if(agendaDetailVO.getSubject().isEmpty()){
+						child.setTitle("Pengumuman Lain : "+agendaDetailVO.getIsiAgenda());
+					}else{
+						child.setTitle(agendaDetailVO.getSubject()+" : "+agendaDetailVO.getIsiAgenda());
+					}
+					
 					item.getItemsDetail().add(child);					
 				}
 			items.add(item);
@@ -159,109 +164,13 @@ public class MyAgendaFragment extends Fragment {
 		return items;
 	}
 	
-//	private List<AgendaHeader> fillData(List<AgendaHeader> items) {
-//		AgendaHeader item = new AgendaHeader();
-//		item.setTitle("30 September 2015");
-//		AgendaItems child;
-//		child = new AgendaItems();
-//		child.setTitle("- Science: kumpulkan PR dari halaman 30-35");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Science: Hari ini terakhir mengumpulkan Project Alam Semesta");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Inggris: Ulangan tentang Past Tense");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Indonesia: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		items.add(item);
-//
-//		item = new AgendaHeader();
-//		item.setTitle("27 September 2015");
-//		
-//		child = new AgendaItems();
-//		child.setTitle("- Agama: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Olahraga: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Indonesia: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Indonesia: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Indonesia: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Indonesia: Ulangan ");
-//		item.getItemsDetail().add(child);
-//
-//		items.add(item);
-//		
-//		item = new AgendaHeader();
-//		item.setTitle("25 September 2015");
-//		
-//		child = new AgendaItems();
-//		child.setTitle("- Bahasa Indonesia: Ulangan ssssssssssssssssssssssssssssssssss"
-//				+ "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("John Doe");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("John Doe");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("John Doe");
-//		item.getItemsDetail().add(child);
-//
-//		child = new AgendaItems();
-//		child.setTitle("John Doe");
-//		item.getItemsDetail().add(child);
-//
-//		items.add(item);
-//
-//		return items;
-//	}
-	
 	public RespListAgendaVO constructDataAgendaFromEngine(String listJson) throws JsonParseException, JsonMappingException, IOException
     {
 		
 		RespListAgendaVO respListAgendaVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListAgendaVO.class);
-//		List<AgendaViewVO> it = new ArrayList<AgendaViewVO>();
-//		if(respListAgendaVO.getListAgendaVo()!=null){
-//			for (AgendaVO temp : respListAgendaVO.getListAgendaVo()) {
-//				AgendaViewVO item = new AgendaViewVO();
-//				item.setAgendaType(temp.getAgendaType());
-//				item.setIsiAgenda(temp.getIsiAgenda());
-//				item.setTglAgenda(temp.getTanggalAgendaVal());
-//				item.setSubject(temp.getSubject());
-////				tvTitle.setText(Constants.AGENDA+temp.getNamaKelas());
-//		        it.add(item);
-//			}
-//		}
-//		if(respListAgendaVO.getJumlahMessageUnread()>0){
-////			btnInbox.setText(respListAgendaVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
-//		}else{
-////			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
-//		}
-				
-		 
+						 
+		SharedPreferencesUtils.saveNumberNotification(respListAgendaVO.getJumlahMessageUnread(), ctx);
+		
         return respListAgendaVO;
     }
 	
@@ -285,6 +194,7 @@ public class MyAgendaFragment extends Fragment {
     			reqListAgendaData.setNoInduk(loginData.getNoInduk());
     			reqListAgendaData.setOriginRequest(Constants.ORIGIN_SOURCE);
     			reqListAgendaData.setUserType(loginData.getUserType());
+    			reqListAgendaData.setId(loginData.getId());
     			if(typeAgenda){
     				reqListAgendaData.setAgendaType(Constants.OTHER_AGENDA);
     			}else{

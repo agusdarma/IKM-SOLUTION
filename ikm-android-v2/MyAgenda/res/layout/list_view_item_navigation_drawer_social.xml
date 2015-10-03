@@ -103,8 +103,7 @@
                 android:paddingTop="3dp"
                 android:text="8"
                 android:textColor="@color/main_color_500"
-                android:textSize="12sp"
-                android:visibility="gone"
+                android:textSize="12sp"                
                 app:typeface="robotoBold" />
         </LinearLayout>
 

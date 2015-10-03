@@ -13,6 +13,10 @@ public class Constants {
 	public static final String PARENTS				= "parents";
 	public static final String AGENDA				= "Agenda ";
 	
+	public static final String MENU_MY_AGENDA				= "My Agenda";
+	public static final String MENU_ADD_AGENDA				= "Tambah Agenda";
+	public static final String MENU_INBOX					= "Inbox";
+	
 	public static final int TEACHER_KEY				= 1;
 	public static final int PARENTS_KEY				= 2;
 	
@@ -21,7 +25,8 @@ public class Constants {
 	
 	public static final String PARKING_PREFERENCE = "PARKING_PREFERENCE";
 	public static final String LOGIN_DATA_PREF 	  = "LoginDataPref";
-	public static final String SETTING_DATA_PREF 	  = "SettingDataPref";
+	public static final String NUMBER_NOTIFICATION_DATA_PREF 	  = "NumberNotifDataPref";
+	public static final String WALI_KELAS_DATA_PREF 	  = "WaliKelasDataPref";
 	public static final int SHOW_TIPS				= 3; // 3 kali
 	public static final int SESSION_EXPIRED				= 11; // SESSION EXPIRED
 	public static final int USER_NOT_LOGIN				= 17; // USER NOT LOGIN

@@ -50,7 +50,7 @@
                     app:typeface="robotoLight" />
 
                 <com.ikm.myagenda.font.RobotoTextView
-                    android:id="@+id/level"
+                    android:id="@+id/school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Newbie"
@@ -76,6 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 

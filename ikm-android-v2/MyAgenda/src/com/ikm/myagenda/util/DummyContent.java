@@ -952,16 +952,16 @@ public class DummyContent {
 	
 	public static ArrayList<DummyModel> getParentMenuList() {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_agenda));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_inbox));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", Constants.MENU_MY_AGENDA, R.string.material_icon_agenda));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", Constants.MENU_INBOX, R.string.material_icon_inbox));
 		return list;
 	}
 	
 	public static ArrayList<DummyModel> getTeacherMenuList() {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", "My Agenda", R.string.material_icon_agenda));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_ADD_AGENDA, "", "Tambah Agenda", R.string.material_icon_agenda_plus));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", "Inbox", R.string.material_icon_inbox));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", Constants.MENU_MY_AGENDA, R.string.material_icon_agenda));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_ADD_AGENDA, "", Constants.MENU_ADD_AGENDA, R.string.material_icon_agenda_plus));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", Constants.MENU_INBOX, R.string.material_icon_inbox));
 		return list;
 	}
 	

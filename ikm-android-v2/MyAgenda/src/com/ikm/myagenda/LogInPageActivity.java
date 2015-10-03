@@ -198,6 +198,8 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 		               		if(messageVO.getRc()==0){
 		               			SharedPreferencesUtils.saveLoginData(messageVO.getOtherMessage(), ctx);
 		               			LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+		               			SharedPreferencesUtils.saveNumberNotification(loginData.getJumlahMessageUnread(), ctx);
+		               			SharedPreferencesUtils.saveUserWaliKelas(loginData.isWaliKelas(), ctx);
 		               			Intent i = null;
 		               			i = new Intent(ctx, LeftMenusSocialActivity.class);
 		               			if(Constants.PARENTS_KEY==loginData.getUserType()){

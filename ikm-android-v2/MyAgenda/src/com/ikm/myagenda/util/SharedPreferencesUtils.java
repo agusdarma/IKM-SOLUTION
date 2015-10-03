@@ -28,10 +28,28 @@ public class SharedPreferencesUtils {
 		editor.commit();
     }
 	
-	public static void saveSettingData(String settingDataJson,Context ctx,String email){    	
+	public static void saveNumberNotification(int numberNotification,Context ctx){    	
 		SharedPreferences.Editor editor = getPreferences(ctx).edit();
-		editor.putString(Constants.SETTING_DATA_PREF+email, settingDataJson);
+		editor.putInt(Constants.NUMBER_NOTIFICATION_DATA_PREF, numberNotification);
 		editor.commit();
+    }
+	
+	public static void saveUserWaliKelas(Boolean isWaliKelas,Context ctx){    	
+		SharedPreferences.Editor editor = getPreferences(ctx).edit();
+		editor.putBoolean(Constants.WALI_KELAS_DATA_PREF, isWaliKelas);
+		editor.commit();
+    }
+	
+	public static boolean getUserWaliKelas(Context ctx){
+		boolean isWaliKelas = false;
+		isWaliKelas = getPreferences(ctx).getBoolean(Constants.WALI_KELAS_DATA_PREF, false);
+		return isWaliKelas;
+    }
+	
+	public static int getNumberNotification(Context ctx){
+		int notif = 0;
+		notif = getPreferences(ctx).getInt(Constants.NUMBER_NOTIFICATION_DATA_PREF, 0);
+		return notif;
     }
 	
 	public static LoginData getLoginData(Context ctx) {

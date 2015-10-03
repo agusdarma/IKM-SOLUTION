@@ -22,6 +22,8 @@ import android.widget.ListView;
 
 import com.ikm.myagenda.adapter.DrawerMenuAdapter;
 import com.ikm.myagenda.data.Constants;
+import com.ikm.myagenda.data.LoginData;
+import com.ikm.myagenda.font.RobotoTextView;
 import com.ikm.myagenda.fragment.AddAgendaFragment;
 import com.ikm.myagenda.fragment.HomeFragment;
 import com.ikm.myagenda.fragment.ListViewsFragment;
@@ -31,6 +33,7 @@ import com.ikm.myagenda.model.DummyModel;
 import com.ikm.myagenda.util.ImageUtil;
 import com.ikm.myagenda.util.MessageUtils;
 import com.ikm.myagenda.util.RedirectUtils;
+import com.ikm.myagenda.util.SharedPreferencesUtils;
 
 public class LeftMenusSocialActivity extends ActionBarActivity {
 
@@ -44,12 +47,13 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 	private Handler mHandler;
 	private boolean mShouldFinish = false;
 	private Context ctx;
+	String tipeLogin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		ctx = LeftMenusSocialActivity.this;
-		String tipeLogin = Constants.PARENTS;
+		tipeLogin = Constants.PARENTS;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null && extras.containsKey(Constants.KEY_LOGIN)) {
 			tipeLogin = extras.getString(Constants.KEY_LOGIN, Constants.PARENTS);
@@ -70,13 +74,18 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		View headerView = getLayoutInflater().inflate(
 				R.layout.header_navigation_drawer_social, mDrawerList, false);
 
-		ImageView iv = (ImageView) headerView.findViewById(R.id.image);
+//		ImageView iv = (ImageView) headerView.findViewById(R.id.image);
 //		ImageUtil.displayRoundImage(iv,
 //				"http://pengaja.com/uiapptemplate/newphotos/profileimages/0.jpg", null);
 //		iv.setImageResource(R.drawable.cancel_red);
-		ImageUtil.displayRoundImage(iv,"drawable://" + R.drawable.profile, null);
+//		ImageUtil.displayRoundImage(iv,"drawable://" + R.drawable.profile, null);
 		
-
+		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);		
+		RobotoTextView name = (RobotoTextView) headerView.findViewById(R.id.name);
+		RobotoTextView school = (RobotoTextView) headerView.findViewById(R.id.school);
+		name.setText(loginData.getNama());
+		school.setText(ctx.getResources().getString(R.string.school_name));
+		
 		mDrawerList.addHeaderView(headerView);// Add header before adapter (for
 												// pre-KitKat)
 		mDrawerAdapter = new DrawerMenuAdapter(ctx,tipeLogin);
@@ -107,7 +116,7 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		if (savedInstanceState == null) {
 			int position = 1;
 			selectItem(position,((DummyModel) mDrawerAdapter.getItem(position)).getId());
-			mDrawerLayout.openDrawer(mDrawerList);
+//			mDrawerLayout.openDrawer(mDrawerList);
 		}
 		
 		
@@ -182,7 +191,16 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_ADD_AGENDA) {
 			fragment = AddAgendaFragment.newInstance();
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_INBOX) {
-			fragment = MyAgendaFragment.newInstance();
+			if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){
+				if(SharedPreferencesUtils.getUserWaliKelas(ctx)){
+					fragment = MyAgendaFragment.newInstance();
+				}else{
+					MessageUtils messageUtils = new MessageUtils(ctx);
+		         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.message_user_cannot_access_this_menu));
+				}
+			}else{
+				fragment = MyAgendaFragment.newInstance();
+			}
 		} else {
 			fragment = new Fragment();
 		}

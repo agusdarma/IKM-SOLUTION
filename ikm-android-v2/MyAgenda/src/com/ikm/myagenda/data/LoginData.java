@@ -11,6 +11,9 @@ public class LoginData implements java.io.Serializable {
 	private int statusUser;
 	private String password;
 	private String originRequest;
+	private int jumlahMessageUnread;
+	private boolean isWaliKelas;
+	
 
 	public String getKodeSekolah() {
 		return kodeSekolah;
@@ -74,6 +77,22 @@ public class LoginData implements java.io.Serializable {
 
 	public void setStatusUser(int statusUser) {
 		this.statusUser = statusUser;
+	}
+
+	public int getJumlahMessageUnread() {
+		return jumlahMessageUnread;
+	}
+
+	public void setJumlahMessageUnread(int jumlahMessageUnread) {
+		this.jumlahMessageUnread = jumlahMessageUnread;
+	}
+
+	public boolean isWaliKelas() {
+		return isWaliKelas;
+	}
+
+	public void setWaliKelas(boolean isWaliKelas) {
+		this.isWaliKelas = isWaliKelas;
 	}
 
 }
