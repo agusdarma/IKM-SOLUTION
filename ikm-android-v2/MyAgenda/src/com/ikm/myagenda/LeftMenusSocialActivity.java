@@ -28,6 +28,7 @@ import com.ikm.myagenda.fragment.AddAgendaFragment;
 import com.ikm.myagenda.fragment.HomeFragment;
 import com.ikm.myagenda.fragment.ListViewsFragment;
 import com.ikm.myagenda.fragment.MyAgendaFragment;
+import com.ikm.myagenda.fragment.MyInboxFragment;
 import com.ikm.myagenda.fragment.ParallaxEffectsFragment;
 import com.ikm.myagenda.model.DummyModel;
 import com.ikm.myagenda.util.ImageUtil;
@@ -193,13 +194,13 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_INBOX) {
 			if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){
 				if(SharedPreferencesUtils.getUserWaliKelas(ctx)){
-					fragment = MyAgendaFragment.newInstance();
+					fragment = MyInboxFragment.newInstance();
 				}else{
 					MessageUtils messageUtils = new MessageUtils(ctx);
 		         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.message_user_cannot_access_this_menu));
 				}
 			}else{
-				fragment = MyAgendaFragment.newInstance();
+				fragment = MyInboxFragment.newInstance();
 			}
 		} else {
 			fragment = new Fragment();
