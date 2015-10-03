@@ -22,6 +22,7 @@ import android.widget.ListView;
 
 import com.ikm.myagenda.adapter.DrawerMenuAdapter;
 import com.ikm.myagenda.data.Constants;
+import com.ikm.myagenda.fragment.AddAgendaFragment;
 import com.ikm.myagenda.fragment.HomeFragment;
 import com.ikm.myagenda.fragment.ListViewsFragment;
 import com.ikm.myagenda.fragment.MyAgendaFragment;
@@ -179,7 +180,7 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 		if (drawerTag == Constants.DRAWER_ITEM_ID_MYAGENDA) {
 			fragment = MyAgendaFragment.newInstance();
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_ADD_AGENDA) {
-			fragment = MyAgendaFragment.newInstance();
+			fragment = AddAgendaFragment.newInstance();
 		} else if (drawerTag == Constants.DRAWER_ITEM_ID_INBOX) {
 			fragment = MyAgendaFragment.newInstance();
 		} else {

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <color name="disabled_color">#44000000</color>
+    <color name="error_color">#E7492E</color>
+    
     <color name="black_transparant">#D8000000</color>
     <color name="green">#00FF00</color>
     <color name="thumbColor">#66aaaaaa</color>
