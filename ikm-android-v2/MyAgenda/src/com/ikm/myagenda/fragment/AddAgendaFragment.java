@@ -93,6 +93,9 @@ public class AddAgendaFragment extends Fragment {
 		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
 		mName.setText("Agenda "+ loginData.getNama());
 		mPlace.setText(ctx.getResources().getString(R.string.school_name));
+		spinSubject = (MaterialSpinner) rootView.findViewById(R.id.spinSubject);
+		spinner1 = (MaterialSpinner) rootView.findViewById(R.id.spinner1);
+		spinJenisAgenda = (MaterialSpinner) rootView.findViewById(R.id.spinJenisAgenda);
 		calendarView = (MaterialCalendarView) rootView.findViewById(R.id.calendarView);
 		calendarView.setMinimumDate(new Date());
 		isiAgenda = (FloatLabeledEditText) rootView.findViewById(R.id.isiAgenda);
@@ -155,8 +158,7 @@ public class AddAgendaFragment extends Fragment {
 		return rootView;
 	}
 	
-	private void initSpinnerAgenda() {
-		 spinJenisAgenda = (MaterialSpinner) rootView.findViewById(R.id.spinJenisAgenda);
+	private void initSpinnerAgenda() {		 
 	     spinJenisAgenda.setAdapter(adapterJenisAgenda);
 	     spinJenisAgenda.setPaddingSafe(0,0,0,0);
 	     
@@ -187,15 +189,13 @@ public class AddAgendaFragment extends Fragment {
 		});
 	}
 	
-	private void initSpinnerHintAndFloatingLabel() {
-       spinner1 = (MaterialSpinner) rootView.findViewById(R.id.spinner1);
+	private void initSpinnerHintAndFloatingLabel() {       
        spinner1.setAdapter(adapter);
        spinner1.setPaddingSafe(0,0,0,0);
        
    }
 	
-	private void initSpinnerSubject() {
-		 spinSubject = (MaterialSpinner) rootView.findViewById(R.id.spinSubject);
+	private void initSpinnerSubject() {		 
 		 spinSubject.setAdapter(adapterSubject);
 		 spinSubject.setPaddingSafe(0,0,0,0);
 	}
@@ -423,30 +423,13 @@ public class AddAgendaFragment extends Fragment {
 		
 		RespListKelasVO respListKelasVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListKelasVO.class);
 		List<String> allKelas = new ArrayList<String>();
-//		String agendaName = "";
 		if(respListKelasVO.getListKelas()!=null){
 			for (Kelas temp : respListKelasVO.getListKelas()) {
-//				if(agendaName.isEmpty()){
-//					agendaName = Constants.AGENDA+temp.getNamaKelas();
-//					tvTitle.setText(agendaName);
-//				}
 				allKelas.add(temp.getNamaKelas());
 				
 			}
 		}
-//		if(respListKelasVO.getJumlahMessageUnread()>0){
-//			btnInbox.setText(respListKelasVO.getJumlahMessageUnread()+ " " + ctx.getResources().getString(R.string.msg_unread));
-//		}else{
-//			btnInbox.setText(ctx.getResources().getString(R.string.inbox));
-//		}	
-		
-//		if(respListKelasVO.isWaliKelas()){
-//			btnInbox.setEnabled(true);
-//			btnInbox.setBackgroundColor(ctx.getResources().getColor(R.color.blue));
-//		}else{
-//			btnInbox.setEnabled(false);
-//			btnInbox.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
-//		}
+		SharedPreferencesUtils.saveNumberNotification(respListKelasVO.getJumlahMessageUnread(), ctx);
 		
 		String[] arrayKelas = new String[allKelas.size()];
 		allKelas.toArray(arrayKelas );
