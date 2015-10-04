@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res/com.ikm.myagenda"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/tile_bg"
@@ -17,7 +18,7 @@
     </ListView>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
@@ -25,18 +26,25 @@
             android:id="@+id/inputMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/main_color_500"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
-            android:textColor="@color/main_color_500" />
+            android:layout_weight="1"
+            app:fletFloatingHint="Isi Agenda"
+            app:fletHintTextColor="@color/main_color_500"
+            app:fletSingleLine="false"
+            app:fletTextBackground="@drawable/edit_text_background_accent"
+            app:fletTextColor="@color/main_color_grey_700" >
+        </com.ikm.myagenda.view.FloatLabeledEditText>
 
         <com.ikm.myagenda.font.RobotoTextView
             android:id="@+id/btnSend"
+            style="@style/ButtonStyle.RaisedEmpty"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/main_color_500"
-            android:text="Kirim"
-            android:textColor="@color/white" />
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:background="@drawable/login_travel_selector_button"
+            android:minWidth="96dp"
+            android:text="@string/send"
+            android:textColor="@android:color/white"
+            app:typeface="robotoMedium" />
     </LinearLayout>
 
 </LinearLayout>
