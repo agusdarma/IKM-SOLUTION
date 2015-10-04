@@ -40,9 +40,9 @@ public class HttpClientUtil {
 	
 //	public static final String URL_BASE = "http://54.191.189.219:8080/ikm-engine-trx";
     
-    public static final String URL_BASE = "http://192.168.1.102:8080/ikm-engine-trx";
+//    public static final String URL_BASE = "http://192.168.1.102:8080/ikm-engine-trx";
 //    public static final String URL_BASE = "http://192.168.0.164:8080/ikm-engine-trx";
-//    public static final String URL_BASE = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx";
+    public static final String URL_BASE = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx";
 //    public static final String URL_BASE = "http://192.168.0.203:8080/ikm-engine-trx";
 	/**
 	 * URL TRX

@@ -178,11 +178,13 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 	
 	private void selectItem(int position, int drawerTag) {
 		Fragment fragment = getFragmentByDrawerTag(drawerTag);
-		commitFragment(fragment);
-
-		mDrawerList.setItemChecked(position, true);
-		setTitle(((DummyModel) mDrawerAdapter.getItem(position)).getText());
-		mDrawerLayout.closeDrawer(mDrawerList);
+		if(fragment!=null){
+			commitFragment(fragment);
+			mDrawerList.setItemChecked(position, true);
+			setTitle(((DummyModel) mDrawerAdapter.getItem(position)).getText());
+			mDrawerLayout.closeDrawer(mDrawerList);
+		}
+		
 	}
 	
 	private Fragment getFragmentByDrawerTag(int drawerTag) {
