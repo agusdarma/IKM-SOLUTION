@@ -57,7 +57,7 @@ public class AgendaService {
 		}	
 		if(Constants.TEACHER == reqListAgendaData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(reqListAgendaData.getKodeSekolah(), reqListAgendaData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(reqListAgendaData.getKodeSekolah()+reqListAgendaData.getNoInduk(), reqListAgendaData.getPassword());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}
@@ -108,7 +108,7 @@ public class AgendaService {
 		}	
 		if(Constants.TEACHER == reqAddAgendaData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(reqAddAgendaData.getKodeSekolah(), reqAddAgendaData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(reqAddAgendaData.getKodeSekolah()+reqAddAgendaData.getNoInduk(), reqAddAgendaData.getPassword());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}

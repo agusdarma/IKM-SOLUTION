@@ -46,7 +46,7 @@ public class LoginService {
 		}	
 		if(Constants.TEACHER == loginData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(loginData.getKodeSekolah(), loginData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(loginData.getKodeSekolah()+loginData.getNoInduk(), loginData.getPassword());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}

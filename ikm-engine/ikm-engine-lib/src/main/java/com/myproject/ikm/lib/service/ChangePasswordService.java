@@ -1,6 +1,5 @@
 package com.myproject.ikm.lib.service;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import com.myproject.ikm.lib.entity.User;
 import com.myproject.ikm.lib.mapper.UserDataMapper;
 import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.Constants;
-import com.myproject.ikm.lib.utils.EmailSender;
 
 @Service
 public class ChangePasswordService {
@@ -40,11 +38,12 @@ public class ChangePasswordService {
 			throw new IkmEngineException(IkmEngineException.ENGINE_USER_NOT_ACTIVE);
 		}
 		String passwordDB = user.getPassword();
-		String passwordInput = CipherUtil.passwordDigest(user.getNoInduk(), changePasswordVO.getNewPassword());
+		String passwordInput = CipherUtil.passwordDigest(user.getKodeSekolah()+user.getNoInduk(), changePasswordVO.getOldPassword());
 		if(!passwordDB.equalsIgnoreCase(passwordInput)){
 			throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_OLD_PASSWORD);
 		}
 		
+		passwordInput = CipherUtil.passwordDigest(user.getKodeSekolah()+user.getNoInduk(), changePasswordVO.getNewPassword());
 		userDataMapper.updatePasswordUser(changePasswordVO.getKodeSekolah(), changePasswordVO.getNoInduk(),changePasswordVO.getUserType()
 				, passwordInput, timeService.getCurrentTime());
 		

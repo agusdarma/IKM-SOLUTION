@@ -47,7 +47,7 @@ public class KelasService {
 		}	
 		if(Constants.TEACHER == reqListKelasData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(reqListKelasData.getKodeSekolah(), reqListKelasData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(reqListKelasData.getKodeSekolah()+reqListKelasData.getNoInduk(), reqListKelasData.getPassword());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}

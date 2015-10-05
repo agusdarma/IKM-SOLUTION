@@ -51,7 +51,7 @@ public class InboxService {
 		}	
 		if(Constants.TEACHER == reqSendMessageData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(reqSendMessageData.getKodeSekolah(), reqSendMessageData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(reqSendMessageData.getKodeSekolah()+reqSendMessageData.getNoInduk(), reqSendMessageData.getPassword());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}
@@ -120,7 +120,7 @@ public class InboxService {
 		}	
 		if(Constants.TEACHER == reqListInboxData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(reqListInboxData.getKodeSekolah(), reqListInboxData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(reqListInboxData.getKodeSekolah()+reqListInboxData.getNoInduk(), reqListInboxData.getPassword());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}
