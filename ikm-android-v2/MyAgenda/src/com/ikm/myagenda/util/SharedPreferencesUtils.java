@@ -1,6 +1,8 @@
 package com.ikm.myagenda.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -11,6 +13,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.ikm.myagenda.data.Constants;
+import com.ikm.myagenda.data.ListRecepientMessageVO;
 import com.ikm.myagenda.data.LoginData;
 
 public class SharedPreferencesUtils {
@@ -66,4 +69,41 @@ public class SharedPreferencesUtils {
 		}
 		return loginData;   
     }
+	
+	public static void saveRecepientMessage(String recepientMessage,Context ctx) {	   	
+			SharedPreferences.Editor editor = getPreferences(ctx).edit();
+			editor.putString(Constants.RECEPIENT_MESSAGE_DATA_PREF, recepientMessage);
+			editor.commit();
+    }
+	
+	public static List<ListRecepientMessageVO> getRecepientMessage(Context ctx) {
+		List<ListRecepientMessageVO> listRecepientMessageVOs = new ArrayList<ListRecepientMessageVO>();
+		try {		   	
+			String ld = getPreferences(ctx).getString(Constants.RECEPIENT_MESSAGE_DATA_PREF, "");
+			if(!ld.isEmpty()){
+				listRecepientMessageVOs = HttpClientUtil.getObjectMapper(ctx).readValue(ld, new TypeReference<List<ListRecepientMessageVO>>(){});
+			}		
+		} catch (JsonGenerationException e) {
+			Log.e(TAG, "JsonGenerationException  getRecepientMessage: " + e);	
+		} catch (JsonMappingException e) {
+			Log.e(TAG, "JsonMappingException getRecepientMessage: " + e);			
+		} catch (IOException e) {
+			Log.e(TAG, "IOException getRecepientMessage: " + e);
+		}
+		return listRecepientMessageVOs;   
+    }
+	
+	public static String objectToJson(List<ListRecepientMessageVO> recepientsMessage,Context ctx){
+		String json = "";
+		try {
+			json = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(recepientsMessage);
+		} catch (JsonGenerationException e) {
+			Log.e(TAG, "JsonGenerationException  objectToJson: " + e);	
+		} catch (JsonMappingException e) {
+			Log.e(TAG, "JsonMappingException objectToJson: " + e);			
+		} catch (IOException e) {
+			Log.e(TAG, "IOException objectToJson: " + e);
+		}
+		return json;
+	}
 }

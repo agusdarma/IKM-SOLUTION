@@ -29,6 +29,7 @@ public class Constants {
 	
 	public static final String PARKING_PREFERENCE = "PARKING_PREFERENCE";
 	public static final String LOGIN_DATA_PREF 	  = "LoginDataPref";
+	public static final String RECEPIENT_MESSAGE_DATA_PREF 	  = "RecepientDataPref";
 	public static final String NUMBER_NOTIFICATION_DATA_PREF 	  = "NumberNotifDataPref";
 	public static final String WALI_KELAS_DATA_PREF 	  = "WaliKelasDataPref";
 	public static final int SHOW_TIPS				= 3; // 3 kali

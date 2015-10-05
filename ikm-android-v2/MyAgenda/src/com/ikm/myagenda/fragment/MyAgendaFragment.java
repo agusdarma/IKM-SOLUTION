@@ -170,6 +170,7 @@ public class MyAgendaFragment extends Fragment {
 		RespListAgendaVO respListAgendaVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListAgendaVO.class);
 						 
 		SharedPreferencesUtils.saveNumberNotification(respListAgendaVO.getJumlahMessageUnread(), ctx);
+		SharedPreferencesUtils.saveRecepientMessage(SharedPreferencesUtils.objectToJson(respListAgendaVO.getRecepientsMessage(),ctx), ctx);
 		
         return respListAgendaVO;
     }

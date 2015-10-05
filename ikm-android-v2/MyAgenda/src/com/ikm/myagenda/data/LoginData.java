@@ -1,5 +1,7 @@
 package com.ikm.myagenda.data;
 
+import java.util.List;
+
 public class LoginData implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -13,6 +15,7 @@ public class LoginData implements java.io.Serializable {
 	private String originRequest;
 	private int jumlahMessageUnread;
 	private boolean isWaliKelas;
+	private List<ListRecepientMessageVO> recepientsMessage;
 	
 
 	public String getKodeSekolah() {
@@ -93,6 +96,14 @@ public class LoginData implements java.io.Serializable {
 
 	public void setWaliKelas(boolean isWaliKelas) {
 		this.isWaliKelas = isWaliKelas;
+	}
+
+	public List<ListRecepientMessageVO> getRecepientsMessage() {
+		return recepientsMessage;
+	}
+
+	public void setRecepientsMessage(List<ListRecepientMessageVO> recepientsMessage) {
+		this.recepientsMessage = recepientsMessage;
 	}
 
 }

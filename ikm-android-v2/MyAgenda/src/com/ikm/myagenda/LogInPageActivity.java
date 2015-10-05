@@ -11,6 +11,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -189,6 +191,7 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 		               			LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
 		               			SharedPreferencesUtils.saveNumberNotification(loginData.getJumlahMessageUnread(), ctx);
 		               			SharedPreferencesUtils.saveUserWaliKelas(loginData.isWaliKelas(), ctx);
+		               			SharedPreferencesUtils.saveRecepientMessage(SharedPreferencesUtils.objectToJson(loginData.getRecepientsMessage(),ctx), ctx);
 		               			Intent i = null;
 		               			i = new Intent(ctx, LeftMenusSocialActivity.class);
 		               			if(Constants.PARENTS_KEY==loginData.getUserType()){
@@ -226,4 +229,5 @@ public class LogInPageActivity extends Activity implements OnClickListener {
     public void onBackPressed() { 
 		this.finish();
 	}
+		
 }

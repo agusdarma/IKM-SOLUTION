@@ -433,6 +433,7 @@ public class AddAgendaFragment extends Fragment {
 		
 		String[] arrayKelas = new String[allKelas.size()];
 		allKelas.toArray(arrayKelas );
+		SharedPreferencesUtils.saveRecepientMessage(SharedPreferencesUtils.objectToJson(respListKelasVO.getRecepientsMessage(),ctx), ctx);
         return  arrayKelas;
     }
 	

@@ -9,6 +9,7 @@ public class RespListKelasVO extends LoginData implements java.io.Serializable {
 	private List<Subject> listSubjects;
 	private int jumlahMessageUnread;
 	private boolean isWaliKelas;
+	private List<ListRecepientMessageVO> recepientsMessage;
 	
 
 	public List<Kelas> getListKelas() {
@@ -41,6 +42,14 @@ public class RespListKelasVO extends LoginData implements java.io.Serializable {
 
 	public void setWaliKelas(boolean isWaliKelas) {
 		this.isWaliKelas = isWaliKelas;
+	}
+
+	public List<ListRecepientMessageVO> getRecepientsMessage() {
+		return recepientsMessage;
+	}
+
+	public void setRecepientsMessage(List<ListRecepientMessageVO> recepientsMessage) {
+		this.recepientsMessage = recepientsMessage;
 	}
 
 	
