@@ -15,7 +15,7 @@
     
     
     <!-- Progress Dialog -->
-    <string name="progress_dialog">Please wait a moment..</string>
+    <string name="progress_dialog">Silahkan tunggu..</string>
     <!-- LOADING -->
     <string name="process_login">Autentifikasi akun</string>
     <string name="process_agenda">Loading agenda</string>
