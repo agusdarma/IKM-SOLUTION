@@ -22,12 +22,14 @@
     <string name="process_inbox">Loading inbox</string>
     <string name="process_kelas">Loading kelas</string>
     <string name="process_add_agenda">Adding agenda</string>
+    <string name="process_change_pass">Changing password</string>
     
     <!-- MESSAGE -->
     <string name="message_unexpected_error_server">Server sedang mengalami gangguan, silahkan coba beberapa jam kemudian.</string>
     <string name="message_unexpected_error_message_server">Server sedang mengalami gangguan, Unmatched Format Data Transfer</string>
     <string name="message_no_internet_connection">Terjadi gangguan jaringan, pastikan koneksi internet anda normal.</string>
     <string name="message_detail_required">Silahkan isi field yang kosong!</string>
+    <string name="message_new_confirm_password">New password dan confirm new password tidak sama.</string>
     <string name="message_user_cannot_access_this_menu">Anda tidak diijinkan menggunakan fitur ini.</string>
     <string name="message_empty">Pesan kosong!</string>
     

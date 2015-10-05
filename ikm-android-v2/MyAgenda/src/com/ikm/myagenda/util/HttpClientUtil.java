@@ -54,6 +54,7 @@ public class HttpClientUtil {
 	public static final String URL_SEND_MESSAGE = "/trx/sendMessage";
 	public static final String URL_KELAS = "/trx/listKelas";
 	public static final String URL_ADD_AGENDA = "/trx/addAgenda";
+	public static final String URL_CHANGE_PASSWORD = "/trx//changePasswordUser";
 	
 	// list trx code engine
 	//LOGIN
