@@ -31,7 +31,16 @@
 		inner join user u on m.from_user_id = u.id
 		inner join user u1 on m.to_user_id = u1.id
 		where m.to_user_id = #{userId}
-		and m.is_read = 0 limit 0,100
+		and m.is_read = 0
+    </select>
+    
+	<select id="findRecepientMessageByUser" resultType="ListRecepientMessageVO" parameterType="java.util.Map">
+		select m.from_user_id as id,u.name as name
+		from message m
+		inner join user u on m.from_user_id = u.id
+		inner join user u1 on m.to_user_id = u1.id
+		where m.to_user_id = #{userId}
+		and m.is_read = 0
     </select>
     
 	<select id="findListInboxByUser" parameterType="java.util.Map"
