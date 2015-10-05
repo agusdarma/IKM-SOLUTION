@@ -70,11 +70,12 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 		if(loginData!=null){
 			kodeSekolah.setText(loginData.getKodeSekolah());
 			noInduk.setText(loginData.getNoInduk());
+			password.setText(loginData.getPassword());
 		}
 		
 		// default parent
 		tipeLogin = Constants.PARENTS;
-		linPassword.setVisibility(View.GONE);
+//		linPassword.setVisibility(View.GONE);
 
 		radioTypeLogin.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
 		{
@@ -86,11 +87,11 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 				RadioButton radioSelected = (RadioButton) findViewById(selectedId);
 				if(String.valueOf(radioSelected.getText()).equalsIgnoreCase(ctx.getResources().getString(R.string.login_teacher))){
 					tipeLogin = Constants.TEACHER;
-					linPassword.setVisibility(View.VISIBLE);
+//					linPassword.setVisibility(View.VISIBLE);
 				}else{
 					tipeLogin = Constants.PARENTS;
-					linPassword.setVisibility(View.GONE);
-					password.setText("");
+//					linPassword.setVisibility(View.GONE);
+//					password.setText("");
 				}
 		    }
 		});
@@ -100,27 +101,15 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if(!tipeLogin.isEmpty()){
-			if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
-				if (!kodeSekolah.getEditText().getText().toString().isEmpty() && !noInduk.getEditText().getText().toString().isEmpty() ) {
-					// login user
-					reqLoginTask = new ReqLoginTask();
-					reqLoginTask.execute("");												
-				} else {
-					MessageUtils messageUtils = new MessageUtils(ctx);
-	             	messageUtils.snackBarMessage(LogInPageActivity.this,ctx.getResources().getString(R.string.message_detail_required));
-				}					
-			}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){						
-				if (!kodeSekolah.getEditText().getText().toString().isEmpty() && !noInduk.getEditText().getText().toString().isEmpty() && !password.getEditText().getText().toString().isEmpty()) {
-					// login user
-					reqLoginTask = new ReqLoginTask();
-					reqLoginTask.execute("");
-					
-					
-				} else {
-					MessageUtils messageUtils = new MessageUtils(ctx);
-	             	messageUtils.snackBarMessage(LogInPageActivity.this,ctx.getResources().getString(R.string.message_detail_required));
-				}
+			if (!kodeSekolah.getEditText().getText().toString().isEmpty() && !noInduk.getEditText().getText().toString().isEmpty() && !password.getEditText().getText().toString().isEmpty()) {
+				// login user
+				reqLoginTask = new ReqLoginTask();
+				reqLoginTask.execute("");
 				
+				
+			} else {
+				MessageUtils messageUtils = new MessageUtils(ctx);
+             	messageUtils.snackBarMessage(LogInPageActivity.this,ctx.getResources().getString(R.string.message_detail_required));
 			}
 		}
 	}
@@ -142,10 +131,10 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 				loginData.setKodeSekolah(kodeSekolah.getText().toString());
 				loginData.setNoInduk(noInduk.getText().toString());
 				loginData.setOriginRequest(Constants.ORIGIN_SOURCE);
-				loginData.setPassword("");
-				loginData.setUserType(Constants.PARENTS_KEY);
-				if (!password.getText().toString().isEmpty()) {
-					loginData.setPassword(password.getText().toString());
+				loginData.setPassword(password.getText().toString());
+				if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
+					loginData.setUserType(Constants.PARENTS_KEY);
+				}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){
 					loginData.setUserType(Constants.TEACHER_KEY);
 				}
 				
