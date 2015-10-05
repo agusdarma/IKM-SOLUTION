@@ -4,6 +4,8 @@ public class Constants {
 	public static final int DRAWER_ITEM_ID_MYAGENDA = 10;
 	public static final int DRAWER_ITEM_ID_INBOX = 11;
 	public static final int DRAWER_ITEM_ID_ADD_AGENDA = 12;
+	public static final int DRAWER_ITEM_ID_CHANGE_PASSWORD = 13;
+	public static final int DRAWER_ITEM_ID_LOGOUT = 14;
 	
 	public static final String ORIGIN_SOURCE				= "Mobile-Android";
 	public static final String AGENDA_NAME				= "agenda_name";
@@ -16,6 +18,8 @@ public class Constants {
 	public static final String MENU_MY_AGENDA				= "My Agenda";
 	public static final String MENU_ADD_AGENDA				= "Tambah Agenda";
 	public static final String MENU_INBOX					= "Inbox";
+	public static final String MENU_CHANGE_PASSWORD			= "Change Password";
+	public static final String MENU_LOGOUT					= "Logout";
 	
 	public static final int TEACHER_KEY				= 1;
 	public static final int PARENTS_KEY				= 2;

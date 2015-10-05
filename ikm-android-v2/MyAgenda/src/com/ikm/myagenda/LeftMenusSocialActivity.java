@@ -25,6 +25,7 @@ import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.data.LoginData;
 import com.ikm.myagenda.font.RobotoTextView;
 import com.ikm.myagenda.fragment.AddAgendaFragment;
+import com.ikm.myagenda.fragment.ChangePasswordFragment;
 import com.ikm.myagenda.fragment.HomeFragment;
 import com.ikm.myagenda.fragment.ListViewsFragment;
 import com.ikm.myagenda.fragment.MyAgendaFragment;
@@ -126,19 +127,22 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 	
 	@Override
 	public void onBackPressed() {
-		if (!mShouldFinish && !mDrawerLayout.isDrawerOpen(mDrawerList)) {
-			MessageUtils messageUtils = new MessageUtils(ctx);
-         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.confirm_exit));		
-			mShouldFinish = true;
-			mDrawerLayout.openDrawer(mDrawerList);
-		} else if (!mShouldFinish && mDrawerLayout.isDrawerOpen(mDrawerList)) {
-			mDrawerLayout.closeDrawer(mDrawerList);
-			RedirectUtils redirectUtils = new RedirectUtils(ctx, LeftMenusSocialActivity.this);
-			redirectUtils.redirectToLogin();
-		} else {
-			RedirectUtils redirectUtils = new RedirectUtils(ctx, LeftMenusSocialActivity.this);
-			redirectUtils.redirectToLogin();
-		}
+		MessageUtils messageUtils = new MessageUtils(ctx);
+     	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.confirm_exit));
+     	mDrawerLayout.openDrawer(mDrawerList);
+//		if (!mShouldFinish && !mDrawerLayout.isDrawerOpen(mDrawerList)) {
+//			MessageUtils messageUtils = new MessageUtils(ctx);
+//         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.confirm_exit));		
+//			mShouldFinish = true;
+//			mDrawerLayout.openDrawer(mDrawerList);
+//		} else if (!mShouldFinish && mDrawerLayout.isDrawerOpen(mDrawerList)) {
+//			mDrawerLayout.closeDrawer(mDrawerList);
+//			RedirectUtils redirectUtils = new RedirectUtils(ctx, LeftMenusSocialActivity.this);
+//			redirectUtils.redirectToLogin();
+//		} else {
+//			RedirectUtils redirectUtils = new RedirectUtils(ctx, LeftMenusSocialActivity.this);
+//			redirectUtils.redirectToLogin();
+//		}
 	}
 
 	@Override
@@ -204,7 +208,13 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 			}else{
 				fragment = MyInboxFragment.newInstance();
 			}
-		} else {
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_LOGOUT) {
+//			fragment = new Fragment();
+			RedirectUtils redirectUtils = new RedirectUtils(ctx, LeftMenusSocialActivity.this);
+			redirectUtils.redirectToLogin();
+		} else if (drawerTag == Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD) {
+			fragment = ChangePasswordFragment.newInstance();
+		} else{
 			fragment = new Fragment();
 		}
 		mShouldFinish = false;

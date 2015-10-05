@@ -80,7 +80,7 @@
                 android:layout_weight="1"
                 app:fletFloatingHint="@string/no_induk"
                 app:fletHintTextColor="@color/main_color_500"
-                app:fletPassword="true"
+                app:fletPassword="false"
                 app:fletSingleLine="true"
                 app:fletTextBackground="@drawable/edit_text_background_accent"
                 app:fletTextColor="@color/main_color_grey_700" >

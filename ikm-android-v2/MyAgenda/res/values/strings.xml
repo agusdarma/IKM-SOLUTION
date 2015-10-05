@@ -139,6 +139,10 @@
     <string name="material_icon_inbox">&#xea0e;</string>
     <string name="material_icon_agenda_plus">&#xea84;</string>
     <string name="material_icon_calendar">&#xe849;</string>
+    <string name="material_icon_change_password">&#xe9da;</string>
+    <string name="material_icon_change_password2">&#xe9de;</string>
+    <string name="material_icon_change_password3">&#xe9df;</string>
+    <string name="material_icon_logout">&#xe9fc;</string>
 
     <!-- Content description strings -->
     <string name="cd_background_image">background image</string>
@@ -160,6 +164,9 @@
     <string name="username">Username</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
+    <string name="oldPassword">Old Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="confirmNewPassword">Confirm New Password</string>
     <string name="email">E-mail</string>
     <string name="country">Country</string>
     <string name="phone_no">Phone No</string>
@@ -174,6 +181,7 @@
     <string name="register">REGISTER</string>
     <string name="skip">SKIP</string>
     <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="change_password">CHANGE PASSWORD</string>
     <string name="raised">RAISED</string>
     <string name="flat">FLAT</string>
     <string name="ok">OK</string>
@@ -182,6 +190,6 @@
     <string name="send">KIRIM</string>
     
     <!-- For Update -->
-    <string name="confirm_exit">Press Back button again to exit</string>
+    <string name="confirm_exit">Press logout menu to exit</string>
 
 </resources>
