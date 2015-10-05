@@ -1,5 +1,6 @@
 package com.myproject.ikm.lib.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -26,4 +27,9 @@ public interface UserDataMapper {
 	
 	public List<Subject> findAllSubjectTeacher(@Param("kodeSekolah") String kodeSekolah,
 			@Param("noInduk") String noInduk,@Param("userType") int userType);
+	
+	public void updatePasswordUser(@Param("kodeSekolah") String kodeSekolah,
+			@Param("noInduk") String noInduk,@Param("userType") int userType,
+			@Param("password") String password,
+			@Param("updatedOn") Date updatedOn);
 }
