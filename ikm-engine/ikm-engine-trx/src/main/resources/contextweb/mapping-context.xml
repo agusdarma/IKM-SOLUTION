@@ -9,6 +9,7 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<bean id="loginUser" class="com.myproject.ikm.trx.logic.security.LoginUser" />
+	<bean id="changePasswordUser" class="com.myproject.ikm.trx.logic.security.ChangePassword" />
 
 	<bean id="listAgenda" class="com.myproject.ikm.trx.logic.transaction.ListAgenda" />
 	<bean id="listInbox" class="com.myproject.ikm.trx.logic.transaction.ListInbox" />

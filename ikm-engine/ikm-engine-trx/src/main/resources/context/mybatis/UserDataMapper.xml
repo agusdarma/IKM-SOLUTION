@@ -88,6 +88,13 @@
 		k.updated_on as updatedOn 
 		from kelas k where k.wali_kelas_id = #{userId}
 	</select>
+	
+	<update id="updatePasswordUser" parameterType="java.util.Map" >
+    	UPDATE user SET password = #{password} ,updated_on = #{updatedOn} where kode_sekolah = #{kodeSekolah}
+		and nomor_induk =
+		#{noInduk}
+		and user_type = #{userType} 	
+     </update>
 
 
 </mapper>

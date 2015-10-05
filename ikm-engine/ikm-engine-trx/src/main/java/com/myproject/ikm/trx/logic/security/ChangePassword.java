@@ -1,3 +1,4 @@
+
 package com.myproject.ikm.trx.logic.security;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,35 +9,33 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.myproject.ikm.lib.data.LoginData;
-import com.myproject.ikm.lib.data.RespLoginVO;
+import com.myproject.ikm.lib.data.ChangePasswordVO;
+import com.myproject.ikm.lib.service.ChangePasswordService;
 import com.myproject.ikm.lib.service.IkmEngineException;
-import com.myproject.ikm.lib.service.LoginService;
 import com.myproject.ikm.lib.utils.MessageUtils;
 import com.myproject.ikm.trx.logic.BaseQueryLogic;
 
-public class LoginUser implements BaseQueryLogic {
+public class ChangePassword implements BaseQueryLogic {
 
-	private static final Logger LOG = LoggerFactory.getLogger(LoginUser.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ChangePassword.class);
 	
 	@Autowired
-	private LoginService loginService;
+	private ChangePasswordService changePasswordService;
 
 	@Override
 	public String process(HttpServletRequest request,HttpServletResponse response,String data, ObjectMapper mapper, String pathInfo) {
 		LOG.debug("Start process Query :"+pathInfo);		
 		String result = "";
 		try {						
-			LoginData loginData = mapper.readValue(data, LoginData.class);
-			RespLoginVO respLoginVO = loginService.login(loginData);
-			String x = mapper.writeValueAsString(respLoginVO);
-			result = MessageUtils.handleSuccess(x, mapper);
-		} catch (IkmEngineException e) {
-			LOG.error("IkmEngineException when processing " + pathInfo, e);
+			ChangePasswordVO changePasswordVO = mapper.readValue(data, ChangePasswordVO.class);
+			changePasswordService.changePassword(changePasswordVO);
+			result = MessageUtils.handleSuccess("Password has been changed", mapper);
+		} catch (IkmEngineException e) {			
 			result = MessageUtils.handleException(e, "", mapper);
-		} catch (Exception e) {
-			LOG.error("Unexpected exception when processing " + pathInfo, e);
+			LOG.error("IkmEngineException when processing " + pathInfo + " Error Message : " + result);
+		} catch (Exception e) {			
 			result = MessageUtils.handleException(e, "Unexpected exception when processing "+ e.getMessage(), mapper);
+			LOG.error("Unexpected exception when processing " + pathInfo + " Error Message " + result, e);
 		}
 		return result;
 	}

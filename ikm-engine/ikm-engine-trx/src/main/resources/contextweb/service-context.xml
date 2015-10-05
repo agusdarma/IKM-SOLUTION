@@ -40,6 +40,7 @@
 		    <map>
 		        <!-- Security Module  -->		        
 		        <entry key="/loginUser" value-ref="loginUser"></entry>		
+		        <entry key="/changePasswordUser" value-ref="changePasswordUser"></entry>
 		        <!-- Transaction Module  -->       
 		        <entry key="/listAgenda" value-ref="listAgenda"></entry>
 		        <entry key="/listInbox" value-ref="listInbox"></entry>
