@@ -3,7 +3,7 @@
 
     <string name="app_name">My Agenda</string>
     <string name="app_footer_name">Copyright © 2015 Indo Kanaan Mandiri</string>  
-    <string name="kode_sekolah">School Code</string>
+    <string name="kode_sekolah">Kode Sekolah</string>
     <string name="no_induk">No Induk</string>
     <string name="login_parent">Parent</string>
     <string name="login_teacher">Teacher</string>
