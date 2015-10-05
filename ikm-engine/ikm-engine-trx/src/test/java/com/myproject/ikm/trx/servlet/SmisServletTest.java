@@ -48,7 +48,7 @@ public class SmisServletTest {
 	private final String testingGetKelas = "http://localhost:8080/ikm-engine-trx/trx/listKelas";
 	private final String testingAddAgenda = "http://localhost:8080/ikm-engine-trx/trx/addAgenda";
 	
-//	@Test
+	@Test
 	public void tes() {
 		//in milliseconds
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");	
@@ -71,7 +71,8 @@ public class SmisServletTest {
 //		System.out.print(diffSeconds + " seconds.");
 //		
 //		System.out.print(diffMinutesOnly + " minutes.");
-		String pass = CipherUtil.passwordDigest("DIAN-001","administrator");
+//		user.getKodeSekolah()+user.getNoInduk()
+		String pass = CipherUtil.passwordDigest("DIAN-001"+"1","administrator");
 //		String a = "agus";
 		System.out.println(pass);
 	}
@@ -301,7 +302,7 @@ public class SmisServletTest {
         }  // end try finally
 	}
 	
-	@Test
+//	@Test
 	public void testGetAgenda() {
 		String url = testingGetAgenda;
 		long startTime = System.currentTimeMillis();
