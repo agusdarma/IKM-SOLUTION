@@ -1,5 +1,6 @@
 package com.myproject.ikm.lib.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myproject.ikm.lib.data.ListRecepientMessageVO;
 import com.myproject.ikm.lib.data.LoginData;
 import com.myproject.ikm.lib.data.RespLoginVO;
 import com.myproject.ikm.lib.entity.Kelas;
@@ -74,6 +76,13 @@ public class LoginService {
 		if(waliKelas.size()>0){
 			respLoginVO.setWaliKelas(true);
 		}
+		
+		/**
+		 * Get data recepient message
+		 */
+		List<ListRecepientMessageVO> recepientsMessage = new ArrayList<ListRecepientMessageVO>();
+		recepientsMessage = inboxMapper.findRecepientMessageByUser(user.getId());
+		respLoginVO.setRecepientsMessage(recepientsMessage);
 		
 		LOG.info("login done with param : " + " respLoginVO: " + respLoginVO);
 		return respLoginVO;		

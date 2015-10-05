@@ -9,6 +9,7 @@ public class RespListAgendaVO extends LoginData implements java.io.Serializable 
 
 	private List<AgendaHeaderVO> listAgendaHeaderVO;
 	private int jumlahMessageUnread;
+	private List<ListRecepientMessageVO> recepientsMessage;
 
 	@Override
 	public String toString() {
@@ -29,6 +30,14 @@ public class RespListAgendaVO extends LoginData implements java.io.Serializable 
 
 	public void setListAgendaHeaderVO(List<AgendaHeaderVO> listAgendaHeaderVO) {
 		this.listAgendaHeaderVO = listAgendaHeaderVO;
+	}
+
+	public List<ListRecepientMessageVO> getRecepientsMessage() {
+		return recepientsMessage;
+	}
+
+	public void setRecepientsMessage(List<ListRecepientMessageVO> recepientsMessage) {
+		this.recepientsMessage = recepientsMessage;
 	}
 
 }

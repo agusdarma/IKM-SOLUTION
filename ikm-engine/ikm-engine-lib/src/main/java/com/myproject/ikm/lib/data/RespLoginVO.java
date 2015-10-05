@@ -1,5 +1,7 @@
 package com.myproject.ikm.lib.data;
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 public class RespLoginVO implements java.io.Serializable {
@@ -15,6 +17,7 @@ public class RespLoginVO implements java.io.Serializable {
 	private String originRequest;
 	private int jumlahMessageUnread;
 	private boolean isWaliKelas;
+	private List<ListRecepientMessageVO> recepientsMessage;
 
 	@Override
 	public String toString() {
@@ -99,5 +102,13 @@ public class RespLoginVO implements java.io.Serializable {
 
 	public void setWaliKelas(boolean isWaliKelas) {
 		this.isWaliKelas = isWaliKelas;
+	}
+
+	public List<ListRecepientMessageVO> getRecepientsMessage() {
+		return recepientsMessage;
+	}
+
+	public void setRecepientsMessage(List<ListRecepientMessageVO> recepientsMessage) {
+		this.recepientsMessage = recepientsMessage;
 	}
 }
