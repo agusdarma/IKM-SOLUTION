@@ -22,6 +22,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+        <com.ikm.myagenda.fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/spinRecepient"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:ms_arrowColor="@color/main_color_500"
+            app:ms_arrowSize="16dp"
+            app:ms_baseColor="@color/main_color_500"
+            app:ms_floatingLabelColor="@color/main_color_500"
+            app:ms_floatingLabelText="Recepient"
+            app:ms_highlightColor="@color/main_color_500"
+            app:ms_hint="Recepient"
+            app:ms_multiline="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
         <com.ikm.myagenda.view.FloatLabeledEditText
             android:id="@+id/inputMsg"
             android:layout_width="wrap_content"
