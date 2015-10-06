@@ -18,7 +18,7 @@
      </insert>
      
     <update id="updateMessageToRead" parameterType="java.util.Map">
-    	UPDATE message SET is_read = 1 where to_user_id = #{userId}	
+    	UPDATE message SET is_read = 1 where from_user_id = #{userId}	
      </update>
      
 	<sql id="_sqlInbox">
