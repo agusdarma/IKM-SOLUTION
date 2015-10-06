@@ -22,7 +22,7 @@
 
 	<sql id="_sqlAgenda">
 		k.kode_kelas as kodeKelas, k.nama_kelas as namaKelas,s.kode_sekolah as kodeSekolah,
-		s.nama_sekolah as namaSekolah, DATE_FORMAT(a.tanggal_agenda, '%e %M %Y')as tanggalAgendaVal,a.isi_agenda as isiAgenda,a.subject
+		s.nama_sekolah as namaSekolah, DATE_FORMAT(a.tanggal_agenda, '%W, %e %M %Y')as tanggalAgendaVal,a.isi_agenda as isiAgenda,a.subject
 	</sql>
 
 	<select id="findAgendaByUserNew" parameterType="java.util.Map"
