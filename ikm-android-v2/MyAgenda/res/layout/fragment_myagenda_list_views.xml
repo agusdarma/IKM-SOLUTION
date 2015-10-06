@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.ikm.myagenda"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_color_grey_200"
+    android:background="@drawable/splash_new"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -17,12 +17,13 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/cd_main_image"
             android:scaleType="centerCrop"
-            android:src="@drawable/expandable_social_background_image" />
+            android:src="@drawable/atas_menu_with_logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
+            android:gravity="right"
+            android:padding="3dp" >
 
             <ImageView
                 android:id="@+id/expandable_lv_social_image"
@@ -47,18 +48,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
                     android:text="Johnatan Douhou"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
-                    app:typeface="robotoLight" />
+                    app:typeface="robotoBold" />
 
                 <com.ikm.myagenda.font.RobotoTextView
                     android:id="@+id/expandable_lv_social_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="from Oklahoma, USA"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:typeface="robotoLight" />
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:typeface="robotoBold" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -88,17 +89,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:shadowColor="@color/main_color_500"
+                android:shadowColor="@color/white"
                 android:text="@string/type_agenda"
-                android:textColor="@color/main_color_grey_900" />
+                android:textColor="@color/white"
+                app:typeface="robotoBold" />
 
             <RadioButton
                 android:id="@+id/radioPengumumanLain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="@color/main_color_500"
+                android:shadowColor="@color/white"
                 android:text="@string/type_pengumuman"
-                android:textColor="@color/main_color_grey_900" />
+                android:textColor="@color/white"
+                app:typeface="robotoBold" />
         </RadioGroup>
     </LinearLayout>
     

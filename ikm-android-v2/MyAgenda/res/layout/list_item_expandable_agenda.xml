@@ -14,7 +14,7 @@
         android:layout_marginEnd="10dp"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textColor="@color/main_color_500"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:text="@string/material_icon_calendar" />
 
@@ -31,9 +31,9 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="30 September 2015"
-            android:textColor="@color/main_color_grey_800"
+            android:textColor="@color/white"
             android:textSize="14dp"
-            app:typeface="robotoRegular" />
+            app:typeface="robotoBold" />
 
         <!--  <com.ikm.myagenda.font.RobotoTextView
             android:id="@+id/expandable_item_social_number_of_people"
