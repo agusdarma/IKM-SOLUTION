@@ -59,10 +59,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:fletFloatingHint="Isi Agenda"
-            app:fletHintTextColor="@color/main_color_500"
+            app:fletHintTextColor="@color/white"
             app:fletSingleLine="false"
             app:fletTextBackground="@drawable/edit_text_background_accent"
-            app:fletTextColor="@color/main_color_grey_700" >
+            app:fletTextColor="@color/white" >
         </com.ikm.myagenda.view.FloatLabeledEditText>
 
         <com.ikm.myagenda.font.RobotoTextView
