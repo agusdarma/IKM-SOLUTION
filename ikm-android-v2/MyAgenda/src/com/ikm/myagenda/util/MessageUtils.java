@@ -29,6 +29,12 @@ public class MessageUtils {
 		snackBar.setBackgroundSnackBar(act.getResources().getColor(R.color.black_transparant));
 		snackBar.show();
 	}
+	
+	public void snackBarMessage(Activity act,String msg,int color){
+		SnackBar snackBar = new SnackBar(act, msg);
+		snackBar.setBackgroundSnackBar(color);
+		snackBar.show();
+	}
 		
 	
 }

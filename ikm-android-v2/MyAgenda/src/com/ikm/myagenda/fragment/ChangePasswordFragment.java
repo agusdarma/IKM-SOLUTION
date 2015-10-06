@@ -78,7 +78,7 @@ public class ChangePasswordFragment extends Fragment {
 						&& !txt_confirm_new_password.getEditText().getText().toString().isEmpty()) {
 							if(!txt_new_password.getEditText().getText().toString().equals(txt_confirm_new_password.getEditText().getText().toString())){
 								MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_new_confirm_password));
+				             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_new_confirm_password),ctx.getResources().getColor(R.color.material_red_600));
 							}else{
 								// Change Password
 								reqChangePasswordTask = new ReqChangePasswordTask();
@@ -86,7 +86,7 @@ public class ChangePasswordFragment extends Fragment {
 							}
 				} else {
 					MessageUtils messageUtils = new MessageUtils(ctx);
-	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required),ctx.getResources().getColor(R.color.material_red_600));
 				}
 			}
 		});
@@ -152,7 +152,7 @@ public class ChangePasswordFragment extends Fragment {
    				progressDialog.dismiss();
    			 }
    			 MessageUtils messageUtils = new MessageUtils(ctx);
-             	 messageUtils.snackBarMessage(getActivity(),respString);
+             	 messageUtils.snackBarMessage(getActivity(),respString,ctx.getResources().getColor(R.color.material_red_600));
    	     }
 
            @Override
@@ -165,24 +165,24 @@ public class ChangePasswordFragment extends Fragment {
 	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
 		               		if(messageVO.getRc()==0){			               			
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getOtherMessage());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getOtherMessage(),ctx.getResources().getColor(R.color.material_red_600));
 				             	clearInput();
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}						
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
                }else{
             	   MessageUtils messageUtils = new MessageUtils(ctx);
-            	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+            	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
                }  
                if(progressDialog.isShowing()){
 					progressDialog.dismiss();

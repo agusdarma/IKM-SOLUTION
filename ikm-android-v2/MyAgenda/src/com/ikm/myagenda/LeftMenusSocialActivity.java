@@ -123,7 +123,7 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 	@Override
 	public void onBackPressed() {
 		MessageUtils messageUtils = new MessageUtils(ctx);
-     	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.confirm_exit));
+     	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.confirm_exit),ctx.getResources().getColor(R.color.material_red_600));
      	mDrawerLayout.openDrawer(mDrawerList);
 //		if (!mShouldFinish && !mDrawerLayout.isDrawerOpen(mDrawerList)) {
 //			MessageUtils messageUtils = new MessageUtils(ctx);
@@ -199,11 +199,11 @@ public class LeftMenusSocialActivity extends ActionBarActivity {
 						fragment = MyInboxFragment.newInstance();
 					}else{
 						MessageUtils messageUtils = new MessageUtils(ctx);
-			         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.message_validate_inbox_feature));
+			         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.message_validate_inbox_feature),ctx.getResources().getColor(R.color.material_red_600));
 					}					
 				}else{
 					MessageUtils messageUtils = new MessageUtils(ctx);
-		         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.message_user_cannot_access_this_menu));
+		         	messageUtils.snackBarMessage(LeftMenusSocialActivity.this,ctx.getResources().getString(R.string.message_user_cannot_access_this_menu),ctx.getResources().getColor(R.color.material_red_600));
 				}
 			}else{
 				fragment = MyInboxFragment.newInstance();

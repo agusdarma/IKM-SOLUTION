@@ -100,7 +100,7 @@ public class MyInboxFragment extends Fragment {
 		if(loginData.getUserType()==Constants.TEACHER_KEY){
 			mapData = new LinkedHashMap<String, String>();    
 			mapData.put("-1", "Please Select Recepient");
-			mapData.put("0", "Public");
+//			mapData.put("0", "Public");
 	        List<ListRecepientMessageVO> listRecepientVO = SharedPreferencesUtils.getRecepientMessage(ctx);
 	        for (ListRecepientMessageVO recepientMessage : listRecepientVO) {
 	        	mapData.put(Integer.toString(recepientMessage.getId()), recepientMessage.getName());
@@ -144,9 +144,9 @@ public class MyInboxFragment extends Fragment {
 				 * Insert ke table message
 				 * 
 				 */
-				if(recepientId <= 0 && loginData.getUserType()==Constants.TEACHER_KEY){
+				if(recepientId < 0 && loginData.getUserType()==Constants.TEACHER_KEY){
 					MessageUtils messageUtils = new MessageUtils(ctx);
-	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_recepient_empty));
+	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_recepient_empty),ctx.getResources().getColor(R.color.material_red_600));
 				}else{
 					if (!inputMsg.getText().toString().isEmpty()) {
 						// send message
@@ -155,7 +155,7 @@ public class MyInboxFragment extends Fragment {
 						reqSendMessageTask.execute("");												
 					} else {
 						MessageUtils messageUtils = new MessageUtils(ctx);
-		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_empty));
+		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_empty),ctx.getResources().getColor(R.color.material_red_600));
 					}
 				}
 								
@@ -222,7 +222,7 @@ public class MyInboxFragment extends Fragment {
 		 @Override
 	     protected void onCancelled() {
 			 MessageUtils messageUtils = new MessageUtils(ctx);
-          	 messageUtils.snackBarMessage(getActivity(),respString);
+          	 messageUtils.snackBarMessage(getActivity(),respString,ctx.getResources().getColor(R.color.material_red_600));
           	btnSend.setEnabled(true);
 	     }
 		
@@ -245,20 +245,20 @@ public class MyInboxFragment extends Fragment {
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}
 
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
              }else{
           	   MessageUtils messageUtils = new MessageUtils(ctx);
-          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
              }        
 //             if(progressDialog.isShowing()){
 //					progressDialog.dismiss();
@@ -317,7 +317,7 @@ public class MyInboxFragment extends Fragment {
 		 @Override
 	     protected void onCancelled() {			
 			 MessageUtils messageUtils = new MessageUtils(ctx);
-          	 messageUtils.snackBarMessage(getActivity(),respString);
+          	 messageUtils.snackBarMessage(getActivity(),respString,ctx.getResources().getColor(R.color.material_red_600));
 	     }
 		
 		 @Override
@@ -338,20 +338,20 @@ public class MyInboxFragment extends Fragment {
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}
 
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
              }else{
           	   MessageUtils messageUtils = new MessageUtils(ctx);
-          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
              }                     
          }
 	}
@@ -360,11 +360,12 @@ public class MyInboxFragment extends Fragment {
     {
 		
 		RespListInboxVO respListInboxVO = HttpClientUtil.getObjectMapper(ctx).readValue(listJson, RespListInboxVO.class);	
+		SharedPreferencesUtils.saveNumberNotification(respListInboxVO.getJumlahMessageUnread(), ctx);
 		if(respListInboxVO.getListInboxVO()!=null){
 			return respListInboxVO.getListInboxVO();
 		}else{
 			return new ArrayList<InboxVO>();
-		}    
+		}    		
     }
 
 	/**

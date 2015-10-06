@@ -236,7 +236,7 @@ public class MyAgendaFragment extends Fragment {
 				progressDialog.dismiss();
 			 }
 			 MessageUtils messageUtils = new MessageUtils(ctx);
-          	 messageUtils.snackBarMessage(getActivity(),respString);
+          	 messageUtils.snackBarMessage(getActivity(),respString,ctx.getResources().getColor(R.color.material_red_600));
 	     }
 		
 		 @Override
@@ -261,20 +261,20 @@ public class MyAgendaFragment extends Fragment {
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}
 
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
              }else{
           	   MessageUtils messageUtils = new MessageUtils(ctx);
-          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
              }        
              if(progressDialog.isShowing()){
 					progressDialog.dismiss();

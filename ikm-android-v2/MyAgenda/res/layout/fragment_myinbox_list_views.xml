@@ -21,12 +21,17 @@
         android:id="@+id/linSpinRecepient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/login_travel_transparent_background"
         android:orientation="horizontal" >
 
         <Spinner
             android:id="@+id/spinRecepient"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginBottom="5dp" />
         <!--
              <com.ikm.myagenda.fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinRecepient"

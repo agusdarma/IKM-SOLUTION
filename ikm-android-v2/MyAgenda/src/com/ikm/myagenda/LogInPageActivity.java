@@ -111,7 +111,7 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 				
 			} else {
 				MessageUtils messageUtils = new MessageUtils(ctx);
-             	messageUtils.snackBarMessage(LogInPageActivity.this,ctx.getResources().getString(R.string.message_detail_required));
+             	messageUtils.snackBarMessage(LogInPageActivity.this,ctx.getResources().getString(R.string.message_detail_required),ctx.getResources().getColor(R.color.material_red_600));
 			}
 		}
 	}
@@ -175,7 +175,7 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 				progressDialog.dismiss();
 			 }
 			 MessageUtils messageUtils = new MessageUtils(ctx);
-          	 messageUtils.snackBarMessage(LogInPageActivity.this,respString);
+          	 messageUtils.snackBarMessage(LogInPageActivity.this,respString,ctx.getResources().getColor(R.color.material_red_600));
 	     }
 		
 		 @Override
@@ -204,20 +204,20 @@ public class LogInPageActivity extends Activity implements OnClickListener {
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(LogInPageActivity.this,messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(LogInPageActivity.this,messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}
 
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(LogInPageActivity.this,LogInPageActivity.this.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(LogInPageActivity.this,LogInPageActivity.this.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(LogInPageActivity.this,LogInPageActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(LogInPageActivity.this,LogInPageActivity.this.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
              }else{
           	   MessageUtils messageUtils = new MessageUtils(ctx);
-          	   messageUtils.snackBarMessage(LogInPageActivity.this,LogInPageActivity.this.getResources().getString(R.string.message_unexpected_error_server));
+          	   messageUtils.snackBarMessage(LogInPageActivity.this,LogInPageActivity.this.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
              }        
              if(progressDialog.isShowing()){
 					progressDialog.dismiss();

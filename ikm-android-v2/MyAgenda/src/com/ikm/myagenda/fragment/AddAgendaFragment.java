@@ -114,7 +114,7 @@ public class AddAgendaFragment extends Fragment {
 								spinJenisAgenda.getSelectedItem().toString().equalsIgnoreCase("Jenis Agenda")||
 								spinSubject.getSelectedItem().toString().equalsIgnoreCase("Subject")){
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required),ctx.getResources().getColor(R.color.material_red_600));
 						}else{
 							// add agenda
 							reqAddAgendaTask = new ReqAddAgendaTask();
@@ -123,7 +123,7 @@ public class AddAgendaFragment extends Fragment {
 															
 					} else {
 						MessageUtils messageUtils = new MessageUtils(ctx);
-		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required),ctx.getResources().getColor(R.color.material_red_600));
 					}
 				}else{
 					if (!isiAgenda.getText().toString().isEmpty()
@@ -132,7 +132,7 @@ public class AddAgendaFragment extends Fragment {
 						if(spinner1.getSelectedItem().toString().equalsIgnoreCase("Kelas")||
 								spinJenisAgenda.getSelectedItem().toString().equalsIgnoreCase("Jenis Agenda")){
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required),ctx.getResources().getColor(R.color.material_red_600));
 						}else{
 							// add agenda
 							reqAddAgendaTask = new ReqAddAgendaTask();
@@ -141,7 +141,7 @@ public class AddAgendaFragment extends Fragment {
 															
 					} else {
 						MessageUtils messageUtils = new MessageUtils(ctx);
-		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required));
+		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_detail_required),ctx.getResources().getColor(R.color.material_red_600));
 					}
 				}
 									
@@ -275,7 +275,7 @@ public class AddAgendaFragment extends Fragment {
 				progressDialog.dismiss();
 			 }
 			 MessageUtils messageUtils = new MessageUtils(ctx);
-          	 messageUtils.snackBarMessage(getActivity(),respString);
+          	 messageUtils.snackBarMessage(getActivity(),respString,ctx.getResources().getColor(R.color.material_red_600));
 	     }
 		
 		 @Override
@@ -288,7 +288,7 @@ public class AddAgendaFragment extends Fragment {
 	               			MessageVO messageVO = HttpClientUtil.getObjectMapper(ctx).readValue(respons, MessageVO.class);
 		               		if(messageVO.getRc()==0){			               			
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_green_600));
 				             	isiAgenda.setText("");
 				             	spinner1.setSelection(0);
 				             	spinJenisAgenda.setSelection(0);
@@ -296,20 +296,20 @@ public class AddAgendaFragment extends Fragment {
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}
 
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
              }else{
           	   MessageUtils messageUtils = new MessageUtils(ctx);
-          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
              }        
              if(progressDialog.isShowing()){
 					progressDialog.dismiss();
@@ -374,7 +374,7 @@ public class AddAgendaFragment extends Fragment {
 				progressDialog.dismiss();
 			 }
 			 MessageUtils messageUtils = new MessageUtils(ctx);
-          	 messageUtils.snackBarMessage(getActivity(),respString);
+          	 messageUtils.snackBarMessage(getActivity(),respString,ctx.getResources().getColor(R.color.material_red_600));
 	     }
 		
 		 @Override
@@ -398,20 +398,20 @@ public class AddAgendaFragment extends Fragment {
 		               		}
 		               		else{
 		               			MessageUtils messageUtils = new MessageUtils(ctx);
-				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc());
+				             	messageUtils.snackBarMessage(getActivity(),messageVO.getMessageRc(),ctx.getResources().getColor(R.color.material_red_600));
 		               		}
 
 						} catch (Exception e) {
 							MessageUtils messageUtils = new MessageUtils(ctx);
-			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server));
+			             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_message_server),ctx.getResources().getColor(R.color.material_red_600));
 						}	            
 	               	}else{
 	               	   MessageUtils messageUtils = new MessageUtils(ctx);
-	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+	             	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
 	               	}
              }else{
           	   MessageUtils messageUtils = new MessageUtils(ctx);
-          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server));
+          	   messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_unexpected_error_server),ctx.getResources().getColor(R.color.material_red_600));
              }        
              if(progressDialog.isShowing()){
 					progressDialog.dismiss();
