@@ -1,5 +1,6 @@
 package com.myproject.ikm.lib.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myproject.ikm.lib.data.ListRecepientMessageVO;
 import com.myproject.ikm.lib.data.ReqListKelasData;
 import com.myproject.ikm.lib.data.RespListKelasVO;
 import com.myproject.ikm.lib.entity.Kelas;
@@ -90,6 +92,16 @@ public class KelasService {
 		 * Get data message yang belum dibaca, count saja
 		 */
 		respListKelasVO.setJumlahMessageUnread(inboxMapper.countResponInboxUnReadByUser(user.getId()));
+		
+		if(Constants.TEACHER == reqListKelasData.getUserType()){
+			/**
+			 * Get data recepient message
+			 */
+			List<ListRecepientMessageVO> recepientsMessage = new ArrayList<ListRecepientMessageVO>();
+			recepientsMessage = inboxMapper.findRecepientMessageByUser(user.getId());
+			respListKelasVO.setRecepientsMessage(recepientsMessage);
+		}
+		
 		
 		LOG.info("findAllKelasTeacher done with param : " + " respListKelasVO: " + respListKelasVO);
 		return respListKelasVO;		

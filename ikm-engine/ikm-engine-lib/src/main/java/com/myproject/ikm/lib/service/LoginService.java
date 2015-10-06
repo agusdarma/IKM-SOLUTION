@@ -77,12 +77,12 @@ public class LoginService {
 			respLoginVO.setWaliKelas(true);
 		}
 		
-		/**
-		 * Get data recepient message
-		 */
-		List<ListRecepientMessageVO> recepientsMessage = new ArrayList<ListRecepientMessageVO>();
-		recepientsMessage = inboxMapper.findRecepientMessageByUser(user.getId());
-		respLoginVO.setRecepientsMessage(recepientsMessage);
+//		/**
+//		 * Get data recepient message
+//		 */
+//		List<ListRecepientMessageVO> recepientsMessage = new ArrayList<ListRecepientMessageVO>();
+//		recepientsMessage = inboxMapper.findRecepientMessageByUser(user.getId());
+//		respLoginVO.setRecepientsMessage(recepientsMessage);
 		
 		LOG.info("login done with param : " + " respLoginVO: " + respLoginVO);
 		return respLoginVO;		

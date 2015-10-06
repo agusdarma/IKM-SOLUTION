@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 public class ReqSendMessageData extends LoginData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String isiMessage;
+	private int recepientId;
 
 	@Override
 	public String toString() {
@@ -19,6 +20,14 @@ public class ReqSendMessageData extends LoginData implements Serializable {
 
 	public void setIsiMessage(String isiMessage) {
 		this.isiMessage = isiMessage;
+	}
+
+	public int getRecepientId() {
+		return recepientId;
+	}
+
+	public void setRecepientId(int recepientId) {
+		this.recepientId = recepientId;
 	}
 
 }

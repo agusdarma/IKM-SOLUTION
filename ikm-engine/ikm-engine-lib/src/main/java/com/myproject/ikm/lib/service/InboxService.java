@@ -74,30 +74,38 @@ public class InboxService {
 			LOG.info("parent send message : " + message);
 			try {
 				inboxMapper.insertMessage(message);
+				/**
+				 * update status unread menjadi read
+				 */
+				inboxMapper.updateMessageToRead(reqSendMessageData.getRecepientId());
 			} catch (Exception e) {
 				throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
 			}
 		}else if(Constants.TEACHER == reqSendMessageData.getUserType()){
-			List<User> listRecepient = userDataMapper.findAllRecepientMessageFromTeacher(reqSendMessageData.getKodeSekolah(), user.getId());
-			if(listRecepient.size() == 0){
-				throw new IkmEngineException(IkmEngineException.ENGINE_RECEPIENT_EMPTY);
-			}
-			for (User recepient : listRecepient) {
+//			List<User> listRecepient = userDataMapper.findAllRecepientMessageFromTeacher(reqSendMessageData.getKodeSekolah(), user.getId());
+//			if(listRecepient.size() == 0){
+//				throw new IkmEngineException(IkmEngineException.ENGINE_RECEPIENT_EMPTY);
+//			}
+//			for (User recepient : listRecepient) {
 				Date now = timeService.getCurrentTime();
 				Message message = new Message();
 				message.setCreatedOn(now);
 				message.setUpdatedOn(now);
 				message.setIsiMessage(reqSendMessageData.getIsiMessage());
 				message.setFromUserId(user.getId());
-				message.setToUserId(recepient.getId());
+				message.setToUserId(reqSendMessageData.getRecepientId());
 				message.setIsRead(Constants.UNREAD);
 				LOG.info("teacher send message : " + message);
 				try {
-					inboxMapper.insertMessage(message);
+					inboxMapper.insertMessage(message);	
+					/**
+					 * update status unread menjadi read
+					 */
+					inboxMapper.updateMessageToRead(reqSendMessageData.getRecepientId());
 				} catch (Exception e) {
 					throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
 				}
-			}
+//			}
 		}
 		
 		LOG.info("sendMessage done with param : " + " reqSendMessageData: " + reqSendMessageData);	
@@ -147,10 +155,10 @@ public class InboxService {
 			}
 			respListInboxVO.setListInboxVO(listInboxVOs);
 		}
-		/**
-		 * update status unread menjadi read
-		 */
-		inboxMapper.updateMessageToRead(user.getId());
+//		/**
+//		 * update status unread menjadi read
+//		 */
+//		inboxMapper.updateMessageToRead(user.getId());
 		
 		
 		

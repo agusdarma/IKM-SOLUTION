@@ -1,5 +1,6 @@
 package com.myproject.ikm.lib.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myproject.ikm.lib.data.AgendaHeaderVO;
+import com.myproject.ikm.lib.data.ListRecepientMessageVO;
 import com.myproject.ikm.lib.data.ReqAddAgendaData;
 import com.myproject.ikm.lib.data.ReqListAgendaData;
 import com.myproject.ikm.lib.data.RespListAgendaVO;
@@ -86,6 +88,16 @@ public class AgendaService {
 		 * Get data message yang belum dibaca, count saja
 		 */
 		respListAgendaVO.setJumlahMessageUnread(inboxMapper.countResponInboxUnReadByUser(user.getId()));
+		
+		if(Constants.TEACHER == reqListAgendaData.getUserType()){
+			/**
+			 * Get data recepient message
+			 */
+			List<ListRecepientMessageVO> recepientsMessage = new ArrayList<ListRecepientMessageVO>();
+			recepientsMessage = inboxMapper.findRecepientMessageByUser(user.getId());
+			respListAgendaVO.setRecepientsMessage(recepientsMessage);
+		}
+		
 		
 		LOG.info("findAgendaByUser done with param : " + " respListAgendaVO: " + respListAgendaVO);
 		return respListAgendaVO;		
