@@ -77,7 +77,7 @@ public class InboxService {
 				/**
 				 * update status unread menjadi read
 				 */
-				inboxMapper.updateMessageToRead(reqSendMessageData.getRecepientId());
+				inboxMapper.updateMessageToRead(listKelasUser.get(0).getWaliKelasId());
 			} catch (Exception e) {
 				throw new IkmEngineException(IkmEngineException.ENGINE_SEND_MESSAGE_FAILED);
 			}
