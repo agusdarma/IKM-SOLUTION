@@ -155,10 +155,11 @@ public class InboxService {
 			}
 			respListInboxVO.setListInboxVO(listInboxVOs);
 		}
-//		/**
-//		 * update status unread menjadi read
-//		 */
-//		inboxMapper.updateMessageToRead(user.getId());
+		
+		/**
+		 * Get data message yang belum dibaca, count saja
+		 */
+		respListInboxVO.setJumlahMessageUnread(inboxMapper.countResponInboxUnReadByUser(user.getId()));
 		
 		
 		
