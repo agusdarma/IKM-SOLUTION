@@ -70,6 +70,7 @@ public class MyInboxFragment extends Fragment {
 	private ReqListInboxTask reqListInboxTask = null;
 	private ReqSendMessageTask reqSendMessageTask = null;
 	private int recepientId;
+	private LoginData loginData;
 
 	public static MyInboxFragment newInstance() {
 		return new MyInboxFragment();
@@ -94,7 +95,7 @@ public class MyInboxFragment extends Fragment {
 //		mPlace = (TextView) rootView.findViewById(R.id.expandable_lv_social_place);
 //		ImageUtil.displayRoundImage(mImage,
 //				"http://pengaja.com/uiapptemplate/newphotos/profileimages/2.jpg", null);
-		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+		loginData = SharedPreferencesUtils.getLoginData(ctx);
 		LinearLayout linSpinRecepient = (LinearLayout) rootView.findViewById(R.id.linSpinRecepient);
 		if(loginData.getUserType()==Constants.TEACHER_KEY){
 			mapData = new LinkedHashMap<String, String>();    
@@ -143,7 +144,7 @@ public class MyInboxFragment extends Fragment {
 				 * Insert ke table message
 				 * 
 				 */
-				if(recepientId <= 0 ){
+				if(recepientId <= 0 && loginData.getUserType()==Constants.TEACHER_KEY){
 					MessageUtils messageUtils = new MessageUtils(ctx);
 	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_recepient_empty));
 				}else{
