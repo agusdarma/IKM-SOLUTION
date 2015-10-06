@@ -33,6 +33,7 @@
     <string name="message_user_cannot_access_this_menu">Anda tidak diijinkan menggunakan fitur ini.</string>
     <string name="message_validate_inbox_feature">Guru hanya bisa membalas pesan dari orang tua, tidak bisa memulai conversation.</string>
     <string name="message_empty">Pesan kosong!</string>
+    <string name="message_recepient_empty">Recepient kosong!</string>
     
     
     <string name="drawer_open">Open navigation drawer</string>

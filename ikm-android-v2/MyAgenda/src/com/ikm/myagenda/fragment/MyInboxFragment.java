@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,14 +30,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ikm.myagenda.R;
+import com.ikm.myagenda.adapter.LinkedHashMapAdapter;
 import com.ikm.myagenda.adapter.MessagesListAdapter;
 import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.data.InboxVO;
+import com.ikm.myagenda.data.ListRecepientMessageVO;
 import com.ikm.myagenda.data.LoginData;
 import com.ikm.myagenda.data.MessageVO;
 import com.ikm.myagenda.data.ReqListInboxData;
@@ -51,6 +58,9 @@ public class MyInboxFragment extends Fragment {
 //	private ImageView mImage;
 //	private TextView mName;
 //	private TextView mPlace;
+	private LinkedHashMap<String, String> mapData;
+	private LinkedHashMapAdapter<String, String> adapterRecepient;
+	private Spinner spinRecepient;
 	private Context ctx;
 	View rootView;
 	private FloatLabeledEditText inputMsg;
@@ -59,6 +69,7 @@ public class MyInboxFragment extends Fragment {
 	private ListView listViewMessages;
 	private ReqListInboxTask reqListInboxTask = null;
 	private ReqSendMessageTask reqSendMessageTask = null;
+	private int recepientId;
 
 	public static MyInboxFragment newInstance() {
 		return new MyInboxFragment();
@@ -75,12 +86,49 @@ public class MyInboxFragment extends Fragment {
 		rootView = inflater.inflate(R.layout.fragment_myinbox_list_views,
 				container, false);
 		ctx = this.getActivity().getBaseContext();
+		
+		
+		
 //		mImage = (ImageView) rootView.findViewById(R.id.expandable_lv_social_image);
 //		mName = (TextView) rootView.findViewById(R.id.expandable_lv_social_name);
 //		mPlace = (TextView) rootView.findViewById(R.id.expandable_lv_social_place);
 //		ImageUtil.displayRoundImage(mImage,
 //				"http://pengaja.com/uiapptemplate/newphotos/profileimages/2.jpg", null);
 		LoginData loginData = SharedPreferencesUtils.getLoginData(ctx);
+		LinearLayout linSpinRecepient = (LinearLayout) rootView.findViewById(R.id.linSpinRecepient);
+		if(loginData.getUserType()==Constants.TEACHER_KEY){
+			mapData = new LinkedHashMap<String, String>();    
+			mapData.put("-1", "Please Select Recepient");
+			mapData.put("0", "Public");
+	        List<ListRecepientMessageVO> listRecepientVO = SharedPreferencesUtils.getRecepientMessage(ctx);
+	        for (ListRecepientMessageVO recepientMessage : listRecepientVO) {
+	        	mapData.put(Integer.toString(recepientMessage.getId()), recepientMessage.getName());
+			}
+	        
+	        adapterRecepient = new LinkedHashMapAdapter<String, String>(ctx, android.R.layout.simple_spinner_item, mapData);
+	        adapterRecepient.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        spinRecepient = (Spinner) rootView.findViewById(R.id.spinRecepient);
+	        spinRecepient.setAdapter(adapterRecepient);	        
+	        spinRecepient.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+				@Override
+				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+					spinRecepient.setSelection(position);
+			        Map.Entry<String, String> item = (Map.Entry<String, String>) spinRecepient.getSelectedItem();
+			        recepientId = Integer.parseInt(item.getKey());
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> parentView) {
+					// TODO Auto-generated method stub
+					
+				}
+		    	 
+			});
+			linSpinRecepient.setVisibility(View.VISIBLE);
+		}else if(loginData.getUserType()==Constants.PARENTS_KEY){
+			linSpinRecepient.setVisibility(View.GONE);
+		}
 //		mName.setText("Agenda "+ loginData.getNama());
 //		mPlace.setText(ctx.getResources().getString(R.string.school_name));
 		inputMsg = (FloatLabeledEditText) rootView.findViewById(R.id.inputMsg);
@@ -95,15 +143,21 @@ public class MyInboxFragment extends Fragment {
 				 * Insert ke table message
 				 * 
 				 */
-				if (!inputMsg.getText().toString().isEmpty() ) {
-					// send message
-					btnSend.setEnabled(false);
-					reqSendMessageTask = new ReqSendMessageTask();
-					reqSendMessageTask.execute("");												
-				} else {
+				if(recepientId <= 0 ){
 					MessageUtils messageUtils = new MessageUtils(ctx);
-	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_empty));
-				}				
+	             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_recepient_empty));
+				}else{
+					if (!inputMsg.getText().toString().isEmpty()) {
+						// send message
+						btnSend.setEnabled(false);
+						reqSendMessageTask = new ReqSendMessageTask();
+						reqSendMessageTask.execute("");												
+					} else {
+						MessageUtils messageUtils = new MessageUtils(ctx);
+		             	messageUtils.snackBarMessage(getActivity(),ctx.getResources().getString(R.string.message_empty));
+					}
+				}
+								
 			}
 		});
 		/**
@@ -133,6 +187,7 @@ public class MyInboxFragment extends Fragment {
     			reqSendMessageData.setOriginRequest(Constants.ORIGIN_SOURCE);
     			reqSendMessageData.setUserType(loginData.getUserType());
     			reqSendMessageData.setIsiMessage(inputMsg.getText().toString());
+    			reqSendMessageData.setRecepientId(recepientId);
            		  				    			
            		String s = HttpClientUtil.getObjectMapper(ctx).writeValueAsString(reqSendMessageData);
            		s = URLEncoder.encode(s, "UTF-8");

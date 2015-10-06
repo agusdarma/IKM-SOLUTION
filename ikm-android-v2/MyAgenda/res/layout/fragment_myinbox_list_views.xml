@@ -18,11 +18,17 @@
     </ListView>
 
     <LinearLayout
+        android:id="@+id/linSpinRecepient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <com.ikm.myagenda.fr.ganfra.materialspinner.MaterialSpinner
+        <Spinner
+            android:id="@+id/spinRecepient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <!--
+             <com.ikm.myagenda.fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/spinRecepient"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -34,6 +40,7 @@
             app:ms_highlightColor="@color/main_color_500"
             app:ms_hint="Recepient"
             app:ms_multiline="false" />
+        -->
     </LinearLayout>
 
     <LinearLayout
