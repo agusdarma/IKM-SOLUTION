@@ -42,7 +42,7 @@ public class SplashScreensActivity extends Activity {
 		mKenBurns = (KenBurnsView) findViewById(R.id.ken_burns_images);
 		mLogo = (ImageView) findViewById(R.id.logo);
 		welcomeText = (TextView) findViewById(R.id.welcome_text);
-		mKenBurns.setImageResource(R.drawable.splash_with_logo);
+		mKenBurns.setImageResource(R.drawable.splash_screen_background);
 		
 		String category = SPLASH_SCREEN_OPTION_3;
 		Bundle extras = getIntent().getExtras();

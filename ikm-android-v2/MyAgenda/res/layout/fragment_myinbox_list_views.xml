@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.ikm.myagenda"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_new"
+    android:background="@drawable/tile_bg"
     android:orientation="vertical" >
 
     <ListView
@@ -59,10 +59,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:fletFloatingHint="Isi Agenda"
-            app:fletHintTextColor="@color/white"
+            app:fletHintTextColor="@color/main_color_500"
             app:fletSingleLine="false"
             app:fletTextBackground="@drawable/edit_text_background_accent"
-            app:fletTextColor="@color/white" >
+            app:fletTextColor="@color/main_color_grey_700" >
         </com.ikm.myagenda.view.FloatLabeledEditText>
 
         <com.ikm.myagenda.font.RobotoTextView

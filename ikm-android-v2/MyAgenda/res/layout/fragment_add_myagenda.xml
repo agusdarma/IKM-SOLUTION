@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.ikm.myagenda"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/splash_new"
+    android:background="@color/main_color_grey_200"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/cd_main_image"
             android:scaleType="centerCrop"
-            android:src="@drawable/atas_menu_with_logo" />
+            android:src="@drawable/expandable_social_background_image" />
 
         <LinearLayout
             android:layout_width="match_parent"
