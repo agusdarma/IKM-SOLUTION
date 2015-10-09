@@ -8,32 +8,35 @@
     <string name="login_parent">Parent</string>
     <string name="login_teacher">Teacher</string>
     <string name="type_agenda">Agenda</string>
-    <string name="type_pengumuman">Pengumuman Lain</string>
-    <string name="school_name">Sekolah Dian Harapan</string>
-    
-    
-    
+    <string name="type_pengumuman">Other announcements</string>
+    <string name="school_name">Dian Harapan school</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="oldPassword">Old Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="confirmNewPassword">Confirm New Password</string>
     
     <!-- Progress Dialog -->
     <string name="progress_dialog">Please wait a moment..</string>
     <!-- LOADING -->
-    <string name="process_login">Autentifikasi akun</string>
+    <string name="process_login">Account authentication</string>
     <string name="process_agenda">Loading agenda</string>
     <string name="process_inbox">Loading inbox</string>
-    <string name="process_kelas">Loading kelas</string>
+    <string name="process_kelas">Loading class</string>
     <string name="process_add_agenda">Adding agenda</string>
     <string name="process_change_pass">Changing password</string>
     
     <!-- MESSAGE -->
-    <string name="message_unexpected_error_server">Server sedang mengalami gangguan, silahkan coba beberapa jam kemudian.</string>
-    <string name="message_unexpected_error_message_server">Server sedang mengalami gangguan, Unmatched Format Data Transfer</string>
-    <string name="message_no_internet_connection">Terjadi gangguan jaringan, pastikan koneksi internet anda normal.</string>
-    <string name="message_detail_required">Silahkan isi field yang kosong!</string>
-    <string name="message_new_confirm_password">New password dan confirm new password tidak sama.</string>
-    <string name="message_user_cannot_access_this_menu">Anda tidak diijinkan menggunakan fitur ini.</string>
-    <string name="message_validate_inbox_feature">Guru hanya bisa membalas pesan dari orang tua, tidak bisa memulai conversation.</string>
-    <string name="message_empty">Pesan kosong!</string>
-    <string name="message_recepient_empty">Recepient kosong!</string>
+    <string name="message_unexpected_error_server">The server is experiencing problems , please try a few hours later.</string>
+    <string name="message_unexpected_error_message_server">The server is experiencing problems , Unmatched Data Transfer Format</string>
+    <string name="message_no_internet_connection">Network interruption occurs , make sure your internet connection is normal .</string>
+    <string name="message_detail_required">Please fill in the empty field !</string>
+    <string name="message_new_confirm_password">New password and confirm the new password is not the same.</string>
+    <string name="message_user_cannot_access_this_menu">You are not permitted to use this feature.</string>
+    <string name="message_validate_inbox_feature">Teachers can only reply to messages from parents , can not start conversations.</string>
+    <string name="message_empty">Empty message !</string>
+    <string name="message_recepient_empty">Recepient empty!</string>
     
     
     <string name="drawer_open">Open navigation drawer</string>
@@ -165,12 +168,6 @@
     <string name="thicker_and_darker_version">Thicker and darker version of Material design</string>
     <string name="number_of_images">%d image(s)</string>
     <string name="new_york">New York</string>
-    <string name="username">Username</string>
-    <string name="name">Name</string>
-    <string name="password">Password</string>
-    <string name="oldPassword">Old Password</string>
-    <string name="newPassword">New Password</string>
-    <string name="confirmNewPassword">Confirm New Password</string>
     <string name="email">E-mail</string>
     <string name="country">Country</string>
     <string name="phone_no">Phone No</string>
@@ -189,9 +186,9 @@
     <string name="raised">RAISED</string>
     <string name="flat">FLAT</string>
     <string name="ok">OK</string>
-    <string name="cancel">BATAL</string>
-    <string name="save">SIMPAN</string>
-    <string name="send">KIRIM</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="send">SEND</string>
     
     <!-- For Update -->
     <string name="confirm_exit">Press logout menu to exit</string>
