@@ -3,6 +3,8 @@ package com.ikm.myagenda.util;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.content.Context;
+
 import com.ikm.myagenda.R;
 import com.ikm.myagenda.data.Constants;
 import com.ikm.myagenda.data.SubtitleVO;
@@ -950,22 +952,22 @@ public class DummyContent {
 		return list;
 	}
 	
-	public static ArrayList<DummyModel> getParentMenuList() {
+	public static ArrayList<DummyModel> getParentMenuList(Context context) {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", Constants.MENU_MY_AGENDA, R.string.material_icon_agenda));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD, "", Constants.MENU_CHANGE_PASSWORD, R.string.material_icon_change_password));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", Constants.MENU_INBOX, R.string.material_icon_inbox));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_LOGOUT, "", Constants.MENU_LOGOUT, R.string.material_icon_logout));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", context.getResources().getString(R.string.menu_my_agenda), R.string.material_icon_agenda));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD, "", context.getResources().getString(R.string.menu_change_password), R.string.material_icon_change_password));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", context.getResources().getString(R.string.menu_my_inbox), R.string.material_icon_inbox));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_LOGOUT, "", context.getResources().getString(R.string.menu_logout), R.string.material_icon_logout));
 		return list;
 	}
 	
-	public static ArrayList<DummyModel> getTeacherMenuList() {
+	public static ArrayList<DummyModel> getTeacherMenuList(Context context) {
 		ArrayList<DummyModel> list = new ArrayList<>();
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", Constants.MENU_MY_AGENDA, R.string.material_icon_agenda));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD, "", Constants.MENU_CHANGE_PASSWORD, R.string.material_icon_change_password));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_ADD_AGENDA, "", Constants.MENU_ADD_AGENDA, R.string.material_icon_agenda_plus));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", Constants.MENU_INBOX, R.string.material_icon_inbox));
-		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_LOGOUT, "", Constants.MENU_LOGOUT, R.string.material_icon_logout));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_MYAGENDA, "", context.getResources().getString(R.string.menu_my_agenda), R.string.material_icon_agenda));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_CHANGE_PASSWORD, "", context.getResources().getString(R.string.menu_change_password), R.string.material_icon_change_password));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_ADD_AGENDA, "", context.getResources().getString(R.string.menu_add_agenda), R.string.material_icon_agenda_plus));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_INBOX, "", context.getResources().getString(R.string.menu_my_inbox), R.string.material_icon_inbox));
+		list.add(new DummyModel(Constants.DRAWER_ITEM_ID_LOGOUT, "", context.getResources().getString(R.string.menu_logout), R.string.material_icon_logout));
 		return list;
 	}
 	

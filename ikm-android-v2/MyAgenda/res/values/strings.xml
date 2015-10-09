@@ -9,13 +9,19 @@
     <string name="login_teacher">Teacher</string>
     <string name="type_agenda">Agenda</string>
     <string name="type_pengumuman">Other announcements</string>
-    <string name="school_name">Dian Harapan school</string>
+    <string name="school_name">IKM school</string>
     <string name="username">Username</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="oldPassword">Old Password</string>
     <string name="newPassword">New Password</string>
     <string name="confirmNewPassword">Confirm New Password</string>
+    
+    <string name="menu_my_agenda">My Agenda</string>
+    <string name="menu_add_agenda">Add Agenda</string>
+    <string name="menu_my_inbox">Inbox</string>
+    <string name="menu_change_password">Change Password</string>
+    <string name="menu_logout">Logout</string>
     
     <!-- Progress Dialog -->
     <string name="progress_dialog">Please wait a moment..</string>

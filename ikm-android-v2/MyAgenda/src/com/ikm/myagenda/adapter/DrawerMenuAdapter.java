@@ -26,9 +26,9 @@ public class DrawerMenuAdapter extends BaseAdapter {
 		mInflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		if(Constants.PARENTS.equalsIgnoreCase(tipeLogin)){
-			mDrawerItems = DummyContent.getParentMenuList();
+			mDrawerItems = DummyContent.getParentMenuList(context);
 		}else if(Constants.TEACHER.equalsIgnoreCase(tipeLogin)){
-			mDrawerItems = DummyContent.getTeacherMenuList();
+			mDrawerItems = DummyContent.getTeacherMenuList(context);
 		}
 		
 	}
@@ -69,7 +69,7 @@ public class DrawerMenuAdapter extends BaseAdapter {
 		DummyModel item = mDrawerItems.get(position);
 		holder.numberOfNotification.setText("0");
 		holder.numberOfNotification.setVisibility(View.GONE);
-		if(Constants.MENU_INBOX.equalsIgnoreCase(item.getText())){
+		if(ctx.getResources().getString(R.string.menu_my_inbox).equalsIgnoreCase(item.getText())){
 			holder.numberOfNotification.setVisibility(View.VISIBLE);
 			holder.numberOfNotification.setText(Integer.toString(SharedPreferencesUtils.getNumberNotification(ctx)));			
 		}		

@@ -9,7 +9,7 @@
     <string name="login_teacher">Guru</string>
     <string name="type_agenda">Agenda</string>
     <string name="type_pengumuman">Pengumuman Lain</string>
-    <string name="school_name">Sekolah Dian Harapan</string>
+    <string name="school_name">Sekolah IKM</string>
     <string name="username">Username</string>
     <string name="name">Nama</string>
     <string name="password">Password</string>
@@ -17,7 +17,11 @@
     <string name="newPassword">Password baru</string>
     <string name="confirmNewPassword">Confirm Password baru</string>
     
-    
+    <string name="menu_my_agenda">Agendaku</string>
+    <string name="menu_add_agenda">Tambah Agenda</string>
+    <string name="menu_my_inbox">Pesan</string>
+    <string name="menu_change_password">Ganti Password</string>
+    <string name="menu_logout">Keluar</string>
     
     <!-- Progress Dialog -->
     <string name="progress_dialog">Silahkan tunggu..</string>

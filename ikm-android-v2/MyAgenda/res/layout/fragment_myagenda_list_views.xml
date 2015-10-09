@@ -89,18 +89,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:shadowColor="@color/white"
+                android:shadowColor="@color/main_color_500"
                 android:text="@string/type_agenda"
-                android:textColor="@color/white"
+                android:textColor="@color/main_color_grey_900"
                 app:typeface="robotoBold" />
 
             <RadioButton
                 android:id="@+id/radioPengumumanLain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="@color/white"
+                android:shadowColor="@color/main_color_500"
                 android:text="@string/type_pengumuman"
-                android:textColor="@color/white"
+                android:textColor="@color/main_color_grey_900"
                 app:typeface="robotoBold" />
         </RadioGroup>
     </LinearLayout>

@@ -15,11 +15,11 @@ public class Constants {
 	public static final String PARENTS				= "parents";
 	public static final String AGENDA				= "Agenda ";
 	
-	public static final String MENU_MY_AGENDA				= "My Agenda";
-	public static final String MENU_ADD_AGENDA				= "Tambah Agenda";
-	public static final String MENU_INBOX					= "Inbox";
-	public static final String MENU_CHANGE_PASSWORD			= "Change Password";
-	public static final String MENU_LOGOUT					= "Logout";
+//	public static final String MENU_MY_AGENDA				= "My Agenda";
+//	public static final String MENU_ADD_AGENDA				= "Tambah Agenda";
+//	public static final String MENU_INBOX					= "Inbox";
+//	public static final String MENU_CHANGE_PASSWORD			= "Change Password";
+//	public static final String MENU_LOGOUT					= "Logout";
 	
 	public static final int TEACHER_KEY				= 1;
 	public static final int PARENTS_KEY				= 2;
