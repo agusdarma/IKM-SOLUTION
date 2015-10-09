@@ -1,5 +1,6 @@
 package com.myproject.ikm.trx.servlet;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Date;
 
@@ -20,11 +21,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.myproject.ikm.lib.data.LoginData;
+import com.myproject.ikm.lib.data.MessageVO;
 import com.myproject.ikm.lib.data.ReqAddAgendaData;
 import com.myproject.ikm.lib.data.ReqListAgendaData;
 import com.myproject.ikm.lib.data.ReqListInboxData;
 import com.myproject.ikm.lib.data.ReqListKelasData;
 import com.myproject.ikm.lib.data.ReqSendMessageData;
+import com.myproject.ikm.lib.data.RespLoginVO;
 import com.myproject.ikm.lib.utils.CipherUtil;
 import com.myproject.ikm.lib.utils.CommonUtil;
 import com.myproject.ikm.lib.utils.Constants;
@@ -41,7 +44,8 @@ public class SmisServletTest {
 	private ObjectMapper mapper = new ObjectMapper();
 	
 	
-	private final String testingLoginUser = "http://localhost:8080/ikm-engine-trx/trx/loginUser";
+//	private final String testingLoginUser = "http://localhost:8080/ikm-engine-trx/trx/loginUser";
+	private final String testingLoginUser = "http://ec2-52-3-21-158.compute-1.amazonaws.com:8888/ikm-engine-trx/trx/loginUser";	
 	private final String testingGetAgenda = "http://localhost:8080/ikm-engine-trx/trx/listAgenda";
 	private final String testingGetInbox = "http://localhost:8080/ikm-engine-trx/trx/listInbox";
 	private final String testingSendMsgMurid = "http://localhost:8080/ikm-engine-trx/trx/sendMessage";
@@ -72,7 +76,7 @@ public class SmisServletTest {
 //		
 //		System.out.print(diffMinutesOnly + " minutes.");
 //		user.getKodeSekolah()+user.getNoInduk()
-		String pass = CipherUtil.passwordDigest("DIAN-001"+"2","111111");
+		String pass = CipherUtil.passwordDigest("IKM-001"+"6","111111");
 //		String a = "agus";
 		System.out.println(pass);
 	}
@@ -366,7 +370,7 @@ public class SmisServletTest {
 		try {
 			
 			LoginData loginData = new LoginData();
-			loginData.setPassword("administrator");
+			loginData.setPassword("111111");
 			loginData.setKodeSekolah("DIAN-001");
 			loginData.setNoInduk("1");
 			loginData.setOriginRequest("Android-Mobile");
@@ -394,7 +398,11 @@ public class SmisServletTest {
             HttpEntity respEntity = response.getEntity();
             String respString = EntityUtils.toString(respEntity);
             LOG.debug("Response: " + respString);
-            
+            String respons = URLDecoder.decode(respString, "UTF-8");
+            MessageVO messageVO = mapper.readValue(respons, MessageVO.class);
+            LOG.debug("messageVO: " + messageVO);
+            RespLoginVO respLoginVO = mapper.readValue(messageVO.getOtherMessage(), RespLoginVO.class);
+            LOG.debug("respLoginVO: " + respLoginVO);
 //            WalletTrxResponse trxResp = mapper.
 //            		readValue(respString, WalletTrxResponse.class);
 //            Assert.assertEquals(trxReq.getRequestId(), trxResp.getRequestId());
