@@ -29,12 +29,12 @@
   </div>
   <h2 class="form-heading"><s:text name="t.login"/></h2>
   <div class="app-cam">
-	  <form>
+	  <s:form action="Login!process" method="post">
 	  	<s:textfield type="text" name="kodeSekolah" cssClass="text" placeholder="%{getText('l.schoolCode')}" required="true"/>
 	  	<s:textfield type="text" name="noInduk" cssClass="text" placeholder="%{getText('l.noInduk')}" required="true"/>
 	  	<s:textfield type="password" name="password" cssClass="text" placeholder="%{getText('l.password')}" required="true"/>
 		<s:radio label="Login Type" name="loginType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" value="2" />
-		<div class="submit"><input type="submit" onclick="myFunction()" value="Login"></div>
+		<div class="submit"><s:submit type="submit" id="ButtonLogin" value="%{getText('b.logIn')}"/></div>
 		<%-- <div class="login-social-link">
           <a href="index.html" class="facebook">
               Facebook
@@ -49,10 +49,10 @@
 			<div class="clearfix"></div>
 		</ul>
 		--%>
-	</form>
+	</s:form>
   </div>
    <div class="copy_layout login">
-      <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+      <p>Copyright &copy; 2015 Indo Kanaan Mandiri. All Rights Reserved | Design by W3layouts </p>
    </div>
 </body>
 </html>
