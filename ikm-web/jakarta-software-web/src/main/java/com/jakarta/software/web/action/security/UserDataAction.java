@@ -218,7 +218,7 @@ public class UserDataAction extends BaseListAction implements ModuleCheckable{
 	
 	// list status
 	public List<Lookup> getListUserStatus() {
-		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_USER_STATUS);
+		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
 		return listStatus;
 	}
 	

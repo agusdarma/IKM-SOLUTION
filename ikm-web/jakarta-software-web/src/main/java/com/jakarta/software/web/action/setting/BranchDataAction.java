@@ -126,7 +126,7 @@ public class BranchDataAction extends BaseListAction implements ModuleCheckable{
 	}
 	// list status
 	public List<Lookup> getListStatus() {
-		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_USER_STATUS);
+		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
 		return listStatus;
 	}
 	
@@ -149,7 +149,7 @@ public class BranchDataAction extends BaseListAction implements ModuleCheckable{
 	
 	// list status
 	public List<Lookup> getListBranchStatus() {
-		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_USER_STATUS);
+		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
 		return listStatus;
 	}
 	/**************************************   ESSENTIAL FOR SEARCH  *******************************************/	

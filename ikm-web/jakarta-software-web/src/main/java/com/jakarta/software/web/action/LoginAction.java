@@ -2,6 +2,7 @@ package com.jakarta.software.web.action;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +16,13 @@ import com.jakarta.software.web.data.LoginData;
 import com.jakarta.software.web.data.UserDataLoginVO;
 import com.jakarta.software.web.data.WebConstants;
 import com.jakarta.software.web.data.WebResultVO;
+import com.jakarta.software.web.entity.Lookup;
 import com.jakarta.software.web.helper.WebModules;
 import com.jakarta.software.web.mapper.UserDataMapper;
+import com.jakarta.software.web.service.LookupService;
 import com.jakarta.software.web.service.MmbsWebException;
 import com.jakarta.software.web.service.SecurityService;
 import com.jakarta.software.web.utils.StringUtils;
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionContext;
 
 
 public class LoginAction extends BaseAction implements ServletRequestAware {
@@ -33,7 +34,10 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	private String message;
 	private WebResultVO wrv;
 	private String json;
+	private List<Lookup> listLoginType;
 	
+	@Autowired
+	private LookupService lookupService;
 	@Autowired
 	private UserDataMapper userDataMapper;
 	
@@ -157,5 +161,16 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	public void setJson(String json) {
 		this.json = json;
 	}
+
+	public List<Lookup> getListLoginType() {
+		List<Lookup> listLoginType = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
+		return listLoginType;
+	}
+
+	public void setListLoginType(List<Lookup> listLoginType) {
+		this.listLoginType = listLoginType;
+	}
+
+	
 		
 }

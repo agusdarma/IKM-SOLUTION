@@ -164,7 +164,7 @@ public class FundTransferReportAction extends BaseListAction implements ModuleCh
 
 	// list status
 	public List<Lookup> getListStatus() {
-		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_USER_STATUS);
+		List<Lookup> listStatus = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
 		return listStatus;
 	}
 	
