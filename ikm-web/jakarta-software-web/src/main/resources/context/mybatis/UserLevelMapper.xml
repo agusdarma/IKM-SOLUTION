@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.UserLevelMapper">    
+    <select id="findUserMenuAll" resultType="UserMenu">
+        select menu_id as menuId,
+                parent_id as parentId,
+                menu_level as menuLevel,
+                show_order as showOrder,
+                menu_icon as menuIcon,
+                menu_description as menuDescription,
+                menu_url as menuUrl,
+                menu_group as menuGroup,
+                always_include as alwaysInclude
+        from user_menu
+    </select>
+    
+	<delete id="deleteUserLevelMenu" parameterType="int">
+    	delete from user_level_menu
+    	where level_id=#{value}
+    </delete>
+    
+    <resultMap id="UserLevelResult" type="UserLevel">
+		<id property="id" column="id" />
+		<result property="levelName" column="level_name" />
+		<result property="levelDesc" column="level_desc" />
+		<result property="createdOn" column="created_on" />
+		<result property="createdBy" column="created_by" />
+		<result property="updatedBy" column="updated_by" />
+		<result property="updatedOn" column="updated_on" />
+		
+		<collection property="listMenu" ofType="UserMenu">
+			<id property="menuId" column="menu_id" />
+			<result property="parentId" column="parent_id" />
+			<result property="menuRootId" column="menu_root_id" />
+			<result property="menuLevel" column="menu_level" />
+			<result property="showOrder" column="show_order" />
+			<result property="menuLeaf" column="menu_leaf" />
+			<result property="menuDescription" column="menu_description" />
+			<result property="menuUrl" column="menu_url" />
+			<result property="menuGroup" column="menu_group" />
+			<result property="alwaysIncluded" column="always_included" />
+		</collection>	
+	</resultMap>
+	
+	<sql id="_sqlLevelMenu">
+		l.id,
+		l.level_name,
+		l.level_desc,
+		l.created_by,
+		l.created_on,
+		l.updated_by,
+		l.updated_on,
+
+		m.menu_id,
+		m.parent_id,
+		m.menu_root_id,
+		m.menu_level,
+		m.show_order,
+		m.menu_description,
+		m.menu_leaf,
+		m.menu_url,
+		m.menu_group,
+		m.always_include
+    </sql>
+  
+    <select id="findUserLevelById" resultMap="UserLevelResult" parameterType="int">
+        select <include refid="_sqlLevelMenu" />
+        from user_level l 
+        	inner join user_level_menu lm on l.id=lm.level_id
+        	inner join user_menu m on lm.menu_id=m.menu_id
+        where l.id=#{value}
+    </select>
+    
+    <select id="findUserLevelByName" resultMap="UserLevelResult" parameterType="String">
+        select <include refid="_sqlLevelMenu" />
+        from user_level l 
+        inner join user_level_menu lm on l.id=lm.level_id
+        inner join user_menu m on lm.menu_id=m.menu_id
+        where l.level_name=#{value}
+    </select>
+
+    <select id="findModuleLeaf" resultMap="ModuleResult">
+		select coalesce(p.menu_description, m.menu_description) as root_name, m.* 
+		from user_menu m
+		left join user_menu p on m.parent_id=p.menu_id
+		where m.always_include=0 and m.menu_level=2
+		order by m.parent_id, m.show_order
+     </select>
+   
+    <resultMap id="ModuleResult" type="UserLevelMenuVO">
+		<result property="header" column="root_name" />
+		
+		<collection property="bodies" ofType="UserMenu">
+			<id property="menuId" column="menu_id" />
+			<result property="parentId" column="parent_id" />
+			<result property="menuLevel" column="menu_level" />
+			<result property="showOrder" column="show_order" />
+			<result property="menuIcon" column="menu_icon" />
+			<result property="menuDescription" column="menu_description" />
+			<result property="menuUrl" column="menu_url" />
+			<result property="menuGroup" column="menu_group" />
+			<result property="alwaysInclude" column="always_include" />
+		</collection>	
+	</resultMap>
+
+    
+    <resultMap id="UserDataResult" type="UserLevel">
+		<id property="id" column="id" />
+		<result property="levelName" column="levelName" />
+		<result property="levelDesc" column="levelDesc" />
+		<result property="createdBy" column="createdBy" />
+		<result property="createdOn" column="createdOn" />
+		<result property="updatedBy" column="updatedBy" />
+		<result property="updatedOn" column="updatedOn" />
+
+		<collection property="listMenu" ofType="UserMenu">
+			<id property="menuId" column="menuId" />
+			<result property="parentId" column="parentId" />
+			<result property="menuLevel" column="menuLevel" />
+			<result property="showOrder" column="showOrder" />
+			<result property="menuDescription" column="menuDescription" />
+			<result property="menuUrl" column="menuUrl" />
+			<result property="menuGroup" column="menuGroup" />
+			<result property="alwaysInclude" column="alwaysInclude" />
+		</collection>	
+	</resultMap>
+    
+	<select id="findLevelById" resultMap="UserDataResult" parameterType='java.lang.Integer'>
+		 select
+		 	r.id as id,
+	    	r.level_name as levelName,
+	    	r.level_desc as levelDesc, 
+			r.created_by as createdBy,
+			r.created_on as createdOn,
+			r.updated_by as updatedBy,
+			r.updated_on as updatedOn,
+	    	m.menu_id as menuId,
+	      	m.parent_id as parentId,
+	      	m.menu_level as menuLevel,
+	      	m.show_order as showOrder,
+	      	m.menu_description as menuText,
+	     	m.menu_url as menuUrl,
+	      	m.menu_group as menuGroup,
+	      	m.always_include as alwaysInclude
+	    from user_level r
+			left join user_level_menu rm on r.id=rm.level_id
+			inner join user_menu m on rm.menu_id=m.menu_id
+	    where r.id=#{value}
+	</select>
+        
+   	<select id="getAllUserLevel" resultType="UserLevel">
+        select id as id, level_name as levelName from user_level order by level_name
+    </select>	
+	
+	<select id="countUserLevelValidate" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(l.level_name) as levelName
+  		from user_level l 
+  		where l.level_name=#{value}
+    </select>
+    
+	<select id="findUserModulesAll" resultType="UserMenu">
+        select 
+			menu_id as menuId,
+	    	parent_id as parentId, 
+	    	menu_level as menuLevel, 
+	    	show_order as showOrder, 
+	    	menu_description as menuDescription, 
+	    	menu_url as menuUrl, 
+	    	menu_group as menuGroup, 
+	    	always_include as alwaysInclude
+        from user_menu
+    </select>
+
+	 <update id="updateUserLevelData" parameterType="UserLevel">
+		update user_level set
+			level_desc = #{levelDesc},
+			updated_by = #{updatedBy},
+			updated_on = #{updatedOn}
+		where level_name=#{levelName} 
+    </update>
+    
+	<delete id="deleteLevelMenuById" parameterType="java.lang.Integer">
+		delete from user_level
+			where id=#{value} 
+    </delete>
+	    
+    <delete id="deleteUserLevelByLevelId" parameterType="java.lang.Integer">
+		delete from user_level_menu 
+		where level_id=#{value} 
+    </delete>
+    
+    <select id="checkMenuByLevelIdAndMenuId" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(1)
+        from user_level_menu
+        where menu_id=#{menuId} and level_id=#{levelId}
+    </select>
+    
+</mapper>

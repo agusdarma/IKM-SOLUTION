@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.jakarta.software.web.mapper.BillPaymentMapper">
+    
+    <insert id="insertBillPayment" parameterType="BillPayment" useGeneratedKeys="true" keyProperty="id">
+		insert into BILL_PAYMENT(biller_no,
+			biller_name,
+			biller_desc,
+			bank_ref1,
+			bank_ref2,
+			iso_type,
+			bill_ref1,
+			bill_ref2,
+			bill_ref3,
+			bill_type1,
+			bill_type2,
+			bill_type3,
+			bill_min_length1,
+			bill_min_length2,
+			bill_min_length3,
+			bill_max_length1,
+			bill_max_length2,
+			bill_max_length3,
+			category,
+			bill_acc_no_key,
+			bill_amount_key,
+			msg_code_suffix,
+			bp_account,
+			show_order,
+			status,
+			created_on,
+			created_by,
+			updated_on,
+			updated_by)
+		values(#{billerNo},
+			#{billerName},
+			#{billerDesc},
+			#{bankRef1},
+			#{bankRef2},
+			#{isoType},
+			#{billRef1},
+			#{billRef2},
+			#{billRef3},
+			#{billType1},
+			#{billType2},
+			#{billType3},
+			#{billMinLength1},
+			#{billMinLength2},
+			#{billMinLength3},
+			#{billMaxLength1},
+			#{billMaxLength2},
+			#{billMaxLength3},
+			#{category},
+			#{billAccNoKey},
+			#{billAmountKey},
+			#{msgCodeSuffix},
+			#{bpAccount},
+			#{showOrder},
+			#{status},
+			#{createdOn},
+			#{createdBy},
+			#{updatedOn},
+			#{updatedBy})
+	</insert>
+	
+    <sql id="_sqlWhereBillPayment">
+		<where>
+			<if test="billerNo !=null and billerNo.length() > 0 ">
+				bp.biller_no like '%' + #{billerNo} + '%'
+			</if>
+			<if test="billerName!=null and billerName.length() > 0 ">
+				bp.biller_name like '%' + #{billerName} + '%'
+			</if>
+		</where>
+	</sql>
+    
+    <select id="findBillPaymentByParam" resultType="BillPaymentVO" parameterType="BillPaymentParamVO">
+ 	SELECT * from (
+		SELECT ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+			<include refid="_sqlBillPayment" />,
+			ud.user_name as createdByDisplay,
+			ud2.user_name as updatedByDisplay,
+			ld.lookup_desc as statusDisplay
+		from BILL_PAYMENT bp
+			INNER JOIN user_data ud on ud.id=bp.created_by
+			INNER JOIN user_data ud2 on ud2.id=bp.updated_by
+			INNER JOIN lookup_data ld on bp.status=ld.lookup_value and ld.lookup_cat=8
+		<include refid="_sqlWhereBillPayment" /> 
+		) AS ROWPAGING
+	WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+	</select>
+
+	<select id="countBillPaymentByParam" resultType="java.lang.Integer" parameterType="BillPaymentParamVO">
+ 		SELECT count(bp.id)
+		FROM BILL_PAYMENT bp
+			INNER JOIN user_data ud on ud.id=bp.created_by
+			INNER JOIN user_data ud2 on ud2.id=bp.updated_by
+			INNER JOIN lookup_data ld on bp.status=ld.lookup_value and ld.lookup_cat=8
+		<include refid="_sqlWhereBillPayment" />
+	</select>
+	
+	
+	
+</mapper>

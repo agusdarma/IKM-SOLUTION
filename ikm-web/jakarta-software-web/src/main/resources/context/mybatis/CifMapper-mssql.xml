@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.CifMapper">
+
+	 <insert id="createCif" parameterType="Cif" useGeneratedKeys="true" keyProperty="id">
+    	INSERT INTO cif 
+    	(device_code, access_id, host_cif_id, cif_name, identity_code, cif_lang, 
+    	cif_group, email, pin, pin_count, hasstk, activation_date,
+    	pin_change_date, status, auth_status, remarks, created_on, 
+    	created_by, auth_on, auth_by, updated_on, updated_by)
+    	values (
+    	#{deviceCode}, 
+    	#{accessId}, 
+    	#{hostCifId},
+    	#{name},
+    	#{identityCode},
+    	#{language}, 
+    	#{group}, 
+    	#{email}, 
+    	#{pin},
+    	#{pinCount}, 
+    	#{hasstk}, 
+    	#{activationDate}, 
+    	#{pinChangeDate}, 
+    	#{status}, 
+    	#{authStatus}, 
+    	#{remarks}, 
+    	#{createdOn}, 
+    	#{createdBy}, 
+    	#{authOn}, 
+    	#{authBy}, 
+    	#{updatedOn}, 
+    	#{updatedBy});
+	 </insert>
+    
+	 <sql id="_sqlCifWhere">
+	 	<where>
+	   		<if test="mobilePhone != null and mobilePhone.length() > 0">
+	       		and c.device_code like '%' + upper(#{mobilePhone}) + '%'
+	      	</if>
+	      	<if test="name != null and name.length() > 0">
+	       		and upper(c.cif_name) like '%' + upper(#{name}) + '%'
+	       	</if>
+	       	<if test="email != null and email.length() > 0">
+	       		and c.email = #{email}
+	       	</if>
+	       	<if test="group != null and group != 'all'">
+	       		and c.cif_group = #{group}
+	       	</if>
+	       	<if test="createdOnStart != null and createdOnEnd != null">
+				and c.created_on between #{createdOnStart} and #{createdOnEnd}
+			</if>
+			<if test="status != 'all'">
+	       		and c.status = #{status}
+	       	</if>
+	       	<if test="authStatus != null and authStatus.length() > 0">
+	       		and c.auth_status = #{authStatus}
+	       	</if>
+		</where>
+	 </sql>
+	 
+	 <select id="countByParam" resultType="java.lang.Integer" parameterType="CifParamVO">
+		select count(c.id) as count_id 
+		from cif c
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+	    	inner join LOOKUP_DATA ld2 on c.auth_status = ld2.lookup_value and ld2.lookup_cat = 9
+	    	inner join LOOKUP_DATA ld3 on c.pin_count = ld3.lookup_value and ld3.lookup_cat = 19
+	    	inner join USER_DATA ud1 on c.created_by = ud1.id
+	    	inner join USER_DATA ud2 on c.updated_by = ud2.id
+	    	left join GROUP_LIMIT_HEADER glh on glh.id=c.cif_group
+		<include refid="_sqlCifWhere" />
+	 </select>
+	 
+
+	  <select id="findListCifByParam" resultType="CifVO" parameterType="CifParamVO">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS Row,
+			<include refid="_sqlCif" />,
+			ld.lookup_desc as mobileStatusDisplay,
+			ld3.lookup_desc as pinStatusDisplay,
+			ld2.lookup_desc as authStatusDisplay,
+			ud1.user_name as createdByDisplay,
+			ud2.user_name as updatedByDisplay,
+			glh.group_name as groupDisplay 
+		from cif c 
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+	    	inner join LOOKUP_DATA ld2 on c.auth_status = ld2.lookup_value and ld2.lookup_cat = 9
+	    	inner join LOOKUP_DATA ld3 on c.pin_count = ld3.lookup_value and ld3.lookup_cat = 19
+	    	inner join USER_DATA ud1 on c.created_by = ud1.id
+	    	inner join USER_DATA ud2 on c.updated_by = ud2.id
+	    	left join GROUP_LIMIT_HEADER glh on glh.id=c.cif_group
+		<include refid="_sqlCifWhere" />
+        <![CDATA[
+        )AS LogWithRowNumbers
+		WHERE  Row >= #{rowStart} AND Row <= #{rowEnd}
+		]]>
+    </select>
+    
+    
+     <sql id="_sqlAuthCifWhere">
+	 	<where>
+	 		<if test="userLogin != null and userLogin.length() > 0">
+   				and c.updated_by != #{userLogin}
+   			</if>  
+   			<if test="branchCode != null and branchCode.length() > 0">
+   				and mx.u1ubra = #{branchCode}
+   			</if>  
+   			<if test="mobilePhone != null and mobilePhone.length() > 0">
+   				and c.device_code = #{mobilePhone}
+   			</if>    
+	 		and c.auth_status = 'Y'
+		</where>
+	 </sql>
+	 <!-- and c.status = 'A' and c.auth_status = 'Y' -->
+    
+     <select id="countAuthCifByParam" resultType="java.lang.Integer" parameterType="CifAuthParamVO">
+		select count(c.id) as count_id 
+		from cif c
+			inner join account a on c.id = a.cif_id
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+		    inner join group_limit gl on c.cif_group = gl.id
+    		inner join mxuinf mx on mx.u1uid = c.updated_by
+		<include refid="_sqlAuthCifWhere" />
+	 </select>
+	 
+	 <select id="findListAuthCifByParam" resultType="CifVO" parameterType="CifAuthParamVO">
+		SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY c.device_code) AS Row,
+			<include refid="_sqlCif" />,
+			ld.lookup_desc as mobileStatusDisplay,
+			gl.group_name as cifGroupDisplay	
+		from cif c 
+			inner join account a on c.id = a.cif_id
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+	    	inner join group_limit gl on c.cif_group = gl.id
+   		 	inner join mxuinf mx on mx.u1uid = c.updated_by
+		<include refid="_sqlAuthCifWhere" />
+        <![CDATA[
+        )AS LogWithRowNumbers
+		WHERE  Row >= #{paramPagingVO.rowStart} AND Row <= #{paramPagingVO.rowEnd}
+		]]>
+    </select>
+    
+     <select id="findListCifNoPaging" resultType="CifVO" parameterType="CifParamVO">
+		SELECT
+		<include refid="_sqlCif" />,
+			ld.lookup_desc as mobileStatusDisplay,
+			ld3.lookup_desc as pinStatusDisplay,
+			ld2.lookup_desc as authStatusDisplay 
+		from cif c 
+			inner join account a on c.id = a.cif_id
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+    		inner join LOOKUP_DATA ld2 on c.auth_status = ld2.lookup_value and ld2.lookup_cat = 9
+    		inner join LOOKUP_DATA ld3 on c.pin_count = ld3.lookup_value and ld3.lookup_cat = 19
+		<include refid="_sqlCifWhere" />
+    </select>
+    
+    <select id="countListCifNoPaging" resultType="java.lang.Integer" parameterType="CifParamVO">
+		SELECT count(c.id) as counter
+		from cif c 
+			inner join account a on c.id = a.cif_id
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+    		inner join LOOKUP_DATA ld2 on c.auth_status = ld2.lookup_value and ld2.lookup_cat = 9
+    		inner join LOOKUP_DATA ld3 on c.pin_count = ld3.lookup_value and ld3.lookup_cat = 19
+		<include refid="_sqlCifWhere" />
+    </select>
+    
+    <select id="findCifForResetPin" resultType="CifVO" parameterType="CifParamVO">
+		SELECT * FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+				<include refid="_sqlCif" />,
+				ld.lookup_desc as mobileStatusDisplay,
+				ld3.lookup_desc as pinStatusDisplay,
+				ld2.lookup_desc as authStatusDisplay,
+				ud1.user_name as createdByDisplay,
+				ud2.user_name as updatedByDisplay
+			from cif c 
+				inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+		    	inner join LOOKUP_DATA ld2 on c.auth_status = ld2.lookup_value and ld2.lookup_cat = 9
+		    	inner join LOOKUP_DATA ld3 on c.pin_count = ld3.lookup_value and ld3.lookup_cat = 19
+		    	inner join USER_DATA ud1 on c.created_by = ud1.id
+		    	inner join USER_DATA ud2 on c.updated_by = ud2.id
+			<where>
+				<if test="mobilePhone != null and mobilePhone.length() > 0">
+	   				and c.device_code like '%' + #{mobilePhone} + '%'
+	   			</if>
+	   			and c.auth_status=#{authStatus}
+			</where>
+        )AS ROWPAGING
+		WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+    </select>
+    
+	<select id="countCifForResetPin" resultType="java.lang.Integer" parameterType="CifParamVO">
+		SELECT count(c.id) as counter
+		from cif c 
+			inner join LOOKUP_DATA ld on c.status = ld.lookup_value and ld.lookup_cat = 8
+	    	inner join LOOKUP_DATA ld2 on c.auth_status = ld2.lookup_value and ld2.lookup_cat = 9
+	    	inner join LOOKUP_DATA ld3 on c.pin_count = ld3.lookup_value and ld3.lookup_cat = 19
+	    	inner join USER_DATA ud1 on c.created_by = ud1.id
+	    	inner join USER_DATA ud2 on c.updated_by = ud2.id
+		<where>
+			<if test="mobilePhone != null and mobilePhone.length() > 0">
+   				and c.device_code like '%' + #{mobilePhone} + '%'
+   			</if>
+	   			and c.auth_status=#{authStatus}
+		</where>
+    </select>
+    
+</mapper>

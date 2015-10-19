@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+	
+<mapper namespace="com.jakarta.software.web.mapper.AccessGroupMapper">
+
+	<insert id="createAccessGroupData" parameterType="AccessGroupHeader" >
+    	insert into access_group_header (access_name, access_status, remark,
+    		created_on, created_by, updated_on, updated_by) 
+    	values (#{accessName,javaType=String,jdbcType=VARCHAR}, 
+    		 #{accessStatus,javaType=String,jdbcType=VARCHAR},
+    		 #{remark,javaType=String,jdbcType=VARCHAR},
+    		 #{createdOn,javaType=Date,jdbcType=TIMESTAMP},
+    		 #{createdBy,javaType=Integer,jdbcType=INTEGER},
+    		 #{updatedOn,javaType=Date,jdbcType=TIMESTAMP},
+    		 #{updatedBy,javaType=Integer,jdbcType=INTEGER})
+    	<selectKey resultType="java.lang.Integer" keyProperty="id">
+			SELECT access_group_header_seq.CURRVAL FROM dual
+		</selectKey>
+    </insert>
+    
+	<select id="findListAccessByParam" resultType="AccessGroupHeaderVO" parameterType="AccessGroupParamVO">
+		SELECT * FROM (
+			SELECT  q.*, rownum as seqNo 
+			FROM (
+				SELECT <include refid="_sqlAccHeader" />,
+					ld.lookup_desc as accessStatusDisplay,
+					ud1.user_name as createdByDisplay,
+					ud2.user_name as updatedByDisplay
+				from access_group_header ah 
+					inner join LOOKUP_DATA ld
+			    	on ah.access_status = ld.lookup_value and ld.lookup_cat = 8
+			    	inner join USER_DATA ud1
+			    	on ah.created_by = ud1.id
+			    	inner join USER_DATA ud2
+			    	on ah.updated_by = ud2.id
+				where upper(ah.access_name) like concat('%', concat(upper(#{accessName}), '%')) 
+        	) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<insert id="insertAccessGroupDetail" parameterType="AccessGroupDetail">
+    	insert into access_group_detail(access_id, trx_code)
+    	values(#{accessId, javaType=Integer,jdbcType=INTEGER}, 
+    		#{trxCode, javaType=String,jdbcType=VARCHAR})
+    </insert>
+	
+</mapper>

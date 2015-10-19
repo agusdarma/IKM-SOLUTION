@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.jakarta.software.web.mapper.BillPaymentMapper">
+    
+	<update id="updateBillPayment" parameterType="BillPayment" >
+		update bill_payment 
+		set biller_no = #{billerNo},
+			biller_name = #{billerName},
+			bank_ref1 = #{bankRef1},
+			bill_ref1 = #{billRef1},
+			bill_ref2 = #{billRef2},
+			bill_ref3 = #{billRef3},
+			category  = #{category},
+			status = #{status},
+			iso_type = #{isoType},
+			biller_desc = #{billerDesc},
+			bill_type1 = #{billType1},
+			bill_type2 = #{billType2}, 
+			bill_type3 = #{billType3}, 
+			bill_min_length1 = #{billMinLength1},		
+			bill_min_length2 = #{billMinLength2},
+			bill_min_length3 = #{billMinLength3},
+			bill_max_length1 = #{billMaxLength1},
+			bill_max_length2 = #{billMaxLength2},
+			bill_max_length3 = #{billMaxLength3},
+			bill_acc_no_key = #{billAccNoKey},
+			bill_amount_key = #{billAmountKey},
+			msg_code_suffix = #{msgCodeSuffix},
+			bp_account = #{bpAccount},
+			updated_on = #{updatedOn},
+			updated_by = #{updatedBy}
+		where id=#{id}
+	</update>
+    
+    <sql id="_sqlBillPayment">
+        bp.id as id,
+		bp.biller_no as billerNo,
+		bp.biller_name as billerName,
+		bp.biller_desc as billerDesc,
+		bp.bank_ref1 as bankRef1,
+		bp.bank_ref2 as bankRef2,
+		bp.iso_type as isoType,
+		bp.bill_ref1 as billRef1,
+		bp.bill_ref2 as billRef2,
+		bp.bill_ref3 as billRef3,
+		bp.bill_type1 as billType1,
+		bp.bill_type2 as billType2, 
+		bp.bill_type3 as billType3, 
+		bp.bill_min_length1 as billMinLength1,		
+		bp.bill_min_length2 as billMinLength2,
+		bp.bill_min_length3 as billMinLength3,
+		bp.bill_max_length1 as billMaxLength1,
+		bp.bill_max_length2 as billMaxLength2,
+		bp.bill_max_length3 as billMaxLength3,
+		bp.category as category,
+		bp.bill_acc_no_key as billAccNoKey,
+		bp.bill_amount_key as billAmountKey,
+		bp.msg_code_suffix as msgCodeSuffix,
+		bp.bp_account as bpAccount,
+		bp.show_order as showOrder,
+		bp.status as status,
+		bp.created_on as createdOn,
+		bp.created_by as createdBy,
+		bp.updated_on as updatedOn,
+		bp.updated_by as updatedBy
+	</sql>
+    
+	<select id="findBillPaymentById" resultType="BillPaymentVO" parameterType="java.lang.Integer">
+ 		select <include refid="_sqlBillPayment" />
+		from bill_payment bp
+		where bp.id=#{value}
+	</select>
+	
+	<select id="findBillPaymentByBillerNo" resultType="BillPayment" parameterType="java.lang.String">
+ 		select <include refid="_sqlBillPayment" />
+		from bill_payment bp
+		where bp.biller_no=#{value}
+	</select>
+	
+	<select id="selectAllBillPayment" resultType="BillPayment">
+ 		select <include refid="_sqlBillPayment" />
+		from bill_payment bp
+	</select>
+	
+</mapper>

@@ -1,0 +1,142 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* GENERAL */
+dl dt {
+  font-family: 'Utsaah_Regular';
+}
+
+dl dd {
+  font-family: 'Utsaah_Regular';
+}
+
+/* NAVIGATION */
+nav ul li {
+  font-family: 'Utsaah_Regular';
+}
+
+/* CONTAINER */
+hgroup h1 {
+  font-family: 'BebasNeue_Regular', Arial Narrow;
+  font-size: 175%;
+}
+
+hgroup h2 {
+  font-family: 'Utsaah_Regular';
+}
+
+/* PAPER */
+.PaperHeader h2 {
+  font-family: 'Utsaah_Regular';
+}
+
+form p {
+  font-family: 'Utsaah_Regular';
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  font-family: 'Utsaah_Regular';
+}
+
+/* PROFILE */
+.ProfileShort {
+  font-family: 'Utsaah_Regular';
+}
+
+/* FORM */
+fieldset legend {
+  font-family: 'Utsaah_Regular';
+}
+
+.FieldSetContainer label {
+  font-family: 'Utsaah_Regular';
+}
+
+/* INPUT */
+.SingleLine, .ShortLine, .LongLine {
+  font-family: 'Utsaah_Regular';
+}
+
+.MultiLinem .ShortMultiLine, .LongMultiLine {
+  font-family: 'Utsaah_Regular';
+}
+
+.Property {
+  font-family: 'Utsaah_Regular';
+}
+
+.DropDown, .ShortDropDown, .LongDropDown {
+  font-family: 'Utsaah_Regular';
+}
+
+.Date {
+  font-family: 'Utsaah_Regular';
+}
+
+.Time {
+  font-family: 'Utsaah_Regular';
+}
+
+.DateTime {
+  font-family: 'Utsaah_Regular';
+}
+
+/* BUTTON GENERAL */
+.ButtonPrimary {
+  font-family: 'Utsaah_Regular';
+}
+
+.ButtonSecondary {
+  font-family: 'Utsaah_Regular';
+}
+
+/* BUTTON BY IMAGE */
+#ButtonToTop {
+  font-family: 'Utsaah_Regular';
+}
+
+/* BUTTON TABLE */
+.ButtonLimit {
+  font-family: 'Utsaah_Regular';
+}
+
+.ButtonAdd {
+  font-family: 'Utsaah_Regular';
+}
+
+/* FOOTER */
+footer #FooterLeft {
+  font-family: 'Utsaah_Regular';
+}
+
+footer #FooterRight {
+  font-family: 'Utsaah_Regular';
+}
+
+/* JMESA */
+.jmesa {
+  font-size: 160%;
+}

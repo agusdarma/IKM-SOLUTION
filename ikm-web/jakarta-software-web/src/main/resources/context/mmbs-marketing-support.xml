@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mmbs-marketing-support" extends="mmbs-base">
+        
+        <action name="GroupMsisdn!*" method="{1}" class="com.jakarta.software.web.action.marketingSupport.GroupMsisdnAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/marketing-support/group_msisdn_search.jsp</result>
+			<result name="input">/WEB-INF/pages/marketing-support/group_msisdn_input.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+            <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+		</action>
+        
+        <action name="SendSms!*" method="{1}" class="com.jakarta.software.web.action.marketingSupport.SendSmsAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/marketing-support/send_sms_search.jsp</result>
+            <result name="input">WEB-INF/pages/marketing-support/send_sms_input.jsp</result>
+            <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>     
+        </action>
+        
+	</package>
+</struts>

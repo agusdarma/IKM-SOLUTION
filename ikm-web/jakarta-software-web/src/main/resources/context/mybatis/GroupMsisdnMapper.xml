@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.GroupMsisdnMapper">
+    
+	<sql id="_sqlGroupMsisdnHeader">
+		gmh.id as id,
+		gmh.group_name as groupName,
+		gmh.group_remarks as groupRemarks,
+		gmh.created_on as createdOn,
+		gmh.created_by as createdBy,
+		gmh.updated_on as updatedOn,
+		gmh.updated_by as updatedBy
+	</sql>
+
+	<select id="selectGroupMsisdnHeader" resultType="GroupMsisdnHeader">
+		select <include refid="_sqlGroupMsisdnHeader" />
+		from group_msisdn_header gmh
+	</select> 
+
+	<update id="updateGroupMsisdnHeader" parameterType="GroupMsisdnHeader" >
+		update group_msisdn_header 
+		set group_name = #{groupName},
+			group_remarks = #{groupRemarks},
+			created_on = #{createdOn},
+			created_by = #{createdBy},
+			updated_on = #{updatedOn},
+			updated_by = #{updatedBy}
+		where id=#{id}
+	</update>
+
+	<select id="selectGroupMsisdnHeaderById" resultType="GroupMsisdnHeader" parameterType="java.lang.Integer">
+ 		select <include refid="_sqlGroupMsisdnHeader" />
+		from group_msisdn_header gmh
+		where gmh.id=#{value}
+	</select>
+	
+	<sql id="_sqlGroupMsisdnDetail">
+		gmd.msisdn as msisdn,
+		gmd.group_id as groupId
+	</sql>
+
+	<select id="selectGroupMsisdnDetail" resultType="GroupMsisdnDetail">
+		select <include refid="_sqlGroupMsisdnDetail" />
+		from group_msisdn_detail
+	</select>
+	
+	<select id="selectGroupMsisdnDetailById" resultType="GroupMsisdnDetail" parameterType="java.lang.String">
+ 		select <include refid="_sqlGroupMsisdnDetail" />
+		from group_msisdn_detail
+		where msisdn=#{value}
+	</select>
+	
+	<select id="validateGroupHeader" resultType="java.lang.Integer" parameterType="java.lang.String">
+	    select count(1)
+	    from group_msisdn_header
+	    where lower(group_name) = lower(#{value})
+	</select>
+	
+	<select id="selectListMsisdnByGroupId" resultType="java.lang.String" parameterType="java.lang.Integer">
+	    select msisdn
+	    from group_msisdn_detail
+	    where group_id=#{value}
+	</select>
+	
+	<delete id="deleteGroupDetailByGroupId" parameterType="java.lang.Integer">
+		delete from group_msisdn_detail
+		where group_id=#{value} 
+    </delete>
+	
+</mapper>

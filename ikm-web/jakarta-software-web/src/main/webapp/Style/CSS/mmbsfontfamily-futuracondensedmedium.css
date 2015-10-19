@@ -1,0 +1,142 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* GENERAL */
+dl dt {
+  font-family: 'Futura_CondensedMedium';
+}
+
+dl dd {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* NAVIGATION */
+nav ul li {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* CONTAINER */
+hgroup h1 {
+  font-family: 'BebasNeue_Regular', Arial Narrow;
+  font-size: 175%;
+}
+
+hgroup h2 {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* PAPER */
+.PaperHeader h2 {
+  font-family: 'Futura_CondensedMedium';
+}
+
+form p {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* PROFILE */
+.ProfileShort {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* FORM */
+fieldset legend {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.FieldSetContainer label {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* INPUT */
+.SingleLine, .ShortLine, .LongLine {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.MultiLinem .ShortMultiLine, .LongMultiLine {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.Property {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.DropDown, .ShortDropDown, .LongDropDown {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.Date {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.Time {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.DateTime {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* BUTTON GENERAL */
+.ButtonPrimary {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.ButtonSecondary {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* BUTTON BY IMAGE */
+#ButtonToTop {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* BUTTON TABLE */
+.ButtonLimit {
+  font-family: 'Futura_CondensedMedium';
+}
+
+.ButtonAdd {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* FOOTER */
+footer #FooterLeft {
+  font-family: 'Futura_CondensedMedium';
+}
+
+footer #FooterRight {
+  font-family: 'Futura_CondensedMedium';
+}
+
+/* JMESA */
+.jmesa {
+  font-size: 160%;
+}

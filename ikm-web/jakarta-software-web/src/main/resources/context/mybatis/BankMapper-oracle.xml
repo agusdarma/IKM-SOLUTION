@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.BankMapper">
+    
+   <insert id="insertBank" parameterType="Bank">
+		insert into 
+				bank(bank_code, 
+					 bank_name, 
+					 switching,
+				 	 remarks, 
+				 	 is_shown, 
+				 	 created_on, 
+				 	 created_by,
+				 	 updated_on, 
+				 	 updated_by
+				 	 ) 
+			 values(
+			 		#{bankCode, javaType=String, jdbcType=VARCHAR}, 
+			        #{bankName, javaType=String, jdbcType=VARCHAR}, 
+			        #{switching, javaType=String, jdbcType=VARCHAR},  
+				 	#{remarks, javaType=String, jdbcType=VARCHAR}, 
+				 	#{showValue, javaType=Integer, jdbcType=NUMERIC}, 
+				 	#{createdOn, javaType=java.util.Date, jdbcType=TIMESTAMP},
+				 	#{createdBy, javaType=Integer, jdbcType=NUMERIC}, 
+				 	#{updatedOn, javaType=java.util.Date, jdbcType=TIMESTAMP},
+				 	#{updatedBy, javaType=Integer, jdbcType=NUMERIC}
+				   )
+			<selectKey resultType="java.lang.Integer" keyProperty="id">
+				SELECT bank_seq.CURRVAL FROM dual
+			</selectKey>	
+    </insert>
+    
+    <sql id="_sqlBankWhere">
+    	<where>
+	   		<if test="bankCode != null and bankCode.length() > 0">
+				AND upper(b.bank_code) like concat('%', concat(upper(#{bankCode}), '%'))
+			</if>
+			
+			<if test="bankName != null and bankName.length() > 0">
+				AND upper(b.bank_name) like concat('%', concat(upper(#{bankName}), '%'))
+			</if>
+	      	
+	     </where>
+	</sql>
+    
+    <select id="countBankByParam" parameterType="BankParamVO" resultType="java.lang.Integer">
+      	SELECT count(b.id) as count 
+		FROM bank b
+		<include refid="_sqlBankWhere"/>
+    </select>
+    
+     <select id="findBankByParam" resultType="BankVO" parameterType="BankParamVO">
+		SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+		           <include refid="_sqlBank"/>,
+		           ud.user_name as createdByDisplay,
+				   ud2.user_name as updatedByDisplay
+				FROM bank b
+		    	INNER JOIN user_data ud on ud.id=b.created_by
+		    	INNER JOIN user_data ud2 on ud2.id=b.updated_by
+				<include refid="_sqlBankWhere" />
+				ORDER BY ${sortVariable} ${sortOrder}
+	 		) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+    </select>
+    
+</mapper>

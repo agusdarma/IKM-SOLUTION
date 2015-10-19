@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<!-- ========================= BUSINESS OBJECT DEFINITIONS ========================= -->
+	<!-- Scan all class with @Repository, @Service, and @Component -->
+	<!-- (beware that this does not enable mapper scanning!) -->
+	<context:component-scan base-package="com.jakarta.software.web.service" />
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="jakarta-software-web" />
+	</bean>
+	
+	<bean id="httpClientService" class="com.jakarta.software.web.service.HttpClientService" init-method="start" destroy-method="stop">
+		<property name="destinationUrl" value="${engine.url}" />
+		<property name="timeout" value="30000" /> <!-- 30s -->
+	</bean>
+
+	<bean id="engineService" class="com.jakarta.software.web.service.EngineService" >
+	    <property name="encryptionKey" value="${engine.encryptionKey}" />
+	</bean>	
+	<bean id="emailSenderService" class="com.jakarta.software.web.service.EmailSenderService" >
+		<property name="smtpHost" value="${smtpHost}" /> 
+		<property name="smtpPort" value="${smtpPort}" />
+		<property name="smtpUserName" value="${smtpUserName}" />
+		<property name="smtpPassword" value="${smtpPassword}" />
+		<property name="useTLS" value="${useTLS}" />
+		<property name="useSSL" value="${useSSL}" />
+		<property name="defaultFrom" value="${defaultFrom}" />
+	</bean>
+
+	<!--  <bean id="emailSenderServiceGmail" class="com.jakarta.software.web.service.EmailSenderService" >
+		<property name="smtpHost" value="smtp.gmail.com" />
+		<property name="smtpPort" value="465" />
+		<property name="smtpUserName" value="decimonoloki@gmail.com" />
+		<property name="smtpPassword" value="embadmin" />
+		<property name="useTLS" value="false" />
+		<property name="useSSL" value="false" />
+		<property name="defaultFrom" value="decimonoloki@gmail.com" />
+	</bean>
+	-->
+		
+		
+	<bean id="versionData" class="com.jakarta.software.web.data.VersionData" init-method="printInfo" />
+	
+	<!-- ========================= SCHEDULER ========================= -->
+	<bean id="syncTimeJob" class="com.jakarta.software.web.job.SyncTimeJob" init-method="syncTime" />
+
+	<task:scheduled-tasks scheduler="systemScheduler">
+		 <!-- run every 1 hour -->
+	    <task:scheduled ref="syncTimeJob" method="syncTime" cron="0 0 * * * ?"/>
+	</task:scheduled-tasks>
+	
+	<task:scheduler id="systemScheduler" pool-size="1" />
+	
+</beans>

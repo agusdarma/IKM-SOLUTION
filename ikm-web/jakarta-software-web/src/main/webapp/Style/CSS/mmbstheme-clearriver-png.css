@@ -1,0 +1,1076 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* THEME */
+/* INPUT */
+/* INPUT BACKGROUND */
+/* INPUT BORDER */
+/* INPUT FONT */
+/* LINK */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* SEMANTIC ELEMENTS */
+body {
+  background-color: #27aae1;
+}
+
+/* NEUTRALIZATION */
+h1, h2, h3, h4, h5, h6, p, mark, ol, ul, li {
+  background-color: transparent;
+}
+
+/* POP UP */
+#ProgressPage {
+  background-color: #8c7765;
+}
+
+#ProgressRequest {
+  background-color: transparent;
+}
+
+#ProgressRequest .Background {
+  background-color: #8c7765;
+}
+
+.LoadingSquare {
+  color: #ffffff;
+  background-color: transparent;
+  background-image: url("../../Resource/Gif/progress_square.gif");
+}
+
+#InformationPage {
+  background-color: #8c7765;
+}
+
+.InformationSquare {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+/* HEADER */
+#IconHome {
+  border-right-color: #e1cdb9;
+}
+
+#LogoClient {
+  border-left-color: #e1cdb9;
+}
+
+/* NAVIGATION */
+#NavigationHome {
+  border-left-color: #e1cdb9;
+}
+
+nav {
+  background-image: url("../../Resource/Shape/Clear River/pattern_primary_up.png");
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+nav ul li ul {
+  background-color: #73563d;
+  border-color: #e1cdb9;
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* PAPER */
+form {
+  background-color: #ffffff;
+  border-color: #e1cdb9;
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* FORM */
+fieldset {
+  border-color: #e1cdb9;
+}
+
+fieldset legend {
+  background-color: #f5e1d2;
+  border-color: #e1cdb9;
+}
+
+fieldset .SubFieldSetContainer {
+  border-left-color: #e1cdb9;
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  background-color: #f5e1d2;
+  border-color: #e1cdb9;
+}
+
+/* SHAPE */
+.ShapeTailBorder {
+  border-top: 15px solid #e1cdb9;
+}
+
+.ShapeTailBody {
+  border-top: 14px solid #f5e1d2;
+}
+
+.ShapeHornBorder {
+  border-bottom: 15px solid #e1cdb9;
+}
+
+.ShapeHornBody {
+  border-bottom: 14px solid #f5e1d2;
+}
+
+.ShapeFolderHornBorder {
+  border-bottom: 34px solid #f5e1d2;
+}
+
+.ShapeFolderHornBody {
+  border-bottom: 34px solid #e1cdb9;
+}
+
+.ShapeIsoscelesHorn {
+  border-bottom: 9px solid #e1cdb9;
+}
+
+.ShapeIsoscelesTail {
+  border-top: 9px solid #e1cdb9;
+}
+
+.PaperSelected .ShapeFolderHornBorder {
+  border-bottom: 34px solid #e1cdb9;
+}
+
+.PaperSelected .ShapeFolderHornBody {
+  border-bottom: 34px solid #ffffff;
+}
+
+/* FOOTER */
+footer {
+  background-color: #73563d;
+}
+
+#FooterHeader {
+  background-image: url("../../Resource/Shape/Clear River/pattern_primary_up.png");
+}
+
+/* GENERAL */
+dl {
+  display: block;
+}
+
+dl dt {
+  color: #aa5138;
+}
+
+dl dd {
+  color: #be654c;
+}
+
+/* NAVIGATION */
+nav ul li {
+  color: #ffffff;
+}
+
+/* CONTAINER */
+hgroup h1 {
+  color: #ffffff;
+}
+
+hgroup h2 {
+  color: #ffffff;
+}
+
+/* PAPER */
+.PaperHeader h2 {
+  color: #be654c;
+}
+
+form p {
+  color: #aa5138;
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  color: #aa5138;
+}
+
+/* PROFILE */
+.ProfileShort {
+  color: #ffffff;
+}
+
+/* FORM */
+fieldset legend {
+  color: #aa5138;
+}
+
+.FieldSetContainer label {
+  color: #aa5138;
+  border-color: #e1cdb9;
+  background-image: url("../../Resource/Shape/Clear River/pattern_secondary_up.png");
+}
+
+/* TABLE */
+.TableControl {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  border-color: #e1cdb9;
+}
+
+.TableControl img {
+  border-color: #e1cdb9;
+}
+
+table {
+  border-color: #e1cdb9;
+}
+
+table thead {
+  background-image: url("../../Resource/Shape/Clear River/pattern_primary_up.png");
+}
+
+table thead tr th {
+  color: #ffffff;
+  border-color: #e1cdb9;
+}
+
+table tbody tr td {
+  color: #aa5138;
+}
+
+table tbody tr .ColoumnInput {
+  background-image: url("../../Resource/Icon/icon_edit.png");
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f5e1d2;
+}
+
+table tbody tr:hover td {
+  color: #e1cdb9;
+  background-color: #73563d;
+  transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  -webkit-transition: all 0.25s ease-out;
+}
+
+table tfoot tr {
+  background-color: #e1cdb9;
+}
+
+table tfoot tr td {
+  color: #aa5138;
+}
+
+/* FOOTER */
+footer #FooterLeft {
+  color: #e1cdb9;
+}
+
+footer #FooterRight {
+  color: #e1cdb9;
+}
+
+footer mark {
+  color: #ffffff;
+}
+
+/* INPUT TYPE TEXT */
+.SingleLine, .ShortLine, .LongLine {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+/* CONDITION */
+.SingleLine:enabled, .ShortLine:enabled, .LongLine:enabled {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.SingleLine:disabled, .ShortLine:disabled, .LongLine:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.SingleLine:valid, .SingleLine:in-range, .ShortLine:valid, .ShortLine:in-range, .LongLine:valid, .LongLine:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.SingleLine:invalid, .SingleLine:out-of-range, .ShortLine:invalid, .ShortLine:out-of-range, .LongLine:invalid, .LongLine:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.SingleLine:required, .ShortLine:required, .LongLine:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.SingleLine:read-only, .ShortLine:read-only, .LongLine:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.SingleLine[readonly], .ShortLine[readonly], .LongLine[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+/* INPUT TYPE TEXT AREA */
+.MultiLine, .ShortMultiLine, .LongMultiLine {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+/* CONDITION */
+.MultiLine:enabled, .ShortMultiLine:enabled, .LongMultiLine:enabled {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.MultiLine:disabled, .ShortMultiLine:disabled, .LongMultiLine:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.MultiLine:valid, .MultiLine:in-range, .ShortMultiLine:valid, .ShortMultiLine:in-range, .LongMultiLine:valid, .LongMultiLine:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.MultiLine:invalid, .MultiLine:out-of-range, .ShortMultiLine:invalid, .ShortMultiLine:out-of-range, .LongMultiLine:invalid, .LongMultiLine:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.MultiLine:required, .ShortMultiLine:required, .LongMultiLine:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.MultiLine:read-only, .ShortMultiLine:read-only, .LongMultiLine:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.MultiLine[readonly], .ShortMultiLine[readonly], .LongMultiLine[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+/* INPUT TYPE TEXT PREVIEW */
+.Property {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+/* CONDITION */
+.Property:enabled {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.Property:valid, .Property:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.Property:invalid, .Property:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.Property:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.Property:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.Property:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+.Property[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: none;
+  border-color: #e1cdb9;
+}
+
+/* INPUT TYPE SELECT */
+.DropDown, .jmesa .toolbar select, .ShortDropDown, .LongDropDown {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_dropdown.png");
+  border-color: #e1cdb9;
+}
+
+/* CONDITION */
+.DropDown:read-only, .jmesa .toolbar select:read-only, .ShortDropDown:read-only, .LongDropDown:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_dropdown.png");
+  border-color: #e1cdb9;
+}
+
+.DropDown[readonly], .jmesa .toolbar select[readonly], .ShortDropDown[readonly], .LongDropDown[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_dropdown.png");
+  border-color: #e1cdb9;
+}
+
+.DropDown:valid, .DropDown:in-range, .jmesa .toolbar select:valid, .jmesa .toolbar select:in-range, .ShortDropDown:valid, .ShortDropDown:in-range, .LongDropDown:valid, .LongDropDown:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.DropDown:invalid, .DropDown:out-of-range, .jmesa .toolbar select:invalid, .jmesa .toolbar select:out-of-range, .ShortDropDown:invalid, .ShortDropDown:out-of-range, .LongDropDown:invalid, .LongDropDown:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.DropDown:required, .jmesa .toolbar select:required, .ShortDropDown:required, .LongDropDown:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.DropDown:enabled, .jmesa .toolbar select:enabled, .ShortDropDown:enabled, .LongDropDown:enabled {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_dropdown.png");
+  border-color: #e1cdb9;
+}
+
+.DropDown:disabled, .jmesa .toolbar select:disabled, .ShortDropDown:disabled, .LongDropDown:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: url("../../Resource/Input/Clear River/icon_dropdown.png");
+  border-color: #e1cdb9;
+}
+
+/* INPUT TYPE DATE TIME */
+.Date {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_date.png");
+  border-color: #e1cdb9;
+}
+
+.Date:valid, .DatePicker:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.Date:invalid, .DatePicker:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.Date:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.Date:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_date.png");
+  border-color: #e1cdb9;
+}
+
+.Date[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_date.png");
+  border-color: #e1cdb9;
+}
+
+.Date:enabled {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_date.png");
+  border-color: #e1cdb9;
+}
+
+.Date:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: url("../../Resource/Input/Clear River/icon_date.png");
+  border-color: #e1cdb9;
+}
+
+.Time {
+  /* margin-right: $general_margin */
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_time.png");
+  border-color: #e1cdb9;
+}
+
+.Time:valid, .DatePicker:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.Time:invalid, .DatePicker:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.Time:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.Time:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_time.png");
+  border-color: #e1cdb9;
+}
+
+.Time[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_time.png");
+  border-color: #e1cdb9;
+}
+
+.Time:enabled {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_time.png");
+  border-color: #e1cdb9;
+}
+
+.Time:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: url("../../Resource/Input/Clear River/icon_time.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime {
+  /* margin-right: $general_margin */
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_datetime.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime:valid, .DatePicker:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Clear River/icon_valid.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime:invalid, .DatePicker:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Clear River/icon_invalid.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime:required {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_required.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime:read-only {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_datetime.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime[readonly] {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  background-image: url("../../Resource/Input/Clear River/icon_datetime.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime:enabled {
+  color: #aa5138;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Clear River/icon_datetime.png");
+  border-color: #e1cdb9;
+}
+
+.DateTime:disabled {
+  color: #969696;
+  background-color: #e1cdb9;
+  background-image: url("../../Resource/Input/Clear River/icon_datetime.png");
+  border-color: #e1cdb9;
+}
+
+/* CHECKBOX */
+.CheckboxSlideForIE {
+  background-color: none;
+}
+
+.CheckboxSlideForIE label {
+  background-image: none;
+  background-color: none;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.CheckboxSlideForIE input[type=checkbox]:checked + label {
+  background-color: none;
+}
+
+.CheckboxSlideForOthers {
+  background-color: #f5e1d2;
+  border-color: #e1cdb9;
+}
+
+.CheckboxSlideForOthers label {
+  background-image: none;
+  background-color: #be1e2d;
+  border-color: #e1cdb9;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.CheckboxSlideForOthers input[type=checkbox]:checked + label {
+  background-color: #00964b;
+}
+
+/* RADIO BUTTON AND CHECKBOX */
+.InputSwitcherForIE {
+  background-color: none;
+}
+
+.InputSwitcherForIE label {
+  background-image: none;
+  background-color: none;
+  border-right-color: none;
+  border-bottom-color: none;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.InputSwitcherForOthers {
+  background-color: #e1cdb9;
+  border-color: #e1cdb9;
+}
+
+.InputSwitcherForOthers label {
+  background-image: none;
+  background-color: none;
+  border-right-color: #e1cdb9;
+  border-bottom-color: #e1cdb9;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* BUTTON */
+.ButtonPrimary {
+  color: #ffffff;
+  border-color: #e1cdb9;
+  background-image: url("../../Resource/Shape/Clear River/pattern_primary_up.png");
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonPrimary:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonPrimary:hover {
+  background-image: url("../../Resource/Shape/Clear River/pattern_primary_down.png");
+}
+
+.ButtonSecondary {
+  color: #ffffff;
+  border-color: #e1cdb9;
+  background-image: url("../../Resource/Shape/Clear River/pattern_secondary_up.png");
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonSecondary:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonSecondary:hover {
+  background-image: url("../../Resource/Shape/Clear River/pattern_secondary_down.png");
+}
+
+/* BUTTON BY IMAGE */
+.ButtonReset {
+  color: #ffffff;
+  border-color: #e1cdb9;
+  background-image: url("../../Resource/Icon/Clear River/icon_reset.png"), url("../../Resource/Shape/Clear River/pattern_primary_up.png");
+}
+
+.ButtonReset:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonReset:hover {
+  background-image: url("../../Resource/Icon/Clear River/icon_reset.png"), url("../../Resource/Shape/Clear River/pattern_primary_down.png");
+}
+
+#ButtonToTop {
+  border-color: #e1cdb9;
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+#ButtonToTop .Background {
+  background-color: #f5e1d2;
+}
+
+#ButtonToTop .ShapeHornBody {
+  border-bottom: 18px solid #be654c;
+}
+
+#ButtonToTop p {
+  color: #be654c;
+}
+
+/* BUTTON TABLE */
+.ButtonFirst {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_first.png");
+}
+
+.ButtonFirst:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonFirst:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonPrevious {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_previous.png");
+}
+
+.ButtonPrevious:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonPrevious:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonNext {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_next.png");
+}
+
+.ButtonNext:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonNext:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonLast {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_last.png");
+}
+
+.ButtonLast:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonLast:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonLimit {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+}
+
+.ButtonLimit:disabled {
+  color: #8c8c8c;
+  border-color: #e1cdb9;
+}
+
+.ButtonLimit:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonAdd {
+  color: #ffffff;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_add.png");
+}
+
+th .ButtonAdd {
+  border-color: transparent;
+}
+
+.ButtonAdd:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonAdd:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonSubmit {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_submit.png");
+}
+
+.ButtonSubmit:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonSubmit:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonCancel {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_cancel.png");
+}
+
+.ButtonCancel:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonCancel:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonDelete {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_delete.png");
+}
+
+.ButtonDelete:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonDelete:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonEdit {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_edit.png");
+}
+
+.ButtonEdit:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonEdit:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+.ButtonSave {
+  color: #be654c;
+  border-color: #e1cdb9;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_save.png");
+}
+
+.ButtonSave:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #e1cdb9;
+}
+
+.ButtonSave:hover {
+  color: #ffffff;
+  background-color: #8c7765;
+  border-color: #73563d;
+}
+
+/* MESSAGE */
+.MessageDefault {
+  color: #aa5138;
+  background-color: #f5e1d2;
+  border-color: #e1cdb9;
+}
+
+.ResultSuccess:before {
+  color: #ffffff;
+  background-color: #00964b;
+}
+
+.ResultFailure:before {
+  color: #ffffff;
+  background-color: #be1e2d;
+}

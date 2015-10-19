@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+	
+<mapper namespace="com.jakarta.software.web.mapper.AccountHistoryMapper">
+
+	<insert id="createAccountHistory" parameterType="AccountHistory">
+		INSERT INTO account_history (
+			cif_id_history, account_no, card_no, account_type, 
+    		acc_index, status, remarks, created_on, 
+    		created_by, updated_on, updated_by,
+    		modify_status)
+    	values (
+	    	#{cifIdHistory, javaType=Integer, jdbcType=NUMERIC},
+	    	#{accountNo, javaType=String, jdbcType=VARCHAR},
+	    	#{cardNo, javaType=String, jdbcType=VARCHAR},
+	    	#{accountType, javaType=String, jdbcType=VARCHAR}, 
+	    	#{accIndex, javaType=Integer, jdbcType=NUMERIC},
+	    	#{status, javaType=String, jdbcType=VARCHAR}, 
+	    	#{remarks, javaType=String, jdbcType=VARCHAR}, 
+	    	#{createdOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+	    	#{createdBy, javaType=Integer, jdbcType=NUMERIC}, 
+	    	#{updatedOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+	    	#{updatedBy, javaType=Integer, jdbcType=NUMERIC},
+	    	#{modifyStatus, javaType=String, jdbcType=VARCHAR}
+    	)
+    	<selectKey resultType="java.lang.Integer" keyProperty="id">
+			SELECT account_history_seq.CURRVAL FROM dual
+		</selectKey>		
+	</insert>
+	
+</mapper>

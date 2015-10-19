@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="trx_log_browser" pageWidth="842" pageHeight="595" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f04758cd-cb2b-4fb7-bdb0-86be658bb22f">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="4"/>
+	<parameter name="startDate" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
+	<parameter name="syslogno" class="java.lang.String"/>
+	<parameter name="phoneNo" class="java.lang.String"/>
+	<parameter name="sourceAccount" class="java.lang.String"/>
+	<field name="sysLogNo" class="java.lang.String"/>
+	<field name="deviceCode" class="java.lang.String"/>
+	<field name="receivedTime" class="java.util.Date"/>
+	<field name="trxCode" class="java.lang.String"/>
+	<field name="sourceAccount" class="java.lang.String"/>
+	<field name="destAccount" class="java.lang.String"/>
+	<field name="amount" class="java.lang.Double"/>
+	<field name="channelType" class="java.lang.String"/>
+	<field name="lastRc" class="java.lang.String"/>
+	<field name="hostRef" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="5" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="119" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d149638c-f08c-442c-88f5-1ac92dd1a7b3" x="0" y="4" width="842" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trx log browser]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy h.mm a">
+				<reportElement uuid="750499e3-aed9-4be1-b3bd-9f9fbf1f02bf" x="99" y="31" width="171" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a5a3ece0-796e-468a-891f-414da0d61500" x="25" y="31" width="74" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Print Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="60b66ab2-8592-4dc5-a18a-b9ca8f197f2e" x="99" y="51" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8df93599-7bc4-44d0-8fce-7951af960297" x="99" y="71" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="362e809f-ab16-417c-8198-abd3fa6d50b8" x="99" y="91" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{syslogno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="53adfcf5-8b36-4085-8698-242b333143c3" x="405" y="31" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{phoneNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb9801b6-2103-41b9-8727-eacadc4f8cb3" x="405" y="51" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{sourceAccount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7cf60660-40d0-4dae-9e5d-404d45810585" x="25" y="51" width="74" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Start Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="86aa4b9c-4d3a-4fd2-99b0-0046ad2dd4ce" x="25" y="71" width="74" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[End Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e12efb97-9c22-44a2-9600-3ad617eb7843" x="25" y="91" width="74" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sys Log No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ab0c535d-65a8-468a-84bd-dffca42bf791" x="314" y="31" width="90" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06d19f15-d836-4f0e-af4e-68673d5c3aa3" x="314" y="51" width="91" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Source Account :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4fccbb9d-f3c8-4c06-aa55-e32eadd91d93" mode="Opaque" x="25" y="0" width="53" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Syslogno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5cf0453a-1681-4e25-817a-f02d0eb9e45b" mode="Opaque" x="78" y="0" width="77" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7aedd199-97c8-4955-8cba-abdf32581caa" mode="Opaque" x="155" y="0" width="59" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a3c117e1-9655-48da-b115-e6d79ba447e0" mode="Opaque" x="214" y="0" width="101" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bc112a2c-b609-4607-a4de-70acd81cfae3" mode="Opaque" x="315" y="0" width="89" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Source Account]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e362dde9-89e6-4206-9861-e3378ebdc2c5" mode="Opaque" x="404" y="0" width="119" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destination Account]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="af4fc2e3-31d2-4f31-9498-dd3597ba45d3" mode="Opaque" x="523" y="0" width="41" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27f18ead-2c7f-4c8e-ac9a-f4489f452023" mode="Opaque" x="564" y="0" width="77" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Channel Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a041927-ddfd-489a-8da2-67cd0861da7e" mode="Opaque" x="641" y="0" width="47" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Last Rc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27d879bc-8952-4e50-8b68-5a27cd95b3c4" mode="Opaque" x="688" y="0" width="53" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Host Ref]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ec76bd7c-c000-4f5d-bbbd-1b607a65d0ee" x="25" y="0" width="53" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sysLogNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0fd58261-98c9-40d4-ac2e-783c5c6c71eb" x="78" y="0" width="77" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deviceCode}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement uuid="5d33e9e0-86e4-48f9-a093-f7e556bbcdf6" x="155" y="0" width="59" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{receivedTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cbb913f9-41f4-4b2f-9352-68166c4f68e8" x="214" y="0" width="101" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trxCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e3427ecf-a5b7-4c5f-b714-b4272a24820f" x="315" y="0" width="89" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sourceAccount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8a3c1295-46e5-4b30-b2fe-0ca9ad0d8642" x="404" y="0" width="119" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destAccount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement uuid="a87f95bd-863c-4258-ace4-533a5cd2dc03" x="523" y="0" width="41" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="88599ca7-ad4d-477b-a310-6f1e4de32719" x="564" y="0" width="77" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{channelType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6eadc579-7d2b-4f6c-88b3-972038003544" x="641" y="0" width="47" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastRc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f5f0db48-a686-4050-8eb3-77a13274a491" x="688" y="0" width="53" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hostRef}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="38b7317d-9bb5-42e1-ad55-0575e977ed1d" x="737" y="0" width="30" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="82ac948a-121f-49b1-8c3e-ba6ae6b885ff" x="692" y="0" width="45" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Page : ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>

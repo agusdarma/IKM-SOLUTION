@@ -1,0 +1,146 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* GENERAL */
+* {
+  font-size: 92.5%;
+}
+
+dl dt {
+  font-family: 'CourierNew_Regular';
+}
+
+dl dd {
+  font-family: 'CourierNew_Regular';
+}
+
+/* NAVIGATION */
+nav ul li {
+  font-family: 'CourierNew_Regular';
+}
+
+/* CONTAINER */
+hgroup h1 {
+  font-family: 'BebasNeue_Regular', Arial Narrow;
+  font-size: 175%;
+}
+
+hgroup h2 {
+  font-family: 'CourierNew_Regular';
+}
+
+/* PAPER */
+.PaperHeader h2 {
+  font-family: 'CourierNew_Regular';
+}
+
+form p {
+  font-family: 'CourierNew_Regular';
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  font-family: 'CourierNew_Regular';
+}
+
+/* PROFILE */
+.ProfileShort {
+  font-family: 'CourierNew_Regular';
+}
+
+/* FORM */
+fieldset legend {
+  font-family: 'CourierNew_Regular';
+}
+
+.FieldSetContainer label {
+  font-family: 'CourierNew_Regular';
+}
+
+/* INPUT */
+.SingleLine, .ShortLine, .LongLine {
+  font-family: 'CourierNew_Regular';
+}
+
+.MultiLinem .ShortMultiLine, .LongMultiLine {
+  font-family: 'CourierNew_Regular';
+}
+
+.Property {
+  font-family: 'CourierNew_Regular';
+}
+
+.DropDown, .ShortDropDown, .LongDropDown {
+  font-family: 'CourierNew_Regular';
+}
+
+.Date {
+  font-family: 'CourierNew_Regular';
+}
+
+.Time {
+  font-family: 'CourierNew_Regular';
+}
+
+.DateTime {
+  font-family: 'CourierNew_Regular';
+}
+
+/* BUTTON GENERAL */
+.ButtonPrimary {
+  font-family: 'CourierNew_Regular';
+}
+
+.ButtonSecondary {
+  font-family: 'CourierNew_Regular';
+}
+
+/* BUTTON BY IMAGE */
+#ButtonToTop {
+  font-family: 'CourierNew_Regular';
+}
+
+/* BUTTON TABLE */
+.ButtonLimit {
+  font-family: 'CourierNew_Regular';
+}
+
+.ButtonAdd {
+  font-family: 'CourierNew_Regular';
+}
+
+/* FOOTER */
+footer #FooterLeft {
+  font-family: 'CourierNew_Regular';
+}
+
+footer #FooterRight {
+  font-family: 'CourierNew_Regular';
+}
+
+/* JMESA */
+.jmesa {
+  font-size: 160%;
+}

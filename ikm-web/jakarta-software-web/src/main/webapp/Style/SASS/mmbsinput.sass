@@ -1,0 +1,451 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+
+
+// IMPORT
+
+@import mmbsinitialization
+
+	
+/* GENERAL */
+
+.SingleLine
+	height: $input_singleline_height
+	width: $input_singleline_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: $input_border_width
+	+BorderRadius($input_border_radius)
+	z-index: 2
+	
+.SingleLine:valid, .SingleLine:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.SingleLine:invalid, .SingleLine:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.SingleLine:enabled
+	z-index: 2
+	
+.SingleLine:disabled
+	z-index: 2
+	
+.SingleLine:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.SingleLine:read-only
+	z-index: 2
+	
+.SingleLine[readonly]
+	z-index: 2
+	
+.ShortLine
+	height: $input_singleline_height
+	width: $input_shortline_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	z-index: 2
+	
+.ShortLine:valid, .ShortLine:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.ShortLine:invalid, .ShortLine:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.ShortLine:enabled
+	z-index: 2
+	
+.ShortLine:disabled
+	z-index: 2
+	
+.ShortLine:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.ShortLine:read-only
+	z-index: 2
+	
+.ShortLine[readonly]
+	z-index: 2
+	
+.MediumLine
+	height: $input_singleline_height
+	width: $input_mediumline_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	z-index: 2
+	
+.MediumLine:valid, .MediumLine:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.MediumLine:invalid, .MediumLine:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.MediumLine:enabled
+	z-index: 2
+	
+.MediumLine:disabled
+	z-index: 2
+	
+.MediumLine:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.MediumLine:read-only
+	z-index: 2
+	
+.MediumLine[readonly]
+	z-index: 2
+	
+.LongLine
+	height: $input_singleline_height
+	width: $input_longline_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	z-index: 2
+	
+.LongLine:valid, .LongLine:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.LongLine:invalid, .LongLine:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.LongLine:enabled
+	z-index: 2
+	
+.LongLine:disabled
+	z-index: 2
+	
+.LongLine:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.LongLine:read-only
+	z-index: 2
+	
+.LongLine[readonly]
+	z-index: 2
+	
+.MultiLine
+	height: $input_multiline_height
+	width: $input_multiline_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	z-index: 2
+	
+.MultiLine:valid, .MultiLine:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.MultiLine:invalid, .MultiLine:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.MultiLine:enabled
+	z-index: 2
+	
+.MultiLine:disabled
+	z-index: 2
+	
+.MultiLine:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.MultiLine:read-only
+	z-index: 2
+	
+.MultiLine[readonly]
+	z-index: 2
+	
+.Property
+	height: $input_singleline_height
+	width: $input_singleline_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_57_Condensed'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border: none
+	z-index: 2
+	
+.Property:valid, .SingleLine:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.Property:invalid, .SingleLine:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.Property:enabled
+	z-index: 2
+	
+.Property:disabled
+	z-index: 2
+	
+.Property:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.Property:read-only
+	z-index: 2
+	
+.Property[readonly]
+	z-index: 2
+	
+.DropDown
+	height: $input_dropdown_height
+	width: $input_dropdown_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_dropdown_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	z-index: 2
+	+Appearance(none)
+	
+.DropDown:valid, .DropDown:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DropDown:invalid, .DropDown:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DropDown:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DropDown:enabled
+	z-index: 2
+	
+.DropDown:disabled
+	z-index: 2
+	
+.LongDropDown
+	height: $input_dropdown_height
+	width: $input_longdropdown_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_dropdown_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	z-index: 2
+	+Appearance(none)
+	
+.LongDropDown:valid, .DropDown:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.LongDropDown:invalid, .DropDown:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.LongDropDown:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.LongDropDown:enabled
+	z-index: 2
+	
+.LongDropDown:disabled
+	z-index: 2
+	
+.DatePicker
+	/* margin-right: $general_margin */
+	height: $input_singleline_height
+	width: $input_datepicker_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	cursor: hand
+	cursor: pointer
+	z-index: 2
+	+Appearance(none)
+	
+.DatePicker:valid, .DatePicker:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DatePicker:invalid, .DatePicker:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DatePicker:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DatePicker:read-only
+	z-index: 2
+	
+.DatePicker[readonly]
+	z-index: 2
+	
+.DatePicker:enabled
+	z-index: 2
+	
+.DatePicker:disabled
+	z-index: 2
+
+.DateTimePicker
+	/* margin-right: $general_margin */
+	height: $input_singleline_height
+	width: $input_datepicker_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_singleline_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'HelveticaNeue_45_Light'
+	font-size: $textsize_content_detail
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	cursor: hand
+	cursor: pointer
+	z-index: 2
+	+Appearance(none)
+	
+.DateTimePicker:valid, .DatePicker:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DateTimePicker:invalid, .DatePicker:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DateTimePicker:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.DateTimePicker:read-only
+	z-index: 2
+	
+.DateTimePicker[readonly]
+	z-index: 2
+	
+.DateTimePicker:enabled
+	z-index: 2
+	
+.DateTimePicker:disabled
+	z-index: 2
+
+	
+/* CHECKBOX */
+	
+.ItemProject
+	margin-right: $general_margin_tiny
+	margin-left: $general_margin_tiny
+	padding-top: $general_padding_medium
+	padding-right: $general_padding_large
+	padding-left: $general_padding_large
+	padding-bottom: $general_padding_medium
+	font-family: 'HelveticaNeue_47_Light'
+	font-size: $textsize_content_small
+	text-transform: uppercase
+	vertical-align: middle
+	border-style: solid
+	border-width: $general_border_width
+	z-index: 2
+
+input[name=GroupProject]:checked + .ItemProject
+	z-index: 2

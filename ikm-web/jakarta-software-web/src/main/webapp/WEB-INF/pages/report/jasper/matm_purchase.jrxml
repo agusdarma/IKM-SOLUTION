@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="matm_purchase" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2549177-7fc1-4373-8daf-ba467edde477">
+	<property name="ireport.zoom" value="1.6105100000000012"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="13"/>
+	<parameter name="startDate" class="java.lang.String"/>
+	<parameter name="endDate" class="java.lang.String"/>
+	<parameter name="trxType" class="java.lang.String"/>
+	<parameter name="merchantName" class="java.lang.String"/>
+	<field name="receivedTime" class="java.util.Date"/>
+	<field name="syslogno" class="java.lang.String"/>
+	<field name="merchantCode" class="java.lang.String"/>
+	<field name="merchantName" class="java.lang.String"/>
+	<field name="btiRefNo" class="java.lang.String"/>
+	<field name="lastRc" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="5" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="121" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6baa7949-24d5-45ce-bd01-474b38800076" x="0" y="4" width="595" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matm purchase]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9c3a6df-97bb-440c-8489-4d61b4d0afa6" x="10" y="39" width="73" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Print Date]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement uuid="f9196169-5fcb-49aa-b5f7-1a49e8203304" x="232" y="59" width="119" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy h.mm a">
+				<reportElement uuid="4e4c69c7-69bf-4a85-89ba-5ae89c924c79" x="91" y="39" width="171" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1b17785c-4635-4825-be8f-33860553681c" x="206" y="59" width="26" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cf35bd7f-0210-46c3-85dd-af11da1f15b8" x="10" y="59" width="73" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Date]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement uuid="863f46d3-0eb2-4efd-a8d2-121eaa2e97b1" x="91" y="59" width="115" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a3bb7046-4fcb-497f-8120-d59afe0001b5" x="10" y="79" width="73" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction Status]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement uuid="7d55ef69-d4c2-4f34-9469-30625684fd20" x="91" y="79" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{trxType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="54f7f492-6f63-467f-9bdf-1ccd7aa48d5b" x="10" y="99" width="73" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Merchant Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9d748c54-24b3-4ae8-8974-928b89eb3975" x="91" y="99" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{merchantName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f6f7cd7c-4a1c-4e7f-9154-9e623c26e4c2" mode="Opaque" x="25" y="0" width="112" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f8555b39-59fb-4037-8f27-b26f9417ff4b" mode="Opaque" x="137" y="0" width="83" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaction No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0e73fcf0-8a6a-4653-b848-b58d813f27ca" mode="Opaque" x="220" y="0" width="83" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Merchant Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0c5707b1-fdf0-4691-a6d5-31d77e0e90a2" mode="Opaque" x="303" y="0" width="83" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Merchant Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a81217e-fa89-4c68-9cfc-1066ee32725c" mode="Opaque" x="386" y="0" width="77" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Host Ref]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a190a196-a540-4290-bea7-8586124d1d6d" mode="Opaque" x="463" y="0" width="47" height="20" backcolor="#9999FF"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Last Rc]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement uuid="37119cef-10c5-4add-9caa-35c7a07a617b" x="25" y="0" width="112" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{receivedTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4564226c-59e3-4e43-bc3b-4a97507bb1ca" x="137" y="0" width="83" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{syslogno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e56bbeb9-b0f6-496f-8fbd-6a84e952f3b3" x="220" y="0" width="83" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{merchantCode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0403de20-f909-472a-8251-4faa12cc1793" x="303" y="0" width="83" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{merchantName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d729e8d2-4cba-4520-a007-311f2501d5f9" x="386" y="0" width="77" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{btiRefNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4bda536d-6560-49af-9627-3a55a9ba7042" x="463" y="0" width="47" height="20"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastRc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="2550a514-1465-4934-881f-1072607c4b2d" x="490" y="0" width="30" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="18714c68-1e06-412c-951b-c23f39be9ca0" x="445" y="0" width="45" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Page : ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="7" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>

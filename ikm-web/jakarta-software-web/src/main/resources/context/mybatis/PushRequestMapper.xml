@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.PushRequestMapper">
+    
+	<sql id="_sqlPushRequestHeader">
+		prh.id as id,
+		prh.sent_time as sentTime,
+		prh.status as status,
+		prh.message as message,
+		prh.group_msisdn_id as groupMsisdnId,
+		prh.created_on as createdOn,
+		prh.created_by as createdBy,
+		prh.updated_on as updatedOn,
+		prh.subject as subject,
+		prh.updated_by as updatedBy
+	</sql>
+
+	<select id="selectPushRequestHeader" resultType="PushRequestHeader">
+		select <include refid="_sqlPushRequestHeader" />
+		from push_request_header prh
+	</select>
+
+	<update id="updatePushRequestHeader" parameterType="PushRequestHeader" >
+		update push_request_header 
+		set sent_time = #{sentTime},
+			status = #{status},
+			message = #{message},
+			created_on = #{createdOn},
+			created_by = #{createdBy},
+			updated_on = #{updatedOn},
+			updated_by = #{updatedBy}
+		where id=#{id}
+	</update>
+
+	<select id="selectPushRequestHeaderById" resultType="PushRequestVO" parameterType="java.lang.Integer">
+ 		select <include refid="_sqlPushRequestHeader" />,
+			ud1.user_name as createdByDisplay
+		from push_request_header prh
+			inner join user_data ud1 on ud1.id = prh.created_by
+		where prh.id=#{value}
+	</select>
+	
+	<delete id="deletePushRequestDetailByHeaderId" parameterType="java.lang.Integer">
+		delete
+		from push_request_detail
+		where header_id=#{value}
+	</delete>
+	
+	<select id="selectListMsisdnByHeaderId" parameterType="java.lang.Integer" resultType="java.lang.String">
+	    select msisdn
+	    from push_request_detail
+	    where header_id = #{value} and status=0 and group_msisdn_id=0	     
+	</select>
+	
+	<select id="selectListPushRequestDetailByHeaderId" parameterType="java.lang.Integer" resultType="PushRequestVO">
+	    select prd.msisdn as msisdn, ld.lookup_desc as statusDisplay,
+	    	CASE prd.group_msisdn_id
+	    	WHEN 0 THEN 'Additional Number'
+	    	ELSE gmh.group_name
+	    	END as groupName	    	  
+	    from push_request_detail prd 
+	    	inner join push_request_header prh on prd.header_id = prh.id
+	    	left join group_msisdn_header gmh on gmh.id=prd.group_msisdn_id 
+	    	left join lookup_data ld on ld.lookup_value = prd.status and ld.lookup_cat = 27
+	    where header_id=#{value}
+	</select>
+	
+</mapper>

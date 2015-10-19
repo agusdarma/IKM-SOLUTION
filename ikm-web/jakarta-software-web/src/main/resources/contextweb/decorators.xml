@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/WEB-INF/decorators">
+
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <pattern>/nodecorate/*</pattern>
+        <pattern>/styles/*</pattern>
+        <pattern>/scripts/*</pattern>
+        <pattern>/images/*</pattern>
+        <pattern>/dojo/*</pattern>
+        <pattern>/struts/*</pattern>
+        <pattern>/config-browser/*</pattern>
+    </excludes>
+	
+	<!-- DECORATOR LIST -->
+    <decorator name="login-standard" page="decorator-login-standard.jsp"/>
+    <decorator name="home-standard" page="decorator-home-standard.jsp" />
+    <decorator name="general-standard" page="decorator-general-standard.jsp" />
+    <decorator name="general-jmesa" page="decorator-general-jmesa.jsp" />
+    <decorator name="home-jakarta-software" page="decorator-front-end.jsp" />
+    
+</decorators>

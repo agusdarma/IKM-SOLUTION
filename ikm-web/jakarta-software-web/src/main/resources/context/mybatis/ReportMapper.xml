@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.jakarta.software.web.mapper.ReportMapper">
+
+    <sql id="_sqlSelectMerchant">
+        m.id as id,
+ 	    rtrim(m.merchant_code) as merchantCode,
+ 	    m.merchant_name as merchantName,
+ 	    m.alias as alias,
+ 	    m.account_type as accountType,
+ 	    m.account_number as accountNumber,
+ 	    m.currency as currency,
+ 	    m.timeout as timeout,
+ 	    m.status as status,
+ 	    m.auth_status as authStatus,
+ 	    m.created_on as createdOn,
+ 	    m.created_by as createdBy,
+ 	    m.auth_on as authOn,
+ 	    m.auth_by as authBy,
+ 	    m.updated_on as updatedOn,
+ 	    m.updated_by as updatedBy,
+		ud.user_name as createdByDisplay,
+		ud2.user_name as updatedByDisplay,
+		ld.lookup_desc as merchantStatusDisplay,
+ 		ld1.lookup_desc as accountTypeDisplay,
+ 		ld2.lookup_desc as currencyTypeDisplay
+    </sql>
+    
+    <sql id="_sqlFromMerchant">
+  		inner join user_data ud on ud.id=m.created_by
+		inner join user_data ud2 on ud2.id=m.updated_by
+		left join lookup_data ld on ld.lookup_cat=8 and ld.lookup_value=m.status
+		left join lookup_data ld1 on ld1.lookup_cat=5 and ld1.lookup_value=m.account_type
+		left join lookup_data ld2 on ld2.lookup_cat=4 and ld2.lookup_value=m.currency		
+    </sql>
+    	
+	<select id="findMerchantReportByParamNoPaging" resultType="MerchantVO" parameterType="ReportParamVO">
+		SELECT
+	 		<include refid="_sqlSelectMerchant" />
+		from merchant m
+			<include refid="_sqlFromMerchant" />	
+		<include refid="_sqlWhereMerchant" /> 
+		ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+ 	
+ 	<select id="countMerchantReportByParam" resultType="java.lang.Integer" parameterType="ReportParamVO">
+ 		SELECT count(m.id)
+		FROM merchant m
+		<include refid="_sqlFromMerchant" />		
+		<include refid="_sqlWhereMerchant" />
+	</select>
+ 	
+ 	<select id="findMerchantReportById" resultType="MerchantVO" parameterType="java.lang.Integer">
+		SELECT 
+			<include refid="_sqlSelectMerchant" />
+		from merchant m
+			inner join user_data ud on ud.id=m.created_by
+			inner join user_data ud2 on ud2.id=m.updated_by
+			left join lookup_data ld on ld.lookup_cat=8 and ld.lookup_value=m.status
+			left join lookup_data ld1 on ld1.lookup_cat=5 and ld1.lookup_value=m.account_type
+			left join lookup_data ld2 on ld2.lookup_cat=4 and ld2.lookup_value=m.currency
+		where m.id=#{value}
+ 	</select>
+ 	
+ 	 <select id="findHistoryMerchantById" resultType="MerchantVO" parameterType="java.lang.Integer">
+		SELECT 
+			mh.id as id,
+			rtrim(mh.merchant_code) as merchantCode,
+			mh.merchant_name as merchantName,
+			mh.alias as alias,
+			mh.account_type as accountType,
+			mh.account_number as accountNumber,
+			mh.currency as currency,
+			mh.timeout as timeout,
+			mh.status as status,
+			mh.auth_status as authStatus,
+			mh.created_on as createdOn,
+			mh.created_by as createdBy,
+			mh.auth_on as authOn,
+			mh.auth_by as authBy,
+			mh.updated_on as updatedOn,
+			mh.updated_by as updatedBy,
+			ud.user_name as createdByDisplay,
+			ud2.user_name as updatedByDisplay,
+			ld.lookup_desc as merchantStatusDisplay,
+			ld1.lookup_desc as accountTypeDisplay,
+			ld2.lookup_desc as currencyTypeDisplay,
+			mh.activity_type as activityType,
+			ld3.lookup_desc as authStatusDisplay
+		from merchant_history mh
+			inner join user_data ud on ud.id=mh.created_by
+			inner join user_data ud2 on ud2.id=mh.updated_by
+			left join lookup_data ld on ld.lookup_cat=8 and ld.lookup_value=mh.status
+			left join lookup_data ld1 on ld1.lookup_cat=5 and ld1.lookup_value=mh.account_type
+			left join lookup_data ld2 on ld2.lookup_cat=4 and ld2.lookup_value=mh.currency
+			left join lookup_data ld3 on ld3.lookup_cat=9 and ld3.lookup_value=mh.status
+		where mh.merchant_id=#{value}
+ 	</select>
+ 	 	 
+	<sql id="_sqlSelectCif">
+		c.id as id,
+		c.device_code as deviceCode,
+		c.cif_name as cifName, 
+		c.activation_date as activationDate,
+		c.email as email,
+		ld.lookup_desc as status, 
+ 	 	ld1.lookup_desc as authStatus, 
+ 	 	ach.access_name as accessName,
+ 	 	glh.group_name as groupName,
+ 	 	ud.user_name as createdBy,
+ 	 	c.created_on as createdOn,
+ 	 	ud1.user_name as updatedBy,
+ 	 	c.updated_on as updatedOn
+	</sql>
+	
+	<sql id="_sqlFromCif">
+		from cif c
+	 		left join access_group_header ach on c.access_id = ach.id
+	 		left join lookup_data ld on ld.lookup_value = c.status and ld.lookup_cat = 8
+	 		left join lookup_data ld1 on ld1.lookup_value = c.auth_status and ld1.lookup_cat = 9
+	 		left join group_limit_header glh on glh.id=c.cif_group
+	 		left join user_data ud on ud.id=c.created_by
+	 		left join user_data ud1 on ud1.id=c.updated_by
+	</sql>
+	
+	<select id="countCifByParam" resultType="java.lang.Integer" parameterType="ReportParamVO">
+		select count(c.id) as counter
+		<include refid="_sqlFromCif"/>
+		<include refid="_sqlWhereCif" />
+	</select>
+	
+	<select id="findCifByParamNoPaging" resultType="CifReportVO" parameterType="ReportParamVO">
+		SELECT 
+  			<include refid="_sqlSelectCif"/>
+		<include refid="_sqlFromCif"/>
+	 	<include refid="_sqlWhereCif" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>	
+	
+	<sql id="_sqlSelectAirtimeRefill">
+	    th.device_code as deviceCode, 
+	    th.srac as srac,
+	    th.received_time as receivedTime, 
+	    th.client_acc_no as clientAccNo,
+ 	 	th.trx_value as trxValue,
+ 	 	p.product_name as productName,
+ 	 	td.bti_ref_no as btiRefNo, 
+ 	 	th.last_rc as lastRc	
+	</sql>
+
+	<sql id="_sqlFromAirtimeRefill">
+	    from trxlogh th
+	 		left join trxlogd td on th.syslogno = td.syslogno
+	 		inner join product p on p.product_code = th.product_code
+	</sql>	
+	
+	<select id="countAirtimeRefillByParam" parameterType="ReportParamVO" resultType="java.lang.Integer">
+		SELECT count(1) 
+		<include refid="_sqlFromAirtimeRefill"/>
+		<include refid="_sqlWhereAirtimeRefill" />
+	</select>
+	
+	<select id="findAirtimeRefillByParamNoPaging" resultType="TransactionReportVO" parameterType="ReportParamVO">
+		SELECT
+			<include refid="_sqlSelectAirtimeRefill"/>
+		<include refid="_sqlFromAirtimeRefill"/>
+	 	<include refid="_sqlWhereAirtimeRefill" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+	
+	<sql id="_sqlSelectMatm">
+	    th.received_time as receivedTime,
+	    th.syslogno as syslogno, 
+	    th.merchant_code as merchantCode,
+	    th.merchant_name as merchantName,
+	    td.bti_ref_no as btiRefNo,
+	    th.last_rc as lastRc
+	</sql>
+
+	<sql id="_sqlFromMatm">
+	    from trxlogh th
+	 		left join trxlogd td on th.syslogno = td.syslogno
+	</sql>
+	
+	<select id="countMatmPurchaseByParam" parameterType="ReportParamVO" resultType="java.lang.Integer">
+		SELECT count(1) 
+		<include refid="_sqlFromMatm"/>
+		<include refid="_sqlWhereMatm" />
+	</select>
+	
+	<select id="findMatmPurchaseByParamNoPaging" resultType="TransactionReportVO" parameterType="ReportParamVO">
+		SELECT
+			<include refid="_sqlSelectMatm"/>
+		<include refid="_sqlFromMatm"/>
+	 	<include refid="_sqlWhereMatm" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+	
+	<sql id="_sqlSelectFundTransfer">
+	    th.device_code as deviceCode, 
+	    th.received_time as receivedTime, 
+	    th.srac as srac,
+	    th.bank_code as bankCode, 	 	
+	    th.dsac as dsac,
+		th.trx_value as trxValue,
+ 	 	max(td.bti_ref_no) as btiRefNo, 			
+		th.last_rc as lastRc
+	</sql>
+
+	<sql id="_sqlFromFundTransfer">
+	    from trxlogh th
+	 		left join trxlogd td on th.syslogno = td.syslogno
+	</sql>
+	
+	<select id="countFundTransferByParam" parameterType="ReportParamVO" resultType="java.lang.Integer">
+		select count(1)
+ 	 	<include refid="_sqlFromFundTransfer"/>
+	 	<include refid="_sqlWhereFundTransfer" />
+	</select>
+
+	<sql id="_sqlSelectBillPayment">
+	    th.device_code as deviceCode, 
+	    th.received_time as receivedTime, 
+	    th.srac as srac,
+	    th.biller_no as billerNo,
+ 	 	th.client_acc_no as clientAccNo,
+ 	 	th.trx_value as trxValue,
+ 	 	td.bti_ref_no as btiRefNo, 
+ 	 	th.last_rc as lastRc
+	</sql>
+
+	<sql id="_sqlFromBillPayment">
+	    from trxlogh th
+	 		left join trxlogd td on th.syslogno = td.syslogno
+	</sql>
+	
+	<select id="countBillPaymentByParam" parameterType="ReportParamVO" resultType="java.lang.Integer">
+		select count(1)
+ 	 	<include refid="_sqlFromBillPayment"/>
+	 	<include refid="_sqlWhereBillPayment" />
+	</select>
+	
+	<select id="findBillPaymentByParamNoPaging" resultType="TransactionReportVO" parameterType="ReportParamVO">
+		SELECT
+			<include refid="_sqlSelectBillPayment"/>
+		<include refid="_sqlFromBillPayment"/>
+	 	<include refid="_sqlWhereBillPayment" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+		
+		
+	<select id="findFundTransferByParamNoPaging" resultType="TransactionReportVO" parameterType="ReportParamVO">
+		SELECT ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+			<include refid="_sqlSelectFundTransfer"/>
+		<include refid="_sqlFromFundTransfer"/>
+	 	<include refid="_sqlWhereFundTransfer" />
+	</select>
+	
+	<sql id="_sqlSelectBlastSms">
+	    prh.id as id,
+		prh.sent_time as sendTime,
+		prh.status as status,
+		prh.message as message,
+		prh.group_msisdn_id as groupMsisdnId,
+		prh.created_on as createdOn,
+		prh.subject as subject,
+		ud.user_name as createdBy,
+		gmh.group_name as groupName,
+		ld.lookup_desc as statusDisplay
+	</sql>
+
+	<sql id="_sqlFromBlastSms">
+		from push_request_header prh
+			left join group_msisdn_header gmh on prh.group_msisdn_id = gmh.id
+			inner join lookup_data ld on prh.status = ld.lookup_value and ld.lookup_cat =27
+			left join user_data ud on ud.id=prh.created_by
+	</sql>
+	
+	<select id="countBlastSmsByParam" resultType="java.lang.Integer" parameterType="ReportParamVO">
+		select count(1)
+	 	<include refid="_sqlFromBlastSms"/>
+ 	 	<include refid="_sqlWhereBlastSms" />
+	</select>
+
+	<select id="findBlastSmsByParamNoPaging" resultType="TransactionReportVO" parameterType="ReportParamVO">
+		SELECT 
+			<include refid="_sqlSelectBlastSms"/>
+		<include refid="_sqlFromBlastSms"/>
+	 	<include refid="_sqlWhereBlastSms" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+	
+	<sql id="_sqlSelectTerminatedCif">
+	    ch.device_code as deviceCode,
+	    ch.cif_name as cifName, 
+	    ch.email as email,
+	    ld.lookup_desc as status, 
+ 	 	ld1.lookup_desc as authStatus, 	    
+	    ch.cif_id as cifId,
+		glh.group_name as groupName,
+ 	 	ach.access_name as accessName,		
+		ch.activation_date as activationDate,
+		ud.user_name as createdBy,
+ 	 	ch.created_on as createdOn,
+ 	 	ud1.user_name as updatedBy,
+ 	 	ch.updated_on as updatedOn		
+	</sql>
+
+	<sql id="_sqlFromTerminatedCif">
+		from cif_history ch
+	 		left join access_group_header ach on ch.access_id = ach.id
+	 		left join lookup_data ld on ld.lookup_value = ch.status and ld.lookup_cat = 8
+	 		left join lookup_data ld1 on ld1.lookup_value = ch.auth_status and ld1.lookup_cat = 9
+	 		left join group_limit_header glh on glh.id=ch.cif_group
+	 		left join user_data ud on ud.id=ch.created_by
+	 		left join user_data ud1 on ud1.id=ch.updated_by
+	</sql>
+	
+	<select id="countTerminatedCifByParam" parameterType="ReportParamVO" resultType="java.lang.Integer">
+		select count(1)
+ 	 	<include refid="_sqlFromTerminatedCif"/>
+	 	<include refid="_sqlWhereTerminatedCif" />
+	</select>
+
+	<select id="findTerminatedCifByParamNoPaging" resultType="TerminatedCifReportVO" parameterType="ReportParamVO">
+		SELECT 
+			<include refid="_sqlSelectTerminatedCif"/>
+		<include refid="_sqlFromTerminatedCif"/>
+	 	<include refid="_sqlWhereTerminatedCif" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+	
+	<select id="findTerminatedCifDetail" resultType="TerminatedCifReportVO" parameterType="java.lang.Integer">
+		select 
+			ch.id, ch.device_code as deviceCode, ch.access_id as accessId, ch.cif_name as cifName,
+			ch.identity_code as identityCode, ch.email as email, ch.activity_type as activityType,
+			ld.lookup_desc as authStatus, ld2.lookup_desc as status, agh.access_name as accessName,
+			ud.user_name as authBy, ch.auth_on as authOn
+		from cif_history ch
+			left join lookup_data ld on ch.auth_status = ld.lookup_value and ld.lookup_cat = 9
+			left join lookup_data ld2 on ch.status = ld2.lookup_value and ld2.lookup_cat = 8
+			inner join access_group_header agh on ch.access_id = agh.id
+			left join user_data ud on ud.id = ch.auth_by
+		where ch.cif_id = #{value}
+	</select>
+	
+	<sql id="_sqlSelectAuditTrailAccount">
+	    c.device_code as deviceCode,
+		c.cif_name as cifName, 
+	    a.account_no as accountNo,
+	    c.email as email,
+	    ld.lookup_desc as status,
+	    ld1.lookup_desc as authStatus,
+	    ach.access_name as accessName,
+	    ud.user_name as createdBy,
+ 	 	a.created_on as createdOn,
+ 	 	ud1.user_name as updatedBy,
+ 	 	a.updated_on as updatedOn		
+	</sql>
+
+	<sql id="_sqlFromAuditTrailAccount">
+		from account a
+			inner join cif c on a.cif_id = c.id
+			left join access_group_header ach on c.access_id = ach.id
+			left join lookup_data ld on ld.lookup_value = a.status and ld.lookup_cat = 8
+			left join lookup_data ld1 on ld1.lookup_value = c.auth_status and ld1.lookup_cat = 9
+			left join user_data ud on ud.id=a.created_by
+			left join user_data ud1 on ud1.id=a.updated_by
+	</sql>
+		
+	<select id="countAuditTrailAccountByParam" parameterType="ReportParamVO" resultType="java.lang.Integer">
+		select count(1)
+ 	 	<include refid="_sqlFromAuditTrailAccount"/>
+	 	<include refid="_sqlWhereAuditTrailAccount" />
+	</select>
+
+	<select id="findAuditTrailAccountByParamNoPaging" resultType="CifReportVO" parameterType="ReportParamVO">
+		SELECT 
+			<include refid="_sqlSelectAuditTrailAccount"/>
+		<include refid="_sqlFromAuditTrailAccount"/>
+	 	<include refid="_sqlWhereAuditTrailAccount" />
+	 	ORDER BY ${sortVariable} ${sortOrder}
+	</select>
+	
+	
+	<sql id="_sqlSelectSummaryTransaction">
+	    ld.lookup_desc as trxCode, th.channel_type as channelType, th.operator_code as operatorCode, 
+		case th.last_rc  
+		  when 0 then 'Success'
+		  else 'Failed'
+		end as status,
+		count(th.trx_value) as totalTransaction
+	</sql>
+	
+	<sql id="_sqlFromSummaryTransaction">
+		from trxlogh th
+			inner join lookup_data ld on th.trx_code=ld.lookup_value and ld.lookup_cat = 13
+	</sql>
+
+	<sql id="_sqlGroupingSummaryTransaction">
+		GROUP BY ld.lookup_desc, th.channel_type, th.operator_code,
+			case th.last_rc  when 0 then 'Success' else 'Failed' end
+	</sql>
+	
+	<select id="findSummaryTransactionByParamNoPaging" resultType="TransactionReportVO" parameterType="ReportParamVO">
+	    select <include refid="_sqlSelectSummaryTransaction"/>
+		<include refid="_sqlFromSummaryTransaction"/>
+	    <include refid="_sqlWhereSummaryTransaction" />
+	    <include refid="_sqlGroupingSummaryTransaction" />
+	</select>
+	
+</mapper>

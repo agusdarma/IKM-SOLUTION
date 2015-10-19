@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.TrxLogBrowserMapper">
+    
+	 <sql id="_sqlDetailTrx">
+	    h.syslogno as sysLogNo,
+		h.received_time as receivedTime,
+		trxCode.lookup_desc as trxCode,
+		h.srac as sourceAccount,
+		h.dsac as destAccount,
+		h.last_state as lastState,
+		h.last_rc as lastRc,
+		h.trx_value as amount,
+		h.channel_type as channelType,
+		
+		d.msglogno as msgLogNo,
+		d.syslogno as sysLogNo,
+		d.cust_in as custIn,
+		d.cust_out as custOut,
+		d.message_in as messageFromUser,
+		d.message_out as messageForUser,
+		d.result_code as lastRc,
+		d.state as lastState
+	 </sql> 
+	  
+	 <resultMap id="TrxDetailResult" type="TrxLogBrowserVO">	    
+	     <result property="sysLogNo" column="sysLogNo"/>
+	     <result property="receivedTime" column="receivedTime"/>
+	     <result property="trxCode" column="trxCode"/>
+	     <result property="sourceAccount" column="sourceAccount"/>
+	     <result property="destAccount" column="destAccount"/>
+	     <result property="lastState" column="lastState"/>
+	     <result property="lastRc" column="lastRc"/>
+	     <result property="amount" column="amount"/>
+	     <result property="channelType" column="channelType"/>
+	     
+	     <collection property="listTrxDetail" ofType="TrxLogBrowserDetailVO">
+	          <result property="sysLogNo" column="sysLogNo"/>
+	          <result property="msgLogNo" column="msgLogNo"/>
+	          <result property="receivedTime" column="receivedTime"/>
+	          <result property="custIn" column="custIn"/>
+	          <result property="custOut" column="custOut"/>
+	          <result property="messageFromUser" column="messageFromUser"/>
+	          <result property="messageForUser" column="messageForUser"/>
+	          <result property="lastRc" column="lastRc"/>
+	          <result property="lastState" column="lastState"/>
+	     </collection>
+	 </resultMap>
+	 	 
+	 
+	 <select id="findTrxLogBrowserDetailBySyslogno" parameterType="java.lang.String" resultMap="TrxDetailResult">
+	    select <include refid="_sqlDetailTrx"/> 
+		from trxlogh h
+			inner join trxlogd d on h.syslogno = d.syslogno
+			left join cif c on c.device_code = h.device_code and h.device_code != ''
+			left join lookup_data trxCode on trxCode.lookup_value = h.trx_code and trxCode.lookup_cat=13
+			left join group_limit_header g on g.id = c.cif_group		
+		where h.syslogno = #{value}
+	 </select>
+	  
+</mapper>

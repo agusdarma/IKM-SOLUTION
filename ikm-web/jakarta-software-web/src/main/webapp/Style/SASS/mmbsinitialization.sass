@@ -1,0 +1,294 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+
+
+/* TEXT SIZE */
+
+/* NAVIGATION */
+
+$textsize_navigation_item: 1.2em
+$textsize_navigation_subitem: 1.1em
+
+/* WINDOW */
+
+$textsize_window_header: 1.4em
+
+/* CONTENT */
+
+$textsize_content_title: 1.8em
+$textsize_content_subtitle: 1.6em
+$textsize_content_detail: 1em
+$textsize_content_general: 1.2em
+$textsize_content_small: 0.8em
+
+
+/* DIMENS */
+
+/* GENERAL */
+
+$general_margin_tiny: 10px
+$general_margin_small: 20px
+$general_margin_medium: 40px
+$general_margin_large: 60px
+$general_margin_huge: 80px
+$general_padding_tiny: 5px
+$general_padding_small: 10px
+$general_padding_medium: 20px
+$general_padding_large: 30px
+$general_padding_huge: 50px
+$general_border_radius: 6px
+$general_border_width: 1px
+$general_line_width: 1px
+
+/* LABEL */
+
+$label_general_height: 36px
+$label_content_width: 260px
+$label_contenttable_width: 120px
+$label_symbol_width: 36px
+$label_singleline_height: 20px
+$label_singleline_width: 120px
+$label_singleline_paddingtop: 2px
+$label_singleline_paddingright: 10px
+$label_singleline_paddingleft: 10px
+$label_singleline_paddingbottom: 2px
+
+/* INPUT */
+
+$input_singleline_height: 20px
+$input_singleline_width: 180px
+$input_shortline_width: 80px
+$input_mediumline_width: 164px
+$input_longline_width: 265px
+$input_dropdown_height: 26px
+$input_dropdown_width: 220px
+$input_longdropdown_width: 279px
+$input_multiline_height: 78px
+$input_multiline_width: 280px
+$input_datepicker_width: 200px
+$input_singleline_paddingtop: 2px
+$input_singleline_paddingright: 10px
+$input_singleline_paddingleft: 10px
+$input_singleline_paddingbottom: 2px
+$input_dropdown_paddingright: 30px
+$input_dropdownie_paddingright: 3px
+$input_dropdowntable_height: 30px
+$input_dropdowntableheader_width: 184px
+$input_dropdowntablecontent_width: 114px
+$input_dropdowntable_paddingtop: 2px
+$input_dropdowntable_paddingbottom: 2px
+$input_border_width: 1px
+$input_border_radius: 2px
+
+/* LINK */
+
+$button_height_min: 24px
+$button_width_min: 120px
+$button_padding_top: 1px
+$button_padding_right: 5px
+$button_padding_left: 5px
+$button_padding_bottom: 2px
+$button_border_width: 2px
+$button_border_radius: 6px
+
+/* SHADOW */
+
+$shadow_offset_x: 2px
+$shadow_offset_y: 2px
+$shadow_blur: 2px
+$shadow_spread: 2px
+
+/* EFFECT */
+
+$effect_appearsfromtop_from: -10px
+$effect_appearsfromtop_to: 0px
+$effect_appearsfrombehind_from: 0.9
+$effect_appearsfrombehind_to: 1
+$effect_icon_transition: 0.15s
+
+/* RESPONSIVE DIMENS */
+
+$responsive_label_marginTop: -10px
+$responsive_label_width: 100%
+$responsive_input_marginTop: 8px
+$responsive_input_width: 95%
+$responsive_link_width: 100%
+
+
+/* FUNCTION */
+
+=BorderRadius($radius) 
+	border-radius: $radius
+	-ms-border-radius: $radius
+	-moz-border-radius: $radius
+	-webkit-border-radius: $radius
+	
+=BorderRadius-Top($radius) 
+	border-top-left-radius: $radius
+	-ms-border-top-left-radius: $radius
+	-moz-border-top-left-radius: $radius
+	-webkit-border-top-left-radius: $radius
+	border-top-right-radius: $radius
+	-ms-border-top-right-radius: $radius
+	-moz-border-top-right-radius: $radius
+	-webkit-border-top-right-radius: $radius
+	
+=BorderRadius-Right($radius) 
+	border-top-right-radius: $radius
+	-ms-border-top-right-radius: $radius
+	-moz-border-top-right-radius: $radius
+	-webkit-border-top-right-radius: $radius
+	border-bottom-right-radius: $radius
+	-ms-border-bottom-right-radius: $radius
+	-moz-border-bottom-right-radius: $radius
+	-webkit-border-bottom-right-radius: $radius
+	
+=BorderRadius-Left($radius) 
+	border-top-left-radius: $radius
+	-ms-border-top-left-radius: $radius
+	-moz-border-top-left-radius: $radius
+	-webkit-border-top-left-radius: $radius
+	border-bottom-left-radius: $radius
+	-ms-border-bottom-left-radius: $radius
+	-moz-border-bottom-left-radius: $radius
+	-webkit-border-bottom-left-radius: $radius
+	
+=BorderRadius-Bottom($radius) 
+	border-bottom-left-radius: $radius
+	-ms-border-bottom-left-radius: $radius
+	-moz-border-bottom-left-radius: $radius
+	-webkit-border-bottom-left-radius: $radius
+	border-bottom-right-radius: $radius
+	-ms-border-bottom-right-radius: $radius
+	-moz-border-bottom-right-radius: $radius
+	-webkit-border-bottom-right-radius: $radius
+	
+=Transition($property, $duration, $movement)
+	transition: ($property) ($duration) ($movement)
+	-ms-transition: ($property) ($duration) ($movement)
+	-moz-transition: ($property) ($duration) ($movement)
+	-o-transition: ($property) ($duration) ($movement)
+	-webkit-transition: ($property) ($duration) ($movement)
+
+=Perspective($value)
+	perspective: $value
+	-ms-perspective: $value
+	-moz-perspective: $value
+	-o-perspective: $value
+	-webkit-perspective: $value
+
+=BackfaceVisibility($state)
+	backface-visibility: ($state)
+	-ms-backface-visibility: ($state)
+	-moz-backface-visibility: ($state)
+	-o-backface-visibility: ($state)
+	-webkit-backface-visibility: ($state)
+
+=Rotate-X($rotateX)
+	transform: rotateX($rotateX)
+	-ms-transform: rotateX($rotateX)
+	-moz-transform: rotateX($rotateX)
+	-o-transform: rotateX($rotateX)
+	-webkit-transform: rotateX($rotateX)
+
+=Rotate-Y($rotateY)
+	transform: rotateY($rotateY)
+	-ms-transform: rotateY($rotateY)
+	-moz-transform: rotateY($rotateY)
+	-o-transform: rotateY($rotateY)
+	-webkit-transform: rotateY($rotateY)
+	
+=Rotate-Z($rotateZ)
+	transform: rotateZ($rotateZ)
+	-ms-transform: rotateZ($rotateZ)
+	-moz-transform: rotateZ($rotateZ)
+	-o-transform: rotateZ($rotateZ)
+	-webkit-transform: rotateZ($rotateZ)
+
+=SlideEffect($rotateY, $translateX, $translateZ)
+	transform: rotateY($rotateY) translateX($translateX) translateZ($translateZ)
+	-ms-transform: rotateY($rotateY) translateX($translateX) translateZ($translateZ)
+	-moz-transform: rotateY($rotateY) translateX($translateX) translateZ($translateZ)
+	-o-transform: rotateY($rotateY) translateX($translateX) translateZ($translateZ)
+	-webkit-transform: rotateY($rotateY) translateX($translateX) translateZ($translateZ)
+	
+=BoxShadow($offsetX, $offsetY, $blurr, $spread, $color)
+	box-shadow: $offsetX $offsetY $blurr $spread $color
+	-ms-box-shadow: $offsetX $offsetY $blurr $spread $color
+	-o-box-shadow: $offsetX $offsetY $blurr $spread $color
+	-moz-box-shadow: $offsetX $offsetY $blurr $spread $color
+	-webkit-box-shadow: $offsetX $offsetY $blurr $spread $color
+
+=Skew($skewX, $skewY)
+	transform: skew($skewX, $skewY)
+	-ms-transform: skew($skewX, $skewY)
+	-moz-transform: skew($skewX, $skewY)
+	-o-transform: skew($skewX, $skewY)
+	-webkit-transform: skew($skewX, $skewY)
+	
+=Scale-3D($scaleX, $scaleY, $scaleZ)
+	transform: scale3d($scaleX, $scaleY, $scaleZ)
+	-ms-transform: scale3d($scaleX, $scaleY, $scaleZ)
+	-moz-transform: scale3d($scaleX, $scaleY, $scaleZ)
+	-o-transform: scale3d($scaleX, $scaleY, $scaleZ)
+	-webkit-transform: scale3d($scaleX, $scaleY, $scaleZ)
+	
+=Appearance($state) 
+	appearance: $state
+	-ms-appearance: $state
+	-moz-appearance: $state
+	-o-appearance: $state
+	-webkit-appearance: $state
+	
+=LayoutGradient($gradient_from_color, $gradient_fromR_color, $gradient_fromG_color, $gradient_fromB_color, $gradient_to_color, $gradient_toR_color, $gradient_toG_color, $gradient_toB_color) 
+	/* IE 10 */
+	background: -ms-linear-gradient(bottom, $gradient_from_color, $gradient_to_color)
+	/* Firefox 3.6+ */
+	background: -moz-linear-gradient(bottom, $gradient_from_color, $gradient_to_color)
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(bottom, $gradient_from_color, $gradient_to_color)
+	/* Safari 4-5, Chrome 1-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($gradient_from_color), to($gradient_to_color))
+	/* Safari 5.1, Chrome 10+ */
+	background: -webkit-linear-gradient(bottom, $gradient_from_color, $gradient_to_color)
+	/* Android Built In Browser Below 4.0, Chrome, Safari 4+  */
+	// background:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(100%, $gradient_from_color), color-stop(0%, $gradient_to_color))
+	// background:-webkit-gradient(linear, left top, left bottom, color-stop(100%, $gradient_from_color), color-stop(0%, $gradient_to_color))
+	/* Android 2.2, 2.3, 3.0 */
+	background: -webkit-linear-gradient(90deg,rgb($gradient_fromR_color, $gradient_fromG_color, $gradient_fromB_color),rgb($gradient_toR_color, $gradient_toG_color, $gradient_toB_color))
+	background: linear-gradient(0deg,rgb($gradient_fromR_color, $gradient_fromG_color, $gradient_fromB_color),rgb($gradient_toR_color, $gradient_toG_color, $gradient_toB_color))
+	/* Chrome 10-25, iOS 5+, Safari 5.1+ */
+	background: -webkit-linear-gradient(bottom, $gradient_from_color, $gradient_to_color)
+	/* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+	background: linear-gradient(to top, $gradient_from_color, $gradient_to_color)
+	-pie-background: linear-gradient($gradient_from_color, $gradient_to_color)
+
+=BackgroundFilter($filterName, $filterValue)
+	filter: $filterName + unquote(#{$filterValue})
+	-ms-filter: $filterName + unquote('(#{$filterValue})')
+	-moz-filter: $filterName + unquote('(#{$filterValue})')
+	-o-filter: $filterName + unquote('(#{$filterValue})')
+	-webkit-filter: $filterName + unquote('(#{$filterValue})')
+
+=OpacityFilter($filterValue)
+	opacity: $filterValue
+	filter: alpha(opacity = $filterValue)
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity = $filterValue)"
+
+
+/* ANIMATION */
+	
+=Animation($animationName, $animationDuration, $animationDelay, $animationIteration)
+	animation: $animationName $animationDuration $animationDelay $animationIteration
+	-ms-animation: $animationName $animationDuration $animationDelay $animationIteration
+	-moz-animation: $animationName $animationDuration $animationDelay $animationIteration
+	-o-animation: $animationName $animationDuration $animationDelay $animationIteration
+	-webkit-animation: $animationName $animationDuration $animationDelay $animationIteration
+	-skrollr-animation-name: $animationName
+	
+=Animation-State($animationState)
+	animation: $animationState
+	-ms-animation: $animationState
+	-moz-animation: $animationState
+	-o-animation: $animationState
+	-webkit-animation: $animationState

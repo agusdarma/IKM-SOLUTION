@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+	
+<mapper namespace="com.jakarta.software.web.mapper.AccessGroupMapper">
+
+    <update id="updateAccessGroupHeader" parameterType="AccessGroupHeader">
+    	update access_group_header
+    	set access_name=#{accessName}, 
+    		access_status=#{accessStatus},
+    		remark=#{remark}, 
+    		updated_on=#{updatedOn}, 
+    		updated_by=#{updatedBy}
+    	where id=#{id}
+    </update>
+    
+	<sql id="_sqlAccHeader">
+		ah.id as id,
+		ah.access_name as accessName,
+		ah.access_status as accessStatus,
+		ah.remark as remark,
+		ah.created_by as createdBy,
+		ah.created_on as createdOn,
+		ah.updated_by as updatedBy,
+		ah.updated_on as updatedOn
+	</sql>
+	
+	<sql id="_sqlAccHeaderDetail">
+		ah.id as id,
+		ah.access_name as accessName,
+		ah.access_status as accessStatus,
+		ah.remark as remark,
+		ah.created_by as createdBy,
+		ah.created_on as createdOn,
+		ah.updated_by as updatedBy,
+		ah.updated_on as updatedOn,
+		
+		l.lookup_value as lookupValue,
+		l.lookup_desc as lookupDesc
+	</sql>
+	
+    <resultMap id="AccessResult" type="AccessGroupHeader">
+		<id property="id" column="id" />
+		<result property="accessName" column="accessName" />
+		<result property="accessStatus" column="accessStatus" />
+		<result property="remark" column="remark" />
+		<result property="createdBy" column="createdBy" />
+		<result property="createdOn" column="createdOn" />
+		<result property="updatedBy" column="updatedBy" />
+		<result property="updatedOn" column="updatedOn" />
+		
+		<collection property="listDetail" ofType="Lookup">
+			<result property="lookupValue" column="lookupValue" />
+			<result property="lookupDesc" column="lookupDesc" />
+		</collection>
+	</resultMap>
+	
+	<select id="findAllAccessGroup" resultType="AccessGroupHeader">
+		select <include refid="_sqlAccHeader"/>
+		from access_group_header ah
+	</select>
+	
+	<select id="findAccessById" resultMap="AccessResult" parameterType="AccessGroupParamVO">
+		select <include refid="_sqlAccHeaderDetail" />
+		from access_group_header ah 
+			left join access_group_detail ad
+			on ah.id = ad.access_id
+			left join lookup_data l
+			on ad.trx_code = l.lookup_value and l.lookup_cat = #{categoryType}
+		where ah.id = #{id}
+	</select>
+	
+	<select id="findAccessHeaderById" resultType="AccessGroupHeader" parameterType="java.lang.Integer">
+		select <include refid="_sqlAccHeader" />
+		from access_group_header ah 
+		where ah.id = #{value}
+	</select>
+	
+	
+   	
+	<select id="countAccessGroupValidate" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(a.access_name) as accessName
+  		from access_group_header a 
+  		where a.access_name=#{value}
+    </select>
+
+	 
+	 <update id="updateAccessGroupData" parameterType="AccessGroupHeader">
+		update access_group_header set
+			access_name = #{accessName},
+			remark = #{remark},
+			updated_by = #{updatedBy},
+			updated_on = #{updatedOn}
+		where id=#{id} 
+    </update>
+	
+	<delete id="deleteAccessGroupDetail" parameterType="int">
+    	delete from access_group_detail
+    	where access_id=#{value}
+    </delete>
+    
+</mapper>

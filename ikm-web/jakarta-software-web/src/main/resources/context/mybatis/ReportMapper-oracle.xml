@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.jakarta.software.web.mapper.ReportMapper">
+
+	<sql id="_sqlWhereMerchant">
+		<where>
+			<if test="merchantCode!=null and merchantCode.length() > 0 ">
+				and m.merchant_code like concat('%', concat(#{merchantCode}, '%'))
+			</if>
+			<if test="merchantName!=null and merchantName.length() > 0 ">
+				and m.merchant_name like concat('%', concat(#{merchantName}, '%'))
+			</if>
+			<if test="status!=null and status.length() > 0 ">
+				and m.status=#{status}
+			</if>
+			<if test="authStatus!=null and authStatus.length() > 0 ">
+				and m.auth_status=#{authStatus}
+			</if>
+			<if test="startDate!=null">
+				and m.created_on > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and m.created_on &lt; #{endDate}
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereCif">
+		<where>
+			<if test="deviceCode!=null and deviceCode.length() > 0 ">
+				and c.device_code like concat('%', concat(#{deviceCode}, '%'))
+			</if>
+			<if test="startDate!=null">
+				and c.created_on > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and c.created_on &lt; #{endDate}
+			</if>			
+			<if test="accessType > 0 ">
+				and c.access_id=#{accessType}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="_sqlWhereAirtimeRefill">
+	    <where>
+			<if test="merchantName !=null and merchantName.length() > 0 ">
+				and th.merchant_name like concat('%', concat(#{merchantName}, '%'))
+			</if>
+			<if test="startDate!=null">
+				and td.received_time > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and td.received_time &lt; #{endDate}
+			</if>
+			<if test="trxType == 0 ">
+	       		and th.last_rc like '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and th.last_rc not like '0'
+	       	</if>
+				and th.trx_code='PMT_SIM'			
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereMatm">
+	    <where>
+			<if test="deviceCode!=null and deviceCode.length() > 0 ">
+				and th.device_code like concat('%', concat(#{deviceCode}, '%'))
+			</if>
+			<if test="startDate!=null">
+				and td.received_time > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and td.received_time &lt; #{endDate}
+			</if>
+			<if test="trxType == 0 ">
+	       		and th.last_rc like '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and th.last_rc not like '0'
+	       	</if>
+				and th.trx_code='MA_PUR_ATM'			
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereFundTransfer">
+	    <where>
+			<if test="deviceCode!=null and deviceCode.length() > 0 ">
+				and th.device_code like concat('%', concat(#{deviceCode}, '%'))
+			</if>
+			<if test="startDate!=null">
+				and td.received_time > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and td.received_time &lt; #{endDate}
+			</if>
+			<if test="trxType == 0 ">
+	       		and th.last_rc like '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and th.last_rc not like '0'
+	       	</if>
+	       	<if test="bankCode !=null and bankCode.length() > 0 ">
+				and th.bank_code like '%' + #{bankCode} + '%'
+			</if>	       	
+				and (th.trx_code='FUND_TRF' or th.trx_code='FUND_TRF_OTH')		
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereBillPayment">
+	    <where>
+			<if test="deviceCode!=null and deviceCode.length() > 0 ">
+				and th.device_code like concat('%', concat(#{deviceCode}, '%'))
+			</if>
+			<if test="startDate!=null">
+				and td.received_time > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and td.received_time &lt; #{endDate}
+			</if>
+			<if test="trxType == 0 ">
+	       		and th.last_rc like '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and th.last_rc not like '0'
+	       	</if>
+			<if test="category !=null and category.length() > 0 ">
+				and th.bill_category = #{category}
+			</if>
+				and th.trx_code='BILL_PMT'			
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereBlastSms">
+	    <where>
+			<if test="status !=null and status.length() > 0 ">
+				and prh.status = #{status}
+			</if>
+			<if test="startDate!=null">
+				and prh.sent_time > #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and prh.sent_time &lt; #{endDate}
+			</if>
+			<if test="groupMsisdnId > 0">
+				and prh.group_msisdn_id = #{groupMsisdnId}
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereAuditTrailAccount">
+		<where>
+			<if test="deviceCode!=null and deviceCode.length() > 0 ">
+				and c.device_code LIKE CONCAT('%',#{deviceCode}, '%')
+			</if>
+			<if test="startDate!=null">
+				and a.created_on >= #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and a.created_on &lt;= #{endDate}
+			</if>			
+			<if test="accountNo !=null and accountNo.length() > 0 ">
+				and a.account_no LIKE CONCAT('%',#{accountNo}, '%')
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereTerminatedCif">
+	   	<where>
+	        	and ch.auth_status=#{authStatus} and ch.status=#{status}
+			<if test="deviceCode!=null and deviceCode.length() > 0 ">
+				and ch.device_code concat('%', concat(#{deviceCode}, '%'))
+			</if>	
+			<if test="accessType > 0 ">
+				and ch.access_id=#{accessType}
+			</if>
+			<if test="startDate!=null">
+				and ch.created_on >= #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and ch.created_on = #{endDate}
+			</if>			
+			<if test="accessGroup > 0 ">
+				and ch.access_id=#{accessGroup}
+			</if>
+			<if test="cifGroup > 0 ">
+				and ch.cif_group=#{cifGroup}
+			</if>			
+		</where>
+	</sql>
+	
+	<sql id="_sqlWhereSummaryTransaction">
+		<where>
+		    	and MONTH(th.created_on) = #{month} and YEAR(th.created_on) = #{year}
+			<if test="channelType != 'all' ">
+	       		and th.channel_type = #{channelType}
+	       	</if>
+	       	<if test="trxCode != 'all' ">
+	       		and th.trx_code = #{trxCode}
+	       	</if>
+			<if test="trxType == 0 ">
+	       		and th.last_rc like '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and th.last_rc not like '0'
+	       	</if>
+			<if test="operatorCode != 'all'">
+				and th.operator_code = #{operatorCode}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="findMerchantReportByParam" resultType="MerchantVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectMerchant" />
+				from MERCHANT m
+				<include refid="_sqlFromMerchant" />
+				<include refid="_sqlWhereMerchant" /> 
+				ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findCifByParam" resultType="CifReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+	    		<include refid="_sqlSelectCif"/>
+	 	 		<include refid="_sqlFromCif"/>
+		 	 	<include refid="_sqlWhereCif" />
+ 	 			ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>	
+	
+	<select id="findAirtimeRefillByParam" resultType="TransactionReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectAirtimeRefill"/>
+	 	 		<include refid="_sqlFromAirtimeRefill"/>
+		 	 	<include refid="_sqlWhereAirtimeRefill" />
+		 	 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findMatmPurchaseByParam" resultType="TransactionReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+	    		<include refid="_sqlSelectMatm"/>
+				<include refid="_sqlFromMatm"/>
+			 	<include refid="_sqlWhereMatm" />
+			 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findFundTransferByParam" resultType="TransactionReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectFundTransfer"/>
+	 	 		<include refid="_sqlFromFundTransfer"/>
+		 	 	<include refid="_sqlWhereFundTransfer" />
+	 			ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findBillPaymentByParam" resultType="TransactionReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectBillPayment"/>
+	 	 		<include refid="_sqlFromBillPayment"/>
+		 	 	<include refid="_sqlWhereBillPayment" />
+		 	 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}		
+	</select>
+	
+	<select id="findBlastSmsByParam" resultType="TransactionReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectBlastSms"/>
+	 	 		<include refid="_sqlFromBlastSms"/>
+		 	 	<include refid="_sqlWhereBlastSms" />
+		 	 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findTerminatedCifByParam" resultType="TerminatedCifReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectTerminatedCif"/>
+	 	 		<include refid="_sqlFromTerminatedCif"/>
+		 	 	<include refid="_sqlWhereTerminatedCif" />
+		 	 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findAuditTrailAccountByParam" resultType="CifReportVO" parameterType="ReportParamVO">
+	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+				<include refid="_sqlSelectAuditTrailAccount"/>
+				<include refid="_sqlFromAuditTrailAccount"/>
+			 	<include refid="_sqlWhereAuditTrailAccount" />
+		 	 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+	<select id="findSummaryTransactionByParam" resultType="TransactionReportVO" parameterType="ReportParamVO">
+ 	 	SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select x.trxCode, x.channelType, x.operatorCode, x.status, x.totalTransaction
+				from(
+					select
+					<include refid="_sqlSelectSummaryTransaction"/>
+					<include refid="_sqlFromSummaryTransaction"/>
+				    <include refid="_sqlWhereSummaryTransaction" />
+				    <include refid="_sqlGroupingSummaryTransaction" />
+			    ) x
+		 	 	ORDER BY ${sortVariable} ${sortOrder}
+			) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+	</select>
+	
+</mapper>

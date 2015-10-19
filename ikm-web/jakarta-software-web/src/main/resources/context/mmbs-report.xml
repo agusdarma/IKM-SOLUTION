@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mmbs-report" extends="mmbs-base">
+			
+		<action name="UserActivityReport!*" method="{1}" class="com.jakarta.software.web.action.report.UserActivityReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/user_activity_report_search.jsp</result>
+			<result name="detail">/WEB-INF/pages/report/user_activity_report_detail.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/user_activity.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">User_Activity_Report</param>
+            	<param name="dataSource">listUserActivity</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/user_activity.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">User_Activity_Report</param>
+            	<param name="dataSource">listUserActivity</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/user_activity.jasper</param>
+				<param name="contentDisposition">attachment</param>
+				<param name="documentName">User_Activity_Report</param>
+				<param name="dataSource">listUserActivity</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="CifReport!*" method="{1}" class="com.jakarta.software.web.action.report.CifReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/cif_report_search.jsp</result>
+			<result name="detail">/WEB-INF/pages/report/cif_report_detail.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/cif.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Cif_Report</param>
+            	<param name="dataSource">listCif</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/cif.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Cif_Report</param>
+            	<param name="dataSource">listCif</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/cif.jasper</param>
+				<param name="contentDisposition">attachment</param>
+				<param name="documentName">Cif_Report</param>
+				<param name="dataSource">listCif</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>    
+		</action>
+		
+		<action name="MerchantReport!*" method="{1}" class="com.jakarta.software.web.action.report.MerchantReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/merchant_report_search.jsp</result>
+			<result name="detail">/WEB-INF/pages/report/merchant_report_detail.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/merchant.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Merchant_Report</param>
+            	<param name="dataSource">listMerchant</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/merchant.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Merchant_Report</param>
+            	<param name="dataSource">listMerchant</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/merchant.jasper</param>
+				<param name="contentDisposition">attachment</param>
+				<param name="documentName">Merchant_Report</param>
+				<param name="dataSource">listMerchant</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="AirtimeRefillReport!*" method="{1}" class="com.jakarta.software.web.action.report.AirtimeRefillReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/airtime_refill_report.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/airtime_refill.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Airtime_Refill_Report</param>
+            	<param name="dataSource">listAirtimeRefill</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/airtime_refill.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Airtime_Refill_Report</param>
+            	<param name="dataSource">listAirtimeRefill</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/airtime_refill.jasper</param>
+				<param name="contentDisposition">attachment</param>
+				<param name="documentName">Airtime_Refill_Report</param>
+				<param name="dataSource">listAirtimeRefill</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+
+		<action name="MatmPurchaseReport!*" method="{1}" class="com.jakarta.software.web.action.report.MatmPurchaseReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/matm_purchase_report.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/matm_purchase.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Matm_Purchase_Report</param>
+            	<param name="dataSource">listMatmPurchase</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/matm_purchase.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Matm_Purchase_Report</param>
+            	<param name="dataSource">listMatmPurchase</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/matm_purchase.jasper</param>
+				<param name="contentDisposition">attachment</param>
+	            <param name="documentName">Matm_Purchase_Report</param>
+            	<param name="dataSource">listMatmPurchase</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="FundTransferReport!*" method="{1}" class="com.jakarta.software.web.action.report.FundTransferReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/fund_transfer_report.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/fund_transfer.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Fund_Transfer_Report</param>
+            	<param name="dataSource">listFundTransfer</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/fund_transfer.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Fund_Transfer_Report</param>
+            	<param name="dataSource">listFundTransfer</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/fund_transfer.jasper</param>
+				<param name="contentDisposition">attachment</param>
+				<param name="documentName">Fund_Transfer_Report</param>
+				<param name="dataSource">listFundTransfer</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="BillPaymentReport!*" method="{1}" class="com.jakarta.software.web.action.report.BillPaymentReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/bill_payment_report.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/bill_payment.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Bill_Payment_Report</param>
+            	<param name="dataSource">listBillPayment</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/bill_payment.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Bill_Payment_Report</param>
+            	<param name="dataSource">listBillPayment</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/bill_payment.jasper</param>
+				<param name="contentDisposition">attachment</param>
+	            <param name="documentName">Bill_Payment_Report</param>
+            	<param name="dataSource">listBillPayment</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="BlastSmsReport!*" method="{1}" class="com.jakarta.software.web.action.report.BlastSmsReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/blast_sms_report_search.jsp</result>
+			<result name="detail">/WEB-INF/pages/report/blast_sms_report_detail.jsp</result>			
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/blast_sms.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Blast_SMS_Report</param>
+            	<param name="dataSource">listBlastSms</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/blast_sms.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Blast_SMS_Report</param>
+            	<param name="dataSource">listBlastSms</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/blast_sms.jasper</param>
+				<param name="contentDisposition">attachment</param>
+	            <param name="documentName">Blast_SMS_Report</param>
+            	<param name="dataSource">listBlastSms</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+				
+		<action name="TerminatedCifReport!*" method="{1}" class="com.jakarta.software.web.action.report.TerminatedCifReportAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/terminated_cif_report_search.jsp</result>
+			<result name="detail">/WEB-INF/pages/report/terminated_cif_report_detail.jsp</result>			
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="findAccountJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>			
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/terminated_cif.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Terminated_Cif_Report</param>
+            	<param name="dataSource">listTerminatedCif</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/terminated_cif.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Terminated_Cif_Report</param>
+            	<param name="dataSource">listTerminatedCif</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/terminated_cif.jasper</param>
+				<param name="contentDisposition">attachment</param>
+	            <param name="documentName">Terminated_Cif_Report</param>
+            	<param name="dataSource">listTerminatedCif</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="AuditTrailAccount!*" method="{1}" class="com.jakarta.software.web.action.report.AuditTrailAccountAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/audit_trail_account_report.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>		
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/audit_trail_account.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Audit_Trail_Account</param>
+            	<param name="dataSource">listAuditTrail</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/audit_trail_account.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Audit_Trail_Account</param>
+            	<param name="dataSource">listAuditTrail</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/audit_trail_account.jasper</param>
+				<param name="contentDisposition">attachment</param>
+	           	<param name="documentName">Audit_Trail_Account</param>
+            	<param name="dataSource">listAuditTrail</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+		<action name="SummaryTransaction!*" method="{1}" class="com.jakarta.software.web.action.report.SummaryTransactionAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/report/summary_transaction_report.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>		
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/summary_transaction.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Summary_Transaction</param>
+            	<param name="dataSource">listSummaryTransaction</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/summary_transaction.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Summary_Transaction</param>
+            	<param name="dataSource">listSummaryTransaction</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/summary_transaction.jasper</param>
+				<param name="contentDisposition">attachment</param>
+	           	<param name="documentName">Summary_Transaction</param>
+            	<param name="dataSource">listSummaryTransaction</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

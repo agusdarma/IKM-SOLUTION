@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	Copyright 2010 The myBatis Team
+
+	Licensed under the Apache License, Version 2.0 (the "License")
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.ProductMapper">
+
+	<sql id="_sqlSelectionProduct">
+		<where>
+			<if test="productType!=null and productType.length() > 0 ">
+				AND p.product_type LIKE CONCAT('%',#{productType}, '%') 
+			</if>
+			<if test="productCode!=null and productCode.length() > 0 ">
+				AND p.product_code LIKE CONCAT('%',#{productCode}, '%') 
+			</if>
+			<if test="productName!=null and productName.length() > 0 ">
+				AND p.product_name LIKE CONCAT('%',#{productName}, '%') 
+			</if>
+			<if test="institutionCode!=null and institutionCode.length() > 0 ">
+				AND p.institution_code LIKE CONCAT('%',#{institutionCode}, '%')
+			</if>
+			<if test="status!=null and status.length() > 0 ">
+				AND p.status=#{status}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="id">
+		insert into product(product_type,
+			product_code,
+			product_name,
+			created_on,
+			created_by,
+			updated_on,
+			updated_by,
+			institution_code,
+			status)
+		values(#{productType},
+			#{productCode},
+			#{productName},
+			#{createdOn},
+			#{createdBy},
+			#{updatedOn},
+			#{updatedBy},
+			#{institutionCode},
+			#{status})
+	</insert>
+
+	<select id="selectProductByParam" resultType="Product" parameterType="ProductParamVO">
+ 	select <include refid="_sqlProduct" />,
+			ud1.user_name as createdByDisplay,
+			ud2.user_name as updatedByDisplay,
+			ld.lookup_desc as statusDisplay
+		from product p
+			left join user_data ud1 on ud1.id = p.created_by
+			left join user_data ud2 on ud2.id = p.updated_by
+			left join lookup_data ld on ld.lookup_cat=8 and ld.lookup_value=p.status
+		<include refid="_sqlSelectionProduct" />
+        ORDER BY ${sortVariable} ${sortOrder} limit #{rowStartMysql},#{rowPerPage}
+	</select>
+
+	<select id="countProductByParam" resultType="java.lang.Integer" parameterType="ProductParamVO">
+ 		select count(1)
+		from product p
+			left join user_data ud1 on ud1.id = p.created_by
+			left join user_data ud2 on ud2.id = p.updated_by
+			left join lookup_data ld on ld.lookup_cat=8 and ld.lookup_value=p.status
+		<include refid="_sqlSelectionProduct" />
+	</select>
+
+	<sql id="_sqlProductValue">
+		pv.id as id,
+		pv.product_id as productId,
+		pv.product_value as productValue,
+		pv.created_by as createdBy,
+		pv.created_on as createdOn,
+		pv.updated_by as updatedBy,
+		pv.updated_on as updatedOn
+	</sql>
+
+	<sql id="_sqlSelectionProductValue">
+		<where>
+			<if test="id!=0">
+				AND pv.id=#{id}
+			</if>
+			<if test="productId!=0">
+				AND pv.product_id=#{productId}
+			</if>
+			<if test="productValue!=0">
+				AND pv.product_value=#{productValue}
+			</if>
+			<if test="createdBy!=0">
+				AND pv.created_by=#{createdBy}
+			</if>
+			<if test="createdOn!=null ">
+				AND pv.created_on=#{createdOn}
+			</if>
+			<if test="updatedBy!=0">
+				AND pv.updated_by=#{updatedBy}
+			</if>
+			<if test="updatedOn!=null ">
+				AND pv.updated_on=#{updatedOn}
+			</if>
+		</where>
+	</sql>
+
+	<insert id="insertProductValue" parameterType="ProductValue" useGeneratedKeys="true" keyProperty="id">
+		insert into product_value(product_id,
+			product_value,
+			created_by,
+			created_on,
+			updated_by,
+			updated_on)
+		values(#{productId},
+			#{productValue},
+			#{createdBy},
+			#{createdOn},
+			#{updatedBy},
+			#{updatedOn})
+	</insert>
+
+	<select id="selectProductValueByParam" resultType="ProductValue" parameterType="ProductParamVO">
+	 	select <include refid="_sqlProductValue" />
+			from product_value pv
+			<include refid="_sqlSelectionProductValue" />
+        ORDER BY ${sortVariable} ${sortOrder} limit #{rowStartMysql},#{rowPerPage}
+	</select>
+
+	<select id="countProductValueByParam" resultType="java.lang.Integer" parameterType="ProductParamVO">
+ 		select count(1)
+		from product_value
+		<include refid="_sqlSelectionProductValue" />
+	</select>
+	
+ </mapper>

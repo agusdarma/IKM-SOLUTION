@@ -1,0 +1,509 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* LINK */
+/* Clear Hyperlink */
+a.ClearHyperlink:link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ClearHyperlink:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ClearHyperlink:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ClearHyperlink:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Underline Hyperlink */
+a.UnderlineHyperlink:link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a.UnderlineHyperlink:visited {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a.UnderlineHyperlink:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a.UnderlineHyperlink:active {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* POSITIONER */
+.PositionerCenter {
+  position: relative;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 40px;
+  text-align: center;
+  vertical-align: middle;
+  display: block;
+}
+
+.PositionerCenter:last-child {
+  margin-bottom: 0px;
+}
+
+/* BUTTON GENERAL */
+.ButtonPrimary {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  min-height: 24px;
+  min-width: 120px;
+  padding-top: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 24px;
+  border-style: solid;
+  border-width: 2px;
+  background-position: center;
+  background-repeat: repeat-x;
+  z-index: 2;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonPrimary:disabled {
+  z-index: 2;
+}
+
+.ButtonPrimary:hover {
+  z-index: 2;
+}
+
+.TableControlRight .ButtonPrimary {
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  min-height: 20px;
+  height: 28px;
+  min-width: 20px;
+  line-height: 1em;
+  padding: 3px;
+}
+
+.ButtonSecondary {
+  min-height: 24px;
+  min-width: 120px;
+  padding-top: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 24px;
+  border-style: solid;
+  border-width: 2px;
+  background-position: center;
+  background-repeat: repeat-x;
+  z-index: 2;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonSecondary:disabled {
+  z-index: 2;
+}
+
+.ButtonSecondary:hover {
+  z-index: 2;
+}
+
+/* BUTTON BY IMAGE */
+.ButtonReset {
+  min-height: 24px;
+  min-width: 36px;
+  padding-top: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 24px;
+  border-style: solid;
+  border-width: 2px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat-x;
+  background-size: contain, auto;
+  z-index: 2;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonReset:disabled {
+  z-index: 2;
+}
+
+.ButtonReset:hover {
+  z-index: 2;
+}
+
+#ButtonFullScreen {
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
+  vertical-align: middle;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 2;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#ButtonFullScreen:disabled {
+  z-index: 2;
+}
+
+#ButtonFullScreen:hover {
+  z-index: 2;
+}
+
+#ButtonToTop {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  text-align: center;
+  vertical-align: middle;
+  z-index: 6;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+#ButtonToTop .Background {
+  position: absolute;
+  margin: -10px;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  opacity: 0.75;
+  z-index: 6;
+}
+
+#ButtonToTop .ShapeHornBody {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  z-index: 7;
+}
+
+#ButtonToTop p {
+  position: relative;
+  z-index: 7;
+}
+
+.ToTopDefault {
+  display: none;
+}
+
+.ToTopShow {
+  display: block;
+}
+
+/* BUTTON TABLE */
+.ButtonFirst, .ButtonPrevious, .ButtonNext, .ButtonLast {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+.ButtonLimit {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+.ButtonAdd {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 20px;
+  min-height: 20px;
+  padding-top: 2px;
+  padding-left: 30px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  background-size: auto;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: block;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonSubmit {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 20px;
+  min-height: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+.ButtonCancel {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 20px;
+  min-height: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+.ButtonDelete {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 20px;
+  min-height: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+.ButtonEdit {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 20px;
+  min-height: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+.ButtonSave {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 20px;
+  min-height: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  vertical-align: middle;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  cursor: hand;
+  display: inline-block;
+}
+
+/* MESSAGE */
+.MessageDefault {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.MessageState {
+  display: none;
+}
+
+.ResultSuccess {
+  display: block;
+}
+
+.ResultSuccess:before {
+  position: relative;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 0px;
+  text-align: center;
+  vertical-align: middle;
+  content: 'O';
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ResultFailure {
+  display: block;
+}
+
+.ResultFailure:before {
+  position: relative;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding-top: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 0px;
+  text-align: center;
+  vertical-align: middle;
+  content: 'X';
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  -ms-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* EFFECT */
+/* NAVIGATION */
+input[name=GroupNavigation]:checked + ul {
+  display: block;
+}
+
+input[name=SubGroupNavigation]:checked + ul {
+  display: inline-block;
+}

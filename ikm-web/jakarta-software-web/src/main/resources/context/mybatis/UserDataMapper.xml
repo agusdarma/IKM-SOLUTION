@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.UserDataMapper">
+    
+    <update id="changeUserDataAuthStatus" parameterType="UserData">
+		update user_data 
+		set	updated_by  = #{updatedBy},
+			updated_on  = #{updatedOn},
+			auth_by	    = #{authBy},
+			auth_on	    = #{authOn},
+			auth_status = #{authStatus}
+		where id=#{id} 
+    </update>
+    
+   	<update id="changeUserDataHistoryAuthStatus" parameterType="UserDataVO">
+		update user_data_history 
+		set	updated_by	= #{updatedBy},
+			updated_on 	= #{updatedOn},
+			auth_status	= #{authStatus},
+			auth_by	    = #{authBy},
+			auth_on	    = #{authOn},
+			user_data_id= #{userId}
+		where id=#{id} 
+    </update>
+    
+    <sql id="_sqlUserData">
+    	ud.id as id,
+		ud.user_code as userCode,
+		ud.user_name as userName,
+		ud.password as userPassword,
+		ud.invalid_count as invalidCount,
+		ud.user_status as userStatus,
+		ud.branch_id as branchId,
+		ud.department as department,
+		ud.level_id as levelId,
+		ud.email as email,
+		ud.last_login_on as lastLoginOn,
+		ud.pass_changed_on as passChangedOn,
+		ud.session_id as sessionId,
+		ud.created_on as createdOn,
+		ud.created_by as createdBy,
+		ud.updated_on as updatedOn,
+		ud.updated_by as updatedBy,
+		ud.auth_status as authStatus,
+		ud.auth_on as authOn,
+		ud.auth_by as authBy,		
+		l.lookup_desc as userStatusDisplay,
+		ul.level_name as userLevelDisplay,
+		ud.need_change_pass as needChangePass,
+		bd.branch_name as branchDisplay,
+		ud1.user_name as createdByDisplay,
+		ud2.user_name as updatedByDisplay
+    </sql>
+    
+    <sql id="_sqlUserDataFrom">
+    	user_data ud 
+    		left join lookup_data l on ud.user_status=l.lookup_value and l.lookup_cat=1
+    		left join user_level ul on ud.level_id=ul.id
+    		inner join user_data ud1 on ud1.id = ud.created_by
+			inner join user_data ud2 on ud2.id = ud.updated_by
+			left join branch_data bd on bd.id=ud.branch_id
+    </sql>
+    
+    <select id="findUserDataByUserCode" resultType="UserDataVO" parameterType="java.lang.Integer">
+		select <include refid="_sqlUserData"/> 
+		from <include refid="_sqlUserDataFrom" />
+		where lower(ud.user_code) = lower(#{value})
+    </select>
+    
+    <select id="checkSessionLogin" resultType="int" parameterType="java.util.Map">
+    	select count(ud.id) as countUser
+    	from user_data ud
+    	where ud.id=#{userId} and ud.session_id=#{sessionId}
+    </select>
+    
+    <update id="clearSessionLogin" parameterType="int">
+    	update user_data 
+    	set session_id = '' 
+    	where id = #{value}
+    </update>
+        
+    <select id="countLevelUsedByName" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT count(id) as count 
+		FROM user_data
+		where level_id = #{value}
+    </select>
+    
+    <select id="countUserValidate" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT count(id) as count 
+		FROM user_data
+		where lower(user_code) = lower(#{value})
+    </select>
+    
+    <select id="countUserValidateHistory" resultType="java.lang.Integer" parameterType="java.lang.String">
+		SELECT count(id) as count 
+		FROM user_data_history
+		where lower(user_code) = lower(#{value}) and auth_status='Y' and user_data_id=0
+    </select>
+        
+    <select id="findUserById" resultType="UserDataVO" parameterType="java.lang.Integer">
+		SELECT <include refid="_sqlUserData"/> 
+		from <include refid="_sqlUserDataFrom" />
+		WHERE ud.id = #{value}
+    </select>
+        
+    <select id="findUserByIdHistory" resultType="UserDataVO" parameterType="java.lang.Integer">
+		SELECT udh.id as id,
+			udh.user_data_id as userId,
+			udh.user_code as userCode,
+			udh.user_name as userName,
+			udh.password as userPassword,
+			udh.level_id as levelId,
+			udh.branch_id as branchId,
+			udh.user_status as userStatus,
+			udh.department as department,
+			udh.email as email,
+			udh.created_on as createdOn,
+			udh.created_by as createdBy,
+			udh.updated_on as updatedOn,
+			udh.updated_by as updatedBy,
+			udh.invalid_count as invalidCount,
+			udh.need_change_pass as needChangePass,
+			bd.branch_name as branchDisplay,
+      		ul.level_name as userLevelDisplay,
+			ud1.user_name as createdByDisplay,
+			ud2.user_name as updatedByDisplay,
+			ld.lookup_desc as userStatusDisplay,
+			udh.activity_type as activityType			
+		FROM user_data_history udh
+			left join branch_data bd on bd.id=udh.branch_id
+      		left join user_level ul on udh.level_id = ul.id
+      		left join lookup_data ld on ld.lookup_cat=1 and ld.lookup_value=udh.user_status
+			inner join user_data ud1 on ud1.id = udh.created_by
+			inner join user_data ud2 on ud2.id = udh.updated_by
+		WHERE udh.id = #{value}
+    </select>
+   	
+   	
+</mapper>

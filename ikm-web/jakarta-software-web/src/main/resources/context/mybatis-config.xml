@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+    	<!-- changes from the defaults -->
+        <setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+       
+    <typeAliases>
+    <!-- <typeAlias alias="UserLevelMenuVO" type="com.jakarta.software.web.data.UserLevelMenuVO" />
+    
+    	<typeAlias alias="UserInfoParamVO" type="com.jakarta.software.web.data.param.UserInfoParamVO" /> -->
+    
+    	<package name="com.jakarta.software.web.entity"/>	
+    	<package name="com.jakarta.software.web.data"/>	
+    	<package name="com.jakarta.software.web.data.param"/>	
+    	
+	</typeAliases>
+
+</configuration>

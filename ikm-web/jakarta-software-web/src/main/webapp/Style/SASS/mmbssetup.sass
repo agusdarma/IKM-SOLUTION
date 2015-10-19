@@ -1,0 +1,103 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+
+
+// IMPORT
+
+@import mmbsinitialization
+
+
+/* TYPEFACE */
+
+@font-face 
+	font-family: 'HelveticaNeue_47_Light'
+	src: url('../../Resource/Font/HelveticaNeue_47_Light.eot?#iefix') format('embedded-opentype'), url('../../Resource/Font/HelveticaNeue_47_Light.woff') format('woff'), url('../../Resource/Font/HelveticaNeue_47_Light.ttf') format('truetype'), url('../../Resource/Font/HelveticaNeue_47_Light.svg#HelveticaNeue_47_Light') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+	font-family: 'HelveticaNeue_47_Light_Italic'
+	src: url('../../Resource/Font/HelveticaNeue_47_Light_Italic.eot?#iefix') format('embedded-opentype'), url('../../Resource/Font/HelveticaNeue_47_Light_Italic.woff') format('woff'), url('../../Resource/Font/HelveticaNeue_47_Light_Italic.ttf') format('truetype'), url('../../Resource/Font/HelveticaNeue_47_Light_Italic.svg#HelveticaNeue_47_Light_Italic') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+	font-family: 'HelveticaNeue_56_Italic'
+	src: url('../../Resource/Font/HelveticaNeue_56_Italic.eot?#iefix') format('embedded-opentype'), url('../../Resource/Font/HelveticaNeue_56_Italic.woff') format('woff'), url('../../Resource/Font/HelveticaNeue_56_Italic.ttf') format('truetype'), url('../../Resource/Font/HelveticaNeue_56_Italic.svg#HelveticaNeue_56_Italic') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+	font-family: 'BebasNeue_Regular'
+	src: url('../../Resource/Font/BebasNeue_Regular.eot?#iefix') format('embedded-opentype'), url('../../Resource/Font/BebasNeue_Regular.woff') format('woff'), url('../../Resource/Font/BebasNeue_Regular.ttf') format('truetype'), url('../../Resource/Font/BebasNeue_Regular.svg#BebasNeue_Regular') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+    font-family: Utsaah_Regular;
+    src: url('../../Resource/Font/Utsaah_Regular.eot');
+    src: url('../../Resource/Font/Utsaah_Regular.eot?#iefix') format('embedded-opentype'), url('../../Resource/Font/Utsaah_Regular.woff') format('woff'), url('../../Resource/Font/Utsaah_Regular.ttf') format('truetype'), url('../../Resource/Font/Utsaah_Regular.svg#utsaahregular') format('svg');
+    font-weight: normal
+    font-style: normal
+
+
+/* SETUP */
+
+img
+	border: none
+
+input[name=GroupNavigation]
+	+Appearance(none)
+
+label
+	cursor: pointer
+	cursor: hand
+
+*
+	+Transition(all, 0.75s, ease-out)
+
+
+/* NEUTRALIZE */
+
+h1, h2, h3, h4, h5, h6, p, mark, ol, ul, li
+	margin: auto
+	padding: auto
+	font-family: inherit
+	font-size: inherit
+	font-weight: inherit
+	color: inherit
+	text-decoration: inherit
+	text-transform: inherit
+
+
+/* SEMANTIC ELEMENTS */
+
+body
+	margin: 0px
+	padding-top: $general_padding_medium
+	padding-right: $general_padding_huge
+	padding-left: $general_padding_huge
+	padding-bottom: $general_padding_medium
+
+main
+	margin-top: 32px
+	margin-right: $general_margin_small
+	margin-left: $general_margin_huge
+	margin-bottom: $general_margin_huge
+	display: block
+
+section, aside
+	margin-top: 32px
+	margin-right: $general_margin_medium
+	display: table
+
+dl
+	margin: 0px
+	padding: 0px
+	vertical-align: middle
+	dt
+		margin: 0px
+		padding: 0px
+	dd
+		margin: 0px
+		padding: 0px

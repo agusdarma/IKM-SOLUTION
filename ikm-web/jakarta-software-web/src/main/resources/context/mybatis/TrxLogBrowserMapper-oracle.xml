@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.TrxLogBrowserMapper">
+     
+     <select id="countTrxLogBrowserByParam" parameterType="TrxLogBrowserParamVO" resultType="java.lang.Integer" >
+		select count(h.syslogno) as count_id 
+		from TRXLOGH h
+			left join CIF c on c.device_code = h.device_code and h.device_code != ''
+			left join LOOKUP_DATA ld on ld.lookup_value=h.trx_code and ld.lookup_cat=13
+			left join GROUP_LIMIT g on g.id=c.cif_group
+		<include refid="_sqlTrxLogWhere" />
+	 </select>
+	 
+     <!-- g.group_name as glName, -->
+	 <select id="findTrxLogBrowserByParam" resultType="TrxLogBrowserVO" parameterType="TrxLogBrowserParamVO">
+		SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select 
+					h.syslogno as sysLogNo,
+					h.received_time as receivedTime,
+					trxCode.lookup_desc as trxCode,
+					h.srac as sourceAccount,
+					h.dsac as destAccount,
+					h.last_state as lastState,
+					h.last_rc as lastRc,
+					h.trx_value as amount,
+					h.channel_type as channelType
+				from TRXLOGH h
+					left join CIF c on c.device_code = h.device_code and h.device_code != ''
+					left join LOOKUP_DATA trxCode on trxCode.lookup_value = h.trx_code and trxCode.lookup_cat=13
+					left join GROUP_LIMIT g on g.id = c.cif_group
+				<include refid="_sqlTrxLogWhere" />
+				ORDER BY ${sortVariable} ${sortOrder}
+	 		) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+    </select>
+    
+	  <sql id="_sqlTrxLogWhere">
+	 	<where>
+	       	<if test="startDate != null and endDate != null">
+				and h.received_time between #{startDate} and #{endDate}
+			</if>
+	      	<if test="syslogno != null and syslogno.length() > 0">
+	       		AND upper(h.syslogno) like concat('%', concat(upper(#{syslogno}), '%'))
+	       	</if>
+	 		<if test="phoneNo != null and phoneNo.length() > 0">
+	       		AND upper(h.device_code) like concat('%', concat(upper(#{phoneNo}), '%'))
+	      	</if>
+	   		<if test="sourceAccount != null and sourceAccount.length() > 0">
+	       		AND upper(h.srac) like concat('%', concat(upper(#{sourceAccount}), '%'))
+	      	</if>
+	      	<if test="cardNo != null and cardNo.length() > 0">
+	      	    AND upper(h.source_card_number) like concat('%', concat(upper(#{cardNo}), '%'))
+	       	</if>
+	       	<if test="trxCode != 'all' ">
+	       		and h.trx_code = #{trxCode}
+	       	</if>
+	       	<if test="trxCode == 'TRF_OTH' and bankCode != 'all' ">
+	       		and h.bank_code = #{bankCode}
+	       	</if>
+	       	<if test="trxCode == 'PURCHASE' and productCode != 'all' ">
+	       		and h.product_code = #{productCode}
+	       	</if>
+	       	<if test="trxCode == 'BILL_PMT' and billerCode != 'all' ">
+	       		and h.vendor_code = #{billerCode}
+	       	</if>
+	       	<if test="accountType != 'all' ">
+	       		and g.id = #{accountType}
+	       	</if>
+			<if test="status != 'all' ">
+	       		and c.status = #{status}
+	       	</if> 
+			<if test="trxType == 0 ">
+	       		and h.last_rc like '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and h.last_rc not like '0'
+	       	</if>
+	       	<if test="channelType != 'all' ">
+	       		and h.channel_type = #{channelType}
+	       	</if>
+		</where>
+	 </sql>
+
+</mapper>

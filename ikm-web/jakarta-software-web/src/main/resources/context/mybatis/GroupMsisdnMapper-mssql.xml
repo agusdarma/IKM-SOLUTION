@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.GroupMsisdnMapper">
+    
+    <sql id="_sqlSelectionGroupMsisdnHeader">
+		<where>
+			<if test="groupName!=null and groupName.length() > 0 ">
+				gmh.group_name like '%' + #{groupName} + '%'
+			</if>
+		</where>
+	</sql>
+	
+    <insert id="insertGroupMsisdnHeader" parameterType="GroupMsisdnHeader" useGeneratedKeys="true" keyProperty="id">
+		insert into GROUP_MSISDN_HEADER(group_name,
+			group_remarks,
+			created_on,
+			created_by,
+			updated_on,
+			updated_by)
+		values(#{groupName},
+			#{groupRemarks},
+			#{createdOn},
+			#{createdBy},
+			#{updatedOn},
+			#{updatedBy})
+	</insert>
+	
+	<select id="selectGroupMsisdnHeaderByParam" resultType="GroupMsisdnHeaderVO" parameterType="GroupMsisdnParamVO">
+	 	select * from (
+			select ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+				<include refid="_sqlGroupMsisdnHeader" />,
+		 		ud1.user_name as createdByDisplay,
+				ud2.user_name as updatedByDisplay
+			from GROUP_MSISDN_HEADER gmh
+				inner join user_data ud1 on ud1.id = gmh.created_by
+				inner join user_data ud2 on ud2.id = gmh.updated_by
+			<include refid="_sqlSelectionGroupMsisdnHeader" /> 
+			) AS ROWPAGING
+		WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+	</select>
+
+	<select id="countGroupMsisdnHeaderByParam" resultType="java.lang.Integer" parameterType="GroupMsisdnParamVO">
+ 		select count(1)
+		from GROUP_MSISDN_HEADER gmh
+		<include refid="_sqlSelectionGroupMsisdnHeader" />
+	</select>
+
+	<insert id="insertGroupMsisdnDetail" parameterType="GroupMsisdnDetail">
+		insert into GROUP_MSISDN_DETAIL(msisdn,
+			group_id)
+		values(#{msisdn},
+			#{groupId})
+	</insert>
+
+	<select id="selectGroupMsisdnDetailByParam" resultType="GroupMsisdnDetail" parameterType="GroupMsisdnParamVO">
+ 	select * from (
+		select ROW_NUMBER() OVER (ORDER BY msisdn DESC) AS ROWNUM,
+		<include refid="_sqlGroupMsisdnDetail" />
+		from GROUP_MSISDN_DETAIL gmd
+		<include refid="_sqlSelectionGroupMsisdnDetail" /> 
+		) AS ROWPAGING
+	WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+	</select>
+
+	<select id="countGroupMsisdnDetailByParam" resultType="java.lang.Integer" parameterType="GroupMsisdnParamVO">
+ 		select count(1)
+		from GROUP_MSISDN_DETAIL gmd
+		<include refid="_sqlSelectionGroupMsisdnDetail" />
+	</select>
+
+	<sql id="_sqlSelectionGroupMsisdnDetail">
+		<where>
+			<if test="msisdn!=null and msisdn.length() > 0 ">
+				gmd.msisdn=#{msisdn}
+			</if>
+			<if test="groupId!=0">
+				gmd.group_id=#{groupId}
+			</if>
+		</where>
+	</sql>
+    
+</mapper>

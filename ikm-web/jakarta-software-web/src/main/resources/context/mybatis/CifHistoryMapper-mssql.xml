@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.CifHistoryMapper">
+    
+	<insert id="insertCifHistory" parameterType="CifHistory" useGeneratedKeys="true" keyProperty="id">
+    	insert into cif_history(
+    		cif_id, device_code, access_id, 
+    		host_cif_id, cif_name, identity_code,
+			email, cif_lang, cif_group,
+			pin, pin_count, hasstk,
+			activation_date, pin_change_date, status,
+			auth_status, remarks, use_blast_sms,
+			created_on, created_by, updated_on,
+			updated_by, auth_on, auth_by,
+			need_change_pin, birth_date, address,
+			mother_name, branch_id, activity_type,
+			parent_id)
+		values(
+			#{cifId}, #{deviceCode}, #{accessId}, 
+			#{hostCifId}, #{cifName}, #{identityCode},
+			#{email}, #{cifLang}, #{cifGroup}, 
+			#{pin}, #{pinCount}, #{hasstk},
+			#{activationDate}, #{pinChangeDate}, #{status}, 
+			#{authStatus}, #{remarks}, #{useBlastSms}, 
+			#{createdOn}, #{createdBy}, #{updatedOn}, 
+			#{updatedBy}, #{authOn}, #{authBy}, 
+			#{needChangePin}, #{birthDate}, #{address},
+			#{motherName}, #{branchId}, #{activityType},
+			#{parentId})
+    </insert>
+	
+	<select id="countCifHistoryByParam" resultType="java.lang.Integer" parameterType="CifHistoryParamVO">
+		SELECT count(ch.id) as count 
+		FROM cif_history ch
+			inner join access_group_header agh on ch.access_id = agh.id
+			inner join group_limit_header glh on glh.id = ch.cif_group
+    	<where>
+			<if test="deviceCode != null and deviceCode.length() > 0">
+				AND upper(ch.device_code) like '%' + upper(#{deviceCode}) + '%' 
+			</if>
+				and ch.auth_status=#{authStatus} and ch.branch_id=#{branchId} and ch.updated_by!=#{updatedBy}
+		</where>
+    </select>
+    
+	<select id="findCifHistoryByParam" resultType="CifHistoryParamVO" parameterType="CifHistoryParamVO">
+		select * from (
+			select ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+	            ch.id as id,
+	            ch.cif_id as cifId,
+				ch.device_code as deviceCode,
+				ch.cif_name as cifName,
+				ch.host_cif_id as hostCifId,
+				ch.use_blast_sms as useBlastSms,
+				ch.branch_id as branchId,
+				ch.created_on as createOn,
+				ch.created_by as createBy,
+				ch.updated_on as updatedOn,
+				ch.updated_by as updatedBy,
+				ch.activity_type as activityType,
+				agh.access_name as accessName,
+				glh.group_name as cifGroup
+			FROM cif_history ch
+				inner join access_group_header agh on ch.access_id = agh.id
+				inner join group_limit_header glh on glh.id = ch.cif_group
+			<where>
+				<if test="deviceCode != null and deviceCode.length() > 0">
+					AND upper(ch.device_code) like '%' + upper(#{deviceCode}) + '%' 
+				</if>
+					AND ch.auth_status=#{authStatus} and ch.updated_by!=#{updatedBy} and ch.branch_id=#{branchId}
+			</where>
+	 		) AS ROWPAGING
+		WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+    </select>
+	
+	<select id="findHistoryParentIdByCifId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select top 1 ch.id
+		from cif_history ch
+		where ch.cif_id=#{cifId} and ch.auth_status='A'
+		order by ch.updated_on desc
+	</select>
+</mapper>    

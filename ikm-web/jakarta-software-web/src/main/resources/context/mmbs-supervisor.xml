@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mmbs-supervisor" extends="mmbs-base">
+        
+	    <action name="AuthCif!*" method="{1}" class="com.jakarta.software.web.action.supervisor.AuthCifAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/supervisor/auth_cif_search.jsp</result>
+            <result name="input">WEB-INF/pages/supervisor/auth_cif_input.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">AuthCif!finish</param>
+            </result>
+            <result name="finish">WEB-INF/pages/supervisor/auth_cif_search.jsp</result>
+            <result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>     
+        </action>
+        
+        <action name="AuthUserData!*" method="{1}" class="com.jakarta.software.web.action.supervisor.AuthUserDataAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/supervisor/auth_user_data_search.jsp</result>
+            <result name="input">WEB-INF/pages/supervisor/auth_user_data_input.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">AuthUserData!finish</param>
+            </result>
+            <result name="finish">WEB-INF/pages/supervisor/auth_user_data_search.jsp</result>
+            <result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>     
+        </action>
+        
+         <action name="AuthMerchant!*" method="{1}" class="com.jakarta.software.web.action.supervisor.AuthMerchantAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/supervisor/auth_merchant_search.jsp</result>
+            <result name="input">WEB-INF/pages/supervisor/auth_merchant_input.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">AuthMerchant!finish</param>
+            </result>
+            <result name="finish">WEB-INF/pages/supervisor/auth_merchant_search.jsp</result>
+            <result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>     
+        </action>
+		
+	</package>
+</struts>

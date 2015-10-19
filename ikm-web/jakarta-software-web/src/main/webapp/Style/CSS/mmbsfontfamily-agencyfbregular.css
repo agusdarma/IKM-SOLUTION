@@ -1,0 +1,146 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* GENERAL */
+* {
+  font-size: 98%;
+}
+
+dl dt {
+  font-family: 'AgencyFB_Regular';
+}
+
+dl dd {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* NAVIGATION */
+nav ul li {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* CONTAINER */
+hgroup h1 {
+  font-family: 'BebasNeue_Regular', Arial Narrow;
+  font-size: 175%;
+}
+
+hgroup h2 {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* PAPER */
+.PaperHeader h2 {
+  font-family: 'AgencyFB_Regular';
+}
+
+form p {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* PROFILE */
+.ProfileShort {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* FORM */
+fieldset legend {
+  font-family: 'AgencyFB_Regular';
+}
+
+.FieldSetContainer label {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* INPUT */
+.SingleLine, .ShortLine, .LongLine {
+  font-family: 'AgencyFB_Regular';
+}
+
+.MultiLinem .ShortMultiLine, .LongMultiLine {
+  font-family: 'AgencyFB_Regular';
+}
+
+.Property {
+  font-family: 'AgencyFB_Regular';
+}
+
+.DropDown, .ShortDropDown, .LongDropDown {
+  font-family: 'AgencyFB_Regular';
+}
+
+.Date {
+  font-family: 'AgencyFB_Regular';
+}
+
+.Time {
+  font-family: 'AgencyFB_Regular';
+}
+
+.DateTime {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* BUTTON GENERAL */
+.ButtonPrimary {
+  font-family: 'AgencyFB_Regular';
+}
+
+.ButtonSecondary {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* BUTTON BY IMAGE */
+#ButtonToTop {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* BUTTON TABLE */
+.ButtonLimit {
+  font-family: 'AgencyFB_Regular';
+}
+
+.ButtonAdd {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* FOOTER */
+footer #FooterLeft {
+  font-family: 'AgencyFB_Regular';
+}
+
+footer #FooterRight {
+  font-family: 'AgencyFB_Regular';
+}
+
+/* JMESA */
+.jmesa {
+  font-size: 160%;
+}

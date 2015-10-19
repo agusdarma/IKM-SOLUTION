@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<defs>
+		<rect id="SVGID_1_" x="-1064" y="-64" width="1024" height="768"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  overflow="visible"/>
+	</clipPath>
+	<g clip-path="url(#SVGID_2_)">
+		
+			<image overflow="visible" width="1280" height="720" xlink:href="Sources/General/background_desktop.jpg"  transform="matrix(1.0667 0 0 1.0667 -1234.6421 -63.9717)">
+		</image>
+	</g>
+</g>
+<g display="none">
+	<defs>
+		<rect id="SVGID_3_" x="-1064" y="-64" width="1024" height="768"/>
+	</defs>
+	<clipPath id="SVGID_4_" display="inline">
+		<use xlink:href="#SVGID_3_"  overflow="visible"/>
+	</clipPath>
+	<g display="inline" clip-path="url(#SVGID_4_)">
+		
+			<image overflow="visible" width="1280" height="720" xlink:href="../../xampp/htdocs/stock1/Sources/General/background_desktop.jpg"  transform="matrix(1.1083 0 0 1.1083 -1261.3594 -64.0273)">
+		</image>
+	</g>
+</g>
+<g>
+	<rect x="11.125" y="14.5" fill="#575756" width="2" height="3"/>
+	<g>
+		<path fill="#78A0E1" d="M4.875,15c-0.276,0-0.5-0.224-0.5-0.5v-10c0-0.276,0.224-0.5,0.5-0.5h14c0.276,0,0.5,0.224,0.5,0.5v10
+			c0,0.276-0.224,0.5-0.5,0.5H4.875z"/>
+		<path fill="#3C3C3B" d="M18.875,4.5v10h-14v-10H18.875 M18.875,3.5h-14c-0.553,0-1,0.448-1,1v10c0,0.552,0.447,1,1,1h14
+			c0.553,0,1-0.448,1-1v-10C19.875,3.948,19.428,3.5,18.875,3.5L18.875,3.5z"/>
+	</g>
+	<rect x="4.875" y="12.5" fill="#575756" width="14" height="2"/>
+	<polygon fill="#706F6F" points="18.125,17.5 6.125,17.5 5.125,19.5 19.125,19.5 	"/>
+</g>
+</svg>

@@ -1,0 +1,301 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+
+
+// IMPORT
+
+@import mmbsinitialization
+
+
+/* CONTAINER */
+
+.jmesa 
+    margin: 0px
+    padding: 0px
+
+.jmesa .dropShadow 
+	padding-top: $general_padding_tiny
+    padding-left: $general_padding_small
+	padding-right: $general_padding_small
+	padding-bottom: $general_padding_tiny
+
+
+/* HEADER */
+
+.jmesa caption
+	padding-left: $general_padding_tiny
+    caption-side: top
+	font-family: 'Utsaah_Regular'
+    font-size: $textsize_content_subtitle
+    text-align: left
+	text-transform: uppercase
+	vertical-align: middle
+
+
+/* TABLE */
+
+.jmesa .table 
+	padding: 0px
+	border-style: solid
+	border-width: $general_border_width
+
+.jmesa .tbody input 
+	padding: 0px
+	margin: 0px
+
+.jmesa .header td
+	padding: $general_padding_tiny
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	text-align: center
+	white-space: nowrap
+	background-size: contain
+	background-repeat: repeat-x
+	border-style: solid
+	border-width: $general_border_width
+
+.jmesa .odd a,.jmesa .even a 
+
+.jmesa .odd td,.jmesa .even td,.jmesa .removed td 
+	padding: 2px
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_detail
+	text-align: left
+	border-style: solid
+	border-width: $general_border_width
+
+.jmesa .odd td
+
+.jmesa .even td 
+
+.jmesa .removed td 
+
+.jmesa .odd 
+    
+.jmesa .even 
+    
+.jmesa .removed 
+    
+
+/* TOOLBAR */
+
+.toolbar table 
+	margin: 0px
+	padding: 0px
+
+.jmesa .toolbar td
+	margin: 0px 
+	padding: 0px
+
+.jmesa .toolbar select
+	height: $input_dropdown_height
+	width: $input_dropdown_width
+	padding-top: $input_singleline_paddingtop
+	padding-right: $input_dropdown_paddingright
+	padding-left: $input_singleline_paddingleft
+	padding-bottom: $input_singleline_paddingbottom
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	vertical-align: middle
+	border-style: solid
+	border-width: thin
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	z-index: 2
+	+Appearance(none)
+
+.jmesa .toolbar select:valid, .jmesa .toolbar select:in-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.jmesa .toolbar select:invalid, .jmesa .toolbar select:out-of-range
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.jmesa .toolbar select:required
+	background-size: contain
+	background-position: right
+	background-repeat: no-repeat
+	
+.jmesa .toolbar select:enabled
+	z-index: 2
+	
+.jmesa .toolbar select:disabled
+	z-index: 2
+
+.jmesa .toolbar .pageNumber 
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+
+.jmesa .toolbar .pageNumber a 
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	text-transform: underline
+
+.jmesa .toolbar .textItem 
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 11px
+	font-weight: bold
+	font-style: italic
+	color: #729fcf
+	padding: 0px 2px
+
+.jmesa .toolbar .textItem a 
+	color: #729fcf
+
+.jmesa .toolbar .textItemError 
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 11px
+	font-weight: bold
+	font-style: italic
+	color: #ec4646
+	padding: 0px 2px
+
+.jmesa .toolbar .textItemError a 
+	color: #ec4646
+
+.jmesa .toolbar img 
+	padding: $general_padding_tiny
+	border: none
+	vertical-align: middle
+
+
+/* FILTER */
+
+.jmesa .filter td 
+	padding: 2px 2px 3px 2px
+
+.jmesa .filter .dynFilter 
+	position: relative
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 11px
+	padding: 0
+	margin: 0
+	border: 1px solid #c0c0c0
+	background-color: #efebe7
+	height: 15px
+	white-space: nowrap
+	cursor: pointer
+	cursor: hand
+
+.jmesa .filter #dynFilterDiv 
+	position: absolute
+	top: -3px
+	left: -2px
+	padding: 0
+	margin: 0
+	height: 17px
+	border: 1px solid #c0c0c0
+	background-color: #e1ebf4
+
+.jmesa .filter #dynFilterInput 
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 12px
+	padding: 0
+	margin: 0
+	border-style: none
+	background-color: #e1ebf4
+
+.jmesa .filter #dynFilterDroplistDiv 
+	position: absolute
+	top: -2px
+	left: -2px
+	padding: 0
+	margin: 0
+	height: 17px
+	background-color: #e1ebf4
+	z-index: 2
+
+.jmesa .filter #dynFilterDroplist 
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 12px
+	padding: 0
+	margin: 0
+	border: 1px solid #c0c0c0
+	background-color: #e1ebf4
+
+/* ROW */
+
+.jmesa .addRow 
+	font-size: 12px
+	font-weight: bold
+	height: 20px
+	color: white
+	background-color: #888
+
+/* COLOUMN */
+
+.jmesa .wsColumn 
+	position: relative
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 11px;
+	padding: 0
+	margin: 0
+	border-bottom: 1px solid #c0c0c0
+	height: 15px
+	white-space: nowrap
+	cursor: pointer
+
+.jmesa .wsColumnError 
+	position: relative
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 11px
+	font-style: italic
+	padding: 0
+	margin: 0
+	color: #ec4646
+	border-bottom: 1px dashed #ec4646
+	height: 15px
+	white-space: nowrap
+	cursor: pointer
+
+.jmesa .wsColumnChange 
+	position: relative
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 11px
+	font-style: italic
+	padding: 0
+	margin: 0
+	color: #005e8f
+	border-bottom: 1px dashed #005e8f
+	height: 15px
+	white-space: nowrap
+	cursor: pointer
+
+.jmesa #wsColumnDiv 
+	position: absolute
+	top: -2px
+	left: -2px
+	padding: 0
+	margin: 0
+	height: 17px
+	border: 1px solid #c0c0c0
+	background-color: #ededed
+
+.jmesa #wsColumnInput 
+	font-family: verdana, arial, helvetica, sans-serif
+	font-size: 12px
+	padding: 0
+	margin: 0
+	border-style: none
+	background-color: #ededed
+
+/* HOVER */
+
+.jmesa .highlight td
+
+.jmesa .highlight a 
+
+
+/* FOOTER */
+
+.jmesa .statusBar td 
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_small
+	text-align: center
+	white-space: nowrap
+	border-style: solid
+	border-width: $general_border_width

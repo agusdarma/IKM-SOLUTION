@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+   
+<struts>
+
+	<package name="mmbs-main" extends="mmbs-base"> 
+	    <action name="PreLaunch" class="com.jakarta.software.web.action.PaperLaunchAction">
+            <result name="input">/WEB-INF/pages/jakartasoftware/paperlaunch.jsp</result>
+        </action>
+	    
+	    <action name="MainMenu" class="com.jakarta.software.web.action.MainMenuAction">
+            <result name="input">/WEB-INF/pages/jakartasoftware/main_menu.jsp</result>
+        </action>
+        
+        <action name="Portfolio" class="com.jakarta.software.web.action.PortfolioAction">
+            <result name="input">/WEB-INF/pages/jakartasoftware/portfolio.jsp</result>
+        </action>	
+        
+        <action name="About" class="com.jakarta.software.web.action.AboutAction">
+            <result name="input">/WEB-INF/pages/jakartasoftware/about.jsp</result>
+        </action>	
+        
+        <action name="Contact!*" method="{1}" class="com.jakarta.software.web.action.ContactAction">
+            <interceptor-ref name="webStack" />
+            <result name="input">/WEB-INF/pages/jakartasoftware/contact.jsp</result>
+            <result name="success">/WEB-INF/pages/jakartasoftware/contact.jsp</result>
+        </action>	
+        
+        <action name="Login!*" method="{1}" class="com.jakarta.software.web.action.LoginAction">
+            <interceptor-ref name="webStack" />
+            <result name="success" type="redirectAction">MainMenu</result>
+            <result name="input">/WEB-INF/pages/jakartasoftware/login.jsp</result>
+            <result name="core">/WEB-INF/pages/core.jsp</result>
+            <result name="spvLogin" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+        </action>
+        
+		<!--  
+		<action name="Login!*" method="{1}" class="com.jakarta.software.web.action.LoginAction">
+            <interceptor-ref name="webStack" />
+            <result name="success" type="redirectAction">MainMenu</result>
+            <result name="input">/WEB-INF/pages/login.jsp</result>
+            <result name="core">/WEB-INF/pages/core.jsp</result>
+            <result name="spvLogin" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+        </action>
+        
+        <action name="Logout" method="logoff" class="com.jakarta.software.web.action.LoginAction">
+            <interceptor-ref name="webStack" />
+            <result name="success">/WEB-INF/pages/login.jsp</result>
+        </action>
+        
+        <action name="ContactOld" method="goToContact" class="com.jakarta.software.web.action.LoginAction">
+            <interceptor-ref name="webStack" />
+            <result name="success">/WEB-INF/pages/contact.jsp</result>
+        </action>             
+        
+        <action name="InvalidModule" method="invalidModule" class="com.jakarta.software.web.action.LoginAction">
+           <interceptor-ref name="webSecureStack" />
+            <result name="success">/WEB-INF/pages/main_menu.jsp</result>
+        </action>
+        
+        -->
+        
+	</package>
+	
+</struts>

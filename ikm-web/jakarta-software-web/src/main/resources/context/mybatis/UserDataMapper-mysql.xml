@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.UserDataMapper">
+
+	<update id="updateUserData" parameterType="UserData">
+		update user_data
+		set	user_name 		= #{userName},
+			user_status		= #{userStatus},
+			password		= #{userPassword},
+			level_id 		= #{levelId},
+			invalid_count	= #{invalidCount},
+			pass_changed_on	= #{passChangedOn},
+			branch_id		= #{branchId},
+			last_login_on	= #{lastLoginOn},
+			session_id		= #{sessionId},
+			department		= #{department},
+			auth_status		= #{authStatus},
+	   		auth_by			= #{authBy},
+			auth_on			= #{authOn},
+			updated_by 		= #{updatedBy},
+			updated_on 		= #{updatedOn},
+			need_change_pass= #{needChangePass},
+			email			= #{email}
+		where id= #{id}
+    </update>
+    
+	<insert id="insertUserData" parameterType="UserData" useGeneratedKeys="true" keyProperty="id">
+		insert into 
+			user_data(user_code, user_name, password,
+				 	invalid_count, user_status, level_id, 
+				 	last_login_on, pass_changed_on, need_change_pass, branch_id,
+				 	session_id, created_on, created_by,
+				 	updated_on, updated_by, department,
+				 	auth_status, auth_by, auth_on,
+				 	email) 
+			values(#{userCode}, #{userName}, #{userPassword},
+				 	0, 1, #{levelId}, 
+				 	#{lastLoginOn}, #{passChangedOn}, #{needChangePass}, #{branchId}, 
+					'', #{createdOn}, #{createdBy},
+				 	#{updatedOn},  #{updatedBy}, #{department},
+				 	#{authStatus}, #{authBy}, #{authOn},
+				 	#{email}) 
+    </insert>
+    
+    <insert id="insertUserDataHistory" parameterType="UserData" useGeneratedKeys="true" keyProperty="id">
+		insert into 
+			user_data_history(user_data_id, user_code, user_name, password,
+				 	invalid_count, user_status, level_id, 
+				 	last_login_on, pass_changed_on, need_change_pass,
+				 	session_id, created_on, created_by,
+				 	updated_on, updated_by, auth_status,
+				 	department, branch_id, activity_type,email) 
+			values(#{id}, #{userCode}, #{userName}, #{userPassword},
+				 	0, #{userStatus}, #{levelId}, 
+				 	#{lastLoginOn}, #{passChangedOn}, #{needChangePass},
+					'', #{createdOn}, #{createdBy},
+				 	#{updatedOn},  #{updatedBy}, #{authStatus},
+				 	#{department}, #{branchId}, #{activityType},
+				 	#{email}) 
+    </insert>
+
+	<sql id="_sqlWhereUserData">
+    	<where>
+			<if test="userCode != null and userCode.length() > 0">
+				AND upper(ud.user_code) LIKE CONCAT('%',upper(#{userCode}), '%') 
+			</if>
+				and ud.auth_status=#{authStatus}
+		</where>     
+	</sql>
+    
+    <select id="findUserByParam" resultType="UserDataVO" parameterType="UserDataParamVO">		
+		select ud.id as id,
+				ud.user_code as userCode,
+				ud.user_name as userName,
+				ul.level_name as userLevelDisplay,
+				ud.created_on as createOn,
+				ud.created_by as createBy,
+				ud.updated_on as updatedOn,
+				ud.updated_by as updatedBy
+  			FROM user_data ud
+		        inner join user_level ul on ul.id=ud.level_id
+			<include refid="_sqlWhereUserData" />
+        ORDER BY ${sortVariable} ${sortOrder} limit #{rowStartMysql},#{rowPerPage}
+    </select>
+    
+    
+	<select id="countUserByParam" resultType="java.lang.Integer" parameterType="UserDataParamVO">
+		SELECT count(ud.id) as count 
+		FROM user_data ud
+        	inner join user_level ul on ul.id=ud.level_id
+		<include refid="_sqlWhereUserData" />
+    </select>
+    
+	<sql id="_sqlWhereUserDataHistory">
+		<where>
+			<if test="userCode != null and userCode.length() > 0">
+				AND upper(udh.user_code) LIKE CONCAT('%',upper(#{userCode}), '%') 
+			</if>
+				AND udh.auth_status=#{authStatus} and udh.updated_by!=#{updatedBy} and udh.branch_id=#{branchId}
+		</where> 
+	</sql>
+    
+    <select id="findUserHistoryByParam" resultType="UserDataVO" parameterType="UserDataParamVO">
+		select udh.id as id,
+				udh.user_code as userCode,
+				udh.user_name as userName,
+				ul.level_name as userLevelDisplay,
+				udh.created_on as createOn,
+				udh.created_by as createBy,
+				udh.updated_on as updatedOn,
+				udh.updated_by as updatedBy,
+				udh.activity_type as activityType
+			FROM user_data_history udh
+				inner join user_level ul on ul.id=udh.level_id
+			<include refid="_sqlWhereUserDataHistory" />
+        ORDER BY ${sortVariable} ${sortOrder} limit #{rowStartMysql},#{rowPerPage}
+    </select>
+   	
+   <select id="countUserHistoryByParam" resultType="java.lang.Integer" parameterType="UserDataParamVO">
+		SELECT count(udh.id) as count 
+		FROM user_data_history udh
+			inner join user_level ul on ul.id=udh.level_id
+		<include refid="_sqlWhereUserDataHistory" />
+    </select>
+	
+</mapper>

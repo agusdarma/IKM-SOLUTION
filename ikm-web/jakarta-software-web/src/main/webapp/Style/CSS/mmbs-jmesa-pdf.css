@@ -1,0 +1,85 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* CONTAINER */
+@page {
+  margin: 0.25in;
+  size: 11in 8.5in;
+  padding-top: 5px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* HEADER */
+.jmesa caption {
+  padding-left: 5px;
+  padding-left-caption-side: top;
+  font-family: "Utsaah_Regular";
+  font-family-font-size: 1.6em;
+  font-family-text-align: left;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+/* TABLE */
+.jmesa .table {
+  width: 100%;
+  padding: 0px;
+  border-style: solid;
+  border-width: 1px;
+  -fs-table-paginate: paginate;
+}
+
+.jmesa .header td {
+  padding: 5px;
+  font-family: 'Utsaah_Regular';
+  font-size: 1.2em;
+  text-align: center;
+  white-space: nowrap;
+  background-size: contain;
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.jmesa .odd td, .jmesa .even td {
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+  font-family: 'Utsaah_Regular';
+  font-size: 1em;
+  text-align: left;
+}
+
+/* FOOTER */
+.jmesa .statusBar td {
+  padding-left: 5px;
+  padding-right: 5px;
+  font-family: 'Utsaah_Regular';
+  font-size: 0.8em;
+  text-align: left;
+  white-space: nowrap;
+}

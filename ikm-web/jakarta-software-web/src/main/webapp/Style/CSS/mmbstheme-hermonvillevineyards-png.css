@@ -1,0 +1,1076 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+/* THEME */
+/* INPUT */
+/* INPUT BACKGROUND */
+/* INPUT BORDER */
+/* INPUT FONT */
+/* LINK */
+/* @charset "utf-8"; */
+/* CSS Document */
+/* TEXT SIZE */
+/* NAVIGATION */
+/* WINDOW */
+/* CONTENT */
+/* DIMENS */
+/* GENERAL */
+/* SHAPE */
+/* LABEL */
+/* INPUT */
+/* INPUT INITIALIZATION */
+/* INPUT TEXT */
+/* INPUT SELECT */
+/* INPUT TEXTAREA */
+/* INPUT TYPE TEXT PREVIEW */
+/* INPUT TYPE DATE TIME */
+/* INPUT TYPE CHECKBOX */
+/* INPUT TYPE RADIO BUTTON AND CHECKBOX */
+/* LINK */
+/* SHADOW */
+/* FUNCTION */
+/* ANIMATION */
+/* SEMANTIC ELEMENTS */
+body {
+  background-color: #c5d6b4;
+}
+
+/* NEUTRALIZATION */
+h1, h2, h3, h4, h5, h6, p, mark, ol, ul, li {
+  background-color: transparent;
+}
+
+/* POP UP */
+#ProgressPage {
+  background-color: #45304c;
+}
+
+#ProgressRequest {
+  background-color: transparent;
+}
+
+#ProgressRequest .Background {
+  background-color: #45304c;
+}
+
+.LoadingSquare {
+  color: #deefcd;
+  background-color: transparent;
+  background-image: url("../../Resource/Gif/progress_square.gif");
+}
+
+#InformationPage {
+  background-color: #45304c;
+}
+
+.InformationSquare {
+  color: #deefcd;
+  background-color: transparent;
+}
+
+/* HEADER */
+#IconHome {
+  border-right-color: #acbd9b;
+}
+
+#LogoClient {
+  border-left-color: #acbd9b;
+}
+
+/* NAVIGATION */
+#NavigationHome {
+  border-left-color: #acbd9b;
+}
+
+nav {
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_up.png");
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+nav ul li ul {
+  background-color: #4c1b1b;
+  border-color: #acbd9b;
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* PAPER */
+form {
+  background-color: #deefcd;
+  border-color: #acbd9b;
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* FORM */
+fieldset {
+  border-color: #acbd9b;
+}
+
+fieldset legend {
+  background-color: #c5d6b4;
+  border-color: #acbd9b;
+}
+
+fieldset .SubFieldSetContainer {
+  border-left-color: #acbd9b;
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  background-color: #c5d6b4;
+  border-color: #acbd9b;
+}
+
+/* SHAPE */
+.ShapeTailBorder {
+  border-top: 15px solid #acbd9b;
+}
+
+.ShapeTailBody {
+  border-top: 14px solid #c5d6b4;
+}
+
+.ShapeHornBorder {
+  border-bottom: 15px solid #acbd9b;
+}
+
+.ShapeHornBody {
+  border-bottom: 14px solid #c5d6b4;
+}
+
+.ShapeFolderHornBorder {
+  border-bottom: 34px solid #c5d6b4;
+}
+
+.ShapeFolderHornBody {
+  border-bottom: 34px solid #acbd9b;
+}
+
+.ShapeIsoscelesHorn {
+  border-bottom: 9px solid #acbd9b;
+}
+
+.ShapeIsoscelesTail {
+  border-top: 9px solid #acbd9b;
+}
+
+.PaperSelected .ShapeFolderHornBorder {
+  border-bottom: 34px solid #acbd9b;
+}
+
+.PaperSelected .ShapeFolderHornBody {
+  border-bottom: 34px solid #deefcd;
+}
+
+/* FOOTER */
+footer {
+  background-color: #565f63;
+}
+
+#FooterHeader {
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_up.png");
+}
+
+/* GENERAL */
+dl {
+  display: block;
+}
+
+dl dt {
+  color: #344523;
+}
+
+dl dd {
+  color: #4d5e3c;
+}
+
+/* NAVIGATION */
+nav ul li {
+  color: #deefcd;
+}
+
+/* CONTAINER */
+hgroup h1 {
+  color: #4c1b1b;
+}
+
+hgroup h2 {
+  color: #4c1b1b;
+}
+
+/* PAPER */
+.PaperHeader h2 {
+  color: #4d5e3c;
+}
+
+form p {
+  color: #344523;
+}
+
+/* BUBBLE */
+.BubbleContainer {
+  color: #344523;
+}
+
+/* PROFILE */
+.ProfileShort {
+  color: #4c1b1b;
+}
+
+/* FORM */
+fieldset legend {
+  color: #344523;
+}
+
+.FieldSetContainer label {
+  color: #344523;
+  border-color: #acbd9b;
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_secondary_up.png");
+}
+
+/* TABLE */
+.TableControl {
+  color: #344523;
+  background-color: #c5d6b4;
+  border-color: #acbd9b;
+}
+
+.TableControl img {
+  border-color: #acbd9b;
+}
+
+table {
+  border-color: #acbd9b;
+}
+
+table thead {
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_up.png");
+}
+
+table thead tr th {
+  color: #deefcd;
+  border-color: #acbd9b;
+}
+
+table tbody tr td {
+  color: #344523;
+}
+
+table tbody tr .ColoumnInput {
+  background-image: url("../../Resource/Icon/icon_edit.png");
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #deefcd;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #c5d6b4;
+}
+
+table tbody tr:hover td {
+  color: #acbd9b;
+  background-color: #4c1b1b;
+  transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  -webkit-transition: all 0.25s ease-out;
+}
+
+table tfoot tr {
+  background-color: #acbd9b;
+}
+
+table tfoot tr td {
+  color: #344523;
+}
+
+/* FOOTER */
+footer #FooterLeft {
+  color: #acbd9b;
+}
+
+footer #FooterRight {
+  color: #acbd9b;
+}
+
+footer mark {
+  color: #deefcd;
+}
+
+/* INPUT TYPE TEXT */
+.SingleLine, .ShortLine, .LongLine {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+/* CONDITION */
+.SingleLine:enabled, .ShortLine:enabled, .LongLine:enabled {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.SingleLine:disabled, .ShortLine:disabled, .LongLine:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.SingleLine:valid, .SingleLine:in-range, .ShortLine:valid, .ShortLine:in-range, .LongLine:valid, .LongLine:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.SingleLine:invalid, .SingleLine:out-of-range, .ShortLine:invalid, .ShortLine:out-of-range, .LongLine:invalid, .LongLine:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.SingleLine:required, .ShortLine:required, .LongLine:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.SingleLine:read-only, .ShortLine:read-only, .LongLine:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.SingleLine[readonly], .ShortLine[readonly], .LongLine[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+/* INPUT TYPE TEXT AREA */
+.MultiLine, .ShortMultiLine, .LongMultiLine {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+/* CONDITION */
+.MultiLine:enabled, .ShortMultiLine:enabled, .LongMultiLine:enabled {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.MultiLine:disabled, .ShortMultiLine:disabled, .LongMultiLine:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.MultiLine:valid, .MultiLine:in-range, .ShortMultiLine:valid, .ShortMultiLine:in-range, .LongMultiLine:valid, .LongMultiLine:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.MultiLine:invalid, .MultiLine:out-of-range, .ShortMultiLine:invalid, .ShortMultiLine:out-of-range, .LongMultiLine:invalid, .LongMultiLine:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.MultiLine:required, .ShortMultiLine:required, .LongMultiLine:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.MultiLine:read-only, .ShortMultiLine:read-only, .LongMultiLine:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.MultiLine[readonly], .ShortMultiLine[readonly], .LongMultiLine[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+/* INPUT TYPE TEXT PREVIEW */
+.Property {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+/* CONDITION */
+.Property:enabled {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.Property:valid, .Property:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.Property:invalid, .Property:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.Property:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.Property:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.Property:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+.Property[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: none;
+  border-color: #acbd9b;
+}
+
+/* INPUT TYPE SELECT */
+.DropDown, .jmesa .toolbar select, .ShortDropDown, .LongDropDown {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_dropdown.png");
+  border-color: #acbd9b;
+}
+
+/* CONDITION */
+.DropDown:read-only, .jmesa .toolbar select:read-only, .ShortDropDown:read-only, .LongDropDown:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_dropdown.png");
+  border-color: #acbd9b;
+}
+
+.DropDown[readonly], .jmesa .toolbar select[readonly], .ShortDropDown[readonly], .LongDropDown[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_dropdown.png");
+  border-color: #acbd9b;
+}
+
+.DropDown:valid, .DropDown:in-range, .jmesa .toolbar select:valid, .jmesa .toolbar select:in-range, .ShortDropDown:valid, .ShortDropDown:in-range, .LongDropDown:valid, .LongDropDown:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.DropDown:invalid, .DropDown:out-of-range, .jmesa .toolbar select:invalid, .jmesa .toolbar select:out-of-range, .ShortDropDown:invalid, .ShortDropDown:out-of-range, .LongDropDown:invalid, .LongDropDown:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.DropDown:required, .jmesa .toolbar select:required, .ShortDropDown:required, .LongDropDown:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.DropDown:enabled, .jmesa .toolbar select:enabled, .ShortDropDown:enabled, .LongDropDown:enabled {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_dropdown.png");
+  border-color: #acbd9b;
+}
+
+.DropDown:disabled, .jmesa .toolbar select:disabled, .ShortDropDown:disabled, .LongDropDown:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_dropdown.png");
+  border-color: #acbd9b;
+}
+
+/* INPUT TYPE DATE TIME */
+.Date {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_date.png");
+  border-color: #acbd9b;
+}
+
+.Date:valid, .DatePicker:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.Date:invalid, .DatePicker:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.Date:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.Date:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_date.png");
+  border-color: #acbd9b;
+}
+
+.Date[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_date.png");
+  border-color: #acbd9b;
+}
+
+.Date:enabled {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_date.png");
+  border-color: #acbd9b;
+}
+
+.Date:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_date.png");
+  border-color: #acbd9b;
+}
+
+.Time {
+  /* margin-right: $general_margin */
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_time.png");
+  border-color: #acbd9b;
+}
+
+.Time:valid, .DatePicker:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.Time:invalid, .DatePicker:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.Time:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.Time:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_time.png");
+  border-color: #acbd9b;
+}
+
+.Time[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_time.png");
+  border-color: #acbd9b;
+}
+
+.Time:enabled {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_time.png");
+  border-color: #acbd9b;
+}
+
+.Time:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_time.png");
+  border-color: #acbd9b;
+}
+
+.DateTime {
+  /* margin-right: $general_margin */
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_datetime.png");
+  border-color: #acbd9b;
+}
+
+.DateTime:valid, .DatePicker:in-range {
+  color: #00964b;
+  background-color: #e6ffe6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_valid.png");
+  border-color: #acbd9b;
+}
+
+.DateTime:invalid, .DatePicker:out-of-range {
+  color: #be1e2d;
+  background-color: #ffe6e6;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_invalid.png");
+  border-color: #acbd9b;
+}
+
+.DateTime:required {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_required.png");
+  border-color: #acbd9b;
+}
+
+.DateTime:read-only {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_datetime.png");
+  border-color: #acbd9b;
+}
+
+.DateTime[readonly] {
+  color: #344523;
+  background-color: #c5d6b4;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_datetime.png");
+  border-color: #acbd9b;
+}
+
+.DateTime:enabled {
+  color: #344523;
+  background-color: #ffffff;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_datetime.png");
+  border-color: #acbd9b;
+}
+
+.DateTime:disabled {
+  color: #969696;
+  background-color: #acbd9b;
+  background-image: url("../../Resource/Input/Hermonville Vineyards/icon_datetime.png");
+  border-color: #acbd9b;
+}
+
+/* CHECKBOX */
+.CheckboxSlideForIE {
+  background-color: none;
+}
+
+.CheckboxSlideForIE label {
+  background-image: none;
+  background-color: none;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.CheckboxSlideForIE input[type=checkbox]:checked + label {
+  background-color: none;
+}
+
+.CheckboxSlideForOthers {
+  background-color: #c5d6b4;
+  border-color: #acbd9b;
+}
+
+.CheckboxSlideForOthers label {
+  background-image: none;
+  background-color: #be1e2d;
+  border-color: #acbd9b;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.CheckboxSlideForOthers input[type=checkbox]:checked + label {
+  background-color: #00964b;
+}
+
+/* RADIO BUTTON AND CHECKBOX */
+.InputSwitcherForIE {
+  background-color: none;
+}
+
+.InputSwitcherForIE label {
+  background-image: none;
+  background-color: none;
+  border-right-color: none;
+  border-bottom-color: none;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.InputSwitcherForOthers {
+  background-color: #acbd9b;
+  border-color: #acbd9b;
+}
+
+.InputSwitcherForOthers label {
+  background-image: none;
+  background-color: none;
+  border-right-color: #acbd9b;
+  border-bottom-color: #acbd9b;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+/* BUTTON */
+.ButtonPrimary {
+  color: #deefcd;
+  border-color: #acbd9b;
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_up.png");
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonPrimary:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonPrimary:hover {
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_down.png");
+}
+
+.ButtonSecondary {
+  color: #deefcd;
+  border-color: #acbd9b;
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_secondary_up.png");
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+.ButtonSecondary:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonSecondary:hover {
+  background-image: url("../../Resource/Shape/Hermonville Vineyards/pattern_secondary_down.png");
+}
+
+/* BUTTON BY IMAGE */
+.ButtonReset {
+  color: #deefcd;
+  border-color: #acbd9b;
+  background-image: url("../../Resource/Icon/Hermonville Vineyards/icon_reset.png"), url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_up.png");
+}
+
+.ButtonReset:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonReset:hover {
+  background-image: url("../../Resource/Icon/Hermonville Vineyards/icon_reset.png"), url("../../Resource/Shape/Hermonville Vineyards/pattern_primary_down.png");
+}
+
+#ButtonToTop {
+  border-color: #acbd9b;
+  box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -ms-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -o-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -moz-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  -webkit-box-shadow: 1px 2px 6px 0px #1e1e1e;
+  behavior: url("../Style/HTC/PIE-1.0.0/PIE.htc");
+}
+
+#ButtonToTop .Background {
+  background-color: #c5d6b4;
+}
+
+#ButtonToTop .ShapeHornBody {
+  border-bottom: 18px solid #4d5e3c;
+}
+
+#ButtonToTop p {
+  color: #4d5e3c;
+}
+
+/* BUTTON TABLE */
+.ButtonFirst {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_first.png");
+}
+
+.ButtonFirst:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonFirst:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonPrevious {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_previous.png");
+}
+
+.ButtonPrevious:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonPrevious:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonNext {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_next.png");
+}
+
+.ButtonNext:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonNext:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonLast {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_last.png");
+}
+
+.ButtonLast:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonLast:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonLimit {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+}
+
+.ButtonLimit:disabled {
+  color: #8c8c8c;
+  border-color: #acbd9b;
+}
+
+.ButtonLimit:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonAdd {
+  color: #deefcd;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_add.png");
+}
+
+th .ButtonAdd {
+  border-color: transparent;
+}
+
+.ButtonAdd:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonAdd:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonSubmit {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_submit.png");
+}
+
+.ButtonSubmit:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonSubmit:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonCancel {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_cancel.png");
+}
+
+.ButtonCancel:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonCancel:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonDelete {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_delete.png");
+}
+
+.ButtonDelete:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonDelete:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonEdit {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_edit.png");
+}
+
+.ButtonEdit:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonEdit:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+.ButtonSave {
+  color: #4d5e3c;
+  border-color: #acbd9b;
+  background-color: transparent;
+  background-image: url("../../Resource/Icon/icon_save.png");
+}
+
+.ButtonSave:disabled {
+  color: #8c8c8c;
+  background-color: #6e6e6e;
+  border-color: #acbd9b;
+}
+
+.ButtonSave:hover {
+  color: #deefcd;
+  background-color: #45304c;
+  border-color: #4c1b1b;
+}
+
+/* MESSAGE */
+.MessageDefault {
+  color: #344523;
+  background-color: #c5d6b4;
+  border-color: #acbd9b;
+}
+
+.ResultSuccess:before {
+  color: #deefcd;
+  background-color: #00964b;
+}
+
+.ResultFailure:before {
+  color: #deefcd;
+  background-color: #be1e2d;
+}

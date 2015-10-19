@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.UserActivityMapper">
+    
+	<insert id="createUserActivity" parameterType="UserActivity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user_activity (action,  module_name, changed_attribute, updated_on, user_data_id, target_id, target_table)
+    	values (#{action}, #{moduleName}, #{changedAttribute},
+    			#{updatedOn}, #{userDataId}, #{targetId}, #{targetTable});		
+    </insert>
+	
+	<select id="selectUserActivityByParamNoPaging" resultType="UserActivity" parameterType="UserActivityParamVO">
+		select ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+			ua.id as id,
+			ua.user_data_id as userDataId,
+			ud.user_name as userName,
+			ud.user_code as userCode,
+			ua.action as action,
+			ua.module_name as moduleName,
+			ua.changed_attribute as changedAttribute,
+			ua.updated_on as updatedOn,
+			ua.target_table as targetTable,
+			ua.target_id as targetId
+		from USER_ACTIVITY ua
+			inner join user_data ud on ua.user_data_id=ud.id
+		<include refid="_sqlSelectionUserActivity" /> 
+	</select>
+	
+	<select id="selectUserActivityByParam" resultType="UserActivity" parameterType="UserActivityParamVO">
+	 	select * from (
+			select ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+				ua.id as id,
+				ua.user_data_id as userDataId,
+				ud.user_name as userName,
+				ud.user_code as userCode,
+				ua.action as action,
+				ua.module_name as moduleName,
+				ua.changed_attribute as changedAttribute,
+				ua.updated_on as updatedOn,
+				ua.target_table as targetTable,
+				ua.target_id as targetId
+			from USER_ACTIVITY ua
+				inner join user_data ud on ua.user_data_id=ud.id
+			<include refid="_sqlSelectionUserActivity" /> 
+			) AS ROWPAGING
+		WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+	</select>
+
+	<select id="countUserActivityByParam" resultType="java.lang.Integer" parameterType="UserActivityParamVO">
+ 		select count(1)
+		from USER_ACTIVITY ua
+			inner join user_data ud on ua.user_data_id=ud.id
+		<include refid="_sqlSelectionUserActivity" />
+	</select>
+	
+	<sql id="_sqlSelectionUserActivity">
+		<where>
+			<if test="userDataId!=0">
+				and ua.user_data_id=#{userDataId}
+			</if>
+			<if test='action != "-1" '>
+				and ua.action=#{action}
+			</if>
+			<if test='moduleName != "-1"'>
+				and ua.module_name=#{moduleName}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getViewActivityAction" resultType="MapVO">
+ 		select action as [key], action as value
+ 		from view_activity_action
+	</select>
+
+	<select id="getViewActivityModuleName" resultType="MapVO">
+ 		select module_Name as [key], module_name as value
+ 		from view_activity_module_name
+	</select>
+	
+	<select id="getViewActivityTargetTable" resultType="MapVO">
+ 		select target_table as [key], target_table as value
+ 		from view_activity_target_table
+	</select>
+	
+	<select id="getViewActivityUser" resultType="UserData">
+ 		select user_data_id as id, user_code as userCode, user_name as userName 
+ 		from view_activity_user
+	</select>
+
+</mapper>

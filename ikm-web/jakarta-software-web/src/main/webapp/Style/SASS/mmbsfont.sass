@@ -1,0 +1,139 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+
+
+// IMPORT
+
+@import mmbsinitialization
+
+
+/* GENERAL */
+
+mark
+	text-decoration: underline
+	
+p
+	margin-top: $general_margin_tiny
+	margin-bottom: $general_margin_tiny
+
+dl
+	display: block
+	dt
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_general
+		color: $theme_senary_color
+	dd
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_general
+		color: $theme_septenary_color
+
+
+/* NAVIGATION */
+
+nav
+	ul
+		li
+			font-family: 'Utsaah_Regular'
+			font-size: $textsize_navigation_item
+			color: $theme_senary_color
+
+
+/* CONTAINER */
+
+hgroup
+	h1
+		font-family: 'BebasNeue_Regular', Arial Narrow
+		font-size: $textsize_content_title
+		color: $theme_quaternary_color
+	h2
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_detail
+		color: $theme_quaternary_color
+
+
+/* PAPER */
+
+.PaperHeader
+	h2
+		position: relative
+		margin-top: -28px
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_window_header
+		color: $theme_septenary_color
+		z-index: 3
+
+.PaperContainer
+	p
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_general
+		color: $theme_senary_color
+
+
+/* BUBBLE */
+
+.BubbleContainer
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	color: $theme_senary_color
+
+.FAQItem
+	.BubbleContainer
+		line-height: 30px
+		font-size: 2.2em
+		text-transform: uppercase
+		display: inline-block
+		
+
+/* PROFILE */
+
+.ProfileShort
+	font-family: 'Utsaah_Regular'
+	font-size: $textsize_content_general
+	color: $theme_tertiary_color
+
+
+/* FORM */
+
+.FormContainer
+	header
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_window_header
+		color: $theme_senary_color
+form
+	label
+		position: relative
+		margin-bottom: $general_margin_tiny
+		height: $label_singleline_height
+		width: $label_singleline_width
+		padding-top: $label_singleline_paddingtop
+		padding-right: $label_singleline_paddingright
+		padding-left: $label_singleline_paddingleft
+		padding-bottom: $label_singleline_paddingbottom
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_general
+		color: $theme_senary_color
+		border-style: solid
+		border-color: $theme_quinary_color
+		border-width: $input_border_width
+		background-image: url('../../Resource/Shape/background_navigation.png')
+		background-position: center
+		background-size: contain
+		display: inline-block
+		z-index: 3
+		+BorderRadius-Right($input_border_radius)
+		behavior: url('../Style/HTC/PIE-1.0.0/PIE.htc')
+
+
+/* FOOTER */
+
+footer
+	#FooterLeft
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_detail
+		color: $theme_senary_color
+	#FooterRight
+		font-family: 'Utsaah_Regular'
+		font-size: $textsize_content_detail
+		color: $theme_senary_color
+	mark
+		color: $theme_tertiary_color

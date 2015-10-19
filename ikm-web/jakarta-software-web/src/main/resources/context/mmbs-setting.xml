@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mmbs-setting" extends="mmbs-base">
+
+		<action name="SystemSetting!*" method="{1}" class="com.jakarta.software.web.action.setting.SystemSettingAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="list">/WEB-INF/pages/setting/system_setting_list.jsp
+			</result>
+			<result name="edit">/WEB-INF/pages/setting/system_setting_input.jsp
+			</result>
+			<result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+		</action>
+
+		<action name="BranchData!*" method="{1}" class="com.jakarta.software.web.action.setting.BranchDataAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="input">/WEB-INF/pages/setting/branch_data_input.jsp</result>
+			<result name="search">/WEB-INF/pages/setting/branch_data_search.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+		</action>
+
+		<action name="Bank!*" method="{1}" class="com.jakarta.software.web.action.setting.BankAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/setting/bank_search.jsp</result>
+			<result name="input">/WEB-INF/pages/setting/bank_input.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+		</action>
+		
+		<action name="AccessGroup!*" method="{1}" class="com.jakarta.software.web.action.setting.AccessGroupAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/setting/access_group_search.jsp</result>
+			<result name="input">/WEB-INF/pages/setting/access_group_input.jsp</result>
+     	    <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="message">${message}</param>
+				<param name="actionName">AccessGroup!finish</param>
+			</result>
+			<result name="finish">/WEB-INF/pages/setting/access_group_search.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+		</action>
+		
+		<action name="BillPayment!*" method="{1}" class="com.jakarta.software.web.action.setting.BillPaymentAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/setting/bill_payment_search.jsp</result>
+			<result name="input">/WEB-INF/pages/setting/bill_payment_input.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+		</action>
+		
+		<action name="GroupLimit!*" method="{1}" class="com.jakarta.software.web.action.setting.GroupLimitAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/setting/group_limit_search.jsp</result>
+			<result name="input">/WEB-INF/pages/setting/group_limit_input.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="addGroupLimitDetailJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">pv</param>
+			</result>
+			<result name="duplicateProduct" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">jsonMessage</param>
+			</result>  
+		</action>
+		
+	</package>
+</struts>

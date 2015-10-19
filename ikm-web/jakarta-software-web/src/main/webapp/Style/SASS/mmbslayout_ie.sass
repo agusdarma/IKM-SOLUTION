@@ -1,0 +1,337 @@
+/* @charset "utf-8"; */
+/* CSS Document */
+
+
+// IMPORT
+
+@import stock1initialization
+
+
+/* TYPEFACE */
+
+@font-face 
+	font-family: 'HelveticaNeue_35_Thin'
+	src: url('../Fonts/HelveticaNeue_35_Thin.eot')
+	src: url('../Fonts/HelveticaNeue_35_Thin.eot?#iefix') format('embedded-opentype'), url('../Fonts/HelveticaNeue_35_Thin.woff') format('woff'), url('../Fonts/HelveticaNeue_35_Thin.ttf') format('truetype'), url('../Fonts/HelveticaNeue_35_Thin.svg#HelveticaNeue_35_Thin') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+	font-family: 'HelveticaNeue_47_Light_Italic'
+	src: url('../Fonts/HelveticaNeue_47_Light_Italic.eot')
+	src: url('../Fonts/HelveticaNeue_47_Light_Italic.eot?#iefix') format('embedded-opentype'), url('../Fonts/HelveticaNeue_47_Light_Italic.woff') format('woff'), url('../Fonts/HelveticaNeue_47_Light_Italic.ttf') format('truetype'), url('../Fonts/HelveticaNeue_47_Light_Italic.svg#HelveticaNeue_47_Light_Italic') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+	font-family: 'HelveticaNeue_45_Light'
+	src: url('../Fonts/HelveticaNeue_45_Light.eot')
+	src: url('../Fonts/HelveticaNeue_45_Light.eot?#iefix') format('embedded-opentype'), url('../Fonts/HelveticaNeue_45_Light.woff') format('woff'), url('../Fonts/HelveticaNeue_45_Light.ttf') format('truetype'), url('../Fonts/HelveticaNeue_45_Light.svg#HelveticaNeue_45_Light') format('svg')
+	font-weight: normal
+	font-style: normal
+
+@font-face 
+	font-family: 'HelveticaNeue_57_Condensed'
+	src: url('../Fonts/HelveticaNeue_57_Condensed.eot')
+	src: url('../Fonts/HelveticaNeue_57_Condensed.eot?#iefix') format('embedded-opentype'), url('../Fonts/HelveticaNeue_57_Condensed.woff') format('woff'), url('../Fonts/HelveticaNeue_57_Condensed.ttf') format('truetype'), url('../Fonts/HelveticaNeue_57_Condensed.svg#HelveticaNeue_57_Condensed') format('svg')
+	font-weight: normal
+	font-style: normal
+
+
+/* STYLE */
+
+/* GENERAL */
+
+body
+	margin: 0px
+	padding: 0px
+
+/* DESKTOP */
+
+#FrameContainer
+	position: fixed
+	width: 100%
+	height: 100%
+	text-align: center
+	vertical-align: middle
+	background-color: transparent
+	background-image: url(../Sources/General/background_desktop.jpg)
+	background-position: center
+	background-size: cover
+	background-repeat: no-repeat
+	overflow: visible
+	z-index: 1
+	+perspective(1000px)
+	+animation(FadeIn, 1s, 0s, 1)
+	
+#ScreenLock
+	position: absolute
+	width: 100%
+	height: 100%
+	background-color: black
+	z-index: 2
+	opacity: 0.5
+	
+	
+/* HAT */
+
+#HatContainer
+	position: absolute
+	top: 0px
+	left: 0px
+	width: 100%
+	height: 20px
+	padding-top: 2px
+	padding-bottom: 2px
+	text-align: left
+	z-index: 3
+	+layoutGradient($theme_windowheader_color, $theme_windowheader_Rcolor, $theme_windowheader_Gcolor, $theme_windowheader_Bcolor, $theme_windowcontent_color, $theme_windowcontent_Rcolor, $theme_windowcontent_Gcolor, $theme_windowcontent_Bcolor)
+
+.HatItem
+	margin-right: $general_margin
+	margin-left: $general_margin
+	height: 20px
+	padding-top: 2px
+	padding-bottom: 2px
+	font-family: 'HelveticaNeue_57_Condensed'
+	font-size: $hat_title_textsize
+	color: $hat_title_color
+	line-height: 20px
+	display: inline
+
+.DateItem
+	float: right
+	margin-right: $general_margin
+	margin-left: $general_margin
+	height: 20px
+	padding-bottom: 2px
+	font-family: 'HelveticaNeue_57_Condensed'
+	font-size: $hat_title_textsize
+	color: $hat_title_color
+	line-height: 20px
+	display: inline
+
+	
+/* DOCK */
+
+#DockContainer
+	position: absolute
+	margin: auto
+	width: auto
+	max-width: 720px
+	height: 98px
+	right: 0px
+	left: 0px
+	bottom: 10px
+	background-color: transparent
+	background-image: url(../Sources/General/background_dock.svg)
+	background-position: center bottom
+	background-size: contain
+	background-repeat: no-repeat
+	display: block
+	z-index: 4
+	
+#IconClipping
+	position: relative
+	margin-right: auto
+	margin-left: auto
+	margin-bottom: 3px
+	width: 670px
+	height: 95px
+	text-align: center
+	vertical-align: top
+	background-color: transparent
+	display: block
+	overflow: hidden
+	
+.IconContainer
+	margin-top: $general_margin
+	margin-left: $icon_dock_margin
+	margin-right: $icon_dock_margin
+	height: 75px
+	vertical-align: top
+	white-space: nowrap
+	display: inline-block
+	
+.IconContainer:hover > .IconDock
+	+animation(Hop, 1.5s, 0s, infinite)
+	
+.IconContainer:hover > .ShadowDock
+	+animation(Dive, 1.5s, 0s, infinite)
+
+
+/* DOCK TITLE */
+
+#DockTitleContainer
+	position: absolute
+	margin: auto
+	width: auto
+	max-width: 670px
+	height: 15px
+	right: 0px
+	left: 0px
+	bottom: 128px
+	white-space: nowrap
+	background-color: transparent
+	display: block
+	overflow: visible
+	z-index: 3
+
+.TitleBubble
+	position: relative
+	right: 0px
+	left: 0px
+	margin: auto
+	max-width: 60px
+	text-align: center
+	vertical-align: middle
+	overflow: visible
+
+.SubItem
+	.TitleBubble
+		max-width: 240px
+
+.TitleContainer
+	position: relative
+	margin: auto
+	padding-top: 1px
+	padding-bottom: 1px
+	font-family: 'HelveticaNeue_35_Thin'
+	font-size: $dock_title_textsize
+	color: $dock_title_color
+	text-transform: uppercase
+	vertical-align: middle
+	background: $dock_background_color
+	border-style: solid
+	border-size: thin
+	border-color: $dock_border_color
+	display: block
+	opacity: 0.65
+	+border-radius($general_border_radius)
+
+.SubItem
+	.TitleContainer
+		padding-right: 4px
+		padding-left: 4px
+		border: none
+
+.TitleArrow
+	position: relative
+	margin: auto
+	width: 0px
+	height: 0px
+	border-left: 12px solid transparent
+	border-right: 12px solid transparent
+	border-top: 8px solid $dock_border_color
+	display: block
+	opacity: 0.65
+
+.SubItem
+	.TitleArrow
+		position: absolute
+		left: 4px
+
+
+/* SUB DOCK */
+
+#SubDockContainer
+	position: absolute
+	margin: auto
+	width: auto
+	max-width: 670px
+	height: 10px
+	right: 0px
+	left: 0px
+	bottom: 138px
+	white-space: nowrap
+	background-color: transparent
+	display: block
+	overflow: visible
+	z-index: 3
+
+.SubItemContainer
+	margin-top: $general_margin
+	margin-left: $icon_dock_margin
+	margin-right: $icon_dock_margin
+	width: 60px
+	text-align: center
+	vertical-align: top
+	display: inline-block
+
+.SubItem
+	position: absolute
+	bottom: -1000%
+	white-space: nowrap
+	opacity: 0
+
+
+/* LOGIN */
+
+#LoginWindow
+	position: absolute
+	top: 0px
+	right: 0px
+	left: 0px
+	bottom: 0px
+	margin: auto
+	width: auto
+	max-width: 260px
+	height: auto
+	max-height: 75%
+	background-color: $theme_windowcontent_color
+	display: block
+	opacity: 1
+	overflow: auto
+	z-index: 3
+	+border-radius($general_border_radius)
+	
+#WindowGeneral
+	position: absolute
+	top: 50px
+	right: 0px
+	left: 0px
+	bottom: 148px
+	margin-right: auto
+	margin-left: auto
+	max-width: 85%
+	background-color: $theme_windowcontent_color
+	display: block
+	overflow: auto
+	z-index: 2
+	+border-radius($general_border_radius)
+	+boxShadow(1px, 1px, 2px, 1px, $theme_shadow_color)
+	
+.WindowHeader
+	position: relative
+	margin: auto
+	min-width: 200px
+	max-width: 100%
+	min-height: $theme_windowheader_height
+	padding-left: $general_margin
+	padding-right: $general_margin
+	font-family: 'HelveticaNeue_57_Condensed'
+	font-size: $content_general_textsize
+	color: $content_general_color
+	text-align: left
+	vertical-align: middle
+	line-height: $label_general_height
+	display: block
+	+border-radius-top($general_border_radius)
+	+layoutGradient($theme_windowheader_color, $theme_windowheader_Rcolor, $theme_windowheader_Gcolor, $theme_windowheader_Bcolor, $theme_windowcontent_color, $theme_windowcontent_Rcolor, $theme_windowcontent_Gcolor, $theme_windowcontent_Bcolor)
+	
+#WindowLogin
+	.WindowHeader
+		min-height: $label_general_height
+	
+.WindowContent
+	padding: $general_padding
+	text-align: left
+	
+.WindowFooter
+	margin-top: 60px
+	padding: $general_padding
+	font-family: 'HelveticaNeue_57_Condensed'
+	font-size: $content_note_textsize
+	color: $content_general_color
+	text-align: left
+	vertical-align: middle

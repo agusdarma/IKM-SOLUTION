@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mmbs-security" extends="mmbs-base">
+        
+        <action name="UserData!*" method="{1}" class="com.jakarta.software.web.action.security.UserDataAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/security/user_data_search.jsp</result>
+            <result name="input">WEB-INF/pages/security/user_data_input.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">UserData!finish</param>
+            </result>
+            <result name="finish">WEB-INF/pages/security/user_data_search.jsp</result>
+            <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>            
+        </action>
+        
+   		<action name="UserLevel!*" method="{1}" class="com.jakarta.software.web.action.security.UserLevelAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/security/user_level_search.jsp</result>
+ 	        <result name="input">WEB-INF/pages/security/user_level_input.jsp</result>
+     	    <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+        </action>
+        
+        <action name="ChangePassword!*" method="{1}" class="com.jakarta.software.web.action.security.ChangePasswordAction">
+            <interceptor-ref name="webSecureStack" /> 
+            <result name="input">WEB-INF/pages/security/change_password.jsp</result>
+            <result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+        </action>
+        
+        <action name="ResetPassword!*" method="{1}" class="com.jakarta.software.web.action.security.ResetPasswordAction">
+            <interceptor-ref name="webSecureStack"/>
+            <result name="search">WEB-INF/pages/security/reset_password_search.jsp</result>
+            <result name="input">WEB-INF/pages/security/reset_password_input.jsp</result>
+             <result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+        </action>
+		
+		<action name="UserPreference!*" method="{1}" class="com.jakarta.software.web.action.security.UserPreferenceAction">
+            <interceptor-ref name="webSecureStack" /> 
+            <result name="edit">WEB-INF/pages/security/user_preference_update.jsp</result>
+            <result name="finish">WEB-INF/pages/security/user_preference_update.jsp</result>
+            <result name="success" type="redirectAction">
+				<param name="actionName">UserPreference!finish</param> 
+			</result>
+        </action>
+        
+	</package>
+</struts>

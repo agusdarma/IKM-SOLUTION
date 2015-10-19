@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.MerchantMapper">
+    
+ 	<insert id="insertMerchantHistory" parameterType="Merchant" useGeneratedKeys="true" keyProperty="id">
+		insert into merchant_history(
+					merchant_id, 
+					merchant_code, 
+					merchant_name, 
+					alias,
+				 	account_type, 
+				 	account_number, 
+				 	currency, 
+				 	timeout, 
+				 	status, 
+				 	auth_status, 
+				    created_on, 
+				    created_by,
+				    auth_on, 
+				    auth_by,
+				 	updated_on, 
+				 	updated_by, 
+				 	activity_type
+				 ) 
+			values( #{id}, 
+					#{merchantCode, javaType=String, jdbcType=VARCHAR}, 
+					#{merchantName, javaType=String, jdbcType=VARCHAR}, 
+					#{alias, javaType=String, jdbcType=VARCHAR},
+				 	#{accountType, javaType=String, jdbcType=VARCHAR}, 
+				 	#{accountNumber, javaType=String, jdbcType=VARCHAR}, 
+				 	#{currency, javaType=String, jdbcType=CHAR}, 
+				 	#{timeout, javaType=Integer, jdbcType=NUMERIC}, 
+				 	#{status, javaType=String, jdbcType=CHAR}, 
+				 	#{authStatus, javaType=String, jdbcType=CHAR},
+				 	#{createdOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+				 	#{createdBy, javaType=Integer, jdbcType=NUMERIC},
+				 	#{authOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+				 	#{authBy, javaType=Integer, jdbcType=NUMERIC},
+				 	#{updatedOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+				 	#{updatedBy, javaType=Integer, jdbcType=NUMERIC}, 
+				 	#{activityType, javaType=String, jdbcType=VARCHAR}
+				 ) 
+			<selectKey resultType="java.lang.Integer" keyProperty="id">
+				SELECT merchant_history_seq.CURRVAL FROM dual
+			</selectKey>	
+    </insert>
+    
+ 	<insert id="insertMerchant" parameterType="Merchant" useGeneratedKeys="true" keyProperty="id">
+		insert into merchant(
+					merchant_code, 
+					merchant_name, 
+					alias,
+				 	account_type, 
+				 	account_number, 
+				 	currency, 
+				 	timeout, 
+				 	status, 
+				 	auth_status, 
+				    created_on, 
+				    created_by,
+				    auth_on, 
+				    auth_by,
+				 	updated_on, 
+				 	updated_by
+				 	) 
+			values( #{merchantCode, javaType=String, jdbcType=VARCHAR}, 
+					#{merchantName, javaType=String, jdbcType=VARCHAR}, 
+					#{alias, javaType=String, jdbcType=VARCHAR},
+				 	#{accountType, javaType=String, jdbcType=VARCHAR}, 
+				 	#{accountNumber, javaType=String, jdbcType=VARCHAR}, 
+				 	#{currency, javaType=String, jdbcType=CHAR}, 
+				 	#{timeout, javaType=Integer, jdbcType=NUMERIC}, 
+				 	#{status, javaType=String, jdbcType=CHAR}, 
+				 	#{authStatus, javaType=String, jdbcType=CHAR},
+				 	#{createdOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+				 	#{createdBy, javaType=Integer, jdbcType=NUMERIC},
+				 	#{authOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+				 	#{authBy, javaType=Integer, jdbcType=NUMERIC},
+				 	#{updatedOn, javaType=java.util.Date, jdbcType=TIMESTAMP}, 
+				 	#{updatedBy, javaType=Integer, jdbcType=NUMERIC}
+				  ) 
+			<selectKey resultType="java.lang.Integer" keyProperty="id">
+				SELECT merchant_seq.CURRVAL FROM dual
+			</selectKey>	
+    </insert>
+ 	
+ 	<sql id="_sqlWhereMerchant">
+		<where>
+			<if test="merchantCode!=null and merchantCode.length() > 0 ">
+				AND upper(m.merchant_code) like concat('%', concat(upper(#{merchantCode}), '%'))
+			</if>
+			<if test="merchantName!=null and merchantName.length() > 0 ">
+				AND upper(m.merchant_name) like concat('%', concat(upper(#{merchantName}), '%'))
+			</if>
+		</where>
+	</sql>
+
+ 	<select id="findMerchantByParam" resultType="MerchantVO" parameterType="MerchantParamVO">
+		SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+		           <include refid="_sqlMerchant" />,
+					ud.user_name as createdByDisplay,
+					ud2.user_name as updatedByDisplay,
+					ld.lookup_desc as merchantStatusDisplay,
+			 		ld1.lookup_desc as accountTypeDisplay,
+			 		ld2.lookup_desc as currencyTypeDisplay
+				from MERCHANT m
+					INNER JOIN user_data ud on ud.id=m.created_by
+					INNER JOIN user_data ud2 on ud2.id=m.updated_by
+					left join lookup_data ld on ld.lookup_cat=8 and ld.lookup_value=m.status
+					left join lookup_data ld1 on ld1.lookup_cat=5 and ld1.lookup_value=m.account_type
+					left join lookup_data ld2 on ld2.lookup_cat=4 and ld2.lookup_value=m.currency		
+				<include refid="_sqlWhereMerchant" /> 
+				ORDER BY ${sortVariable} ${sortOrder}
+	 		) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+    </select>
+
+	<select id="countMerchantByParam" resultType="java.lang.Integer" parameterType="MerchantParamVO">
+ 		SELECT count(m.id)
+		FROM MERCHANT m
+		<include refid="_sqlWhereMerchant" />
+	</select>
+	
+	<select id="countMerchantHistoryByParam" resultType="java.lang.Integer" parameterType="MerchantParamVO">
+		SELECT count(m.id) as count 
+		FROM merchant_history m
+		INNER JOIN user_data ud ON m.updated_by = ud.id
+    	<where>
+			<if test="merchantCode != null and merchantCode.length() > 0">
+				AND upper(m.merchant_code) like concat('%', concat(upper(#{merchantCode}), '%'))
+			</if>
+				and m.auth_status=#{authStatus} and ud.branch_id=#{branchId} and m.updated_by!=#{updatedBy}
+		</where>
+    </select>
+    
+
+	 <select id="findMerchantHistoryByParam" resultType="MerchantVO" parameterType="MerchantParamVO">
+		SELECT * FROM(
+			SELECT  q.*, rownum as seqNo 
+			FROM(
+				select
+		        m.id as id,
+				m.merchant_code as merchantCode,
+				m.merchant_name as merchantName,
+				m.account_number as accountNumber,
+				m.alias,
+				m.created_on as createdOn,
+				m.created_by as createdBy,
+				m.updated_on as updatedOn,
+				m.updated_by as updatedBy,
+				CASE m.merchant_id
+					WHEN 0 THEN 'Register'
+					ELSE 'Update'
+				END as activityType
+			FROM merchant_history m
+			INNER JOIN user_data ud ON m.updated_by = ud.id
+			<where>
+				<if test="merchantCode != null and merchantCode.length() > 0">
+					AND upper(m.merchant_code) like concat('%', concat(upper(#{merchantCode}), '%')) 
+				</if>
+					AND m.auth_status=#{authStatus} and m.updated_by!=#{updatedBy} and ud.branch_id=#{branchId}
+			</where>
+			ORDER BY ${sortVariable} ${sortOrder}
+	 		) q
+		WHERE  rownum &lt;= #{rowEnd})
+		WHERE seqNo >= #{rowStart}
+    </select>
+    
+</mapper>
+ 

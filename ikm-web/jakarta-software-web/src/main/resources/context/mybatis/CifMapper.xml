@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+	
+<mapper namespace="com.jakarta.software.web.mapper.CifMapper">
+
+	 <sql id="_sqlCifAccount">
+	 	c.id as id,
+	 	c.device_code as deviceCode,
+	 	c.access_id as accessId,
+	 	c.host_cif_id as hostCifId,
+	 	c.cif_name as cifName,
+	 	c.identity_code as identityCode,
+	 	c.cif_lang as "language",
+	 	c.cif_group as "group",
+	 	c.email as email,
+	 	c.pin as pin,
+	 	c.pin_count as pinCount,
+	 	c.hasstk as hasstk,
+	 	c.activation_date as activationDate,
+	 	c.pin_change_date as pinChangeDate,
+	 	c.status as status,
+	 	c.auth_status as authStatus,
+	 	c.remarks as remarks,
+	 	c.created_on as createdOn,
+	 	c.created_by as createdBy,
+	 	c.auth_on as authOn,
+	 	c.auth_by as authBy,
+	 	c.updated_on as updatedOn,
+	 	c.updated_by as updatedBy,
+	 	c.use_blast_sms as useBlastSms,
+	 	c.birth_date as birthDate,
+	 	c.mother_name as motherName,
+	 	c.address as address,
+	 	
+		a.account_no as accountNo,
+		a.cif_id as cifId,
+		a.card_no as cardNo,
+		a.account_type as accountType,
+		a.acc_index as accIndex,
+		a.status as status,
+		a.remarks as remarks,
+		a.created_on as createdOn,
+		a.created_by as createdBy,
+		a.updated_on as updatedOn,
+		a.updated_by as updatedBy,
+		
+		l.lookup_desc as lookupDesc
+	 </sql>
+	 
+	 <sql id="_sqlCif">
+	 	c.id as id,
+	 	c.device_code as deviceCode,
+	 	c.access_id as accessId,
+	 	c.host_cif_id as hostCifId,
+	 	c.cif_name as cifName,
+	 	c.identity_code as identityCode,
+	 	c.cif_lang as "language",
+	 	c.cif_group as "group",
+	 	c.email as email,
+	 	c.pin as pin,
+	 	c.pin_count as pinCount,
+	 	c.hasstk as hasstk,
+	 	c.activation_date as activationDate,
+	 	c.pin_change_date as pinChangeDate,
+	 	c.status as status,
+	 	c.auth_status as authStatus,
+	 	c.remarks as remarks,
+	 	c.created_on as createdOn,
+	 	c.created_by as createdBy,
+	 	c.auth_on as authOn,
+	 	c.auth_by as authBy,
+	 	c.updated_on as updatedOn,
+	 	c.updated_by as updatedBy,
+	 	c.use_blast_sms as useBlastSms
+	 </sql>
+	 
+	  <resultMap id="CifResult" type="Cif">
+		<id property="id" column="id" />
+		<result property="deviceCode" column="deviceCode" />
+		<result property="accessId" column="accessId" />
+		<result property="hostCifId" column="hostCifId" />
+		<result property="cifName" column="cifName" />
+		<result property="identityCode" column="identityCode" />
+		<result property="language" column="language" />
+		<result property="group" column="group" />
+		<result property="email" column="email" />
+		<result property="pin" column="pin" />
+		<result property="pinCount" column="pinCount" />
+		<result property="hasstk" column="hasstk" />
+		<result property="activationDate" column="activationDate" />
+		<result property="pinChangeDate" column="pinChangeDate" />
+		<result property="status" column="status" />
+		<result property="authStatus" column="authStatus" />
+		<result property="remarks" column="remarks" />
+		<result property="createdOn" column="createdOn" />
+		<result property="createdBy" column="createdBy" />
+		<result property="authOn" column="authOn" />
+		<result property="authBy" column="authBy" />
+		<result property="updatedOn" column="updatedOn" />
+		<result property="updatedBy" column="updatedBy" />
+		<result property="cardNo" column="cardNo" />
+		<result property="accountNo" column="accountNo" />
+		<result property="useBlastSms" column="useBlastSms" />
+		<result property="birthDate" column="birthDate" />
+		<result property="address" column="address" />
+		<result property="motherName" column="motherName" />
+						
+		<collection property="listAccount" ofType="Account">
+			<id property="accId" column="accId" />
+			<result property="id" column="accId" />
+			<result property="cifId" column="cifId" />
+			<result property="accountNo" column="accountNo" />
+			<result property="cardNo" column="cardNo" />
+			<result property="expiredDate" column="expiredDate" />
+			<result property="accountType" column="accountType" />
+			<result property="status" column="status" />
+			<result property="remarks" column="remarks" />
+			<result property="accIndex" column="accIndex" />
+			<result property="createdOn" column="createdOn" />
+			<result property="createdBy" column="createdBy" />
+			<result property="updatedOn" column="updatedOn" />
+			<result property="updatedBy" column="updatedBy" />
+			
+			<result property="accountTypeDisplay" column="lookupDesc" />
+		</collection>	
+	</resultMap>
+	 
+	 <select id="findCifById" parameterType="java.lang.Integer" resultMap="CifResult" >
+		select <include refid="_sqlCifAccount"/> 
+		from cif c
+			left join account a on c.id = a.cif_id
+			left join lookup_data l on a.account_type = l.lookup_value and l.lookup_cat = 5 
+		where c.id = #{value}
+    </select>
+    
+     <select id="findCifByMobilePhone" parameterType="java.lang.String" resultType="Cif" >
+		select <include refid="_sqlCif"/> 
+		from cif c
+		where c.device_code = #{value}
+    </select>
+    
+    <update id="updateCif" parameterType="Cif">
+    	UPDATE cif set 
+	    	access_id = #{accessId},
+	    	host_cif_id = #{hostCifId},
+	    	cif_name = #{cifName},
+	    	identity_code =  #{identityCode},
+	    	cif_lang = #{language},
+	    	cif_group = #{group},
+	    	email = #{email},
+	    	hasstk = #{hasstk},
+	    	status = #{status},
+	    	auth_status = #{authStatus},
+	    	remarks = #{remarks},
+	    	use_blast_sms = #{useBlastSms},
+	    	auth_on = #{authOn},
+	    	auth_by = #{authBy},
+	    	updated_on = #{updatedOn},
+	    	updated_by = #{updatedBy},
+	    	address=#{address},
+			birth_date=#{birthDate},
+			mother_name=#{motherName},
+			pin_count=#{pinCount}
+    	where id = #{id}
+    </update>
+    
+    <update id="authorizeCif" parameterType="Cif">
+    	UPDATE cif set 
+    	device_code =  #{deviceCode},
+    	access_id = #{accessId},
+    	host_cif_id = #{hostCifId},
+    	cif_name = #{name},
+    	identity_code =  #{identityCode},
+    	cif_lang = #{language},
+    	cif_group = #{group},
+    	email = #{email},
+    	pin = #{pin},
+    	pin_count =  #{pinCount},
+    	hasstk = #{hasstk},
+    	activation_date = #{activationDate},
+    	pin_change_date = #{pinChangeDate},
+    	status = #{status},
+    	auth_status = #{authStatus},
+    	remarks = #{remarks},
+    	auth_on = #{authOn},
+    	auth_by = #{authBy},
+    	updated_on = #{updatedOn},
+    	updated_by = #{updatedBy}
+    	where id = #{id}
+    </update>
+    
+    <select id="findListCifReplacementByParam" parameterType="CifParamVO" resultType="Cif">
+        select <include refid="_sqlCif"/> 
+		from cif c
+		where c.def_account_no != #{accountNo} and
+		c.status = #{status} and 
+		c.auth_status = #{authStatus}
+    </select>
+    
+    <select id="findListAccountIdByCifId" parameterType="java.util.List" resultType="java.lang.Integer">
+		select a.id
+		from account a
+		where a.cif_id in
+		<foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+         	#{id}
+         </foreach>
+	</select>
+    
+    <update id="updateCifStatusByListCifId" parameterType="GeneralStatusVO">
+		update cif
+		set 
+			<if test="status != null" >
+				status = #{status},
+			</if>
+			auth_status = #{authStatus},
+			updated_by = #{updatedBy},  
+			updated_on = #{updatedOn}
+		where id in 
+		<foreach item="id" index="index" collection="listId" open="(" separator="," close=")">
+         	#{id}
+        </foreach>
+	</update>
+	
+    <update id="updateCifAuthStatus" parameterType="cif">
+        update cif
+		set auth_status = #{authStatus},
+			updated_by = #{updatedBy},  
+			updated_on = #{updatedOn}
+		where id =#{id}        
+    </update>
+
+    <delete id="deleteCif" parameterType="java.lang.Integer">
+		delete 
+		from cif
+		where id=#{value} 
+    </delete>
+</mapper>

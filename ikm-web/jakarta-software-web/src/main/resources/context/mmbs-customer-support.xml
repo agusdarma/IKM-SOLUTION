@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="mmbs-customer-support" extends="mmbs-base">
+        
+        <action name="Product!*" method="{1}" class="com.jakarta.software.web.action.customerSupport.ProductAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/customer-support/product_search.jsp</result>
+            <result name="input">WEB-INF/pages/customer-support/product_input.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">Product!finish</param>
+            </result>
+            <result name="finish">WEB-INF/pages/supervisor/product_search.jsp</result>
+            <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>     
+			<result name="addProductValueJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">pv</param>
+			</result>
+			<result name="duplicateProduct" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">jsonMessage</param>
+			</result>     
+        </action>
+		
+        <action name="Merchant!*" method="{1}" class="com.jakarta.software.web.action.customerSupport.MerchantAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/customer-support/merchant_search.jsp</result>
+			<result name="input">/WEB-INF/pages/customer-support/merchant_input.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+		</action>
+        
+        <action name="TrxLogBrowser!*" method="{1}" class="com.jakarta.software.web.action.customerSupport.TrxLogBrowserAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/customer-support/trxlogbrowser_search.jsp</result>
+			<result name="detail">/WEB-INF/pages/customer-support/trxlogbrowser_detail.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="searchJsonDetail" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr2</param>
+			</result>
+			<result name="json" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="PDF" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/trx_log_browser.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Trx Log Browser Report</param>
+            	<param name="dataSource">listTrx</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">PDF</param>
+             </result>    
+             <result name="CSV" type="jasper">
+            	<param name="location">/WEB-INF/pages/report/jasper/trx_log_browser.jasper</param>
+	            <param name="contentDisposition">attachment</param>
+	            <param name="documentName">Trx Log Browser Report</param>
+            	<param name="dataSource">listTrx</param>
+            	<param name="reportParameters">reportParameters</param>
+            	<param name="format">CSV</param>
+             </result>
+             <result name="XLS" type="jasper">
+				<param name="location">/WEB-INF/pages/report/jasper/trx_log_browser.jasper</param>
+				<param name="contentDisposition">attachment</param>
+				<param name="documentName">Trx Log Browser Report</param>
+				<param name="dataSource">listTrx</param>
+				<param name="reportParameters">reportParameters</param>
+				<param name="format">XLS</param>
+			</result>
+		</action>
+        
+        <action name="CIF!*" method="{1}" class="com.jakarta.software.web.action.customerSupport.CifAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/customer-support/cif_search.jsp</result>           
+            <result name="input">WEB-INF/pages/customer-support/cif_input.jsp</result>            
+            <result name="inputTemp" type="redirectAction">
+            	<param name="actionName">CIF!gotoInput</param>
+            </result>
+            <result name="cif_forced_auth">WEB-INF/pages/customer-support/cif_forced_auth.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">CIF!finish</param>
+            </result>
+            <result name="finish">WEB-INF/pages/customer-support/cif_search.jsp</result>
+            <result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			 <result name="checkJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">crv</param>
+			</result>     
+        </action>
+
+		<action name="PrintStrukPln!*" method="{1}" class="com.jakarta.software.web.action.customerSupport.PrinStrukPlnAction">
+            <interceptor-ref name="webSecureStack" />
+            <result name="search">WEB-INF/pages/customer-support/print_struk_pln.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>     
+        </action>
+        
+		<action name="ResetPin!*" method="{1}" class="com.jakarta.software.web.action.customerSupport.ResetPinAction">
+			<interceptor-ref name="webSecureStack" />
+			<result name="search">/WEB-INF/pages/customer-support/reset_pin_search.jsp</result>
+			<result name="input">/WEB-INF/pages/customer-support/reset_pin_input.jsp</result>
+			<result name="cif_forced_auth">WEB-INF/pages/customer-support/cif_forced_auth.jsp</result>
+			<result name="searchJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wsr</param>
+			</result>
+			<result name="inputJson" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">wrv</param>
+			</result>
+		</action>
+        
+	</package>
+</struts>

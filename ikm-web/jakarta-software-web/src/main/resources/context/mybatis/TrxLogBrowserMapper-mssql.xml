@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.TrxLogBrowserMapper">
+     
+     <select id="countTrxLogBrowserByParam" parameterType="TrxLogBrowserParamVO" resultType="java.lang.Integer" >
+		select count(h.syslogno) as count_id 
+		from TRXLOGH h
+			left join CIF c on c.device_code = h.device_code and h.device_code != ''
+			left join LOOKUP_DATA ld on ld.lookup_value=h.trx_code and ld.lookup_cat=13
+			left join GROUP_LIMIT_HEADER g on g.id=c.cif_group
+			inner join 
+				(select td.syslogno as syslogno, max(td.msglogno) as msglogno, td.bti_ref_no as hostRef
+          		from trxlogd td
+          		group by td.syslogno, td.bti_ref_no) td on td.syslogno = h.syslogno
+		<include refid="_sqlTrxLogWhere" />
+	 </select>
+	 
+     <!-- g.group_name as glName, -->
+	 <select id="findTrxLogBrowserByParam" parameterType="TrxLogBrowserParamVO" resultType="TrxLogBrowserVO">
+		select * from (
+			select ROW_NUMBER() OVER (ORDER BY ${sortVariable} ${sortOrder}) AS ROWNUM,
+	     		h.syslogno as sysLogNo,
+				h.received_time as receivedTime,
+				trxCode.lookup_desc as trxCode,
+				h.srac as sourceAccount,
+				h.dsac as destAccount,
+				h.device_code as deviceCode,
+				h.last_state as lastState,
+				h.last_rc as lastRc,
+				h.trx_value as amount,
+				h.channel_type as channelType,
+				td.msglogno as msgLogNo,
+        		td.hostRef as hostRef
+			from TRXLOGH h
+				left join CIF c on c.device_code = h.device_code and h.device_code != ''
+				left join LOOKUP_DATA trxCode on trxCode.lookup_value = h.trx_code and trxCode.lookup_cat=13
+				left join GROUP_LIMIT_HEADER g on g.id = c.cif_group
+				inner join 
+					(select td.syslogno as syslogno, max(td.msglogno) as msglogno, td.bti_ref_no as hostRef
+            		from trxlogd td
+            		group by td.syslogno, td.bti_ref_no) td on td.syslogno = h.syslogno
+		<include refid="_sqlTrxLogWhere"/>
+	  		) AS ROWPAGING
+		WHERE ROWNUM BETWEEN #{rowStart} and #{rowEnd}
+	</select>
+	
+	 <select id="findTrxLogBrowserByParamNoPaging" parameterType="TrxLogBrowserParamVO" resultType="TrxLogBrowserVO">
+		select h.syslogno as sysLogNo,
+				h.received_time as receivedTime,
+				trxCode.lookup_desc as trxCode,
+				h.srac as sourceAccount,
+				h.dsac as destAccount,
+				h.last_state as lastState,
+				h.last_rc as lastRc,
+				h.trx_value as amount,
+				h.channel_type as channelType
+				from trxlogh h
+					left join cif c on c.device_code = h.device_code and h.device_code != ''
+					left join lookup_data trxCode on trxCode.lookup_value = h.trx_code and trxCode.lookup_cat=13
+					left join group_limit g on g.id = c.cif_group
+		<include refid="_sqlTrxLogWhere"/>		
+	</select>
+    
+	  <sql id="_sqlTrxLogWhere">
+	 	<where>
+	       	<if test="startDate != null and endDate != null">
+				and h.received_time between #{startDate} and #{endDate}
+			</if>
+	      	<if test="syslogno != null and syslogno.length() > 0">
+	       		and h.syslogno like '%' + #{syslogno} + '%'
+	       	</if>
+	 		<if test="phoneNo != null and phoneNo.length() > 0">
+	       		and h.device_code like '%'+ #{phoneNo} + '%'
+	      	</if>
+	   		<if test="sourceAccount != null and sourceAccount.length() > 0">
+	       		and h.srac like '%'+ #{sourceAccount} + '%'
+	      	</if>
+	      	<if test="cardNo != null and cardNo.length() > 0">
+	       		and h.source_card_number like '%'+ #{cardNo} + '%'
+	       	</if>
+	       	<if test="trxCode != 'all' ">
+	       		and h.trx_code = #{trxCode}
+	       	</if>
+	       	<if test="trxCode == 'TRF_OTH' and bankCode != 'all' ">
+	       		and h.bank_code = #{bankCode}
+	       	</if>
+	       	<if test="trxCode == 'PURCHASE' and productCode != 'all' ">
+	       		and h.product_code = #{productCode}
+	       	</if>
+	       	<if test="trxCode == 'BILL_PMT' and billerCode != 'all' ">
+	       		and h.vendor_code = #{billerCode}
+	       	</if>
+	       	<if test="accountType != 'all' ">
+	       		and g.id = #{accountType}
+	       	</if>
+			<if test="status != 'all' ">
+	       		and c.status = #{status}
+	       	</if> 
+			<if test="trxType == 0 ">
+	       		and h.last_rc = '0'
+	       	</if>
+			<if test="trxType == 1 ">
+	       		and h.last_rc != '0'
+	       	</if>
+	       	<if test="channelType != 'all' ">
+	       		and h.channel_type = #{channelType}
+	       	</if>
+		</where>
+	 </sql>
+  
+</mapper>

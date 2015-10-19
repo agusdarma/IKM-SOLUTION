@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Copyright 2010 The myBatis Team
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<mapper namespace="com.jakarta.software.web.mapper.GroupLimitMapper">
+	<sql id="_sqlGroupLimit">
+       glh.id as id,
+       glh.group_name as groupName,
+       glh.created_by as createdBy,
+       glh.created_on as createdOn,
+       glh.updated_by as updatedBy,
+       glh.updated_on as updatedOn
+    </sql>
+    
+    <insert id="insertGroupLimitHeader" parameterType="GroupLimitHeader" useGeneratedKeys="true" keyProperty="id">
+		insert into group_limit_header(
+			group_name,
+			created_by,
+			created_on,
+			updated_by,
+			updated_on)
+		values(
+			#{groupName},
+			#{createdBy},
+			#{createdOn},
+			#{updatedBy},
+			#{updatedOn}
+		)
+    </insert>
+    
+    <update id="updateGroupLimitHeader" parameterType="GroupLimitHeader" >
+		update group_limit_header 
+		set group_name = #{groupName},
+			updated_by = #{updatedBy},
+			updated_on = #{updatedOn}
+		where id=#{id}
+	</update>
+	
+	<insert id="insertGroupLimitDetail" parameterType="GroupLimitDetail" useGeneratedKeys="true" keyProperty="id">
+		insert into group_limit_detail(
+			group_limit_id,
+			trx_code,
+			limit_per_trx,
+			limit_per_day,
+			fee_trx,
+			created_on,
+			created_by,
+			updated_on,
+			updated_by
+			)
+		values(
+			#{groupLimitId},
+			#{trxCode},
+			#{limitPerTrx},
+			#{limitPerDay},
+			#{feeTrx},
+			#{createdOn},
+			#{createdBy},
+			#{updatedOn},
+			#{updatedBy}
+		)
+    </insert>
+    
+	<update id="updateGroupLimitDetail" parameterType="GroupLimitDetail" >
+		update group_limit_detail 
+		set trx_code = #{trxCode},
+			limit_per_trx = #{limitPerTrx},
+			limit_per_day = #{limitPerDay},
+			fee_trx = #{feeTrx},
+			updated_by = #{updatedBy},
+			updated_on = #{updatedOn}
+		where id=#{id}
+	</update>
+	
+	<delete id="deleteGroupLimitDetail" parameterType="java.lang.Integer">
+ 		delete
+ 		from group_limit_detail
+ 		where id=#{value}
+	</delete>
+	
+	
+	
+</mapper>

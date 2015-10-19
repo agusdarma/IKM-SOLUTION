@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Copyright 2010 The myBatis Team Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
+
+<mapper namespace="com.jakarta.software.web.mapper.CifHistoryMapper">
+    
+	<select id="findCifHistoryById" resultType="CifHistoryVO" parameterType="java.lang.Integer">
+		SELECT
+			ch.id as cifHistoryId,
+			ch.cif_id as cifId,
+			ch.parent_id as parentId,
+			ch.device_code as deviceCode,
+			ch.access_id as accessId,
+			ch.host_cif_id as hostCifId,
+			ch.cif_name as cifName,
+			ch.identity_code as identityCode,
+			ch.cif_lang as language,
+			ch.cif_group as cifGroup,
+			ch.pin as pin,
+			ch.pin_count as pinCount,
+			ch.hasstk as hasStk,
+			ch.activation_date as activationDate,
+			ch.pin_change_date as pinChangeDate,
+			ch.status as status,
+			ch.auth_status as authStatus,
+			ch.remarks as remark,
+			ch.created_on as createdOn,
+			ch.created_by as createdBy,
+			ch.updated_on as updatedOn,
+			ch.updated_by as updatedBy,
+			ch.email as email,
+			ch.use_blast_sms as useBlastSms,
+			ch.branch_id as branchId,
+			ch.activity_type as activityType,
+			ch.birth_date as birthDate,
+			ch.address as address,
+			ch.mother_name as motherName,
+			c.device_code as deviceCodeOld,
+			c.cif_group as cifGroupOld,
+			c.host_cif_id as hostCifIdOld,
+			c.cif_name as cifNameOld,
+			c.identity_code as identityCodeOld,
+			c.email as emailOld,
+			c.status as statusOld,
+			ld.lookup_desc as statusDisplayOld,
+			ld2.lookup_desc as statusDisplay,
+			case c.use_blast_sms
+				when 1 then 'Yes'
+				else 'No'
+			end as blastSmsOldDisplay,
+			case ch.use_blast_sms
+				when 1 then 'Yes'
+				else 'No'
+			end as blastSmsDisplay,						
+			c.use_blast_sms as blastSmsOld,
+			bd.branch_name as branchDisplay
+		FROM cif_history ch
+			left join branch_data bd on bd.id=ch.branch_id
+			left join cif c on c.id = ch.cif_id
+			left join lookup_data ld on ld.lookup_cat = 8 and ld.lookup_value = c.status
+			left join lookup_data ld2 on ld2.lookup_cat = 8 and ld2.lookup_value = ch.status			
+		WHERE ch.id = #{value}
+	</select>
+
+	<update id="updateCifHistory" parameterType="java.lang.Integer">
+		UPDATE cif_history set
+			auth_status = 'A'
+		where id = #{id}
+	</update>
+
+	<update id="changeCifHistoryAuthStatus" parameterType="CifHistoryVO">
+		update cif_history
+		set	updated_by  = #{updatedBy},
+			updated_on  = #{updatedOn},
+			auth_by	    = #{authBy},
+			auth_on	    = #{authOn},
+			auth_status = #{authStatus}
+		where id=#{cifHistoryId} 
+    </update>
+	
+	<update id="changeCifAuthStatus" parameterType="CifHistoryVO">
+		update cif
+		set	updated_by  = #{updatedBy},
+			updated_on  = #{updatedOn},
+			auth_by	    = #{authBy},
+			auth_on	    = #{authOn},
+			auth_status = 'A'
+		where id=#{cifId} 
+    </update>
+	
+</mapper>    
