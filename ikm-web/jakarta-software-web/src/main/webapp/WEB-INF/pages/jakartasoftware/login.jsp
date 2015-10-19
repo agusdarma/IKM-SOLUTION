@@ -29,11 +29,11 @@
   </div>
   <h2 class="form-heading"><s:text name="t.login"/></h2>
   <div class="app-cam">
-	  <s:form action="Login!process" method="post">
-	  	<s:textfield type="text" name="kodeSekolah" cssClass="text" placeholder="%{getText('l.schoolCode')}" required="true"/>
-	  	<s:textfield type="text" name="noInduk" cssClass="text" placeholder="%{getText('l.noInduk')}" required="true"/>
-	  	<s:textfield type="password" name="password" cssClass="text" placeholder="%{getText('l.password')}" required="true"/>
-		<s:radio label="Login Type" name="loginType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" value="2" />
+	  <s:form action="Login!go" method="post">
+	  	<s:textfield type="text" name="webLoginData.kodeSekolah" cssClass="text" placeholder="%{getText('l.schoolCode')}" required="true"/>
+	  	<s:textfield type="text" name="webLoginData.noInduk" cssClass="text" placeholder="%{getText('l.noInduk')}" required="true"/>
+	  	<s:textfield type="password" name="webLoginData.password" cssClass="text" placeholder="%{getText('l.password')}" required="true"/>
+		<s:radio label="Login Type" name="webLoginData.userType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" value="2" />
 		<div class="submit"><s:submit type="submit" id="ButtonLogin" value="%{getText('b.logIn')}"/></div>
 		<%-- <div class="login-social-link">
           <a href="index.html" class="facebook">

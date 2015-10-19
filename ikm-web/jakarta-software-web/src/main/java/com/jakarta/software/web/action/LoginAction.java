@@ -3,7 +3,6 @@ package com.jakarta.software.web.action;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,24 +11,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jakarta.software.web.data.LoginData;
 import com.jakarta.software.web.data.UserDataLoginVO;
-import com.jakarta.software.web.data.WebConstants;
+import com.jakarta.software.web.data.WebLoginData;
 import com.jakarta.software.web.data.WebResultVO;
 import com.jakarta.software.web.entity.Lookup;
-import com.jakarta.software.web.helper.WebModules;
 import com.jakarta.software.web.mapper.UserDataMapper;
 import com.jakarta.software.web.service.LookupService;
 import com.jakarta.software.web.service.MmbsWebException;
 import com.jakarta.software.web.service.SecurityService;
-import com.jakarta.software.web.utils.StringUtils;
 
 
 public class LoginAction extends BaseAction implements ServletRequestAware {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = LoggerFactory.getLogger(LoginAction.class);
 	
-	private LoginData loginData;
+	private WebLoginData webLoginData;
 	private HttpServletRequest httpRequest;
 	private String message;
 	private WebResultVO wrv;
@@ -48,27 +44,15 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 		return LOG;
 	}
 	
-	public LoginData getLoginData() {
-		return loginData;
-	}
-	public void setLoginData(LoginData loginData) {
-		this.loginData = loginData;
-	}
-	
 	public String execute() {
 		return INPUT;
 	}
 	
-	public String process() {
-		if(loginData==null) return INPUT;			
-		LOG.debug("Login: " + loginData.toString());
+	public String go() {
+		if(webLoginData==null) return INPUT;			
+		LOG.debug("Login: " + webLoginData);
 		try {
-			session.clear();
-			String sessionId = httpRequest.getSession().getId();
-			UserDataLoginVO loginVO = securityService.validateUserLogin(loginData, sessionId);
-			Locale localeID = StringUtils.localeFinder(loginVO.getUserPreference().getLanguage());
-			session.put(LOGIN_KEY, loginVO);
-			session.put(WEB_LOCALE_KEY, localeID);
+			securityService.validateUserToEngine(webLoginData);
 			return SUCCESS;
 		} catch (MmbsWebException mwe) {
 			WebResultVO wrv = handleJsonException(mwe);
@@ -97,28 +81,6 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 		this.addActionError(getText("rc." +  MmbsWebException.NE_SESSION_EXPIRED));
 		setMessage(getText("rc." +  MmbsWebException.NE_SESSION_EXPIRED));
 		return INPUT;
-	}
-
-	public String processLoginSupervisor()
-	{
-		String sessionId = httpRequest.getSession().getId();
-		try {
-			UserDataLoginVO loginVO = (UserDataLoginVO) session.get(LOGIN_KEY);	
-			if(loginVO.getUserCode().equalsIgnoreCase(loginData.getUserCode()))
-			{
-				throw new MmbsWebException(MmbsWebException.NE_SUPERVISOR_LOGIN_SAME);
-			}
-			UserDataLoginVO loginSpv = securityService.validateForcedAuthLogin(loginData, sessionId, 
-					WebModules.MENU_SUPERVISOR_AUTH_CIF, loginVO.getBranchId());
-			session.put(LOGIN_KEY_SUPERVISOR, loginSpv);
-			wrv = new WebResultVO();
-			wrv.setRc(WebConstants.RESULT_SUCCESS);
-			wrv.setType(WebConstants.TYPE_INSERT);			
-		} catch (MmbsWebException e) {
-			wrv = handleJsonException(e);
-		}
-		json = gson.toJson(wrv);
-		return "spvLogin";
 	}
 	
 	public String invalidModule()
@@ -164,6 +126,14 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	public List<Lookup> getListLoginType() {
 		List<Lookup> listLoginType = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
 		return listLoginType;
+	}
+
+	public WebLoginData getWebLoginData() {
+		return webLoginData;
+	}
+
+	public void setWebLoginData(WebLoginData webLoginData) {
+		this.webLoginData = webLoginData;
 	}
 
 	
