@@ -15,6 +15,7 @@ import com.jakarta.software.web.data.UserDataLoginVO;
 import com.jakarta.software.web.data.UserDataVO;
 import com.jakarta.software.web.data.UserLevelVO;
 import com.jakarta.software.web.data.WebConstants;
+import com.jakarta.software.web.data.WebLoginData;
 import com.jakarta.software.web.entity.UserLevel;
 import com.jakarta.software.web.entity.UserPreference;
 import com.jakarta.software.web.mapper.UserDataMapper;
@@ -47,6 +48,11 @@ public class SecurityService
 	
 	@Autowired
 	private UserPreferenceMapper userPreferenceMapper;
+	
+	
+	public void validateUserToEngine(WebLoginData webLoginData) throws MmbsWebException {
+		
+	}
 	
 	@Transactional
 	public UserDataLoginVO validateUserLogin(LoginData loginData, String sessionId) throws MmbsWebException 

@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -94,6 +95,51 @@ public class HttpClientService {
         }   finally {
 	    	if (httpGet != null)
 	    		httpGet.releaseConnection();
+	    } // end try catch
+	}
+	
+	public String sendToEnginePostMethod(List<NameValuePair> params) throws MmbsWebException {
+		HttpContext context = new BasicHttpContext();
+        HttpPost httpPost = null;
+		try {
+			StringBuilder sb = new  StringBuilder();
+			URIBuilder builder = new URIBuilder(destinationUrl);			
+			for (NameValuePair param: params) {
+				builder.setParameter(param.getName(), param.getValue());
+							
+				
+			}
+			httpPost = new HttpPost(builder.build());
+//			LOG.debug("Execute: " + builder.toString());
+			LOG.debug("Execute: " + sb.toString());
+			
+			HttpResponse response = httpClient.execute(httpPost, context);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				String respString = EntityUtils.toString(response.getEntity());
+                LOG.debug("Response: {}", new String[] {
+                		respString} );
+                
+                return respString;
+			} else {
+				LOG.warn("Invalid statusCode: {}", new String[] {
+						"" + response.getStatusLine().getStatusCode()} );
+                
+				throw new MmbsWebException(MmbsWebException.NE_ERROR_RESPONSE_HOST);
+			}  // end if statusCode != 200
+		} catch (MmbsWebException me) {
+			throw me;
+		} catch (URISyntaxException us) {
+			LOG.warn("URL [" + destinationUrl + "] is not valid");
+			throw new MmbsWebException(MmbsWebException.NE_INVALID_URI);
+		} catch (Exception e) {
+			if (httpPost != null)
+				httpPost.abort();
+            LOG.warn("Unknown Error", e);
+            throw new MmbsWebException(MmbsWebException.NE_UNKNOWN_ERROR);
+        }   finally {
+	    	if (httpPost != null)
+	    		httpPost.releaseConnection();
 	    } // end try catch
 	}
 	
