@@ -5,11 +5,10 @@
 
 <html>
 	<head>
-<title>Modern an Admin Panel Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<title><s:text name="t.login"/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="keywords" content="My Agenda,Android,Iphone" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
 <link href="<s:url value='/Style/jakartasoftware/admin/bootstrap.min.css'/>" rel='stylesheet' type='text/css' />
@@ -28,11 +27,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="login-logo">
     <a href="index.html"><img height="151" width="151" src="<s:url value='/Resource/images/myagenda.png'/>" alt=""/></a>
   </div>
-  <h2 class="form-heading">login</h2>
+  <h2 class="form-heading"><s:text name="t.login"/></h2>
   <div class="app-cam">
 	  <form>
-		<input type="text" class="text" value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">
-		<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+	  	<s:textfield type="text" name="kodeSekolah" cssClass="text" placeholder="%{getText('l.schoolCode')}" required="true"/>
+	  	<s:textfield type="text" name="noInduk" cssClass="text" placeholder="%{getText('l.noInduk')}" required="true"/>
+	  	<s:textfield type="password" name="password" cssClass="text" placeholder="%{getText('l.password')}" required="true"/>
 		<s:radio label="Login Type" name="loginType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" value="2" />
 		<div class="submit"><input type="submit" onclick="myFunction()" value="Login"></div>
 		<%-- <div class="login-social-link">

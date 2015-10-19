@@ -34,7 +34,6 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	private String message;
 	private WebResultVO wrv;
 	private String json;
-	private List<Lookup> listLoginType;
 	
 	@Autowired
 	private LookupService lookupService;
@@ -165,10 +164,6 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	public List<Lookup> getListLoginType() {
 		List<Lookup> listLoginType = lookupService.findLookupByCat(LookupService.CAT_LOGIN_USER);
 		return listLoginType;
-	}
-
-	public void setListLoginType(List<Lookup> listLoginType) {
-		this.listLoginType = listLoginType;
 	}
 
 	
