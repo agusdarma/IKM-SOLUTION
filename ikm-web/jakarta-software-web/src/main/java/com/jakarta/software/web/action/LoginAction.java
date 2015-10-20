@@ -1,12 +1,15 @@
 package com.jakarta.software.web.action;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +60,16 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 		} catch (MmbsWebException mwe) {
 			WebResultVO wrv = handleJsonException(mwe);
 			setMessage(wrv.getMessage());
+		} catch (JsonGenerationException e) {
+			setMessage("JsonGenerationException : " + e);
+		} catch (JsonMappingException e) {
+			setMessage("JsonMappingException : " + e);
+		} catch (IOException e) {
+			setMessage("IOException : " + e);
 		} catch (Exception e) {
 			WebResultVO wrv = handleJsonException(e);
 			setMessage(wrv.getMessage());
-		}
+		}		
 		return INPUT;
 	}
 	
