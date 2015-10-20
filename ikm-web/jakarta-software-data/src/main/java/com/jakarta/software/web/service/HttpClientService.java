@@ -1,6 +1,7 @@
 package com.jakarta.software.web.service;
 
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -10,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.HttpConnectionParams;
@@ -95,6 +97,40 @@ public class HttpClientService {
         }   finally {
 	    	if (httpGet != null)
 	    		httpGet.releaseConnection();
+	    } // end try catch
+	}
+	
+	public String sendToEnginePostMethod(String s,String trxCode) throws MmbsWebException {
+		HttpPost post = null;
+		try {
+			s = URLEncoder.encode(s, "UTF-8");
+			LOG.debug("Request: " + s);
+            StringEntity entity = new StringEntity(s);
+			
+			post = new HttpPost(destinationUrl);
+			post.setHeader("Content-Type", "application/json");
+			post.setEntity(entity);
+			
+			HttpResponse response = httpClient.execute(post);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				String respString = EntityUtils.toString(response.getEntity());
+                LOG.debug("Response: {}", new String[] {respString} );                
+                return respString;
+			} else {
+				LOG.warn("Invalid statusCode: {}", new String[] {"" + response.getStatusLine().getStatusCode()} );                
+				throw new MmbsWebException(MmbsWebException.NE_ERROR_RESPONSE_HOST);
+			}  // end if statusCode != 200
+		} catch (MmbsWebException me) {
+			throw me;
+		} catch (Exception e) {
+			if (post != null)
+				post.abort();
+            LOG.warn("Unknown Error", e);
+            throw new MmbsWebException(MmbsWebException.NE_UNKNOWN_ERROR);
+        }   finally {
+	    	if (post != null)
+	    		post.releaseConnection();
 	    } // end try catch
 	}
 	

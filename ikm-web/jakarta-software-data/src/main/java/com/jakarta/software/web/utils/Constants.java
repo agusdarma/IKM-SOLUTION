@@ -71,6 +71,7 @@ public class Constants {
 	public static final String HTTP_PARAM_MESSAGE_ENCRYPTED = "x";
 	public static final String HTTP_PARAM_MESSAGE = "m";
 
+	public static final String TRX_CODE_LOGIN		= "/trx/loginUser";
 	public static final String TRX_CODE_ACC_INFO	= "WEB_ACC_INFO";
 //	public static final String TRX_CODE_CIF_REG		= "WEB_REG";
 	public static final String TRX_CODE_CIF_AUTH	= "WEB_CIF_AUTH";

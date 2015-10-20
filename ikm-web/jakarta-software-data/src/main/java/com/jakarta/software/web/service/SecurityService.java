@@ -1,8 +1,12 @@
 package com.jakarta.software.web.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +25,7 @@ import com.jakarta.software.web.entity.UserPreference;
 import com.jakarta.software.web.mapper.UserDataMapper;
 import com.jakarta.software.web.mapper.UserLevelMapper;
 import com.jakarta.software.web.mapper.UserPreferenceMapper;
+import com.jakarta.software.web.utils.Constants;
 import com.jakarta.software.web.utils.SecureUtils;
 
 @Service
@@ -49,9 +54,14 @@ public class SecurityService
 	@Autowired
 	private UserPreferenceMapper userPreferenceMapper;
 	
+	@Autowired
+	private HttpClientService httpClientService;
 	
-	public void validateUserToEngine(WebLoginData webLoginData) throws MmbsWebException {
-		
+	
+	public void validateUserToEngine(WebLoginData webLoginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();		
+		String s = mapper.writeValueAsString(webLoginData);
+		httpClientService.sendToEnginePostMethod(s,Constants.TRX_CODE_LOGIN);
 	}
 	
 	@Transactional
