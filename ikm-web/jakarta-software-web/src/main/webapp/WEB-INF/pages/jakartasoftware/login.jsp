@@ -36,14 +36,10 @@
 		<s:radio label="Login Type" name="webLoginData.userType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" value="2" />
 		<div class="submit"><s:submit type="submit" id="ButtonLogin" value="%{getText('b.logIn')}"/></div>
 		<s:if test="hasActionErrors()">
-		   <div class="errors">
-		      <s:actionerror/>
-		   </div>
-		</s:if>
-		<s:if test="hasActionMessages()">
-		   <div class="MessageDefault MessageState">
-		      <s:actionmessage/>
-		   </div>
+			<s:iterator value="actionErrors">
+				<div class="my-notify-error"><span class="msg"><s:property escape="false" />
+				</span></div>
+			</s:iterator>
 		</s:if>
 		<%-- <div class="login-social-link">
           <a href="index.html" class="facebook">
