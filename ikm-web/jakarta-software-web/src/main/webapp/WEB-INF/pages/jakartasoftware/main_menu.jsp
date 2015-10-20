@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Modern</a>
+                <a class="navbar-brand" href="index.html">My Agenda IKM School</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -110,13 +110,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	      		</li>
 	      		--%>
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="<s:url value='/Resource/images/myagenda.png'/>"><span class="badge">9</span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="<s:url value='/Resource/images/myagenda.png'/>"><%-- <span class="badge">9</span>--%></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong>My Agenda</strong>
 						</li>
 						<li class="m_2"><a href="#"><i class="fa fa-file"></i> My Agenda <span class="label label-info">42</span></a></li>
 						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Change Password <span class="label label-success">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-pencil"></i> Add Agenda <span class="label label-success">42</span></a></li>
 						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Inbox <span class="label label-danger">42</span></a></li>
 						<li><a href="#"><i class="fa fa-lock"></i> Logout <span class="label label-warning">42</span></a></li>
 						<%--
@@ -142,6 +143,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-shield fa-fw nav_icon"></i>Change Password</a>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-pencil fa-fw nav_icon"></i>Add Agenda</a>
                         </li>
                         <li>
                             <a href="index.html"><i class="fa fa-envelope-o fa-fw nav_icon"></i>Inbox</a>
@@ -228,7 +232,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
         <div id="page-wrapper">
         <div class="graphs">
-     	<div class="col_3">
+     	<%-- <div class="col_3">
         	<div class="col-md-3 widget widget1">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
@@ -335,6 +339,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"> </div>
 	  </div>
+	  --%>
 	  <div class="span_11">
 		<div class="col-md-6 col_4">
 		  <div class="map_container"><div id="vmap" style="width: 100%; height: 400px;"></div></div>
