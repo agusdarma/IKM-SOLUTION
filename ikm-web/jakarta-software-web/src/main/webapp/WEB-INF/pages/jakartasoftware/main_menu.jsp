@@ -5,7 +5,7 @@
 
 <html>
 	<head>
-<title>Modern an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>My Agenda IKM School</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">My Agenda IKM School</a>
+                <a class="navbar-brand" href="index.html">IKM School</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -339,22 +339,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"> </div>
 	  </div>
-	  --%>
+	  --%> 
+	  <%--
 	  <div class="span_11">
 		<div class="col-md-6 col_4">
 		  <div class="map_container"><div id="vmap" style="width: 100%; height: 400px;"></div></div>
-		  <!----Calender -------->
+		 
 			<link rel="stylesheet" href="<s:url value='/Style/jakartasoftware/admin/clndr.css'/>" type="text/css" />
 			<script src="<s:url value='/Java Script/jakartasoftware/admin/underscore-min.js'/>" type="text/javascript"></script>
 			<script src= "<s:url value='/Java Script/jakartasoftware/admin/moment-2.2.1.js'/>" type="text/javascript"></script>
 			<script src="<s:url value='/Java Script/jakartasoftware/admin/clndr.js'/>" type="text/javascript"></script>
 			<script src="<s:url value='/Java Script/jakartasoftware/admin/site.js'/>" type="text/javascript"></script>
-			<!----End Calender -------->
+		
 		</div>
 		<div class="col-md-6 col_5">
 		  <div id="chart_container">
 		   <div id="chart"></div>
 	       <div id="slider"></div>
+		
 <script>
 
 var seriesData = [ [], [], [], [], [] ];
@@ -407,7 +409,7 @@ var detail = new Rickshaw.Graph.HoverDetail({
 });
 </script>
 </div>
-	      <!-- map -->
+	      
 <link href="<s:url value='/Style/jakartasoftware/admin/jqvmap.css'/>" rel='stylesheet' type='text/css' />
 <script src="<s:url value='/Java Script/jakartasoftware/admin/jquery.vmap.js'/>"></script>
 <script src="<s:url value='/Java Script/jakartasoftware/admin/jquery.vmap.sampledata.js'/>" type="text/javascript"></script>
@@ -428,10 +430,11 @@ var detail = new Rickshaw.Graph.HoverDetail({
 		});
 	});
 </script>
-<!-- //map -->
        </div>
        <div class="clearfix"> </div>
     </div>
+	--%>
+	<%--
     <div class="content_bottom">
      <div class="col-md-8 span_3">
 		  <div class="bs-example1" data-example-id="contextual-table">
@@ -558,6 +561,7 @@ var detail = new Rickshaw.Graph.HoverDetail({
 		</div>
 		<div class="clearfix"> </div>
 	    </div>
+		--%>
 		<div class="copy">
             <p>Copyright &copy; 2015 Indo Kanaan Mandiri. All Rights Reserved | Design by W3layouts </p>
 	    </div>
