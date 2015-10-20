@@ -48,6 +48,7 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	}
 	
 	public String execute() {
+		message = "";
 		return INPUT;
 	}
 	
@@ -70,6 +71,7 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 			WebResultVO wrv = handleJsonException(e);
 			setMessage(wrv.getMessage());
 		}		
+		addActionError(message);
 		return INPUT;
 	}
 	
