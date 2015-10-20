@@ -2,11 +2,7 @@ package com.jakarta.software.web.data;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-import com.jakarta.software.web.entity.Bank;
-
-public class WebLoginData extends Bank {
-	private static final long serialVersionUID = 1L;
-	
+public class WebLoginData {	
 	private String kodeSekolah;
 	private String noInduk;
 	private String password;

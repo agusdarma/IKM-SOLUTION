@@ -1,6 +1,7 @@
 package com.jakarta.software.web.service;
 
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -107,7 +108,8 @@ public class HttpClientService {
 			LOG.debug("Request: " + s);
             StringEntity entity = new StringEntity(s);
 			
-			post = new HttpPost(destinationUrl);
+			post = new HttpPost(destinationUrl+trxCode);
+			LOG.debug("Server Url: " + destinationUrl+trxCode);
 			post.setHeader("Content-Type", "application/json");
 			post.setEntity(entity);
 			
@@ -115,6 +117,7 @@ public class HttpClientService {
 			
 			if (response.getStatusLine().getStatusCode() == 200) {
 				String respString = EntityUtils.toString(response.getEntity());
+				respString = URLDecoder.decode(respString, "UTF-8");
                 LOG.debug("Response: {}", new String[] {respString} );                
                 return respString;
 			} else {

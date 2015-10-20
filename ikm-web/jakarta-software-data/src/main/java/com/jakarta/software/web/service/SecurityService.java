@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jakarta.software.web.data.LoginData;
+import com.jakarta.software.web.data.MessageVO;
 import com.jakarta.software.web.data.UserDataLoginVO;
 import com.jakarta.software.web.data.UserDataVO;
 import com.jakarta.software.web.data.UserLevelVO;
@@ -59,9 +61,17 @@ public class SecurityService
 	
 	
 	public void validateUserToEngine(WebLoginData webLoginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.configure(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY, false);
+		webLoginData.setOriginRequest(Constants.ORIGIN_SOURCE_WEB);
 		String s = mapper.writeValueAsString(webLoginData);
-		httpClientService.sendToEnginePostMethod(s,Constants.TRX_CODE_LOGIN);
+		String hasil = httpClientService.sendToEnginePostMethod(s,Constants.TRX_CODE_LOGIN);
+		MessageVO messageVO = mapper.readValue(hasil, MessageVO.class);
+		LOGGER.debug("Hasil: " + messageVO);
+		if(messageVO.getRc()!=0){
+			throw new MmbsWebException(messageVO.getRc());
+		}
 	}
 	
 	@Transactional
