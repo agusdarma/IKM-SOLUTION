@@ -47,6 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
+				<%-- 
 				<li class="dropdown">
 	        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
 	        		<ul class="dropdown-menu">
@@ -60,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/1.png" alt=""/>
+								<img src="<s:url value='/Resource/images/1.png'/>" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 								<span class="label label-info">NEW</span>
@@ -68,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/2.png" alt=""/>
+								<img src="<s:url value='/Resource/images/2.png'/>" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 								<span class="label label-info">NEW</span>
@@ -76,28 +77,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/3.png" alt=""/>
+								<img src="<s:url value='/Resource/images/3.png'/>" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/4.png" alt=""/>
+								<img src="<s:url value='/Resource/images/4.png'/>" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/5.png" alt=""/>
+								<img src="<s:url value='/Resource/images/5.png'/>" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
 						</li>
 						<li class="avatar">
 							<a href="#">
-								<img src="images/pic1.png" alt=""/>
+								<img src="<s:url value='/Resource/images/pic1.png'/>" alt=""/>
 								<div>New message</div>
 								<small>1 minute ago</small>
 							</a>
@@ -107,16 +108,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>	
 	        		</ul>
 	      		</li>
+	      		--%>
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"><span class="badge">9</span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="<s:url value='/Resource/images/myagenda.png'/>"><span class="badge">9</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
-							<strong>Account</strong>
+							<strong>My Agenda</strong>
 						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
-						<li><a href="#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-file"></i> My Agenda <span class="label label-info">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Change Password <span class="label label-success">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Inbox <span class="label label-danger">42</span></a></li>
+						<li><a href="#"><i class="fa fa-lock"></i> Logout <span class="label label-warning">42</span></a></li>
+						<%--
 						<li class="dropdown-menu-header text-center">
 							<strong>Settings</strong>
 						</li>
@@ -126,19 +129,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
 						<li class="divider"></li>
 						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>	
+						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
+						--%>	
 	        		</ul>
 	      		</li>
-			</ul>
-			<form class="navbar-form navbar-right">
-              <input type="text" class="form-control" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
-            </form>
+			</ul>			
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                            <a href="index.html"><i class="fa fa-file fa-fw nav_icon"></i>My Agenda</a>
                         </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-shield fa-fw nav_icon"></i>Change Password</a>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-envelope-o fa-fw nav_icon"></i>Inbox</a>
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-lock fa-fw nav_icon"></i>Logout</a>
+                        </li>
+                        <%--
                         <li>
                             <a href="#"><i class="fa fa-laptop nav_icon"></i>Layouts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -208,6 +219,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        --%>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -542,7 +554,7 @@ var detail = new Rickshaw.Graph.HoverDetail({
 		<div class="clearfix"> </div>
 	    </div>
 		<div class="copy">
-            <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+            <p>Copyright &copy; 2015 Indo Kanaan Mandiri. All Rights Reserved | Design by W3layouts </p>
 	    </div>
 		</div>
        </div>
