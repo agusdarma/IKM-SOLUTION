@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jakarta.software.web.data.RespLoginVO;
 import com.jakarta.software.web.data.UserDataLoginVO;
 import com.jakarta.software.web.data.WebLoginData;
 import com.jakarta.software.web.data.WebResultVO;
@@ -22,6 +24,7 @@ import com.jakarta.software.web.mapper.UserDataMapper;
 import com.jakarta.software.web.service.LookupService;
 import com.jakarta.software.web.service.MmbsWebException;
 import com.jakarta.software.web.service.SecurityService;
+import com.jakarta.software.web.utils.StringUtils;
 
 
 public class LoginAction extends BaseAction implements ServletRequestAware {
@@ -49,6 +52,7 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	
 	public String execute() {
 		message = "";
+		session.clear();
 		return INPUT;
 	}
 	
@@ -56,7 +60,10 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 		if(webLoginData==null) return INPUT;			
 		LOG.debug("Login: " + webLoginData);
 		try {
-			securityService.validateUserToEngine(webLoginData);
+			RespLoginVO respLoginVO = securityService.validateUserToEngine(webLoginData);
+			Locale localeID = StringUtils.localeFinder(respLoginVO.getUserPreference().getLanguage());
+			session.put(LOGIN_KEY, respLoginVO);
+			session.put(WEB_LOCALE_KEY, localeID);
 			return SUCCESS;
 		} catch (MmbsWebException mwe) {
 			WebResultVO wrv = handleJsonException(mwe);

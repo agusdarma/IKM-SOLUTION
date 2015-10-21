@@ -5,7 +5,7 @@
 
 <html>
 	<head>
-<title>My Agenda IKM School</title>
+<title><s:text name="t.home"/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">IKM School</a>
+                <a class="navbar-brand" href="index.html"><s:text name="w.hello"></s:text><s:property value="loginData.nama"/></a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -113,13 +113,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="<s:url value='/Resource/images/myagenda.png'/>"><%-- <span class="badge">9</span>--%></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
-							<strong>My Agenda</strong>
+							<strong><s:text name="t.menu.myagenda"></s:text></strong>
 						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-file"></i> My Agenda <span class="label label-info">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Change Password <span class="label label-success">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-pencil"></i> Add Agenda <span class="label label-success">42</span></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Inbox <span class="label label-danger">42</span></a></li>
-						<li><a href="#"><i class="fa fa-lock"></i> Logout <span class="label label-warning">42</span></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-file"></i> <s:text name="t.menu.myagenda"></s:text> <%--<span class="label label-info">42</span>--%></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> <s:text name="t.menu.changePassword"></s:text> <%--<span class="label label-success">42</span>--%></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-pencil"></i> <s:text name="t.menu.addAgenda"></s:text> <%--<span class="label label-success">42</span>--%></a></li>
+						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> <s:text name="t.menu.inbox"></s:text> <%--<span class="label label-danger">42</span>--%></a></li>
+						<li><a href="#"><i class="fa fa-lock"></i> <s:text name="t.menu.logout"></s:text> <%--<span class="label label-warning">42</span>--%></a></li>
 						<%--
 						<li class="dropdown-menu-header text-center">
 							<strong>Settings</strong>
@@ -139,19 +139,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-file fa-fw nav_icon"></i>My Agenda</a>
+                            <a href="index.html"><i class="fa fa-file fa-fw nav_icon"></i><s:text name="t.menu.myagenda"></s:text></a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-shield fa-fw nav_icon"></i>Change Password</a>
+                            <a href="index.html"><i class="fa fa-shield fa-fw nav_icon"></i><s:text name="t.menu.changePassword"></s:text></a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-pencil fa-fw nav_icon"></i>Add Agenda</a>
+                            <a href="index.html"><i class="fa fa-pencil fa-fw nav_icon"></i><s:text name="t.menu.addAgenda"></s:text></a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-envelope-o fa-fw nav_icon"></i>Inbox</a>
+                            <a href="index.html"><i class="fa fa-envelope-o fa-fw nav_icon"></i><s:text name="t.menu.inbox"></s:text></a>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-lock fa-fw nav_icon"></i>Logout</a>
+                            <a href="index.html"><i class="fa fa-lock fa-fw nav_icon"></i><s:text name="t.menu.logout"></s:text></a>
                         </li>
                         <%--
                         <li>
@@ -563,7 +563,7 @@ var detail = new Rickshaw.Graph.HoverDetail({
 	    </div>
 		--%>
 		<div class="copy">
-            <p>Copyright &copy; 2015 Indo Kanaan Mandiri. All Rights Reserved | Design by W3layouts </p>
+            <p><s:text name="w.copyright"></s:text></p>
 	    </div>
 		</div>
        </div>

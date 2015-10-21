@@ -58,7 +58,7 @@
 	</s:form>
   </div>
    <div class="copy_layout login">
-      <p>Copyright &copy; 2015 Indo Kanaan Mandiri. All Rights Reserved | Design by W3layouts </p>
+      <p><s:text name="w.copyright"></s:text></p>
    </div>
 </body>
 </html>
