@@ -87,12 +87,10 @@ public class LoginAction extends BaseAction implements ServletRequestAware {
 	}
 	
 	public String logoff() {
-		UserDataLoginVO loginVO = (UserDataLoginVO) session.remove(LOGIN_KEY);
-		session.clear();
-		LOG.debug("Logoff: " + (loginVO == null? "N/A" : loginVO.getUserCode()) );
-		session.clear();
-		securityService.logoutUser(loginVO);		
-		return SUCCESS;
+		RespLoginVO loginVO = (RespLoginVO) session.remove(LOGIN_KEY);
+		LOG.debug("Logoff: " + (loginVO == null? "N/A" : loginVO.getNama()) );
+		session.clear();				
+		return INPUT;
 	}
 	
 	public String expired() {

@@ -115,10 +115,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="dropdown-menu-header text-center">
 							<strong><s:text name="t.menu.myagenda"></s:text></strong>
 						</li>
-						<s:if test="loginData.userType == 2">
+						<s:if test="loginData.userType == 1">
 							<%@ include file="/WEB-INF/includes/include_menu_drop_down_teacher.jsp"%>						
 						</s:if>
-						<s:if test="loginData.userType == 1">
+						<s:if test="loginData.userType == 2">
 							<%@ include file="/WEB-INF/includes/include_menu_drop_down_parent.jsp"%>						
 						</s:if>												
 						<%--
@@ -139,10 +139,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <s:if test="loginData.userType == 2">
+                        <s:if test="loginData.userType == 1">
 							<%@ include file="/WEB-INF/includes/include_menu_left_teacher.jsp"%>						
 						</s:if>
-						<s:if test="loginData.userType == 1">
+						<s:if test="loginData.userType == 2">
 							<%@ include file="/WEB-INF/includes/include_menu_left_parent.jsp"%>						
 						</s:if>
                         <%--
