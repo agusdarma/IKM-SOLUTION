@@ -11,6 +11,7 @@
         </action>
 	    
 	    <action name="MainMenu" class="com.jakarta.software.web.action.MainMenuAction">
+	        <interceptor-ref name="webSecureStack" />
             <result name="input">/WEB-INF/pages/jakartasoftware/main_menu.jsp</result>
         </action>
         

@@ -115,11 +115,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="dropdown-menu-header text-center">
 							<strong><s:text name="t.menu.myagenda"></s:text></strong>
 						</li>
-						<li class="m_2"><a href="#"><i class="fa fa-file"></i> <s:text name="t.menu.myagenda"></s:text> <%--<span class="label label-info">42</span>--%></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> <s:text name="t.menu.changePassword"></s:text> <%--<span class="label label-success">42</span>--%></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-pencil"></i> <s:text name="t.menu.addAgenda"></s:text> <%--<span class="label label-success">42</span>--%></a></li>
-						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> <s:text name="t.menu.inbox"></s:text> <%--<span class="label label-danger">42</span>--%></a></li>
-						<li><a href="#"><i class="fa fa-lock"></i> <s:text name="t.menu.logout"></s:text> <%--<span class="label label-warning">42</span>--%></a></li>
+						<s:if test="loginData.userType == 2">
+							<%@ include file="/WEB-INF/includes/include_menu_drop_down_teacher.jsp"%>						
+						</s:if>
+						<s:if test="loginData.userType == 1">
+							<%@ include file="/WEB-INF/includes/include_menu_drop_down_parent.jsp"%>						
+						</s:if>												
 						<%--
 						<li class="dropdown-menu-header text-center">
 							<strong>Settings</strong>
@@ -138,21 +139,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html"><i class="fa fa-file fa-fw nav_icon"></i><s:text name="t.menu.myagenda"></s:text></a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-shield fa-fw nav_icon"></i><s:text name="t.menu.changePassword"></s:text></a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-pencil fa-fw nav_icon"></i><s:text name="t.menu.addAgenda"></s:text></a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-envelope-o fa-fw nav_icon"></i><s:text name="t.menu.inbox"></s:text></a>
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-lock fa-fw nav_icon"></i><s:text name="t.menu.logout"></s:text></a>
-                        </li>
+                        <s:if test="loginData.userType == 2">
+							<%@ include file="/WEB-INF/includes/include_menu_left_teacher.jsp"%>						
+						</s:if>
+						<s:if test="loginData.userType == 1">
+							<%@ include file="/WEB-INF/includes/include_menu_left_parent.jsp"%>						
+						</s:if>
                         <%--
                         <li>
                             <a href="#"><i class="fa fa-laptop nav_icon"></i>Layouts<span class="fa arrow"></span></a>

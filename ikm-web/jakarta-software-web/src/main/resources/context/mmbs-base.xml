@@ -12,7 +12,7 @@
     	
 		<interceptors>
 			<interceptor name="securityCheck"
-				class="com.jakarta.software.web.interceptor.SecurityInterceptor" />
+				class="com.jakarta.software.web.interceptor.SecurityInterceptorAgenda" />
 			<interceptor name="jmesaPaging" 
 				class="com.jakarta.software.web.interceptor.JMesaPagingInterceptor" />			
 			
