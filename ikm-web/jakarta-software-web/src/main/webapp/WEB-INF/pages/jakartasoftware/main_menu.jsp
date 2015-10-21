@@ -36,8 +36,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         #report h4 { margin:0px; padding:0px;}
         #report img { float:right;}
         #report ul { margin:10px 0 10px 40px; padding:0px;}
-        #report th { background:#7CB8E2 url(../header_bkg.png) repeat-x scroll center left; color:#fff; padding:7px 15px; text-align:left;}
-        #report td { background:#C7DDEE none repeat-x scroll center left; color:#000; padding:7px 15px; }
+        #report th { background:#06D995 url(../header_bkg.png) repeat-x scroll center left; color:#fff; padding:7px 15px; text-align:left;}
+        #report td { background:#06D995 none repeat-x scroll center left; color:#000; padding:7px 15px; }
         #report tr.odd td { background:#fff url(../row_bkg.png) repeat-x scroll center left; cursor:pointer; }
         #report div.arrow { background:transparent url(../arrows.png) no-repeat scroll 0px -16px; width:16px; height:16px; display:block;}
         #report div.up { background-position:0px 0px;}
@@ -265,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </tr>
         <tr>
             <td colspan="5">
-                <img src="/Resource/images/125px-Flag_of_the_United_States.svg.png" alt="Flag of USA" />
+                <img src="<s:url value='/Resource/images/125px-Flag_of_the_United_States.svg.png'/>" alt="Flag of USA" />
                 <h4>Additional information</h4>
                 <ul>
                     <li><a href="http://en.wikipedia.org/wiki/Usa">USA on Wikipedia</a></li>
@@ -283,7 +283,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </tr>
         <tr>
             <td colspan="5">
-                <img src="/Resource/images/125px-Flag_of_the_United_Kingdom.svg.png" alt="Flag of UK" />
+                <img src="<s:url value='/Resource/images/125px-Flag_of_the_United_Kingdom.svg.png'/>" alt="Flag of UK" />
                 <h4>Additional information</h4>
                 <ul>
                     <li><a href="http://en.wikipedia.org/wiki/United_kingdom">UK on Wikipedia</a></li>
@@ -303,7 +303,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </tr>
         <tr>
             <td colspan="5">
-                <img src="/Resource/images/125px-Flag_of_India.svg.png" alt="Flag of India" />
+                <img src="<s:url value='/Resource/images/125px-Flag_of_India.svg.png'/>" alt="Flag of India" />
                 <h4>Additional information</h4>
                 <ul>
                     <li><a href="http://en.wikipedia.org/wiki/India">India on Wikipedia</a></li>
@@ -322,7 +322,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </tr>
         <tr>
             <td colspan="5">
-                <img src="/Resource/images/125px-Flag_of_Canada.svg.png" alt="Flag of Canada" />
+                <img src="<s:url value='/Resource/images/125px-Flag_of_Canada.svg.png'/>" alt="Flag of Canada" />
                 <h4>Additional information</h4>
                 <ul>
                     <li><a href="http://en.wikipedia.org/wiki/Canada">Canada on Wikipedia</a></li>
@@ -341,7 +341,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </tr>
         <tr>
             <td colspan="5">
-                <img src="/Resource/images/125px-Flag_of_Germany.svg.png" alt="Flag of Germany" />
+                <img src="<s:url value='/Resource/images/125px-Flag_of_Germany.svg.png'/>" alt="Flag of Germany" />
                 <h4>Additional information</h4>
                 <ul>
                     <li><a href="http://en.wikipedia.org/wiki/Germany">Germany on Wikipedia</a></li>
