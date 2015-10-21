@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jakarta.software.web.data.LoginData;
 import com.jakarta.software.web.data.MessageVO;
+import com.jakarta.software.web.data.RespLoginVO;
 import com.jakarta.software.web.data.UserDataLoginVO;
 import com.jakarta.software.web.data.UserDataVO;
 import com.jakarta.software.web.data.UserLevelVO;
@@ -60,7 +61,7 @@ public class SecurityService
 	private HttpClientService httpClientService;
 	
 	
-	public void validateUserToEngine(WebLoginData webLoginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
+	public RespLoginVO validateUserToEngine(WebLoginData webLoginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		mapper.configure(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY, false);
@@ -72,6 +73,11 @@ public class SecurityService
 		if(messageVO.getRc()!=0){
 			throw new MmbsWebException(messageVO.getRc());
 		}
+		RespLoginVO respLoginVO = mapper.readValue(messageVO.getOtherMessage(), RespLoginVO.class);
+		// USER PREFERENCES		
+		UserPreference userPreference = userPreferenceMapper.findUserPreferenceByID(1);
+		respLoginVO.setUserPreference(userPreference);
+		return respLoginVO;
 	}
 	
 	@Transactional
