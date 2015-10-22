@@ -224,7 +224,7 @@ public class UserDataAction extends BaseListAction implements ModuleCheckable{
 	
 	// list department
 	public List<Lookup> getListDepartment() {
-		List<Lookup> listDepartment = lookupService.findLookupByCat(LookupService.CAT_DEPARTMENT);
+		List<Lookup> listDepartment = lookupService.findLookupByCat(LookupService.CAT_AGENDA_TYPE);
 		return listDepartment;
 	}
 	
