@@ -19,7 +19,7 @@ public class LookupService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LookupService.class);
 
 	public static final int CAT_LOGIN_USER						= 1;
-	public static final int CAT_DEPARTMENT						= 2;
+	public static final int CAT_AGENDA_TYPE						= 2;
 	public static final int CAT_LIMIT_TYPE						= 3;
 	public static final int CAT_CURR_CODE						= 4;
 	public static final int CAT_ACCOUNT_TYPE_DISPLAY			= 5;

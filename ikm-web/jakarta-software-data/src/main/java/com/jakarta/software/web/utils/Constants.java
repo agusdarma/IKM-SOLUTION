@@ -2,6 +2,15 @@ package com.jakarta.software.web.utils;
 
 public class Constants {
 	
+	public static final int TEACHER						= 1	;
+	public static final int PARENT						= 2	;
+	
+	public static final int GENERAL_AGENDA						= 1	;
+	public static final int OTHER_AGENDA						= 2	;
+	
+	public static final int UNREAD						= 0	;
+	public static final int READ						= 1	;
+	
 	/*HTML 5
 	public static final String NE_SDF_FULL			= "dd/MM/yyyy HH:mm:ss";
 	public static final String NE_SDF_DATE			= "yyyy-MM-dd";
@@ -71,8 +80,9 @@ public class Constants {
 	public static final String HTTP_PARAM_MESSAGE_ENCRYPTED = "x";
 	public static final String HTTP_PARAM_MESSAGE = "m";
 
-	public static final String ORIGIN_SOURCE_WEB	= "Web";
-	public static final String TRX_CODE_LOGIN		= "/trx/loginUser";
+	public static final String ORIGIN_SOURCE_WEB			= "Web";
+	public static final String TRX_CODE_LOGIN				= "/trx/loginUser";
+	public static final String TRX_CODE_GET_LIST_AGENDA		= "/trx/listAgenda";
 	public static final String TRX_CODE_ACC_INFO	= "WEB_ACC_INFO";
 //	public static final String TRX_CODE_CIF_REG		= "WEB_REG";
 	public static final String TRX_CODE_CIF_AUTH	= "WEB_CIF_AUTH";
