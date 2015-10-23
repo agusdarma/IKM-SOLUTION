@@ -32,6 +32,7 @@ public class MainMenuAction extends BaseAction implements ServletRequestAware {
 	private HttpServletRequest httpRequest;
 	private ReqListAgendaData reqListAgendaData;
 	private RespListAgendaVO respListAgendaVO;
+	private int agendaType;
 	
 	@Autowired
 	private MainMenuService mainMenuService;
@@ -44,7 +45,8 @@ public class MainMenuAction extends BaseAction implements ServletRequestAware {
 		return LOG;
 	}
 	
-	public String execute() {		
+	public String execute() {	
+		agendaType = 1;
 		try{
 			RespLoginVO loginData = getLoginData();	
 			if(reqListAgendaData == null){
@@ -71,6 +73,29 @@ public class MainMenuAction extends BaseAction implements ServletRequestAware {
 		}		
 	//		addActionError(message);
 		return INPUT;		
+	}
+	
+	public String refresh() {
+		try{
+			RespLoginVO loginData = getLoginData();	
+			if(reqListAgendaData == null){
+				reqListAgendaData = new ReqListAgendaData();
+			}
+			reqListAgendaData.setPassword(loginData.getPassword());
+			reqListAgendaData.setKodeSekolah(loginData.getKodeSekolah());
+			reqListAgendaData.setNoInduk(loginData.getNoInduk());
+			reqListAgendaData.setUserType(loginData.getUserType());
+			reqListAgendaData.setAgendaType(agendaType);
+			respListAgendaVO =  mainMenuService.getListAgenda(reqListAgendaData);
+		} catch (MmbsWebException mwe) {
+			WebResultVO wrv = handleJsonException(mwe);
+		} catch (JsonGenerationException e) {
+		} catch (JsonMappingException e) {
+		} catch (IOException e) {
+		} catch (Exception e) {
+			WebResultVO wrv = handleJsonException(e);
+		}		
+		return INPUT;
 	}
 	
 	public List<Lookup> getListAgendaType() {
@@ -102,6 +127,14 @@ public class MainMenuAction extends BaseAction implements ServletRequestAware {
 
 	public void setRespListAgendaVO(RespListAgendaVO respListAgendaVO) {
 		this.respListAgendaVO = respListAgendaVO;
+	}
+
+	public int getAgendaType() {
+		return agendaType;
+	}
+
+	public void setAgendaType(int agendaType) {
+		this.agendaType = agendaType;
 	}
 		
 }

@@ -4,12 +4,11 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 
 <html>
-	<head>
+	<head>	
 <title><s:text name="t.home"/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="keywords" content="Modern Responsive web template" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
 <link href="<s:url value='/Style/jakartasoftware/admin/bootstrap.min.css'/>" rel='stylesheet' type='text/css' />
@@ -55,6 +54,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             //$("#report").jExpand();
         });
     </script> 
+    <s:url id="refreshUrl" action="MainMenu!refresh"/>
+    <script type="text/javascript">
+    function onOptionSelect(value) {
+    	var agendavalue;
+    	agendavalue = value;    	
+    	
+    	window.location.href='<s:property value="%{refreshUrl}"/>?agendaType='+agendavalue;
+    	
+    	
+    }
+    </script> 
 </head>
 <body>
 <div id="wrapper">
@@ -67,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><s:text name="w.hello"></s:text><s:property value="loginData.nama"/></a>
+                <a class="navbar-brand" href="MainMenu.web"><s:text name="w.hello"></s:text><s:property value="loginData.nama"/></a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
@@ -248,8 +258,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
         <div id="page-wrapper">
         <div class="graphs">
-        <s:radio label="Agenda Type" name="reqListAgendaData.agendaType" list="listAgendaType" listKey="lookupValue" listValue="lookupDesc" value="1" />
-        <table id="report">
+		<s:text name="t.label.agendaType"></s:text>
+        <!--<s:radio label="Agenda Type" name="reqListAgendaData.agendaType" onclick="onOptionSelect(this.value)" list="listAgendaType" listKey="lookupValue" listValue="lookupDesc" value="<s:property value='agendaType'/>" />
+        -->
+        <s:select label="Agenda Type" name="reqListAgendaData.agendaType" onchange="onOptionSelect(this.value)" list="listAgendaType" listKey="lookupValue" listValue="lookupDesc" />
+        </br>
+		</br>
+		<table id="report">
         <tr>                  
             <th><s:text name="t.label.tanggalAgenda"></s:text></th>
             <th></th>
