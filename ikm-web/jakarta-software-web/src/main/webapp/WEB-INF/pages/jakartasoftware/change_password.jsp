@@ -79,26 +79,26 @@
         <div id="page-wrapper">
         <div class="graphs">
 			<div class="xs">
-				<h3>Change Password</h3>
+				<h3><s:text name="t.menu.changePassword" /></h3>
 				<div class="tab-content">
 					<div class="tab-pane active" id="horizontal-form">
 						<form class="form-horizontal">
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Old Password</label>
+									<label for="focusedinput" class="col-sm-2 control-label"><s:text name="t.label.oldPassword" /></label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" id="focusedinput" placeholder="Default Input">
+										<input type="password" class="form-control1" id="focusedinput" placeholder='<s:text name="t.label.oldPassword" />'>
 									</div>									
 								</div>
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">New Password</label>
+									<label for="focusedinput" class="col-sm-2 control-label"><s:text name="t.label.newPassword" /></label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" id="focusedinput" placeholder="Default Input">
+										<input type="password" class="form-control1" id="focusedinput" placeholder='<s:text name="t.label.newPassword" />'>
 									</div>									
 								</div>
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Confirm New Password</label>
+									<label for="focusedinput" class="col-sm-2 control-label"><s:text name="t.label.confirmNewPassword" /></label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" id="focusedinput" placeholder="Default Input">
+										<input type="password" class="form-control1" id="focusedinput" placeholder='<s:text name="t.label.confirmNewPassword" />'>
 									</div>									
 								</div>
 						</form>

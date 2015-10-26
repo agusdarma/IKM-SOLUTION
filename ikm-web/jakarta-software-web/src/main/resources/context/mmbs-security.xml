@@ -38,7 +38,7 @@
 				<param name="inputName">wsr</param>
 			</result>
         </action>
-        
+        <!--  
         <action name="ChangePassword!*" method="{1}" class="com.jakarta.software.web.action.security.ChangePasswordAction">
             <interceptor-ref name="webSecureStack" /> 
             <result name="input">WEB-INF/pages/security/change_password.jsp</result>
@@ -47,6 +47,7 @@
 				<param name="inputName">wrv</param>
 			</result>
         </action>
+        -->
         
         <action name="ResetPassword!*" method="{1}" class="com.jakarta.software.web.action.security.ResetPasswordAction">
             <interceptor-ref name="webSecureStack"/>
