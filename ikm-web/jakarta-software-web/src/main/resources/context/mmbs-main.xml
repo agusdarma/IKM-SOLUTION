@@ -15,6 +15,11 @@
             <result name="input">/WEB-INF/pages/jakartasoftware/main_menu.jsp</result>
         </action>
         
+	    <action name="ChangePassword!*" method="{1}" class="com.jakarta.software.web.action.ChangePasswordAction">
+	        <interceptor-ref name="webSecureStack" />
+            <result name="input">/WEB-INF/pages/jakartasoftware/change_password.jsp</result>
+        </action>
+        
         <action name="Portfolio" class="com.jakarta.software.web.action.PortfolioAction">
             <result name="input">/WEB-INF/pages/jakartasoftware/portfolio.jsp</result>
         </action>	
