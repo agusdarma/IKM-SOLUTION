@@ -20,11 +20,11 @@
 				<interceptor-ref name="basicStack" />
 			</interceptor-stack>
 
-			<interceptor-stack name="webSecureStack">
-				<interceptor-ref name="securityCheck" />
+			<interceptor-stack name="webSecureStack">				
 				<interceptor-ref name="fileUpload" />
                 <interceptor-ref name="i18nStack" />
-                <interceptor-ref name="jmesaPaging" />                
+                <interceptor-ref name="jmesaPaging" />    
+                <interceptor-ref name="securityCheck" />            
 			</interceptor-stack>
 		</interceptors>
 
