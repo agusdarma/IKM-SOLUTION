@@ -101,12 +101,16 @@
 										<input type="password" class="form-control1" id="focusedinput" placeholder='<s:text name="t.label.confirmNewPassword" />'>
 									</div>									
 								</div>
+								<div class="col-sm-8 col-sm-offset-2">
+									<button class="btn-default btn"><s:text name="b.save" /></button>									
+								</div>
 						</form>
 					</div>
 				</div>
 		
     		<div class="clearfix"> </div>
-	    </div>     	
+	    </div>    
+		</br>
 		<div class="copy">
             <p><s:text name="w.copyright"></s:text></p>
 	    </div>
