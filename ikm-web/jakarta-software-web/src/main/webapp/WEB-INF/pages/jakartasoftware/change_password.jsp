@@ -47,7 +47,7 @@
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">				
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="<s:url value='/Resource/images/myagenda.png'/>"><span class="badge"><s:property value="respListAgendaVO.jumlahMessageUnread"/></span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="<s:url value='/Resource/images/myagenda.png'/>"><span class="badge"><%--<s:property value="respListAgendaVO.jumlahMessageUnread"/>--%></span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong><s:text name="t.menu.myagenda"></s:text></strong>
