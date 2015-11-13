@@ -76,7 +76,7 @@ public class SmisServletTest {
 //		
 //		System.out.print(diffMinutesOnly + " minutes.");
 //		user.getKodeSekolah()+user.getNoInduk()
-		String pass = CipherUtil.passwordDigest("IKM-001"+"6","111111");
+		String pass = CipherUtil.passwordDigest("IKM-001"+"270885","270885");
 //		String a = "agus";
 		System.out.println(pass);
 	}
