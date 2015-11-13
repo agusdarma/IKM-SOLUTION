@@ -33,7 +33,7 @@ public class LoginService {
 	
 	public RespLoginVO login(LoginData loginData) throws IkmEngineException {
 		LOG.debug("login with param : " + " loginData: " + loginData );	
-		User user = userDataMapper.findUserByKodeSekolahAndNoIndukAndUserType(loginData.getKodeSekolah(), loginData.getNoInduk(),loginData.getUserType());
+		User user = userDataMapper.findUserByKodeSekolahAndNoIndukAndUserType(loginData.getKodeSekolah().trim(), loginData.getNoInduk().trim(),loginData.getUserType());
 		if(user == null){
 			LOG.error("Can't find User with parameter: " + loginData);
 			throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
@@ -48,7 +48,7 @@ public class LoginService {
 		}	
 //		if(Constants.TEACHER == loginData.getUserType()){
 			String passwordDB = user.getPassword();
-			String passwordInput = CipherUtil.passwordDigest(loginData.getKodeSekolah()+loginData.getNoInduk(), loginData.getPassword());
+			String passwordInput = CipherUtil.passwordDigest(loginData.getKodeSekolah().trim()+loginData.getNoInduk().trim(), loginData.getPassword().trim());
 			if(!passwordDB.equals(passwordInput)){
 				throw new IkmEngineException(IkmEngineException.ENGINE_WRONG_EMAIL_OR_PASSWORD);
 			}
@@ -59,7 +59,7 @@ public class LoginService {
 		respLoginVO.setNama(user.getNama());
 		respLoginVO.setNoInduk(user.getNoInduk());
 		respLoginVO.setStatusUser(user.getStatusUser());
-		respLoginVO.setPassword(loginData.getPassword());
+		respLoginVO.setPassword(loginData.getPassword().trim());
 		respLoginVO.setOriginRequest(loginData.getOriginRequest());
 		respLoginVO.setUserType(user.getUserType());	
 		
