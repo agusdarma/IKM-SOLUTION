@@ -151,7 +151,7 @@ public class InboxService {
 				if(inboxVO.getFromName().equalsIgnoreCase(user.getNama())){
 					inboxVO.setSelf(true);
 				}
-				inboxVO.setCreatedOnVal(CommonUtil.displayTime(inboxVO.getCreatedOn()));
+				inboxVO.setCreatedOnVal(CommonUtil.displayDateTime(inboxVO.getCreatedOn()));
 			}
 			respListInboxVO.setListInboxVO(listInboxVOs);
 		}
