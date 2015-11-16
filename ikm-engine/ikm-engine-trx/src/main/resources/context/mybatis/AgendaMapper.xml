@@ -34,7 +34,12 @@
 		inner join sekolah s on s.id = usk.sekolah_id
 		inner join kelas k on k.id = usk.kelas_id
 		inner join subject su on su.id = usk.subject_id
-		left join agenda a on a.nama_kelas = k.nama_kelas and a.kode_sekolah = s.kode_sekolah and a.subject = su.subject_name
+		left join agenda a on a.nama_kelas = k.nama_kelas 
+		and a.kode_sekolah = s.kode_sekolah 
+		<if test="agendaType != null and agendaType == 1">
+			and a.subject = su.subject_name    
+		</if>
+		
 		where u.user_type = #{userType}
 		and u.nomor_induk =
 		#{noInduk}
