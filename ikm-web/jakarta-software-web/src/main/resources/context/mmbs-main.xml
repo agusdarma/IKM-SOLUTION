@@ -20,6 +20,11 @@
             <result name="input">/WEB-INF/pages/jakartasoftware/change_password.jsp</result>
         </action>
         
+	    <action name="AddAgenda!*" method="{1}" class="com.jakarta.software.web.action.AddAgendaAction">
+	        <interceptor-ref name="webSecureStack" />
+            <result name="input">/WEB-INF/pages/jakartasoftware/add_agenda.jsp</result>
+        </action>
+        
         <action name="Portfolio" class="com.jakarta.software.web.action.PortfolioAction">
             <result name="input">/WEB-INF/pages/jakartasoftware/portfolio.jsp</result>
         </action>	

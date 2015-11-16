@@ -274,16 +274,18 @@
 	            <td><s:property value="#listHeader.tanggalAgendaVal"/></td>	            
 	            <td><div class="arrow"></div></td>
 	        </tr>
-	        <s:iterator value="#listHeader.agendaDetail" var="listDetail">
+	        
 		        <tr>
 		            <td colspan="5">		                
 		                <h4><s:text name="t.label.agendaDetail"></s:text></h4>
 		                <ul>
-		                    <li><s:property value="#listDetail.subject"/> : <s:property value="#listDetail.isiAgenda"/></li>		                    
+		                	<s:iterator value="#listHeader.agendaDetail" var="listDetail">
+		                    <li><s:property value="#listDetail.subject"/> : <s:property value="#listDetail.isiAgenda"/></li>
+		                    </s:iterator>			                    
 		                 </ul>   
 		            </td>
 		        </tr>
-	        </s:iterator>			
+	        		
 	        
 		</s:iterator>             
     </table>
