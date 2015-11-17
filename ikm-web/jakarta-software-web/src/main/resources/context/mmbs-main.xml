@@ -22,7 +22,12 @@
         
 	    <action name="AddAgenda!*" method="{1}" class="com.jakarta.software.web.action.AddAgendaAction">
 	        <interceptor-ref name="webSecureStack" />
-            <result name="input">/WEB-INF/pages/jakartasoftware/add_agenda.jsp</result>
+            <result name="input">/WEB-INF/pages/jakartasoftware/add_agenda.jsp</result>            
+            <result name="success" type="redirectAction">
+                <param name="message">${message}</param>
+                <param name="actionName">AddAgenda!finish</param>
+            </result>
+            <result name="search">/WEB-INF/pages/jakartasoftware/add_agenda.jsp</result>
         </action>
         
         <action name="Portfolio" class="com.jakarta.software.web.action.PortfolioAction">

@@ -39,7 +39,8 @@
   <script>
   $(function() {
     $( "#datepicker" ).datepicker({
-	  minDate: new Date()
+	  minDate: new Date(),
+	  dateFormat: "dd-mm-yy"
 	});
   });
   </script>
@@ -95,45 +96,50 @@
 				<h3><s:text name="t.menu.addAgenda" /></h3>
 				<div class="tab-content">
 					<div class="tab-pane active" id="horizontal-form">
-						<form class="form-horizontal">
+						<s:form action="AddAgenda!add" method="post" cssClass="form-horizontal">
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Kelas</label>
 									<div class="col-sm-8">
-									<s:select id="selector1" name="cif" list="listKelas" listKey="namaKelas" listValue="namaKelas" cssClass="form-control1"/></div>
+									<s:select id="selector1" name="reqAddAgendaData.namaKelas" list="listKelas" listKey="namaKelas" listValue="namaKelas" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Subject</label>
-									<div class="col-sm-8"><select name="selector1" id="selector1" class="form-control1">
-										<option>Lorem ipsum dolor sit amet.</option>
-										<option>Dolore, ab unde modi est!</option>
-										<option>Illum, fuga minus sit eaque.</option>
-										<option>Consequatur ducimus maiores voluptatum minima.</option>
-									</select></div>
+									<div class="col-sm-8">
+									<s:select id="selector1" name="reqAddAgendaData.subject" list="listSubjects" listKey="subjectName" listValue="subjectName" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Jenis Agenda</label>
-									<div class="col-sm-8"><select name="selector1" id="selector1" class="form-control1">
-										<option>Lorem ipsum dolor sit amet.</option>
-										<option>Dolore, ab unde modi est!</option>
-										<option>Illum, fuga minus sit eaque.</option>
-										<option>Consequatur ducimus maiores voluptatum minima.</option>
-									</select></div>
+									<div class="col-sm-8">
+									<s:select id="selector1" name="reqAddAgendaData.agendaType" list="listAgendaType" listKey="lookupValue" listValue="lookupDesc" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">									
 									<label for="selector1" class="col-sm-2 control-label">Tanggal Agenda</label>
-                            		<div class="col-sm-8"><input type="text" id="datepicker"></div>
+                            		<div class="col-sm-8">
+                            		<s:textfield id="datepicker" name="reqAddAgendaData.tanggalAgendaInput"/></div>
 									
 								</div>
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Isi Agenda</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" id="focusedinput" placeholder='<s:text name="t.label.oldPassword" />'>
+										<s:textfield id="focusedinput" type="text" name="reqAddAgendaData.isiAgenda" cssClass="form-control1" placeholder="%{getText('t.label.isiAgenda')}" required="true"/>
 									</div>									
 								</div>
+								<s:if test="hasActionErrors()">
+									<s:iterator value="actionErrors">
+										<div class="my-notify-error"><span class="msg"><s:property escape="false" />
+										</span></div>
+									</s:iterator>
+								</s:if>
+								<s:if test="hasActionMessages()">
+									<s:iterator value="actionMessages">
+										<div class="my-notify-success"><span class="msg"><s:property escape="false" />
+										</span></div>
+									</s:iterator>
+								</s:if>								
 								<div class="col-sm-8 col-sm-offset-2">
 									<button class="btn-default btn"><s:text name="b.save" /></button>									
 								</div>
-						</form>
+						</s:form>
 					</div>
 				</div>
 		
