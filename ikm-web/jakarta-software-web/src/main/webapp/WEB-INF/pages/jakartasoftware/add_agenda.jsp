@@ -100,22 +100,22 @@
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Kelas</label>
 									<div class="col-sm-8">
-									<s:select id="selector1" name="reqAddAgendaData.namaKelas" list="listKelas" listKey="namaKelas" listValue="namaKelas" cssClass="form-control1"/></div>
+									<s:select id="selector1" name="reqAddAgendaData.namaKelas" required="true" list="listKelas" listKey="namaKelas" listValue="namaKelas" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Subject</label>
 									<div class="col-sm-8">
-									<s:select id="selector1" name="reqAddAgendaData.subject" list="listSubjects" listKey="subjectName" listValue="subjectName" cssClass="form-control1"/></div>
+									<s:select id="selector1" name="reqAddAgendaData.subject" required="true" list="listSubjects" listKey="subjectName" listValue="subjectName" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Jenis Agenda</label>
 									<div class="col-sm-8">
-									<s:select id="selector1" name="reqAddAgendaData.agendaType" list="listAgendaType" listKey="lookupValue" listValue="lookupDesc" cssClass="form-control1"/></div>
+									<s:select id="selector1" name="reqAddAgendaData.agendaType" required="true" list="listAgendaType" listKey="lookupValue" listValue="lookupDesc" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">									
 									<label for="selector1" class="col-sm-2 control-label">Tanggal Agenda</label>
                             		<div class="col-sm-8">
-                            		<s:textfield id="datepicker" name="reqAddAgendaData.tanggalAgendaInput"/></div>
+                            		<s:textfield id="datepicker" name="reqAddAgendaData.tanggalAgendaInput" required="true"/></div>
 									
 								</div>
 								<div class="form-group">
