@@ -59,15 +59,10 @@ public class AddAgendaAction extends BaseAction implements ServletRequestAware {
 	}
 	
 	public List<Kelas> getListKelas() {
-		RespLoginVO loginData = (RespLoginVO) session.get(LOGIN_KEY);
-		ReqListKelasData reqListKelasData = new ReqListKelasData();
-		reqListKelasData.setKodeSekolah(loginData.getKodeSekolah());
-		reqListKelasData.setNoInduk(loginData.getNoInduk());
-		reqListKelasData.setUserType(loginData.getUserType());
-		reqListKelasData.setPassword(loginData.getPassword());
-		List<Kelas> listClass = new ArrayList<Kelas>();
+		RespLoginVO loginData = (RespLoginVO) session.get(LOGIN_KEY);		
+		List<Kelas> listKelas = new ArrayList<Kelas>();
 		try{
-			listClass = kelasService.findAllKelasTeacherEngine(reqListKelasData);
+			listKelas = kelasService.findAllKelasTeacherEngine(loginData);
 		} catch (MmbsWebException mwe) {
 			LOG.error("MmbsWebException : " + mwe);
 		} catch (JsonGenerationException e) {
@@ -79,7 +74,7 @@ public class AddAgendaAction extends BaseAction implements ServletRequestAware {
 		} catch (Exception e) {
 			LOG.error("Exception : " + e);
 		}
-		return listClass;
+		return listKelas;
 	}
 		
 }
