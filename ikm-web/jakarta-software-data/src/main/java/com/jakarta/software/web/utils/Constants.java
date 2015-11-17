@@ -83,7 +83,8 @@ public class Constants {
 	public static final String ORIGIN_SOURCE_WEB			= "Web";
 	public static final String TRX_CODE_LOGIN				= "/trx/loginUser";
 	public static final String TRX_CODE_GET_LIST_AGENDA		= "/trx/listAgenda";
-	public static final String TRX_CODE_GET_LIST_KELAS		= "/trx//listKelas";
+	public static final String TRX_CODE_GET_LIST_KELAS		= "/trx/listKelas";
+	public static final String TRX_CODE_GET_ADD_AGENDA		= "/trx/addAgenda";
 	public static final String TRX_CODE_ACC_INFO	= "WEB_ACC_INFO";
 //	public static final String TRX_CODE_CIF_REG		= "WEB_REG";
 	public static final String TRX_CODE_CIF_AUTH	= "WEB_CIF_AUTH";

@@ -30,7 +30,7 @@ public class KelasService {
 	@Autowired
 	private HttpClientService httpClientService;
 	
-	public List<Kelas> findAllKelasTeacherEngine(RespLoginVO loginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
+	public RespListKelasVO findAllKelasTeacherEngine(RespLoginVO loginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
 		ReqListKelasData reqListKelasData = new ReqListKelasData();
 		reqListKelasData.setKodeSekolah(loginData.getKodeSekolah());
 		reqListKelasData.setNoInduk(loginData.getNoInduk());
@@ -50,10 +50,8 @@ public class KelasService {
 		}
 		RespListKelasVO respListKelasVO = new RespListKelasVO();
 		respListKelasVO = mapper.readValue(messageVO.getOtherMessage(), RespListKelasVO.class);
-		List<Kelas> listKelas = new ArrayList<Kelas>();
 		LOG.info("findAllKelasTeacherEngine done with param : " + " respListKelasVO: " + respListKelasVO);
-		listKelas.addAll(respListKelasVO.getListKelas());
-		return listKelas;		
+		return respListKelasVO;		
 	}
 	
 }

@@ -2,11 +2,10 @@ package com.jakarta.software.web.data;
 
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.jakarta.software.web.entity.Kelas;
+import com.jakarta.software.web.entity.Subject;
 
 public class RespListKelasVO extends LoginData implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
