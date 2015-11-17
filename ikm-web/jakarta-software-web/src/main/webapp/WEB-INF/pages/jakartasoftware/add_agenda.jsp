@@ -98,12 +98,8 @@
 						<form class="form-horizontal">
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Kelas</label>
-									<div class="col-sm-8"><select name="selector1" id="selector1" class="form-control1">
-										<option>Lorem ipsum dolor sit amet.</option>
-										<option>Dolore, ab unde modi est!</option>
-										<option>Illum, fuga minus sit eaque.</option>
-										<option>Consequatur ducimus maiores voluptatum minima.</option>
-									</select></div>
+									<div class="col-sm-8">
+									<s:select id="selector1" name="cif" list="listKelas" listKey="namaKelas" listValue="namaKelas" cssClass="form-control1"/></div>
 								</div>
 								<div class="form-group">
 									<label for="selector1" class="col-sm-2 control-label">Subject</label>
