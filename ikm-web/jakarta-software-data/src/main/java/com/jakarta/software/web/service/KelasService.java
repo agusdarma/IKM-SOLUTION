@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.jakarta.software.web.data.MessageVO;
 import com.jakarta.software.web.data.ReqListKelasData;
 import com.jakarta.software.web.data.RespListKelasVO;
+import com.jakarta.software.web.data.RespLoginVO;
 import com.jakarta.software.web.entity.Kelas;
 import com.jakarta.software.web.utils.Constants;
 
@@ -29,7 +30,12 @@ public class KelasService {
 	@Autowired
 	private HttpClientService httpClientService;
 	
-	public List<Kelas> findAllKelasTeacherEngine(ReqListKelasData reqListKelasData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
+	public List<Kelas> findAllKelasTeacherEngine(RespLoginVO loginData) throws MmbsWebException, JsonGenerationException, JsonMappingException, IOException {
+		ReqListKelasData reqListKelasData = new ReqListKelasData();
+		reqListKelasData.setKodeSekolah(loginData.getKodeSekolah());
+		reqListKelasData.setNoInduk(loginData.getNoInduk());
+		reqListKelasData.setUserType(loginData.getUserType());
+		reqListKelasData.setPassword(loginData.getPassword());
 		LOG.debug("findAllKelasTeacherEngine with param : " + " reqListKelasData: " + reqListKelasData);	
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -44,10 +50,10 @@ public class KelasService {
 		}
 		RespListKelasVO respListKelasVO = new RespListKelasVO();
 		respListKelasVO = mapper.readValue(messageVO.getOtherMessage(), RespListKelasVO.class);
-		List<Kelas> listClass = new ArrayList<Kelas>();
+		List<Kelas> listKelas = new ArrayList<Kelas>();
 		LOG.info("findAllKelasTeacherEngine done with param : " + " respListKelasVO: " + respListKelasVO);
-		listClass.addAll(respListKelasVO.getListKelas());
-		return listClass;		
+		listKelas.addAll(respListKelasVO.getListKelas());
+		return listKelas;		
 	}
 	
 }
