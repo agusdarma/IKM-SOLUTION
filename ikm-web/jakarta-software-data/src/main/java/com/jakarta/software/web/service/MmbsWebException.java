@@ -5,7 +5,7 @@ public class MmbsWebException extends Exception {
 	
 	
 	public static final int NE_SENDING_EMAIL_FAILED	= 100;
-	
+	public static final int NE_AGENDA_DATE_EMPTY	= 1;
 	
 	public static final int NE_ENGINE_ERROR_MSG 	= 99998;
 	public static final int NE_UNKNOWN_ERROR		= 99999;

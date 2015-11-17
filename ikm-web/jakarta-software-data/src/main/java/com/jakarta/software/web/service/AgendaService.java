@@ -2,6 +2,7 @@ package com.jakarta.software.web.service;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -31,6 +32,9 @@ public class AgendaService
 		reqAddAgendaData.setNoInduk(loginData.getNoInduk());
 		reqAddAgendaData.setUserType(loginData.getUserType());
 		reqAddAgendaData.setPassword(loginData.getPassword());
+		if(StringUtils.isEmpty(reqAddAgendaData.getTanggalAgendaInput())){
+			throw new MmbsWebException(MmbsWebException.NE_AGENDA_DATE_EMPTY);
+		}
 		reqAddAgendaData.setTanggalAgenda(ConverterUtils.strToDate(reqAddAgendaData.getTanggalAgendaInput(), "dd-mm-yy"));
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
