@@ -11,7 +11,7 @@
 	
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>jakarta-software-web.root</param-value>
+		<param-value>my-agenda-web.root</param-value>
 	</context-param>
 	
 	<context-param>

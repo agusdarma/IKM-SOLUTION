@@ -25,7 +25,7 @@
 </head>
 <body id="login">
   <div class="login-logo">
-    <a href="index.html"><img height="151" width="151" src="<s:url value='/Resource/images/myagenda.png'/>" alt=""/></a>
+    <a href="#"><img height="151" width="151" src="<s:url value='/Resource/images/myagenda.png'/>" alt=""/></a>
   </div>
   <h2 class="form-heading"><s:text name="t.login"/></h2>
   <div class="app-cam">
@@ -33,7 +33,8 @@
 	  	<s:textfield type="text" name="webLoginData.kodeSekolah" cssClass="text" placeholder="%{getText('l.schoolCode')}" required="true"/>
 	  	<s:textfield type="text" name="webLoginData.noInduk" cssClass="text" placeholder="%{getText('l.noInduk')}" required="true"/>
 	  	<s:textfield type="password" name="webLoginData.password" cssClass="text" placeholder="%{getText('l.password')}" required="true"/>
-		<s:radio label="Login Type" name="webLoginData.userType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" value="2" />
+		<%--<s:radio label="Login Type" name="webLoginData.userType" list="listLoginType" listKey="lookupValue" listValue="lookupDesc" />--%>
+		<s:radio label="Login Type" name="webLoginData.userType" list="#{'1':'Teacher','2':'Parent'}" value="2" />
 		<div class="submit"><s:submit type="submit" id="ButtonLogin" value="%{getText('b.logIn')}"/></div>
 		<s:if test="hasActionErrors()">
 			<s:iterator value="actionErrors">

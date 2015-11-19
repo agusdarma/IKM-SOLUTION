@@ -1,5 +1,5 @@
 <configuration debug="false">
-  <property name="WEB_ROOT" value="${jakarta-software-web.root}" /> <!--       CHECK THIS IF YOU START NEW PROJECT     -->
+  <property name="WEB_ROOT" value="${my-agenda-web.root}" /> <!--       CHECK THIS IF YOU START NEW PROJECT     -->
   
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- encoders are assigned the type
